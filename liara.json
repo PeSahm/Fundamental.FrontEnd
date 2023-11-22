@@ -1,4 +1,5 @@
 {
   "platform": "angular",
-  "app": "fundamental-admin"
+  "app": "fundamental-admin",
+  "port": 4200
 }
