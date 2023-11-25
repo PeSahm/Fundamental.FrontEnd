@@ -1,17 +1,26 @@
-<div class="container">
+<div class="main-container">
+  <sidebar></sidebar>
+  <div class="others p-3">
+    <router-outlet></router-outlet>
 
-    <div class="my-3 row">
-      <label for="typeahead-http" class="col-xs-3 col-sm-auto col-form-label">جستجوی نماد:</label>
-      <div class="col">
-        <input id="typeahead-http" type="text" class="form-control" [class.is-invalid]="searchFailed"
-          [ngbTypeahead]="search" placeholder="جستجوی نماد ...." />
-        <small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>
-        <div class="invalid-feedback" *ngIf="searchFailed">عبارت جستجو شده یافت نشد...</div>
-      </div>
-    </div>
-
+  </div>
 </div>
 
 
 
-<router-outlet></router-outlet>
+
+<!-- <div class="container">
+
+  <div class="my-3 row">
+    <label for="typeahead-http" class="col-xs-3 col-sm-auto col-form-label">جستجوی نماد:</label>
+    <div class="col">
+      <input [(ngModel)]="selectedSymbol" [ngbTypeahead]="search" [resultFormatter]="resultFormatter"
+        (selectItem)="onSelect($event)" [inputFormatter]="inputFormatter" class="form-control"
+        [class.is-invalid]="searchFailed" />
+
+      <small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>
+      <div class="invalid-feedback" *ngIf="searchFailed">عبارت جستجو شده یافت نشد...</div>
+    </div>
+  </div>
+
+</div> -->

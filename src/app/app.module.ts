@@ -7,9 +7,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './pages/home/home.component';
+import { FinancialReportComponent } from './pages/financial-report/financial-report.component';
+import { SalesReportComponent } from './pages/sales-report/sales-report.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    FinancialReportComponent,
+    SalesReportComponent,
+    NotFoundComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

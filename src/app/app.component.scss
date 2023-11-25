@@ -1,0 +1,18 @@
+::ng-deep .dropdown-menu.show {
+    text-align: right;
+}
+
+::ng-deep .dropdown-menu {
+    width: 400px;
+}
+
+//home
+
+.main-container {
+    display: flex;
+}
+
+.others {
+    flex: 4;
+}
+
