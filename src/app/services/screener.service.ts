@@ -17,7 +17,14 @@ export class ScreenerService {
     }
 
     return this.http
-    .get(`https://endpoint.stockscreeners.ir/symbols?Filter=${term}`)
-    .pipe(map((response: any) => response.data));
+      .get(`https://endpoint.stockscreeners.ir/symbols?Filter=${term}`)
+      .pipe(map((response: any) => response.data));
   }
+
+  registerStatement(command: any) {
+    return this.http.post('https://endpoint.stockscreeners.ir/statements', command)
+  }
+
+
+
 }

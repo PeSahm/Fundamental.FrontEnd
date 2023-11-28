@@ -1,65 +1,103 @@
-<form>
+<form *ngIf="statementsForm" [formGroup]="statementsForm" (ngSubmit)="registerStatementForm()">
     <div class="row p-3">
-        <div class=" col-4">
+        <div class="col-4">
             <label for="symbol" class="form-label">نماد:</label>
             <div>
-                <input [(ngModel)]="selectedSymbol" [ngbTypeahead]="search" [resultFormatter]="resultFormatter"
+                <input formControlName="isin" [ngbTypeahead]="search" [resultFormatter]="resultFormatter"
                     (selectItem)="onSelect($event)" [inputFormatter]="inputFormatter" class="form-control"
-                    [class.is-invalid]="searchFailed" id="symbol" />
-
+                    [class.is-invalid]="searchFailed" id="symbol"
+                    [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.isin.errors }" />
                 <small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>
-                <div class="invalid-feedback" *ngIf="searchFailed">عبارت جستجو شده یافت نشد...</div>
             </div>
         </div>
-        <div class=" col-4">
-            <label for="email" class="form-label">سال مالی:</label>
-            <input type="input" class="form-control" id="email" name="email">
+        <div class="col-4">
+            <label for="traceNo" class="form-label"> شماره گزارش:</label>
+            <input type="input" class="form-control" id="traceNo" name="traceNo" formControlName="traceNo"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.traceNo.errors }">
+        </div>
+        <div class="col-4">
+            <label for="uri" class="form-label"> URI گزارش:</label>
+            <input type="input" class="form-control" id="uri" name="uri" formControlName="uri"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.uri.errors }">
+        </div>
+        <div class=" col-4  my-4">
+            <label for="fiscalYear" class="form-label">سال مالی:</label>
+            <input type="input" class="form-control" id="fiscalYear" name="fiscalYear" formControlName="fiscalYear"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.fiscalYear.errors }">
+        </div>
+        <div class=" col-4  my-4">
+            <label for="yearEndMonth" class="form-label"> ماه انتهای سال مالی:</label>
+            <input type="input" class="form-control" id="yearEndMonth" name="yearEndMonth"
+                formControlName="yearEndMonth"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.yearEndMonth.errors }">
+        </div>
+        <div class=" col-4  my-4">
+            <label for="reportMonth" class="form-label"> ماه گزارش سال مالی:</label>
+            <input type="input" class="form-control" id="reportMonth"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.reportMonth.errors }"
+                name="reportMonth" formControlName="reportMonth">
         </div>
         <div class=" col-4">
-            <label for="email" class="form-label"> ماه انتهای سال مالی:</label>
-            <input type="input" class="form-control" id="email" name="email">
-        </div>
-        <div class=" col-4 my-4">
-            <label for="email" class="form-label"> ماه گزارش سال مالی:</label>
-            <input type="input" class="form-control" id="email" name="email">
-        </div>
-        <div class=" col-4 my-4">
-            <label for="email" class="form-label"> درآمد عملیاتی:</label>
-            <input type="input" class="form-control" id="email" name="email">
-        </div>
-        <div class=" col-4 my-4">
-            <label for="email" class="form-label"> سود(زيان) ناخالص:</label>
-            <input type="input" class="form-control" id="email" name="email">
+            <label for="operatingIncome" class="form-label"> درآمد عملیاتی:</label>
+            <input type="input" class="form-control" id="operatingIncome" name="operatingIncome"
+                formControlName="operatingIncome"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.operatingIncome.errors }">
         </div>
         <div class=" col-4">
-            <label for="email" class="form-label"> سود(زيان) عملياتى:</label>
-            <input type="input" class="form-control" id="email" name="email">
+            <label for="grossProfit" class="form-label"> سود(زيان) ناخالص:</label>
+            <input type="input" class="form-control" id="grossProfit"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.grossProfit.errors }"
+                name="grossProfit" formControlName="grossProfit">
         </div>
-        <div class=" col-4">
-            <label for="email" class="form-label"> سود سپرده بانکی :</label>
-            <input type="input" class="form-control" id="email" name="email">
+        <div class=" col-4 ">
+            <label for="operatingProfit" class="form-label"> سود(زيان) عملياتى:</label>
+            <input type="input" class="form-control" id="operatingProfit" name="operatingProfit"
+                formControlName="operatingProfit"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.operatingProfit.errors }">
         </div>
-        <div class=" col-4">
-            <label for="email" class="form-label"> هزینه ها:</label>
-            <input type="input" class="form-control" id="email" name="email">
+        <div class=" col-4  my-4">
+            <label for="bankInterestIncome" class="form-label"> سود سپرده بانکی :</label>
+            <input type="input" class="form-control" id="bankInterestIncome" name="bankInterestIncome"
+                formControlName="bankInterestIncome"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.bankInterestIncome.errors }">
+
+        </div>
+        <div class=" col-4  my-4">
+            <label for="investmentIncome" class="form-label"> درآمد حاصل از سرمایه گذاری:</label>
+            <input type="input" class="form-control" id="investmentIncome" name="investmentIncome"
+                formControlName="investmentIncome"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.investmentIncome.errors }">
+
+        </div>
+        <div class=" col-4  my-4">
+            <label for="netProfit" class="form-label"> سود(زيان) خالص عمليات در حال تداوم :</label>
+            <input type="input"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.netProfit.errors }"
+                class="form-control" id="netProfit" name="netProfit" formControlName="netProfit">
+        </div>
+        <div class=" col-4 ">
+            <label for="expense" class="form-label"> هزینه ها:</label>
+            <input type="input" class="form-control"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.expense.errors }"
+                id="expense" name="expense" formControlName="expense">
+        </div>
+        <div class=" col-4 ">
+            <label for="asset" class="form-label"> دارایی:</label>
+            <input type="input" class="form-control" id="asset" name="asset" formControlName="asset"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.asset.errors }">
+        </div>
+        <div class=" col-4 ">
+            <label for="ownersEquity" class="form-label"> حقوق مالکانه:</label>
+            <input type="input" class="form-control" id="ownersEquity" name="ownersEquity"
+                formControlName="ownersEquity"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.ownersEquity.errors }">
         </div>
         <div class=" col-4 my-4">
-            <label for="email" class="form-label">  سود(زيان) خالص عمليات در حال تداوم :</label>
-            <input type="input" class="form-control" id="email" name="email">
+            <label for="receivables" class="form-label"> دريافتني‌هاي تجاري و ساير دريافتني‌ها:</label>
+            <input type="input" class="form-control" id="receivables" name="receivables" formControlName="receivables"
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.receivables.errors }">
         </div>
-        <div class=" col-4 my-4">
-            <label for="email" class="form-label">  دارایی:</label>
-            <input type="input" class="form-control" id="email" name="email">
-        </div>
-        <div class=" col-4 my-4">
-            <label for="email" class="form-label">  حقوق مالکانه:</label>
-            <input type="input" class="form-control" id="email" name="email">
-        </div>
-        <div class=" col-4">
-            <label for="email" class="form-label">  دريافتني‌هاي تجاري و ساير دريافتني‌ها:</label>
-            <input type="input" class="form-control" id="email" name="email">
-        </div>
-        <hr class="my-4"/>
+        <hr class="my-4" />
         <button type="submit" class="btn btn-primary w-25">ثبت</button>
     </div>
 </form>
