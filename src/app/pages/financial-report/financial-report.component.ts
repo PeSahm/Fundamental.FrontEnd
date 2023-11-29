@@ -77,12 +77,11 @@ export class FinancialReportComponent implements OnInit {
       "receivables": parseInt(toEnDigit(this.statementsForm?.value.receivables)),
     }
 
-
     this.service.registerStatement(command)
-      .subscribe((res: any) => {
-        if (res.success) {
-          this.statementsForm?.reset();
+    .subscribe((res: any) => {
+      if (res.success) {
           this.toastr.success(`ثبت اطلاعات نماد ${this.statementsForm?.value.isin.name} با موفقیت انجام شد.`);
+          this.statementsForm?.reset();
         } else {
           this.toastr.error(res.error.values.message)
         }

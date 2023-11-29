@@ -25,17 +25,12 @@
                 [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.fiscalYear.errors }">
         </div>
         <div class=" col-4  my-4">
-            <label for="currency" class="form-label"> واحد پولی:</label>
-            <input type="input" class="form-control" id="currency" name="currency" formControlName="currency"
-                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.currency.errors }">
-        </div>
-        <div class=" col-4  my-4">
             <label for="yearEndMonth" class="form-label"> آخرین ماه فروش:</label>
             <input type="input" class="form-control" id="yearEndMonth" name="yearEndMonth"
                 formControlName="yearEndMonth"
                 [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.yearEndMonth.errors }">
         </div>
-        <div class=" col-4">
+        <div class=" col-4  my-4">
             <label for="reportMonth" class="form-label"> ماه گزارش فروش:</label>
             <input type="input" class="form-control" id="reportMonth"
                 [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.reportMonth.errors }"
@@ -53,7 +48,7 @@
                 [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.saleCurrentMonth.errors }"
                 name="saleCurrentMonth" formControlName="saleCurrentMonth">
         </div>
-        <div class=" col-4 my-4">
+        <div class=" col-4">
             <label for="saleIncludeCurrentMonth " class="form-label"> فروش از ابتدای سال مالی تا انتهای ماه
                 جاری:</label>
             <input type="input" class="form-control" id="saleIncludeCurrentMonth"

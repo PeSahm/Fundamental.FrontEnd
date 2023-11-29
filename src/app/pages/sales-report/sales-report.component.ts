@@ -33,12 +33,11 @@ export class SalesReportComponent implements OnInit {
       traceNo: ['', Validators.required],
       uri: ['', Validators.required],
       fiscalYear: ['', Validators.required],
-      currency: ['', Validators.required],
       yearEndMonth: ['', Validators.required],
       reportMonth: ['', Validators.required],
       saleBeforeCurrentMonth: ['', Validators.required],
-      saleCurrentMonth : ['', Validators.required],
-      saleIncludeCurrentMonth : ['', Validators.required],
+      saleCurrentMonth: ['', Validators.required],
+      saleIncludeCurrentMonth: ['', Validators.required],
       saleLastYear: ['', Validators.required],
       hasSubCompanySale: [false, Validators.required],
 
@@ -62,15 +61,24 @@ export class SalesReportComponent implements OnInit {
       "fiscalYear": parseInt(toEnDigit(this.salesForm?.value.fiscalYear)),
       "yearEndMonth": parseInt(toEnDigit(this.salesForm?.value.yearEndMonth)),
       "reportMonth": parseInt(toEnDigit(this.salesForm?.value.reportMonth)),
-      "currency": parseInt(toEnDigit(this.salesForm?.value.currency)),
       "saleBeforeCurrentMonth": parseInt(toEnDigit(this.salesForm?.value.saleBeforeCurrentMonth)),
       "saleCurrentMonth": parseInt(toEnDigit(this.salesForm?.value.saleCurrentMonth)),
       "saleIncludeCurrentMonth": parseInt(toEnDigit(this.salesForm?.value.saleIncludeCurrentMonth)),
       "saleLastYear": parseInt(toEnDigit(this.salesForm?.value.saleLastYear)),
-      "hasSubCompanySale":this.salesForm?.value.hasSubCompanySale,
+      "hasSubCompanySale": this.salesForm?.value.hasSubCompanySale,
     }
-    
-    
+    this.service.registerMonthlyActivity(command)
+    .subscribe((res: any) => {
+      if (res.success) {
+          this.toastr.success(`ثبت اطلاعات نماد ${this.salesForm?.value.isin.name} با موفقیت انجام شد.`);
+          this.salesForm?.reset();
+        } else {
+          this.toastr.error(res.error.values.message)
+        }
+      })
+
+
+
   }
 
 
@@ -78,7 +86,7 @@ export class SalesReportComponent implements OnInit {
 
   search = (text$: Observable<string>) =>
     text$.pipe(
-      debounceTime(300),
+      debounceTime(600),
       distinctUntilChanged(),
       tap(() => (this.searching = true)),
       switchMap(term =>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable, of, OperatorFunction } from 'rxjs';
-import { SearchSymbol } from '../models/models';
+import { MonthlyActivity, SearchSymbol, Statement } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,12 @@ export class ScreenerService {
         .pipe(map((response: any) => response.data));
   }
 
-  registerStatement(command: any) {
+  registerStatement(command: Statement) {
     return this.http.post('https://endpoint.stockscreeners.ir/statements', command)
+  }
+
+  registerMonthlyActivity(command:MonthlyActivity){
+    return this.http.post('https://endpoint.stockscreeners.ir/monthly-activity', command)
   }
 
 
