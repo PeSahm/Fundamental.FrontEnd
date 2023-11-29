@@ -1,1 +1,81 @@
-<p>sales-report works!</p>
+<form *ngIf="salesForm" [formGroup]="salesForm" (ngSubmit)="registerSales()">
+    <div class="row p-3">
+        <div class="col-4">
+            <label for="symbol" class="form-label">نماد:</label>
+            <div>
+                <input formControlName="isin" [ngbTypeahead]="search" [resultFormatter]="resultFormatter"
+                    [inputFormatter]="inputFormatter" class="form-control" [class.is-invalid]="searchFailed" id="symbol"
+                    [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted?.isin.errors }">
+                <small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>
+            </div>
+        </div>
+        <div class="col-4">
+            <label for="traceNo" class="form-label"> شماره گزارش:</label>
+            <input type="input" class="form-control" id="traceNo" name="traceNo" formControlName="traceNo"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted?.traceNo.errors }">
+        </div>
+        <div class="col-4">
+            <label for="uri" class="form-label"> URI گزارش:</label>
+            <input type="input" class="form-control" id="uri" name="uri" formControlName="uri"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.uri.errors }">
+        </div>
+        <div class=" col-4  my-4">
+            <label for="fiscalYear" class="form-label">سال مالی:</label>
+            <input type="input" class="form-control" id="fiscalYear" name="fiscalYear" formControlName="fiscalYear"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.fiscalYear.errors }">
+        </div>
+        <div class=" col-4  my-4">
+            <label for="currency" class="form-label"> واحد پولی:</label>
+            <input type="input" class="form-control" id="currency" name="currency" formControlName="currency"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.currency.errors }">
+        </div>
+        <div class=" col-4  my-4">
+            <label for="yearEndMonth" class="form-label"> آخرین ماه فروش:</label>
+            <input type="input" class="form-control" id="yearEndMonth" name="yearEndMonth"
+                formControlName="yearEndMonth"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.yearEndMonth.errors }">
+        </div>
+        <div class=" col-4">
+            <label for="reportMonth" class="form-label"> ماه گزارش فروش:</label>
+            <input type="input" class="form-control" id="reportMonth"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.reportMonth.errors }"
+                name="reportMonth" formControlName="reportMonth">
+        </div>
+        <div class=" col-4">
+            <label for="saleBeforeCurrentMonth " class="form-label"> فروش اول سال مالی تا ماه قبل سال جاری:</label>
+            <input type="input" class="form-control" id="saleBeforeCurrentMonth"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.saleBeforeCurrentMonth.errors }"
+                name="saleBeforeCurrentMonth" formControlName="saleBeforeCurrentMonth">
+        </div>
+        <div class=" col-4">
+            <label for="saleCurrentMonth " class="form-label"> فروش ماه جاری:</label>
+            <input type="input" class="form-control" id="saleCurrentMonth"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.saleCurrentMonth.errors }"
+                name="saleCurrentMonth" formControlName="saleCurrentMonth">
+        </div>
+        <div class=" col-4 my-4">
+            <label for="saleIncludeCurrentMonth " class="form-label"> فروش از ابتدای سال مالی تا انتهای ماه
+                جاری:</label>
+            <input type="input" class="form-control" id="saleIncludeCurrentMonth"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.saleIncludeCurrentMonth.errors }"
+                name="saleIncludeCurrentMonth" formControlName="saleIncludeCurrentMonth">
+        </div>
+        <div class=" col-4 my-4">
+            <label for="saleLastYear " class="form-label"> فروش اول سال مالی تا ماه قبل سال قبل:</label>
+            <input type="input" class="form-control" id="saleLastYear"
+                [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.saleLastYear.errors }"
+                name="saleLastYear" formControlName="saleLastYear">
+        </div>
+        <div class=" col-4 my-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="hasSubCompanySale" name="hasSubCompanySale"
+                    formControlName="hasSubCompanySale"
+                    [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.hasSubCompanySale.errors }">
+                <label class="form-check-label" for="hasSubCompanySale">دارای فروش شرکت های زیر مجموعه</label>
+            </div>
+        </div>
+    </div>
+    <hr class="my-4" />
+    <button type="submit" class="btn btn-primary w-25">ثبت</button>
+
+</form>

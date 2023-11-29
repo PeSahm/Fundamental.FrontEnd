@@ -4,9 +4,8 @@
             <label for="symbol" class="form-label">نماد:</label>
             <div>
                 <input formControlName="isin" [ngbTypeahead]="search" [resultFormatter]="resultFormatter"
-                    (selectItem)="onSelect($event)" [inputFormatter]="inputFormatter" class="form-control"
-                    [class.is-invalid]="searchFailed" id="symbol"
-                    [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.isin.errors }" />
+                    [inputFormatter]="inputFormatter" class="form-control" [class.is-invalid]="searchFailed" id="symbol"
+                    [ngClass]="{'error-validation' : isStatementsFormSubmit && statementsFormSubmitted.isin.errors}" />
                 <small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>
             </div>
         </div>

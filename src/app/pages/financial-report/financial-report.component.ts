@@ -2,7 +2,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
-import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { ScreenerService } from 'src/app/services/screener.service';
 import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -108,8 +107,4 @@ export class FinancialReportComponent implements OnInit {
     );
   resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
   inputFormatter = (result: SymbolDetail) => result.name;
-  onSelect(event: NgbTypeaheadSelectItemEvent) {
-
-  }
-
 }
