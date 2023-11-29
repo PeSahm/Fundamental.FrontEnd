@@ -56,10 +56,10 @@ export class FinancialReportComponent implements OnInit {
   }
 
   registerStatementForm() {
-    // if (this.statementsForm?.invalid) {
-    //   this.isStatementsFormSubmit = true;
-    //   return;
-    // }
+    if (this.statementsForm?.invalid) {
+      this.isStatementsFormSubmit = true;
+      return;
+    }
     const command = {
       "isin": this.statementsForm?.value.isin.isin,
       "traceNo": parseInt(toEnDigit(this.statementsForm?.value.traceNo)),
