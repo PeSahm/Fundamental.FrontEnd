@@ -7,6 +7,7 @@ import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import toEnDigit from 'src/app/utils/toEnDigit';
 import { ToastrService } from 'ngx-toastr';
+import { GetErrorService } from 'src/app/services/getError.service';
 @Component({
   selector: 'app-financial-report',
   templateUrl: './financial-report.component.html',
@@ -21,7 +22,8 @@ export class FinancialReportComponent implements OnInit {
   constructor(
     private service: ScreenerService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private errorService: GetErrorService
   ) {
   }
   ngOnInit(): void {
@@ -54,10 +56,10 @@ export class FinancialReportComponent implements OnInit {
   }
 
   registerStatementForm() {
-    if (this.statementsForm?.invalid) {
-      this.isStatementsFormSubmit = true;
-      return;
-    }
+    // if (this.statementsForm?.invalid) {
+    //   this.isStatementsFormSubmit = true;
+    //   return;
+    // }
     const command = {
       "isin": this.statementsForm?.value.isin.isin,
       "traceNo": parseInt(toEnDigit(this.statementsForm?.value.traceNo)),
@@ -78,12 +80,19 @@ export class FinancialReportComponent implements OnInit {
     }
 
     this.service.registerStatement(command)
-    .subscribe((res: any) => {
-      if (res.success) {
+      .subscribe((res: any) => {
+        if (res.success) {
           this.toastr.success(`ثبت اطلاعات نماد ${this.statementsForm?.value.isin.name} با موفقیت انجام شد.`);
           this.statementsForm?.reset();
         } else {
-          this.toastr.error(res.error.values.message)
+          const errorCode = res?.error?.code;
+          this.errorService.getError()
+            .subscribe((res) => {
+              console.log(res);
+              
+              const errMessage = res[errorCode]
+              this.toastr.error(errMessage);
+            })
         }
       })
 
