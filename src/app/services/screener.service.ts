@@ -12,13 +12,12 @@ export class ScreenerService {
 
   }
   searchSymbol(term: string) {
-    if (term === '') {
+    if (term === '' || term.length < 2) {
       return of([]);
     }
-
     return this.http
-      .get(`https://endpoint.stockscreeners.ir/symbols?Filter=${term}`)
-      .pipe(map((response: any) => response.data));
+        .get(`https://endpoint.stockscreeners.ir/symbols?Filter=${term}`)
+        .pipe(map((response: any) => response.data));
   }
 
   registerStatement(command: any) {
