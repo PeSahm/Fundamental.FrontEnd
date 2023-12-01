@@ -35,7 +35,9 @@ import { GetFinancialReportComponent } from './pages/get-financial-report/get-fi
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
-      positionClass:'toast-top-left'
+      positionClass:'toast-top-left',
+      timeOut:20000,
+      closeButton:true
     }), // ToastrModule added,
     NgbAccordionModule
   ],

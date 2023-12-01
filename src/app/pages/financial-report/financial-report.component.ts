@@ -78,24 +78,27 @@ export class FinancialReportComponent implements OnInit {
       "ownersEquity": parseInt(toEnDigit(this.statementsForm?.value.ownersEquity)),
       "receivables": parseInt(toEnDigit(this.statementsForm?.value.receivables)),
     }
-
     this.service.registerStatement(command)
-      .subscribe((res: any) => {
-        if (res.success) {
+      .subscribe({
+        next: (res) => {
           this.toastr.success(`ثبت اطلاعات نماد ${this.statementsForm?.value.isin.name} با موفقیت انجام شد.`);
           this.statementsForm?.reset();
-        } else {
-          const errorCode = res?.error?.code;
+        },
+        error: (err) => {
+          const errorCode = String(err?.error?.error?.code);
           this.errorService.getError()
             .subscribe((res) => {
-              console.log(res);
-              
-              const errMessage = res[errorCode]
-              this.toastr.error(errMessage);
+              if (errorCode.includes('_800')) {
+                this.toastr.error(err?.error?.error?.values?.message);
+              } else {
+                const errMessage = res[errorCode]
+                this.toastr.error(errMessage);
+              }
             })
+        },
+        complete: () => {
         }
       })
-
   }
 
   search = (text$: Observable<string>) =>
