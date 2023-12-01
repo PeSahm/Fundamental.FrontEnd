@@ -1,0 +1,75 @@
+<div class="d-flex flex-column p-2">
+    <div class="card">
+        <div class="card-header">
+            فیلتر جستجو
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                <div class=" col-2">
+                    <label for="fiscalYear" class="form-label">سال مالی:</label>
+                    <input type="input" class="form-control" id="fiscalYear" name="fiscalYear">
+                </div>
+                <div class=" col-2">
+                    <label for="fiscalYear" class="form-label"> ماه گزارش:</label>
+                    <input type="input" class="form-control" id="fiscalYear" name="fiscalYear">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Table content -->
+    <div class="table-responsive mt-5">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr class="text-wrap">
+                    <th scope="col">نماد</th>
+                    <th scope="col">شماره گزارش</th>
+                    <th scope="col">لینک</th>
+                    <th scope="col">سال مالی</th>
+                    <th scope="col">ماه انتهای سال مالی</th>
+                    <th scope="col">ماه گزارش سال مالی</th>
+                    <th scope="col">درآمد عملیاتی</th>
+                    <th scope="col">سود(زيان) ناخالص</th>
+                    <th scope="col">سود(زيان) عملياتى</th>
+                    <th scope="col">سود(زيان) خالص عمليات در حال تداوم</th>
+                    <th scope="col">هزینه ها</th>
+                    <th scope="col">دارایی</th>
+                    <th scope="col">حقوق مالکانه</th>
+                    <th scope="col">دريافتني‌هاي تجاري و ساير دريافتني‌ها</th>
+                    <th scope="col">سود سپرده بانکی</th>
+                    <th scope="col">درآمد حاصل از سرمایه گذاری</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let statement of statements">
+                    <td>{{statement.symbol}}</td>
+                    <td>{{statement.traceNo}}</td>
+                    <td>
+                        <a href="{{statement.uri}}" target="_blank">
+                            <i class="fa fa-eye text-info"></i>
+                        </a>
+                    </td>
+                    <td>{{statement.fiscalYear}}</td>
+                    <td>{{statement.yearEndMonth}}</td>
+                    <td>{{statement.reportMonth}}</td>
+                    <td>{{statement.operatingIncome | number}}</td>
+                    <td>{{statement.grossProfit | number}}</td>
+                    <td>{{statement.operatingProfit | number}}</td>
+                    <td>{{statement.netProfit | number}}</td>
+                    <td>{{statement.expense | number}}</td>
+                    <td>{{statement.asset | number}}</td>
+                    <td>{{statement.ownersEquity | number}}</td>
+                    <td>{{statement.receivables | number}}</td>
+                    <td>{{statement.bankInterestIncome | number}}</td>
+                    <td>{{statement.investmentIncome | number}}</td>
+                </tr>
+
+                <div *ngIf="isLoading" class="spinner-grow text-muted" style="position: absolute; left: 50%;"></div>
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

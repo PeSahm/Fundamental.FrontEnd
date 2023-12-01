@@ -1,31 +1,55 @@
 <div class='sidebar'>
     <div class="sidebarWrapper">
         <div class="sidebarMenu">
-            <h3 class='sidebarTitle'>داشبورد اطلاعاتی</h3>
+            <h3 class='sidebarTitle'>خانه</h3>
             <ul class='sidebarList'>
-                <li class="sidebarListItem" routerLink='/home' routerLinkActive = 'active'>
+                <li class="sidebarListItem" routerLink='/home' routerLinkActive='active'>
                     <!-- <LineStyleIcon class='sidebarIcon' /> -->
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <div style="margin-right: 15px;">
                         خانه
                     </div>
                 </li>
-                <li class="sidebarListItem" routerLink='/financial-report' routerLinkActive = 'active'>
-                    <!-- <TimeLine class='sidebarIcon' /> -->
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                    <div style="margin-right: 15px;">
-                        ثبت صورت های مالی
-
-                    </div>
-                </li>
-                <li class="sidebarListItem" routerLink='/sales-report' routerLinkActive = 'active'>
-                    <i class="fa fa-usd" aria-hidden="true"></i>
-                    <div style="margin-right: 15px;">
-                        ثبت فروش ها
-
-                    </div>
-                </li>
             </ul>
+            <div class="sidebarMenu">
+                <h3 class='sidebarTitle'>صورت های مالی</h3>
+                <ul class='sidebarList'>
+                    <li class="sidebarListItem" routerLink='/get-financial-report' routerLinkActive='active'>
+                        <i class="fa fa-table" aria-hidden="true"></i>
+                        <div style="margin-right: 15px;">
+
+                            گزارش صورت های مالی
+                        </div>
+                    </li>
+                    <li class="sidebarListItem" routerLink='/financial-report' routerLinkActive='active'>
+                        <!-- <TimeLine class='sidebarIcon' /> -->
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <div style="margin-right: 15px;">
+                            ثبت صورت های مالی
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="sidebarMenu">
+                <h3 class='sidebarTitle'>فعالیت های ماهانه</h3>
+                <ul class='sidebarList'>
+                    <li class="sidebarListItem">
+                        <i class="fa fa-table" aria-hidden="true"></i>
+                        <div style="margin-right: 15px;">
+
+                            گزارش فروش های ماهانه
+                        </div>
+                    </li>
+                    <li class="sidebarListItem" routerLink='/sales-report' routerLinkActive='active'>
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                        <div style="margin-right: 15px;">
+                            ثبت قروش های ماهانه
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
 
     </div>
