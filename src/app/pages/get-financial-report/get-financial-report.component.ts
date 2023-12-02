@@ -1,5 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ScreenerService } from 'src/app/services/screener.service';
+import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
+import { catchError, debounceTime, distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+
 @Component({
   selector: 'app-get-financial-report',
   templateUrl: './get-financial-report.component.html',
@@ -10,7 +14,7 @@ export class GetFinancialReportComponent implements OnInit {
   searching = false;
   searchFailed = false;
   @ViewChild('input') searchInput!: ElementRef;
-  selectedItems:any = [];
+  selectedItems: any = [];
   statements = [];
   isLoading = true;
   constructor(
@@ -35,14 +39,38 @@ export class GetFinancialReportComponent implements OnInit {
       })
   }
 
-  selected(e:any) {
+  selected(e: any) {
     e.preventDefault();
-    console.log(e.item)
-    this.selectedItems = [...this.selectedItems , this.selectedItems.push(e.item)];
-    console.log( this.selectedItems)
-
+    let selectedSymbol = e['item']
+    this.selectedItems.push(selectedSymbol);
     this.searchInput.nativeElement.value = '';
   }
+  close(item:any) {
+    this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
+    this.searchInput.nativeElement.focus();
+  }
+
+  searchTable(){
+    
+  }
+
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => (this.searching = true)),
+      switchMap(term =>
+        this.service.searchSymbol(term)
+          .pipe(
+            tap(() => (this.searchFailed = false)),
+            catchError(() => of<SearchSymbol>({ success: false, data: [], error: null }))
+          )
+      ),
+      switchMap(result => of(result)),
+      tap(() => (this.searching = false)),
+    );
+  resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
+  inputFormatter = (result: SymbolDetail) => result.name;
 
 
 

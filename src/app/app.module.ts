@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
@@ -39,7 +39,8 @@ import { GetFinancialReportComponent } from './pages/get-financial-report/get-fi
       timeOut:20000,
       closeButton:true
     }), // ToastrModule added,
-    NgbAccordionModule
+    NgbAccordionModule,
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
