@@ -14,6 +14,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { GetFinancialReportComponent } from './pages/get-financial-report/get-financial-report.component';
+import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,9 +42,13 @@ import { GetFinancialReportComponent } from './pages/get-financial-report/get-fi
       closeButton:true
     }), // ToastrModule added,
     NgbAccordionModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [
+    provideNgxMask()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

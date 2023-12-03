@@ -15,8 +15,14 @@ export class GetFinancialReportComponent implements OnInit {
   searchFailed = false;
   fiscalYear = null;
   reportMonth = null;
-  reportFilter = {}
-
+  reportFilter = {
+    pageSize: 10,
+    pageNumber: 1
+  };
+  isSearchBarOpen = true;
+  page = 1;
+  totalRecords: number = 0;
+  pageSize = 10;
 
   @ViewChild('input') searchInput!: ElementRef;
   selectedItems: any = [];
@@ -37,6 +43,7 @@ export class GetFinancialReportComponent implements OnInit {
     this.service.getAllStatements(this.reportFilter)
       .subscribe((res: any) => {
         this.statements = res.data.items
+        this.totalRecords = res.data.meta.total
       }, err => {
 
       }, () => {
@@ -57,27 +64,58 @@ export class GetFinancialReportComponent implements OnInit {
 
   searchTable() {
     this.isLoading = true;
-
+    this.statements = [];
+    this.page = 1;
     const command = {
-      fiscalYear: this.fiscalYear,
+      ...this.reportFilter,
+      year: this.fiscalYear,
       reportMonth: this.reportMonth,
-      IsinList: this.selectedItems.map((item: any) => item?.isin)
+      IsinList: this.selectedItems.map((item: any) => item?.isin),
+      pageNumber: 1,
+      pageSize: 10,
+
     }
     this.reportFilter = command;
     this.service.getAllStatements(this.reportFilter)
       .subscribe({
         next: (res: any) => {
-
           this.statements = res.data.items
-
+          this.totalRecords = res.data.meta.total
         },
         complete: () => {
           this.isLoading = false;
 
         }
       })
+    this.isSearchBarOpen = false;
+  }
 
+  toggleSearchFilter(el: ElementRef) {
+    this.isSearchBarOpen = !this.isSearchBarOpen;
+  }
 
+  changePage(e: any) {
+    this.isLoading = true;
+    this.statements = [];
+    this.page = e;
+    this.reportFilter = {
+      ...this.reportFilter,
+      pageNumber: this.page
+    }
+    this.getAllStatements();
+  }
+
+  changeSize(e: any) {
+    this.isLoading = true;
+    this.statements = [];
+    this.pageSize = Number(e.target.value);
+    this.page = 1;
+    this.reportFilter = {
+      ...this.reportFilter,
+      pageSize: this.pageSize,
+      pageNumber: 1,
+    }
+    this.getAllStatements();
   }
 
   search = (text$: Observable<string>) =>
