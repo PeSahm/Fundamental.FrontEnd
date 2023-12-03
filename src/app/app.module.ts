@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { GetFinancialReportComponent } from './pages/get-financial-report/get-financial-report.component';
 import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { GetSalesReportComponent } from './pages/get-sales-report/get-sales-report.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask
     NotFoundComponent,
     SidebarComponent,
     GetFinancialReportComponent,
+    GetSalesReportComponent,
     
   ],
   imports: [

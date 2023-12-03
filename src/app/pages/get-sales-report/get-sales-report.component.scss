@@ -1,0 +1,31 @@
+table thead th {
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+table tbody td {
+    font-size: 13px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.collapsed .card-body {
+    height: 0;
+    overflow: hidden;
+    transition: height 2s ease-in-out;
+    padding: 0;
+}
+
+.card-body {
+    transition: height 2s ease-in-out;
+
+}
+
+::ng-deep {
+    .page-item:last-child .page-link,
+    .page-item:first-child .page-link
+    {
+        border-radius: 0 !important;
+    }
+}

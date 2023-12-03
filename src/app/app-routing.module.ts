@@ -5,6 +5,7 @@ import { FinancialReportComponent } from './pages/financial-report/financial-rep
 import { SalesReportComponent } from './pages/sales-report/sales-report.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { GetFinancialReportComponent } from './pages/get-financial-report/get-financial-report.component';
+import { GetSalesReportComponent } from './pages/get-sales-report/get-sales-report.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'financial-report', component: FinancialReportComponent },
   { path: 'sales-report', component: SalesReportComponent },
   { path: 'get-financial-report', component: GetFinancialReportComponent },
+  { path: 'get-sales-report', component: GetSalesReportComponent },
   {
     path: '**',
     component: NotFoundComponent,
