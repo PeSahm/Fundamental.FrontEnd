@@ -27,8 +27,8 @@ export class ScreenerService {
   registerMonthlyActivity(command:MonthlyActivity){
     return this.http.post('https://endpoint.stockscreeners.ir/monthly-activity', command)
   }
-  getAllStatements(){
-    return this.http.get(`https://endpoint.stockscreeners.ir/statements`)
+  getAllStatements(command : any){
+    return this.http.get(`https://endpoint.stockscreeners.ir/statements` , {params : command})
   }
 
 

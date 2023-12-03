@@ -13,6 +13,11 @@ export class GetFinancialReportComponent implements OnInit {
   selectedSymbol = '';
   searching = false;
   searchFailed = false;
+  fiscalYear = null;
+  reportMonth = null;
+  reportFilter = {}
+
+
   @ViewChild('input') searchInput!: ElementRef;
   selectedItems: any = [];
   statements = [];
@@ -29,7 +34,7 @@ export class GetFinancialReportComponent implements OnInit {
   }
 
   getAllStatements() {
-    this.service.getAllStatements()
+    this.service.getAllStatements(this.reportFilter)
       .subscribe((res: any) => {
         this.statements = res.data.items
       }, err => {
@@ -45,13 +50,34 @@ export class GetFinancialReportComponent implements OnInit {
     this.selectedItems.push(selectedSymbol);
     this.searchInput.nativeElement.value = '';
   }
-  close(item:any) {
+  close(item: any) {
     this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
     this.searchInput.nativeElement.focus();
   }
 
-  searchTable(){
-    
+  searchTable() {
+    this.isLoading = true;
+
+    const command = {
+      fiscalYear: this.fiscalYear,
+      reportMonth: this.reportMonth,
+      IsinList: this.selectedItems.map((item: any) => item?.isin)
+    }
+    this.reportFilter = command;
+    this.service.getAllStatements(this.reportFilter)
+      .subscribe({
+        next: (res: any) => {
+
+          this.statements = res.data.items
+
+        },
+        complete: () => {
+          this.isLoading = false;
+
+        }
+      })
+
+
   }
 
   search = (text$: Observable<string>) =>
