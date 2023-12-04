@@ -13,7 +13,9 @@
         <div class="col-4">
             <label for="traceNo" class="form-label"> شماره گزارش:</label>
             <input type="input" class="form-control" id="traceNo" name="traceNo" formControlName="traceNo"
-                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.traceNo.errors }">
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.traceNo.errors }"
+                mask="0000000" [allowNegativeNumbers]="false"
+                >
         </div>
         <div class="col-4">
             <label for="uri" class="form-label"> URI گزارش:</label>
@@ -23,7 +25,9 @@
         <div class=" col-4  my-4">
             <label for="fiscalYear" class="form-label">سال مالی:</label>
             <input type="input" class="form-control" id="fiscalYear" name="fiscalYear" formControlName="fiscalYear"
-                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.fiscalYear.errors }">
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.fiscalYear.errors }"
+                mask="0000" [allowNegativeNumbers]="false"
+                >
         </div>
         <div class=" col-4  my-4">
             <label for="yearEndMonth" class="form-label"> ماه انتهای سال مالی:</label>

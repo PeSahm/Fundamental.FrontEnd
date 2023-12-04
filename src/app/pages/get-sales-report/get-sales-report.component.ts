@@ -4,6 +4,7 @@ import { catchError, debounceTime, distinctUntilChanged, tap, switchMap } from '
 import { Observable, of } from 'rxjs';
 import { ScreenerService } from 'src/app/services/screener.service';
 import { MonthlyActivityService } from 'src/app/services/monthly-activity.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-get-sales-report',
   templateUrl: './get-sales-report.component.html',
@@ -31,7 +32,8 @@ export class GetSalesReportComponent implements OnInit {
   isLoading = true;
   constructor(
     private service: ScreenerService,
-    private monthlyReportService: MonthlyActivityService
+    private monthlyReportService: MonthlyActivityService,
+    private router: Router
   ) {
 
   }
@@ -139,5 +141,9 @@ export class GetSalesReportComponent implements OnInit {
     );
   resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
   inputFormatter = (result: SymbolDetail) => result.name;
+
+  openEditPage(id: any) {
+    this.router.navigate(['/sales-report'], { state: { id } })
+  }
 
 }

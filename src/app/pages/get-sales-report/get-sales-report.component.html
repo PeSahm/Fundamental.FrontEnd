@@ -56,6 +56,7 @@
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr class="text-wrap">
+                    <th scope="col">عملیات</th>
                     <th scope="col">نماد</th>
                     <th scope="col">شماره گزارش</th>
                     <th scope="col">لینک</th>
@@ -71,6 +72,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let sale of sales">
+                    <td class="cursor-pointer" (click)="openEditPage(sale.id)">
+                        <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i>
+
+                    </td>
                     <td>{{sale.symbol}}</td>
                     <td>{{sale.traceNo}}</td>
                     <td>
@@ -114,10 +119,9 @@
     <hr />
     <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center justify-content-between">
-            <ngb-pagination [collectionSize]="totalRecords" [(page)]="page"
-            [pageSize] = "pageSize"
-            [maxSize]="5" [boundaryLinks]="true"
-                (pageChange)="changePage($event)" style="position: relative;top: 0.5rem;"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize" [maxSize]="5"
+                [boundaryLinks]="true" (pageChange)="changePage($event)"
+                style="position: relative;top: 0.5rem;"></ngb-pagination>
 
 
             <div class="d-flex justify-content-between p-2">

@@ -3,9 +3,10 @@
         <div class="col-4">
             <label for="symbol" class="form-label">نماد:</label>
             <div>
-                <input formControlName="isin" [ngbTypeahead]="search" [resultFormatter]="resultFormatter"
-                    [inputFormatter]="inputFormatter" class="form-control" [class.is-invalid]="searchFailed" id="symbol"
-                    [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted?.isin.errors }">
+                <input formControlName="selectedSymbol" [ngbTypeahead]="search" [resultFormatter]="resultFormatter"
+                    [inputFormatter]="inputFormatter" (selectItem)="selectSymbol($event)" class="form-control"
+                    [class.is-invalid]="searchFailed" id="symbol"
+                    [ngClass]="{'error-validation' : isSalesFormSubmit && salesFormSubmitted.selectedSymbol.errors}" />
                 <small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>
             </div>
         </div>
@@ -71,6 +72,10 @@
         </div>
     </div>
     <hr class="my-4" />
-    <button type="submit" class="btn btn-primary w-25">ثبت</button>
-
+    <button type="submit" [ngClass]=" reportId ? 'w-25 btn btn-info text-white' : 'w-25 btn btn-primary'">{{reportId
+        ?
+        'ویرایش' : 'ثبت'}}</button>
 </form>
+<div *ngIf="isLoading" class="loading-container">
+    <div class="spinner-grow text-primary" style="position: absolute; left: 50%;top: 50%;"></div>
+</div>
