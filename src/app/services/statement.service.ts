@@ -12,10 +12,10 @@ export class StatementService {
 
   }
   getStatementById(state : any){    
-    return this.http.get(`https://endpoint.stockscreeners.ir/statements/${state.id}:guid`)
+    return this.http.get(`https://endpoint.stockscreeners.ir/statements/${state.id}`)
   }
   editStatementForm(command:any){
-    return this.http.put(`https://endpoint.stockscreeners.ir/statements/${command.id}:guid`, command)
+    return this.http.put(`https://endpoint.stockscreeners.ir/statements/${command.id}`, command)
   }
 
 

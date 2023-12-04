@@ -40,7 +40,7 @@ import { GetSalesReportComponent } from './pages/get-sales-report/get-sales-repo
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
       positionClass:'toast-top-left',
-      timeOut:20000,
+      timeOut:5000,
       closeButton:true
     }), // ToastrModule added,
     NgbAccordionModule,

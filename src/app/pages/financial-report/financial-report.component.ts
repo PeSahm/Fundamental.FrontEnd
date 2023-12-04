@@ -22,6 +22,7 @@ export class FinancialReportComponent implements OnInit {
   searching = false;
   searchFailed = false;
   reportId;
+  isLoading: boolean = false;
   constructor(
     private service: ScreenerService,
     private fb: FormBuilder,
@@ -90,16 +91,14 @@ export class FinancialReportComponent implements OnInit {
       "ownersEquity": parseInt(toEnDigit(this.statementsForm?.value.ownersEquity)),
       "receivables": parseInt(toEnDigit(this.statementsForm?.value.receivables)),
     }
-    console.log("command : " , this.statementsForm?.value);
-    console.log("command : " , command);
-
-    
     if (!this.reportId) {
       this.service.registerStatement(command)
         .subscribe({
           next: (res) => {
             this.toastr.success(`ثبت اطلاعات نماد ${this.statementsForm?.value.isin.name} با موفقیت انجام شد.`);
             this.statementsForm?.reset();
+            this.router.navigate(['/get-financial-report']);
+
           },
           error: (err) => {
             const errorCode = String(err?.error?.error?.code);
@@ -121,7 +120,7 @@ export class FinancialReportComponent implements OnInit {
         .subscribe({
           next: (res) => {
             this.toastr.success(`ویرایش اطلاعات نماد ${this.statementsForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
-            this.statementsForm?.reset();
+            this.router.navigate(['/get-financial-report']);
           },
           error: (err) => {
             const errorCode = String(err?.error?.error?.code);
@@ -142,6 +141,7 @@ export class FinancialReportComponent implements OnInit {
   }
 
   getStatementValueById() {
+    this.isLoading = true;
     this.statementService.getStatementById(this.reportId)
       .subscribe({
         next: (res: any) => {
@@ -151,14 +151,14 @@ export class FinancialReportComponent implements OnInit {
 
         },
         complete: () => {
-
+          this.isLoading = false;
         }
       })
   }
 
   setStatementFromValue(res: any) {
     this.statementsForm?.patchValue({
-      selectedSymbol: { name: res.symbol , isin:res.isin },
+      selectedSymbol: { name: res.symbol, isin: res.isin },
       traceNo: res.traceNo,
       uri: res.uri,
       fiscalYear: res.fiscalYear,

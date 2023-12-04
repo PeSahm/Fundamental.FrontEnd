@@ -1,4 +1,4 @@
-<form *ngIf="statementsForm" [formGroup]="statementsForm" (ngSubmit)="registerStatementForm()">
+<form *ngIf="statementsForm && !isLoading" [formGroup]="statementsForm" (ngSubmit)="registerStatementForm()">
     <div class="row p-3">
         <div class="col-4">
             <label for="symbol" class="form-label">نماد:</label>
@@ -101,7 +101,11 @@
 
 
         <hr class="my-4" />
-        <button type="submit"  [ngClass]=" reportId ? 'w-25 btn btn-info text-white' : 'w-25 btn btn-primary'">{{reportId ?
+        <button type="submit" [ngClass]=" reportId ? 'w-25 btn btn-info text-white' : 'w-25 btn btn-primary'">{{reportId
+            ?
             'ویرایش' : 'ثبت'}}</button>
     </div>
 </form>
+<div *ngIf="isLoading" class="loading-container">
+    <div  class="spinner-grow text-primary" style="position: absolute; left: 50%;top: 50%;"></div>
+</div>
