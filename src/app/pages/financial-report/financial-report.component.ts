@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import toEnDigit from 'src/app/utils/toEnDigit';
 import { ToastrService } from 'ngx-toastr';
 import { GetErrorService } from 'src/app/services/getError.service';
+import { Router } from '@angular/router';
+import { StatementService } from 'src/app/services/statement.service';
 @Component({
   selector: 'app-financial-report',
   templateUrl: './financial-report.component.html',
@@ -16,23 +18,32 @@ import { GetErrorService } from 'src/app/services/getError.service';
 export class FinancialReportComponent implements OnInit {
   statementsForm: FormGroup | undefined;
   isStatementsFormSubmit = false;
-  selectedSymbol = '';
+  selectedSymbol = {};
   searching = false;
   searchFailed = false;
+  reportId;
   constructor(
     private service: ScreenerService,
     private fb: FormBuilder,
     private toastr: ToastrService,
-    private errorService: GetErrorService
+    private errorService: GetErrorService,
+    private router: Router,
+    private statementService: StatementService
+
   ) {
+    this.reportId = this.router.getCurrentNavigation()?.extras.state;
   }
   ngOnInit(): void {
     this.makeStatementForm();
+    if (this.reportId) {
+      this.getStatementValueById();
+    }
   }
+
 
   makeStatementForm() {
     this.statementsForm = this.fb.group({
-      isin: ['', Validators.required],
+      selectedSymbol: ['', Validators.required],
       traceNo: ['', Validators.required],
       uri: ['', Validators.required],
       fiscalYear: ['', Validators.required],
@@ -61,7 +72,8 @@ export class FinancialReportComponent implements OnInit {
       return;
     }
     const command = {
-      "isin": this.statementsForm?.value.isin.isin,
+      "id": this.reportId ? this.reportId['id'] : null,
+      "isin": this.statementsForm?.value.selectedSymbol.isin,
       "traceNo": parseInt(toEnDigit(this.statementsForm?.value.traceNo)),
       "uri": this.statementsForm?.value.uri,
       "fiscalYear": parseInt(toEnDigit(this.statementsForm?.value.fiscalYear)),
@@ -78,27 +90,96 @@ export class FinancialReportComponent implements OnInit {
       "ownersEquity": parseInt(toEnDigit(this.statementsForm?.value.ownersEquity)),
       "receivables": parseInt(toEnDigit(this.statementsForm?.value.receivables)),
     }
-    this.service.registerStatement(command)
+    console.log("command : " , this.statementsForm?.value);
+    console.log("command : " , command);
+
+    
+    if (!this.reportId) {
+      this.service.registerStatement(command)
+        .subscribe({
+          next: (res) => {
+            this.toastr.success(`ثبت اطلاعات نماد ${this.statementsForm?.value.isin.name} با موفقیت انجام شد.`);
+            this.statementsForm?.reset();
+          },
+          error: (err) => {
+            const errorCode = String(err?.error?.error?.code);
+            this.errorService.getError()
+              .subscribe((res) => {
+                if (errorCode.includes('_800')) {
+                  this.toastr.error(err?.error?.error?.values?.message);
+                } else {
+                  const errMessage = res[errorCode]
+                  this.toastr.error(errMessage);
+                }
+              })
+          },
+          complete: () => {
+          }
+        })
+    } else {
+      this.statementService.editStatementForm(command)
+        .subscribe({
+          next: (res) => {
+            this.toastr.success(`ویرایش اطلاعات نماد ${this.statementsForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
+            this.statementsForm?.reset();
+          },
+          error: (err) => {
+            const errorCode = String(err?.error?.error?.code);
+            this.errorService.getError()
+              .subscribe((res) => {
+                if (errorCode.includes('_800')) {
+                  this.toastr.error(err?.error?.error?.values?.message);
+                } else {
+                  const errMessage = res[errorCode]
+                  this.toastr.error(errMessage);
+                }
+              })
+          },
+          complete: () => {
+          }
+        })
+    }
+  }
+
+  getStatementValueById() {
+    this.statementService.getStatementById(this.reportId)
       .subscribe({
-        next: (res) => {
-          this.toastr.success(`ثبت اطلاعات نماد ${this.statementsForm?.value.isin.name} با موفقیت انجام شد.`);
-          this.statementsForm?.reset();
+        next: (res: any) => {
+          this.setStatementFromValue(res.data)
         },
         error: (err) => {
-          const errorCode = String(err?.error?.error?.code);
-          this.errorService.getError()
-            .subscribe((res) => {
-              if (errorCode.includes('_800')) {
-                this.toastr.error(err?.error?.error?.values?.message);
-              } else {
-                const errMessage = res[errorCode]
-                this.toastr.error(errMessage);
-              }
-            })
+
         },
         complete: () => {
+
         }
       })
+  }
+
+  setStatementFromValue(res: any) {
+    this.statementsForm?.patchValue({
+      selectedSymbol: { name: res.symbol , isin:res.isin },
+      traceNo: res.traceNo,
+      uri: res.uri,
+      fiscalYear: res.fiscalYear,
+      yearEndMonth: res.yearEndMonth,
+      reportMonth: res.reportMonth,
+      operatingIncome: res.operatingIncome,
+      grossProfit: res.grossProfit,
+      operatingProfit: res.operatingProfit,
+      bankInterestIncome: res.bankInterestIncome,
+      investmentIncome: res.investmentIncome,
+      netProfit: res.netProfit,
+      expense: res.expense,
+      asset: res.asset,
+      ownersEquity: res.ownersEquity,
+      receivables: res.receivables,
+    })
+  }
+
+  selectSymbol(e: any) {
+    this.statementsForm?.setValue({ isin: e.item.isin });
+    this.selectedSymbol = { isin: e.item.isin, name: e.item.name }
   }
 
   search = (text$: Observable<string>) =>

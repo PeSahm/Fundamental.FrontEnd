@@ -3,6 +3,7 @@ import { ScreenerService } from 'src/app/services/screener.service';
 import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
 import { catchError, debounceTime, distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-financial-report',
@@ -30,6 +31,7 @@ export class GetFinancialReportComponent implements OnInit {
   isLoading = true;
   constructor(
     private service: ScreenerService,
+    private router: Router
 
   ) {
 
@@ -135,6 +137,11 @@ export class GetFinancialReportComponent implements OnInit {
     );
   resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
   inputFormatter = (result: SymbolDetail) => result.name;
+
+
+  openEditPage(id: any) {
+    this.router.navigate(['/financial-report'], { state: { id } })
+  }
 
 
 
