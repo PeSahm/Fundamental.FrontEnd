@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ScreenerService } from 'src/app/services/screener.service';
-import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
+import { ResponseStatementRoot, SearchSymbol, SelectSymbol, Statement, SymbolDetail } from 'src/app/models/models';
 import { catchError, debounceTime, distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { StatementService } from 'src/app/services/statement.service';
 
 @Component({
   selector: 'app-get-financial-report',
@@ -27,12 +28,13 @@ export class GetFinancialReportComponent implements OnInit {
   KeyName: any[] = [];
   columnName: string[] = [];
   @ViewChild('input') searchInput!: ElementRef;
-  selectedItems: any = [];
-  statements = [];
+  selectedItems: SymbolDetail[] = [];
+  statements: Statement[] = [];
   isLoading = true;
   constructor(
     private service: ScreenerService,
-    private router: Router
+    private router: Router,
+    private statementService: StatementService
 
   ) {
 
@@ -51,10 +53,10 @@ export class GetFinancialReportComponent implements OnInit {
     ];
     this.KeyName =
       [
-        { name: 'عملیات', onClick: true , hasEdit:true },
+        { name: 'عملیات', onClick: true, hasEdit: true },
         { name: 'symbol' },
         { name: 'traceNo' },
-        { name: 'uri', hasLink: true, hasView:true  },
+        { name: 'uri', hasLink: true, hasView: true },
         { name: 'fiscalYear' },
         { name: 'yearEndMonth' },
         { name: 'reportMonth' },
@@ -72,24 +74,29 @@ export class GetFinancialReportComponent implements OnInit {
   }
 
   getAllStatements() {
-    this.service.getAllStatements(this.reportFilter)
-      .subscribe((res: any) => {
-        this.statements = res.data.items
-        this.totalRecords = res.data.meta.total
-      }, err => {
+    this.statementService.getAllStatements(this.reportFilter)
+      .subscribe({
+        next: (res: ResponseStatementRoot) => {
+          this.statements = res.data.items;
+          this.totalRecords = res.data.meta.total;
+        },
+        error: (err) => {
+          // Handle errors here
+        },
+        complete: () => {
+          this.isLoading = false;
+        }
+      });
 
-      }, () => {
-        this.isLoading = false;
-      })
   }
 
-  selected(e: any) {
+  selected(e: SelectSymbol) {
     e.preventDefault();
-    let selectedSymbol = e['item']
+    let selectedSymbol = e.item
     this.selectedItems.push(selectedSymbol);
     this.searchInput.nativeElement.value = '';
   }
-  close(item: any) {
+  close(item: SymbolDetail) {
     this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
     this.searchInput.nativeElement.focus();
   }
@@ -108,9 +115,9 @@ export class GetFinancialReportComponent implements OnInit {
 
     }
     this.reportFilter = command;
-    this.service.getAllStatements(this.reportFilter)
+    this.statementService.getAllStatements(this.reportFilter)
       .subscribe({
-        next: (res: any) => {
+        next: (res: ResponseStatementRoot) => {
           this.statements = res.data.items
           this.totalRecords = res.data.meta.total
         },
@@ -126,7 +133,7 @@ export class GetFinancialReportComponent implements OnInit {
     this.isSearchBarOpen = !this.isSearchBarOpen;
   }
 
-  changePage(e: any) {
+  changePage(e: number) {
     this.isLoading = true;
     this.statements = [];
     this.page = e;
@@ -137,10 +144,11 @@ export class GetFinancialReportComponent implements OnInit {
     this.getAllStatements();
   }
 
-  changeSize(e: any) {
+  changeSize(e: Event) {
+    const size = (e.target as HTMLSelectElement).value;
     this.isLoading = true;
     this.statements = [];
-    this.pageSize = Number(e.target.value);
+    this.pageSize = Number(size);
     this.page = 1;
     this.reportFilter = {
       ...this.reportFilter,
@@ -169,8 +177,8 @@ export class GetFinancialReportComponent implements OnInit {
   inputFormatter = (result: SymbolDetail) => result.name;
 
 
-  openEditPage(item: any) {
-    this.router.navigate(['/financial-report'], { state: { id : item?.id } })
+  openEditPage(item: Statement) {
+    this.router.navigate(['/financial-report'], { state: { id: item.id } })
   }
 
 
