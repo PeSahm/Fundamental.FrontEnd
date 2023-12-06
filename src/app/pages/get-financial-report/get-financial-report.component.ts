@@ -24,7 +24,8 @@ export class GetFinancialReportComponent implements OnInit {
   page = 1;
   totalRecords: number = 0;
   pageSize = 10;
-
+  KeyName: any[] = [];
+  columnName: string[] = [];
   @ViewChild('input') searchInput!: ElementRef;
   selectedItems: any = [];
   statements = [];
@@ -38,7 +39,36 @@ export class GetFinancialReportComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllStatements()
+    this.makeTableConst()
+  }
 
+  makeTableConst() {
+    this.columnName = [
+      'عملیات', 'نماد', 'شماره گزارش', 'لینک', 'سال مالی', 'ماه انتهای سال مالی',
+      'ماه گزارش سال مالی', 'درآمد عملیاتی', 'سود(زيان) ناخالص', 'سود(زيان) عملياتى',
+      'سود(زيان) خالص عمليات در حال تداوم', 'دارایی', 'هزینه', 'حقوق مالکانه', 'دريافتني‌هاي تجاري و ساير دريافتني‌ها',
+      'سود سپرده بانکی', 'درآمد حاصل از سرمایه گذاری'
+    ];
+    this.KeyName =
+      [
+        { name: 'عملیات', onClick: true , hasEdit:true },
+        { name: 'symbol' },
+        { name: 'traceNo' },
+        { name: 'uri', hasLink: true, hasView:true  },
+        { name: 'fiscalYear' },
+        { name: 'yearEndMonth' },
+        { name: 'reportMonth' },
+        { name: 'operatingIncome', pipe: 'number' },
+        { name: 'grossProfit', pipe: 'number' },
+        { name: 'operatingProfit', pipe: 'number' },
+        { name: 'netProfit', pipe: 'number' },
+        { name: 'expense', pipe: 'number' },
+        { name: 'asset', pipe: 'number' },
+        { name: 'ownersEquity', pipe: 'number' },
+        { name: 'receivables', pipe: 'number' },
+        { name: 'bankInterestIncome', pipe: 'number' },
+        { name: 'investmentIncome', pipe: 'number' }
+      ]
   }
 
   getAllStatements() {
@@ -139,9 +169,11 @@ export class GetFinancialReportComponent implements OnInit {
   inputFormatter = (result: SymbolDetail) => result.name;
 
 
-  openEditPage(id: any) {
-    this.router.navigate(['/financial-report'], { state: { id } })
+  openEditPage(item: any) {
+    this.router.navigate(['/financial-report'], { state: { id : item?.id } })
   }
+
+
 
 
 

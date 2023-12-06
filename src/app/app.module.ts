@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { GetFinancialReportComponent } from './pages/get-financial-report/get-financial-report.component';
 import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { GetSalesReportComponent } from './pages/get-sales-report/get-sales-report.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { GetSalesReportComponent } from './pages/get-sales-report/get-sales-repo
     SidebarComponent,
     GetFinancialReportComponent,
     GetSalesReportComponent,
+    TableComponent,
     
   ],
   imports: [
