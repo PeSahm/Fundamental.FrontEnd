@@ -1,36 +1,60 @@
-<table class="table table-bordered table-striped">
-    <thead class="table-dark">
-        <tr class="text-wrap">
-            <th *ngFor="let item of columnName" class="col">
-                {{item}}
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of data">
-            <td *ngFor="let key of KeyName">
-                <span *ngIf="!key.pipe && !key.hasLink&& !key.onClick">
-                    {{ item[key.name] }}
-                </span>
-                <span *ngIf="key.pipe">
-                    {{ item[key.name] | number }}
-                </span>
-                <span *ngIf="key.hasLink && key.hasView">
-                    <a  [href]="item[key.name]" target="_blank">
-                    <i class="fa fa-eye text-info" aria-hidden="true"></i>
-                    </a>
-                </span>
-                <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd(item)" class="cursor-pointer">
-                    <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i>
-                </span>
-            </td>
-        </tr>
-        <tr class="text-right" *ngIf="data.length === 0">
-            <td colspan="16" class="font-1" style="text-align: right;">
-                اطلاعاتی جهت نمایش وجود نمی باشد ...
-            </td>
-        </tr>
+<div class="d-flex flex-column">
+    <div class="table-responsive" style="min-height: 50vh; overflow: auto;">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr class="text-wrap">
+                    <th *ngFor="let item of columnName" class="col">
+                        {{item}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data">
+                    <td *ngFor="let key of KeyName">
+                        <span *ngIf="!key.pipe && !key.hasLink&& !key.onClick">
+                            {{ item[key.name] }}
+                        </span>
+                        <span *ngIf="key.pipe">
+                            {{ item[key.name] | number }}
+                        </span>
+                        <span *ngIf="key.hasLink && key.hasView">
+                            <a [href]="item[key.name]" target="_blank">
+                                <i class="fa fa-eye text-info" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                        <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd(item)" class="cursor-pointer">
+                            <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i>
+                        </span>
+                    </td>
+                </tr>
+                <tr class="text-right" *ngIf="data.length === 0">
+                    <td colspan="16" class="font-1" style="text-align: right;">
+                        اطلاعاتی جهت نمایش وجود نمی باشد ...
+                    </td>
+                </tr>
 
-        <div *ngIf="isLoading" class="spinner-grow text-muted" style="position: absolute; left: 50%;"></div>
-    </tbody>
-</table>
+                <div *ngIf="isLoading" class="spinner-grow text-muted" style="position: absolute; left: 50%;"></div>
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between">
+            <ngb-pagination [collectionSize]="totalRecords" [pageSize]="pageSize" [(page)]="page" [maxSize]="5"
+                [boundaryLinks]="true" (pageChange)="changePage($event)"
+                style="position: relative;top: 0.5rem;"></ngb-pagination>
+
+
+            <div class="d-flex justify-content-between p-2">
+                <select class="form-select" style="width: auto" name="pageSize" (change)="changeSize($event)">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="20">20</option>
+                    <option [ngValue]="50">50</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            1 - {{pageSize}} از {{totalRecords}} مورد
+        </div>
+    </div>
+</div>

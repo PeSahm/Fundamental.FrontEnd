@@ -53,31 +53,11 @@
     </div>
     <hr class="my-4" />
     <!-- Table content -->
-    <div class="table-responsive" style="min-height: 50vh;">
+  
         <app-table [data]="statements" [KeyName]="KeyName" [columnName]="columnName" [isLoading]="isLoading"
-            (clickOnRow)="openEditPage($event)">
+            (clickOnRow)="openEditPage($event)"
+            [totalRecords]="totalRecords" [pageSize]="pageSize" [(page)]="page" 
+             (changePageEvent)="changePage($event)"
+            (changeSizeEvent)="changeSize($event)">
         </app-table>
     </div>
-    <hr />
-    <div class="d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center justify-content-between">
-            <ngb-pagination [collectionSize]="totalRecords" [pageSize]="pageSize" [(page)]="page" [maxSize]="5"
-                [boundaryLinks]="true" (pageChange)="changePage($event)"
-                style="position: relative;top: 0.5rem;"></ngb-pagination>
-
-
-            <div class="d-flex justify-content-between p-2">
-                <select class="form-select" style="width: auto" name="pageSize" (change)="changeSize($event)">
-                    <option [ngValue]="10">10</option>
-                    <option [ngValue]="20">20</option>
-                    <option [ngValue]="50">50</option>
-                </select>
-            </div>
-        </div>
-        <div class="d-flex align-items-center">
-            1 - {{pageSize}} از {{totalRecords}} مورد
-        </div>
-    </div>
-
-
-</div>

@@ -11,7 +11,15 @@ export class TableComponent implements OnInit {
   @Input() KeyName: any[] = [];
   @Input() columnName: string[] = [];
   @Input() isLoading: boolean = false;
+  @Input() totalRecords = 0;
+  @Input() pageSize = 0;
+  @Input() page = 0;
+
   @Output() clickOnRow = new EventEmitter();
+  @Output() changePageEvent = new EventEmitter();
+  @Output() changeSizeEvent = new EventEmitter();
+
+
 
 
   ngOnInit(): void {
@@ -19,7 +27,13 @@ export class TableComponent implements OnInit {
   }
 
   clickOnTd(item: any) {
-    this.clickOnRow.emit(item)
+    this.clickOnRow.emit(item);
+  }
+  changePage(item: any) {
+    this.changePageEvent.emit(item);
+  }
+  changeSize(item: any) {
+    this.changeSizeEvent.emit(item);
   }
 
 
