@@ -18,13 +18,13 @@ export class GetFinancialReportComponent implements OnInit {
   fiscalYear = null;
   reportMonth = null;
   reportFilter = {
-    pageSize: 10,
+    pageSize: 20,
     pageNumber: 1
   };
   isSearchBarOpen = true;
   page = 1;
   totalRecords: number = 0;
-  pageSize = 10;
+  pageSize = 20;
   KeyName: any[] = [];
   columnName: string[] = [];
   @ViewChild('input') searchInput!: ElementRef;
@@ -105,13 +105,14 @@ export class GetFinancialReportComponent implements OnInit {
     this.isLoading = true;
     this.statements = [];
     this.page = 1;
+    this.pageSize = 20;
     const command = {
       ...this.reportFilter,
       year: this.fiscalYear,
       reportMonth: this.reportMonth,
       IsinList: this.selectedItems.map((item: any) => item?.isin),
       pageNumber: 1,
-      pageSize: 10,
+      pageSize: 20,
 
     }
     this.reportFilter = command;

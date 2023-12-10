@@ -30,6 +30,8 @@ export class GetSalesReportComponent implements OnInit {
   selectedItems: any = [];
   sales = [];
   isLoading = true;
+  KeyName: any[] = [];
+  columnName: string[] = [];
   constructor(
     private service: ScreenerService,
     private monthlyReportService: MonthlyActivityService,
@@ -42,6 +44,32 @@ export class GetSalesReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllSales();
+    this.makeTableConst();
+  }
+  makeTableConst() {
+    this.columnName = [
+      'عملیات', 'نماد', 'شماره گزارش', 'لینک', 'سال مالی', 'ماه انتهای سال مالی',
+      'ماه گزارش سال مالی',
+       'فروش اول سال مالی تا ماه قبل سال جاری',
+        'فروش ماه جاری', 
+        'فروش از ابتدای سال مالی تا انتهای ماه جاری	', 
+        'فروش اول سال مالی تا ماه قبل سال قبل	', 
+        'دارای فروش شرکت های زیر مجموعه', 
+    ];
+    this.KeyName =
+      [
+        { name: 'عملیات', onClick: true, hasEdit: true },
+        { name: 'symbol' },
+        { name: 'traceNo' },
+        { name: 'uri', hasLink: true, hasView: true },
+        { name: 'fiscalYear' },
+        { name: 'yearEndMonth' },
+        { name: 'reportMonth' },
+        { name: 'saleBeforeCurrentMonth', pipe: 'number' },
+        { name: 'saleCurrentMonth', pipe: 'number' },
+        { name: 'saleIncludeCurrentMonth', pipe: 'number' },
+        { name: 'saleLastYear', pipe: 'number' },
+      ]
   }
 
   getAllSales() {
@@ -61,6 +89,7 @@ export class GetSalesReportComponent implements OnInit {
     this.isLoading = true;
     this.sales = [];
     this.page = 1;
+    this.pageSize = 10;
     const command = {
       ...this.reportFilter,
       year: this.fiscalYear,
