@@ -105,9 +105,14 @@
 
 
         <hr class="my-4" />
-        <button type="submit" [ngClass]=" reportId ? 'w-25 btn btn-info text-white' : 'w-25 btn btn-primary'">{{reportId
+        <button type="submit"
+         [ngClass]=" reportId ? 'w-25 btn btn-info text-white' : 'w-25 btn btn-primary'"
+         [disabled]="isLoadingBtn"
+         >{{reportId
             ?
-            'ویرایش' : 'ثبت'}}</button>
+            'ویرایش' : 'ثبت'}}
+            <span *ngIf="isLoadingBtn" class="spinner-border spinner-border-sm"></span>
+        </button>
     </div>
 </form>
 <div *ngIf="isLoading" class="loading-container">

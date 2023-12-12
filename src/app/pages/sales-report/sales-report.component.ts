@@ -117,7 +117,7 @@ export class SalesReportComponent implements OnInit {
       this.service.registerMonthlyActivity(command)
         .subscribe({
           next: (res: any) => {
-            this.toastr.success(`ثبت اطلاعات نماد ${this.salesForm?.value.isin.name} با موفقیت انجام شد.`);
+            this.toastr.success(`ثبت اطلاعات نماد ${this.salesForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
             this.salesForm?.reset();
           },
           error: (err => {

@@ -23,6 +23,7 @@ export class FinancialReportComponent implements OnInit {
   searchFailed = false;
   reportId;
   isLoading: boolean = false;
+  isLoadingBtn: boolean = false;
   constructor(
     private service: ScreenerService,
     private fb: FormBuilder,
@@ -68,10 +69,6 @@ export class FinancialReportComponent implements OnInit {
   }
 
   registerStatementForm() {
-    if (this.statementsForm?.invalid) {
-      this.isStatementsFormSubmit = true;
-      return;
-    }
     const command = {
       "id": this.reportId ? this.reportId['id'] : null,
       "isin": this.statementsForm?.value.selectedSymbol.isin,
@@ -91,16 +88,25 @@ export class FinancialReportComponent implements OnInit {
       "ownersEquity": parseInt(toEnDigit(this.statementsForm?.value.ownersEquity)),
       "receivables": parseInt(toEnDigit(this.statementsForm?.value.receivables)),
     }
+    this.isLoadingBtn = true;
+    if (this.statementsForm?.invalid) {
+      this.isStatementsFormSubmit = true;
+      this.isLoadingBtn = false;
+
+      return;
+    }
     if (!this.reportId) {
+      delete command.id;
       this.service.registerStatement(command)
         .subscribe({
-          next: (res) => {
-            this.toastr.success(`ثبت اطلاعات نماد ${this.statementsForm?.value.isin.name} با موفقیت انجام شد.`);
-            this.statementsForm?.reset();
-            this.router.navigate(['/get-financial-report']);
-
+          next: (res: any) => {
+            if (res.success) {
+              this.toastr.success(`ثبت اطلاعات نماد ${this.statementsForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
+              this.router.navigate(['/get-financial-report']);
+            }
           },
           error: (err) => {
+            this.isLoadingBtn = false;
             const errorCode = String(err?.error?.error?.code);
             this.errorService.getError()
               .subscribe((res) => {
@@ -113,14 +119,17 @@ export class FinancialReportComponent implements OnInit {
               })
           },
           complete: () => {
+            this.isLoadingBtn = false;
           }
         })
     } else {
       this.statementService.editStatementForm(command)
         .subscribe({
-          next: (res) => {
-            this.toastr.success(`ویرایش اطلاعات نماد ${this.statementsForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
-            this.router.navigate(['/get-financial-report']);
+          next: (res: any) => {
+            if (res.success) {
+              this.toastr.success(`ویرایش اطلاعات نماد ${this.statementsForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
+              this.router.navigate(['/get-financial-report']);
+            }
           },
           error: (err) => {
             const errorCode = String(err?.error?.error?.code);
@@ -133,8 +142,11 @@ export class FinancialReportComponent implements OnInit {
                   this.toastr.error(errMessage);
                 }
               })
+            this.isLoadingBtn = false;
           },
           complete: () => {
+            this.isLoadingBtn = false;
+
           }
         })
     }
