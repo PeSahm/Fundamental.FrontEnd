@@ -89,14 +89,14 @@ export class GetSalesReportComponent implements OnInit {
     this.isLoading = true;
     this.sales = [];
     this.page = 1;
-    this.pageSize = 10;
+    this.pageSize = 20;
     const command = {
       ...this.reportFilter,
       year: this.fiscalYear,
       reportMonth: this.reportMonth,
       IsinList: this.selectedItems.map((item: any) => item?.isin),
       pageNumber: 1,
-      pageSize: 10,
+      pageSize: 20,
 
     }
     this.reportFilter = command;
