@@ -18,13 +18,13 @@ export class GetSalesReportComponent implements OnInit {
   fiscalYear = null;
   reportMonth = null;
   reportFilter = {
-    pageSize: 10,
+    pageSize: 20,
     pageNumber: 1
   };
   isSearchBarOpen = true;
   page = 1;
   totalRecords: number = 0;
-  pageSize = 10;
+  pageSize = 20;
 
   @ViewChild('input') searchInput!: ElementRef;
   selectedItems: any = [];
