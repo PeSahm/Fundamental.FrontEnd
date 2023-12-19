@@ -12,13 +12,13 @@ export class MonthlyActivityService {
 
   }
   getAllMonthlyReport(command : any){
-    return this.http.get(`https://endpoint.stockscreeners.ir/monthly-activity` , {params : command})
+    return this.http.get(`https://api.stockscreeners.ir/monthly-activity` , {params : command})
   }
   getMonthlyActivityById(state : any){    
-    return this.http.get(`https://endpoint.stockscreeners.ir/monthly-activity/${state.id}`)
+    return this.http.get(`https://api.stockscreeners.ir/monthly-activity/${state.id}`)
   }
   editMonthlyActivityForm(command:any){
-    return this.http.put(`https://endpoint.stockscreeners.ir/monthly-activity/${command.id}`, command)
+    return this.http.put(`https://api.stockscreeners.ir/monthly-activity/${command.id}`, command)
   }
 
 

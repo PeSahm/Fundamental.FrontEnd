@@ -16,16 +16,16 @@ export class ScreenerService {
       return of([]);
     }
     return this.http
-      .get<SearchSymbol>(`https://endpoint.stockscreeners.ir/symbols?Filter=${term}`)
+      .get<SearchSymbol>(`https://api.stockscreeners.ir/symbols?Filter=${term}`)
       .pipe(map((response: SearchSymbol) => response.data));
   }
 
   registerStatement(command: Statement) {
-    return this.http.post('https://endpoint.stockscreeners.ir/statements', command)
+    return this.http.post('https://api.stockscreeners.ir/statements', command)
   }
 
   registerMonthlyActivity(command: MonthlyActivity) {
-    return this.http.post('https://endpoint.stockscreeners.ir/monthly-activity', command)
+    return this.http.post('https://api.stockscreeners.ir/monthly-activity', command)
   }
 
 

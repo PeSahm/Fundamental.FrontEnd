@@ -12,13 +12,13 @@ export class StatementService {
 
   }
   getAllStatements(command : any){
-    return this.http.get<ResponseStatementRoot>(`https://endpoint.stockscreeners.ir/statements` , {params : command})
+    return this.http.get<ResponseStatementRoot>(`https://api.stockscreeners.ir/statements` , {params : command})
   }
   getStatementById(state : any){    
-    return this.http.get(`https://endpoint.stockscreeners.ir/statements/${state.id}`)
+    return this.http.get(`https://api.stockscreeners.ir/statements/${state.id}`)
   }
   editStatementForm(command:any){
-    return this.http.put(`https://endpoint.stockscreeners.ir/statements/${command.id}`, command)
+    return this.http.put(`https://api.stockscreeners.ir/statements/${command.id}`, command)
   }
 
 

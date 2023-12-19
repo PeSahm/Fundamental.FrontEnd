@@ -12,7 +12,7 @@ export class GetErrorService {
     constructor(private http: HttpClient) { }
 
     getError() {
-        return this.http.get('https://endpoint.stockscreeners.ir/error-messages/admin?culture=fa-ir')
+        return this.http.get('https://api.stockscreeners.ir/error-messages/admin?culture=fa-ir')
             .pipe(map((res: any) => res.data))
     }
 }
