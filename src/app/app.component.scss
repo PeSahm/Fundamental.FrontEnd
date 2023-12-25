@@ -19,3 +19,35 @@
     overflow: auto;
 }
 
+.header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: block;
+    width: calc(100% - 300px);
+    z-index: 20;
+    height: 42px;
+    background-color:  #e6e6ff;
+}
+
+.main {
+    min-height: 600px;
+    padding-bottom: 1px;
+    margin: 0px auto 48px;
+    min-height: calc(100vh - 50px);
+    z-index: 9999;
+    padding-top: 32px;
+}
+
+.footer {
+    bottom: 0px;
+    left: 0px;
+    display: block;
+    position: fixed;
+    width: calc(100% - 300px);
+    min-height: 20px;
+    height: auto;
+    z-index: 20;
+    background: #8080ff;
+    backdrop-filter: blur(20px);
+}

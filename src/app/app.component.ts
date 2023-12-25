@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ScreenerService } from './services/screener.service';
-import { Observable, of, OperatorFunction } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, map, tap, switchMap } from 'rxjs/operators';
-import { SearchSymbol, SymbolDetail } from './models/models';
-import { HttpClient } from '@angular/common/http';
-import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,19 +13,28 @@ export class AppComponent implements OnInit {
   selectedSymbol = '';
   searching = false;
   searchFailed = false;
-  title = 'screener';
+  title = '';
+  pageTitle = '';
   constructor(
 
     private service: ScreenerService,
-    private http: HttpClient
+    private titleService: Title,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.pageTitle = this.route.firstChild?.snapshot.data['title'];
+      this.titleService.setTitle(this.pageTitle);
 
+
+    });
   }
-
 
 
 
