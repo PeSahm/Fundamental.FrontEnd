@@ -41,7 +41,7 @@ export class SalesReportComponent implements OnInit {
 
   makeSalesForm() {
     this.salesForm = this.fb.group({
-      selectedSymbol: ['', Validators.required],
+      selectedSymbol: [{}, Validators.required],
       traceNo: ['', Validators.required],
       uri: ['', Validators.required],
       fiscalYear: ['', Validators.required],

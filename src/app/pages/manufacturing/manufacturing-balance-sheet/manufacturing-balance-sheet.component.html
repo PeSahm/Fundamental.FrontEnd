@@ -1,0 +1,75 @@
+<form *ngIf="balanceSheetForm && !isLoading" [formGroup]="balanceSheetForm" (ngSubmit)="onSubmit()">
+    <div class="row p-3">
+        <div class="col-4">
+            <label for="symbol" class="form-label">نماد:</label>
+            <div>
+                <input formControlName="selectedSymbol" [ngbTypeahead]="search" [resultFormatter]="resultFormatter"
+                    [inputFormatter]="inputFormatter" (selectItem)="selectSymbol($event)" class="form-control"
+                    [class.is-invalid]="searchFailed" id="symbol"
+                    [ngClass]="{'error-validation' : isBalanceSheetFormSubmit && balanceSheetFormSubmitted.selectedSymbol.errors}" />
+                <small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>
+            </div>
+        </div>
+        <div class="col-4">
+            <label for="traceNo" class="form-label"> شماره گزارش:</label>
+            <input type="input" class="form-control" id="traceNo" name="traceNo" formControlName="traceNo"
+                [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.traceNo.errors }"
+                mask="0000000" [allowNegativeNumbers]="false">
+        </div>
+        <div class="col-4">
+            <label for="uri" class="form-label"> URI گزارش:</label>
+            <input type="input" class="form-control" id="uri" name="uri" formControlName="uri"
+                [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.uri.errors }">
+        </div>
+        <div class=" col-4  my-4">
+            <label for="fiscalYear" class="form-label">سال مالی:</label>
+            <input type="input" class="form-control" id="fiscalYear" name="fiscalYear" formControlName="fiscalYear"
+                [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.fiscalYear.errors }"
+                mask="0000" [allowNegativeNumbers]="false">
+        </div>
+        <div class=" col-4  my-4">
+            <label for="yearEndMonth" class="form-label"> ماه انتهای سال مالی:</label>
+            <input type="input" class="form-control" id="yearEndMonth" name="yearEndMonth"
+                formControlName="yearEndMonth"
+                mask="00" [allowNegativeNumbers]="false"
+                [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.yearEndMonth.errors }">
+        </div>
+        <div class=" col-4  my-4">
+            <label for="reportMonth" class="form-label"> ماه گزارش سال مالی:</label>
+            <input type="input" class="form-control" id="reportMonth"
+                [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.reportMonth.errors }"
+                name="reportMonth" formControlName="reportMonth"
+                mask="00" [allowNegativeNumbers]="false"
+                >
+        </div>
+
+        <div class=" col-4 my-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="isAudited" name="isAudited"
+                    formControlName="isAudited"
+                    [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.isAudited.errors }">
+                <label class="form-check-label" for="isAudited">حسابرسی شده</label>
+            </div>
+        </div>
+        <div formArrayName="items">
+            <button type="button" (click)="addItem()" class="btn btn-light btn-sm text-primary" title="افزودن ردیف">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+
+            <div class="my-4 d-flex align-items-center" *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+                    <input class="form-control w-25 "  formControlName="codalCategory" placeholder="Codal Category">
+                    <input class="form-control w-25 mx-2" formControlName="codalRow" placeholder="Codal Row">
+                    <input class="form-control w-25" formControlName="value" placeholder="Value">
+                    <button type="button" (click)="removeItem(i)"
+                    title="حذف ردیف"
+                    class="btn btn-light btn-sm text-danger m-2">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+
+            </div>
+        </div>
+        <hr class="my-4" />
+        <button type="submit" class="w-25 btn btn-primary">ثبت</button>
+
+    </div>
+</form>
