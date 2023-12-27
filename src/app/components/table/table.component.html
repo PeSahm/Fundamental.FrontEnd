@@ -22,7 +22,7 @@
                                 <i class="fa fa-eye text-info" aria-hidden="true"></i>
                             </a>
                         </span>
-                        <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd(item)" class="cursor-pointer">
+                        <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd(item[key.uniqueKey])" class="cursor-pointer">
                             <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i>
                         </span>
                     </td>

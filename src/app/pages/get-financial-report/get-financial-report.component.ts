@@ -53,7 +53,7 @@ export class GetFinancialReportComponent implements OnInit {
     ];
     this.KeyName =
       [
-        { name: 'عملیات', onClick: true, hasEdit: true },
+        { name: 'عملیات', onClick: true, hasEdit: true , uniqueKey :'id' },
         { name: 'symbol' },
         { name: 'traceNo' },
         { name: 'uri', hasLink: true, hasView: true },
