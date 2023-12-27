@@ -18,6 +18,7 @@ import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask
 import { GetSalesReportComponent } from './pages/manufacturing/get-sales-report/get-sales-report.component';
 import { TableComponent } from './components/table/table.component';
 import { ManufacturingBalanceSheetComponent } from './pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component';
+import { GetManufacturingBalanceSheetComponent } from './pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ManufacturingBalanceSheetComponent } from './pages/manufacturing/manufa
     GetSalesReportComponent,
     TableComponent,
     ManufacturingBalanceSheetComponent,
+    GetManufacturingBalanceSheetComponent,
     
   ],
   imports: [

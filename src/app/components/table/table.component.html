@@ -1,38 +1,106 @@
 <div class="d-flex flex-column" style="height: 70vh;">
     <div class="table-responsive" style="min-height: 50vh; overflow: auto;">
         <table class="table table-bordered table-hover">
-            <thead class="table-dark" >
+            <thead class="table-dark">
                 <tr class="text-wrap" style="position: sticky;top: 0;">
-                    <th *ngFor="let item of columnName" class="col">
-                        {{item}}
-                    </th>
+                    <th *ngIf="isExpandable"></th>
+                    <th *ngFor="let item of columnName" class="col">{{item}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of data">
-                    <td *ngFor="let key of KeyName">
-                        <span *ngIf="!key.pipe && !key.hasLink&& !key.onClick">
-                            {{ item[key.name] }}
-                        </span>
-                        <span *ngIf="key.pipe">
-                            {{ item[key.name] | number }}
-                        </span>
-                        <span *ngIf="key.hasLink && key.hasView">
-                            <a [href]="item[key.name]" target="_blank">
-                                <i class="fa fa-eye text-info" aria-hidden="true"></i>
-                            </a>
-                        </span>
-                        <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd(item[key.uniqueKey])" class="cursor-pointer">
-                            <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i>
-                        </span>
-                    </td>
-                </tr>
+                <ng-container *ngFor="let item of data; let i = index">
+                    <tr>
+                        <td *ngIf="isExpandable">
+                            <button (click)="ExpandCollapse(item.id)" class="btn btn-primary btn-sm">
+                                <div *ngIf="expandedRows[item.id];else mines">
+                                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                </div>
+                                <ng-template #mines>
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </ng-template>
+                            </button>
+                        </td>
+                        <td *ngFor="let key of KeyName">
+                            <span *ngIf="!key.pipe && !key.hasLink&& !key.onClick">
+                                {{ item[key.name] }}
+                            </span>
+                            <span *ngIf="key.pipe">
+                                {{ item[key.name] | number }}
+                            </span>
+                            <span *ngIf="key.hasLink && key.hasView">
+                                <a [href]="item[key.name]" target="_blank">
+                                    <i class="fa fa-eye text-info" aria-hidden="true"></i>
+                                </a>
+                            </span>
+                            <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd(item[key.uniqueKey])"
+                                class="cursor-pointer">
+                                <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="expandedRows[item.id]">
+                        <td colspan="9">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-dark">
+                                    <tr class="text-wrap" style="position: sticky;top: 0;">
+                                        <th *ngFor="let childHeader of columnNameChild" class="col">
+                                            {{childHeader}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ----  {{item['items'] | json}}--- -->
+                                    <tr *ngFor="let childItem of item['items']">
+                                        <td *ngFor="let childKey of KeyNameChild">
+                                            <span *ngIf="!childKey.pipe && !childKey.hasLink&& !childKey.onClick">
+                                                {{ childItem[childKey.name] }}
+                                            </span>
+                                            <span *ngIf="childKey.pipe">
+                                                {{ childItem[childKey.name] | number }}
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+
+                    <!-- <div  [style.height.px]="expandedRows[item.id] ? '50' : '0'"
+                        style="background-color: red; overflow: hidden;">
+                        <div style="width: 200px;">
+
+                        </div>
+                        
+                         <table class="table table-bordered table-hover">
+                                <thead class="table-dark">
+                                    <tr class="text-wrap" style="position: sticky;top: 0;">
+                                        <th *ngFor="let childHeader of columnNameChild" class="col">
+                                            {{childHeader}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let childItem of item[key.name][key.uniqueKey]">
+                                        <td *ngFor="let childKey of KeyNameChild">
+                                            <span *ngIf="!key.pipe && !key.hasLink&& !key.onClick">
+                                                {{ childItem[childKey.name] }}
+                                            </span>
+                                            <span *ngIf="key.pipe">
+                                                {{ childItem[childKey.name] | number }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div> -->
+                </ng-container>
                 <tr class="text-right" *ngIf="data.length === 0">
                     <td colspan="16" class="font-1" style="text-align: right;">
                         اطلاعاتی جهت نمایش وجود نمی باشد ...
                     </td>
                 </tr>
-
                 <div *ngIf="isLoading" class="spinner-grow text-muted" style="position: absolute; left: 50%;"></div>
             </tbody>
         </table>
@@ -43,7 +111,6 @@
             <ngb-pagination [collectionSize]="totalRecords" [pageSize]="pageSize" [(page)]="page" [maxSize]="5"
                 [boundaryLinks]="true" (pageChange)="changePage($event)"
                 style="position: relative;top: 0.5rem;"></ngb-pagination>
-
 
             <div class="d-flex justify-content-between p-2">
                 <select class="form-select" style="width: auto" name="pageSize" (change)="changeSize($event)">

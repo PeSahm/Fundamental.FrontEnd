@@ -7,6 +7,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { GetFinancialReportComponent } from './pages/get-financial-report/get-financial-report.component';
 import { GetSalesReportComponent } from './pages/manufacturing/get-sales-report/get-sales-report.component';
 import { ManufacturingBalanceSheetComponent } from './pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component';
+import { GetManufacturingBalanceSheetComponent } from './pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +18,9 @@ const routes: Routes = [
   { path: 'get-sales-report', component: GetSalesReportComponent, data: { title: ' گزارش فروش های ماهانه ' } },
   {
     path:'manufacturing/balance-sheet' , component:ManufacturingBalanceSheetComponent , data:{title : '  ثبت صورت وضعیت مالی تولیدی '}
+  } , 
+  {
+    path:'manufacturing/balance-sheet-report' , component:GetManufacturingBalanceSheetComponent , data:{title : '  گزارش صورت وضعیت مالی تولیدی '}
   } , 
   {
     path: '**',

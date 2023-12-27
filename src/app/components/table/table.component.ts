@@ -9,17 +9,19 @@ export class TableComponent implements OnInit {
 
   @Input() data: any[] = [];
   @Input() KeyName: any[] = [];
+  @Input() KeyNameChild: any[] = [];
   @Input() columnName: string[] = [];
+  @Input() columnNameChild: string[] = [];
   @Input() isLoading: boolean = false;
   @Input() totalRecords = 0;
   @Input() pageSize = 0;
   @Input() page = 0;
-
+  @Input() isExpandable = false;
   @Output() clickOnRow = new EventEmitter();
   @Output() changePageEvent = new EventEmitter();
   @Output() changeSizeEvent = new EventEmitter();
-
-
+  expandedRowId: number = 0;
+  expandedRows: { [key: string]: boolean } = {};
 
 
   ngOnInit(): void {
@@ -33,6 +35,10 @@ export class TableComponent implements OnInit {
   }
   changeSize(item: any) {
     this.changeSizeEvent.emit(item);
+  }
+
+  ExpandCollapse(id:any) {
+    this.expandedRows[id] = !this.expandedRows[id];
   }
 
 
