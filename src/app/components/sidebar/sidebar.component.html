@@ -3,60 +3,73 @@
         <div class="sidebarMenu">
             <h5 class='sidebarTitle'>خانه</h5>
             <ul class='sidebarList'>
-                <li class="sidebarListItem" routerLink='/home' routerLinkActive='active'>
+                <li class="sidebarListItem w-100" routerLink='/home' routerLinkActive='active'>
                     <!-- <LineStyleIcon class='sidebarIcon' /> -->
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                    <div style="margin-right: 15px;">
+                    <i class="fa fa-home font-12" aria-hidden="true"></i>
+                    <div class="white-no py-1" style="margin-right: 15px;">
                         خانه
                     </div>
                 </li>
+                
             </ul>
-            <div class="sidebarMenu">
-                <h5 class='sidebarTitle'>صورت های مالی</h5>
-                <ul class='sidebarList'>
-                    <li class="sidebarListItem" routerLink='/get-financial-report' routerLinkActive='active'>
-                        <i class="fa fa-table" aria-hidden="true"></i>
-                        <div style="margin-right: 15px;">
+            <div id="card" class="card" [ngClass]="{'collapsed': !isSearchBarOpen}">
+                <div id="card-header" class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSearchFilter(searchFilter)">
+                    <div>
+                        صنایع تولیدی
+                    </div>
+                    <div *ngIf="isSearchBarOpen;else closeFilterSearch">
+                        <i class="fa fa-angle-up " aria-hidden="true"></i>
+                    </div>
+                    <ng-template #closeFilterSearch>
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
 
-                            گزارش صورت های مالی
-                        </div>
-                    </li>
-                    <li class="sidebarListItem" routerLink='/financial-report' routerLinkActive='active'>
-                        <!-- <TimeLine class='sidebarIcon' /> -->
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                        <div style="margin-right: 15px;">
-                            ثبت صورت های مالی
-                        </div>
-                    </li>
-                    <li class="sidebarListItem" routerLink='/manufacturing/balance-sheet' routerLinkActive='active'>
-                        <!-- <TimeLine class='sidebarIcon' /> -->
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                        <div style="margin-right: 15px;">
-                            ثبت صورت وضعیت مالی تولیدی
-                        </div>
-                    </li>
+                    </ng-template>
+                </div>
+                <div id="card-body" class="card-body" #searchFilter>
+                    <ul class='sidebarList'>
+                        <li class="sidebarListItem w-100" routerLink='/get-financial-report' routerLinkActive='active'>
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">
+    
+                                گزارش صورت های مالی
+                            </div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/financial-report' routerLinkActive='active'>
+                            <!-- <TimeLine class='sidebarIcon' /> -->
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">
+                                ثبت صورت های مالی
+                            </div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/manufacturing/balance-sheet'
+                            routerLinkActive='active'>
+                            <!-- <TimeLine class='sidebarIcon' /> -->
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">
+                                ثبت صورت وضعیت مالی تولیدی
+                            </div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink="/get-sales-report" routerLinkActive='active'>
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">
+    
+                                گزارش فروش های ماهانه
+                            </div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/sales-report' routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">
+                                ثبت فروش های ماهانه
+    
+                            </div>
+                        </li>
 
-                </ul>
+    
+                    </ul>
+                </div>
             </div>
-            <div class="sidebarMenu">
-                <h5 class='sidebarTitle'>فعالیت های ماهانه</h5>
-                <ul class='sidebarList'>
-                    <li class="sidebarListItem" routerLink="/get-sales-report" routerLinkActive='active'>
-                        <i class="fa fa-table" aria-hidden="true"></i>
-                        <div style="margin-right: 15px;">
-
-                            گزارش فروش های ماهانه
-                        </div>
-                    </li>
-                    <li class="sidebarListItem" routerLink='/sales-report' routerLinkActive='active'>
-                        <i class="fa fa-usd" aria-hidden="true"></i>
-                        <div style="margin-right: 15px;">
-                            ثبت فروش های ماهانه
-
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            
         </div>
 
     </div>
