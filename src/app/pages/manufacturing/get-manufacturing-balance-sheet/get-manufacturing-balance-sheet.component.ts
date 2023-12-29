@@ -1,5 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Observable, catchError, debounceTime, distinctUntilChanged, of, switchMap, tap } from 'rxjs';
+import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
 import { ManufacturingService } from 'src/app/services/manufacturing.service';
+import { ScreenerService } from 'src/app/services/screener.service';
 
 @Component({
   selector: 'app-get-manufacturing-balance-sheet',
@@ -12,6 +15,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   searchFailed = false;
   fiscalYear = null;
   reportMonth = null;
+  traceNo = null;
   reportFilter = {
     pageSize: 20,
     pageNumber: 1
@@ -25,10 +29,13 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   columnName: string[] = [];
   balanceSheetItems = [];
   columnNameChild : string[] = [];
+  selectedItems: any = [];
   @ViewChild('input') searchInput!: ElementRef;
   isLoading = true;
   constructor(
-    private manufacturingService : ManufacturingService
+    private manufacturingService : ManufacturingService,
+    private service: ScreenerService,
+
   ){
 
   }
@@ -39,9 +46,8 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   
   makeTableConst() {
     this.columnName = [
-     'نماد', 'شماره گزارش', 'لینک', 'سال مالی', 'ماه انتهای سال مالی',
+     'نماد', 'شماره گزارش', 'لینک', 'سال مالی',
       'ماه گزارش سال مالی',
-      'حسابرسی شده',
       'عنوان'
     ];
     this.KeyName =
@@ -50,36 +56,37 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
         { name: 'traceNo' },
         { name: 'uri', hasLink: true, hasView: true },
         { name: 'fiscalYear' },
-        { name: 'yearEndMonth' },
         { name: 'reportMonth' },
-        { name: 'isAuditedDescription' },
         { name: 'title' },
 
       ]
 
-      this.columnNameChild = [
-        'سفارش',
-        'ردیف',
-        'توضیحات',
-        'عنوان',
-        'مقدار',
-      ]
+      // this.columnNameChild = [
+      //   'سفارش',
+      //   'ردیف',
+      //   'توضیحات',
+      //   'عنوان',
+      //   'مقدار',
+      // ]
 
-      this.KeyNameChild = [
-        { name: 'order' },
-        { name: 'codalRow' },
-        { name: 'description' },
-        { name: 'categoryDescription' },
-        { name: 'value' , pipe: 'number' },
-      ];
+      // this.KeyNameChild = [
+      //   { name: 'order' },
+      //   { name: 'codalRow' },
+      //   { name: 'description' },
+      //   { name: 'categoryDescription' },
+      //   { name: 'value' , pipe: 'number' },
+      // ];
   }
 
   getAllManufacturingBalanceSheet(){
-    this.manufacturingService.getAllManufacturingBalanceSheet()
+    this.manufacturingService.getAllManufacturingBalanceSheet(this.reportFilter)
     .subscribe({
       next: (res: any) => {
+        console.log("res : " , res);
+        
         this.balanceSheetItems = res.items;
-        // this.totalRecords = res.data.meta.total;
+        this.totalRecords = res.meta.total;
+
       },
       error: (err) => {
         // Handle errors here
@@ -89,11 +96,92 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
       }
     });
   }
+
+  searchTable() {
+    this.isLoading = true;
+    this.balanceSheetItems = [];
+    this.page = 1;
+    this.pageSize = 20;
+    const command = {
+      ...this.reportFilter,
+      year: this.fiscalYear,
+      reportMonth: this.reportMonth,
+      IsinList: this.selectedItems.map((item: any) => item?.isin),
+      traceNo:this.traceNo,
+      pageNumber: 1,
+      pageSize: 20,
+
+    }
+    this.reportFilter = command;
+    this.manufacturingService.getAllManufacturingBalanceSheet(this.reportFilter)
+      .subscribe({
+        next: (res: any) => {
+          this.balanceSheetItems = res.items
+          this.totalRecords = res.meta.total
+        },
+        complete: () => {
+          this.isLoading = false;
+
+        }
+      })
+    this.isSearchBarOpen = false;
+  }
+  changePage(e: any) {
+    this.isLoading = true;
+    this.balanceSheetItems = [];
+    this.page = e;
+    this.reportFilter = {
+      ...this.reportFilter,
+      pageNumber: this.page
+    }
+    this.getAllManufacturingBalanceSheet();
+  }
+
+  changeSize(e: any) {
+    this.isLoading = true;
+    this.balanceSheetItems = [];
+    this.pageSize = Number(e.target.value);
+    this.page = 1;
+    this.reportFilter = {
+      ...this.reportFilter,
+      pageSize: this.pageSize,
+      pageNumber: 1,
+    }
+    this.getAllManufacturingBalanceSheet();
+  }
+
+  selected(e: any) {
+    e.preventDefault();
+    let selectedSymbol = e['item']
+    this.selectedItems.push(selectedSymbol);
+    this.searchInput.nativeElement.value = '';
+  }
+  close(item: any) {
+    this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
+    this.searchInput.nativeElement.focus();
+  }
+
   toggleSearchFilter(el: ElementRef) {
     this.isSearchBarOpen = !this.isSearchBarOpen;
   }
-  searchTable() {
 
-  }
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => (this.searching = true)),
+      switchMap(term =>
+        this.service.searchSymbol(term)
+          .pipe(
+            tap(() => (this.searchFailed = false)),
+            catchError(() => of<SearchSymbol>({ success: false, data: [], error: null }))
+          )
+      ),
+      switchMap(result => of(result)),
+      tap(() => (this.searching = false)),
+    );
+  resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
+  inputFormatter = (result: SymbolDetail) => result.name;
+
 
 }

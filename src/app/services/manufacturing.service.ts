@@ -14,8 +14,8 @@ export class ManufacturingService {
     addBalanceSheet(command: any) {
         return this.http.post('https://api.stockscreeners.ir/Manufacturing/balance-sheet', command)
     }
-    getAllManufacturingBalanceSheet() {
-        return this.http.get(`https://api.stockscreeners.ir/Manufacturing/balance-sheet`)
+    getAllManufacturingBalanceSheet(command: any) {
+        return this.http.get(`https://api.stockscreeners.ir/Manufacturing/balance-sheet`, { params: command })
             .pipe(
                 map((res: any) => {
                     return res.data
