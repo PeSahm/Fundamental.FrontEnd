@@ -28,25 +28,27 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   KeyNameChild: any[] = [];
   columnName: string[] = [];
   balanceSheetItems = [];
-  columnNameChild : string[] = [];
+  columnNameChild: string[] = [];
   selectedItems: any = [];
+  balanceSheetChildren: any[] = [];
   @ViewChild('input') searchInput!: ElementRef;
   isLoading = true;
+  isLoadingChild = false;
   constructor(
-    private manufacturingService : ManufacturingService,
+    private manufacturingService: ManufacturingService,
     private service: ScreenerService,
 
-  ){
+  ) {
 
   }
   ngOnInit(): void {
     this.getAllManufacturingBalanceSheet();
     this.makeTableConst();
   }
-  
+
   makeTableConst() {
     this.columnName = [
-     'نماد', 'شماره گزارش', 'لینک', 'سال مالی',
+      'نماد', 'شماره گزارش', 'لینک', 'سال مالی',
       'ماه گزارش سال مالی',
       'عنوان'
     ];
@@ -61,40 +63,36 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
 
       ]
 
-      // this.columnNameChild = [
-      //   'سفارش',
-      //   'ردیف',
-      //   'توضیحات',
-      //   'عنوان',
-      //   'مقدار',
-      // ]
+    this.columnNameChild = [
+      'توضیحات',
+      'عنوان',
+      'مقدار',
+    ]
 
-      // this.KeyNameChild = [
-      //   { name: 'order' },
-      //   { name: 'codalRow' },
-      //   { name: 'description' },
-      //   { name: 'categoryDescription' },
-      //   { name: 'value' , pipe: 'number' },
-      // ];
+    this.KeyNameChild = [
+      { name: 'description' },
+      { name: 'categoryDescription' },
+      { name: 'value', pipe: 'number' },
+    ];
   }
 
-  getAllManufacturingBalanceSheet(){
+  getAllManufacturingBalanceSheet() {
     this.manufacturingService.getAllManufacturingBalanceSheet(this.reportFilter)
-    .subscribe({
-      next: (res: any) => {
-        console.log("res : " , res);
-        
-        this.balanceSheetItems = res.items;
-        this.totalRecords = res.meta.total;
+      .subscribe({
+        next: (res: any) => {
+          console.log("res : ", res);
 
-      },
-      error: (err) => {
-        // Handle errors here
-      },
-      complete: () => {
-        this.isLoading = false;
-      }
-    });
+          this.balanceSheetItems = res.items;
+          this.totalRecords = res.meta.total;
+
+        },
+        error: (err) => {
+          // Handle errors here
+        },
+        complete: () => {
+          this.isLoading = false;
+        }
+      });
   }
 
   searchTable() {
@@ -107,7 +105,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
       year: this.fiscalYear,
       reportMonth: this.reportMonth,
       IsinList: this.selectedItems.map((item: any) => item?.isin),
-      traceNo:this.traceNo,
+      traceNo: this.traceNo,
       pageNumber: 1,
       pageSize: 20,
 
@@ -163,6 +161,20 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
 
   toggleSearchFilter(el: ElementRef) {
     this.isSearchBarOpen = !this.isSearchBarOpen;
+  }
+
+  getDetailRow(row: any) {
+    if (row.expand) {
+      this.isLoadingChild = true;
+      this.balanceSheetChildren = [];
+      this.manufacturingService.getManufacturingBalanceSheetDetail(row.rowData)
+        .subscribe((res: any) => {
+          this.balanceSheetChildren = res;
+          this.isLoadingChild = false;
+        })
+    }
+
+
   }
 
   search = (text$: Observable<string>) =>

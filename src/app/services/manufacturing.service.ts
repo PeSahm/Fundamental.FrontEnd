@@ -22,4 +22,12 @@ export class ManufacturingService {
                 })
             )
     }
+    getManufacturingBalanceSheetDetail(command: any) {
+        return this.http.get(`https://api.stockscreeners.ir/Manufacturing/balance-sheet/${command.traceNo}/${command.fiscalYear}/${command.reportMonth}/details`)
+            .pipe(
+                map((res: any) => {
+                    return res.data
+                })
+            )
+    }
 }

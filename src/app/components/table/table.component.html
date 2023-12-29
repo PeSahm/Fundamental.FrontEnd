@@ -1,6 +1,6 @@
 <div class="d-flex flex-column" style="height: 70vh;">
     <div class="table-responsive" style="min-height: 50vh; overflow: auto;">
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered">
             <thead class="table-dark">
                 <tr class="text-wrap" style="position: sticky;top: 0;">
                     <th *ngIf="isExpandable"></th>
@@ -11,8 +11,8 @@
                 <ng-container *ngFor="let item of data; let i = index">
                     <tr>
                         <td *ngIf="isExpandable">
-                            <button (click)="ExpandCollapse(item.id)" class="btn btn-primary btn-sm">
-                                <div *ngIf="expandedRows[item.id];else mines">
+                            <button (click)="ExpandCollapse(item , i)" class="btn btn-primary btn-sm">
+                                <div *ngIf="expandedRows[i];else mines">
                                     <i class="fa fa-angle-up" aria-hidden="true"></i>
                                 </div>
                                 <ng-template #mines>
@@ -38,7 +38,7 @@
                             </span>
                         </td>
                     </tr>
-                    <tr *ngIf="expandedRows[item.id]">
+                    <tr *ngIf="expandedRows[i]">
                         <td colspan="9">
                             <table class="table table-bordered table-hover">
                                 <thead class="table-dark">
@@ -50,7 +50,7 @@
                                 </thead>
                                 <tbody>
                                     <!-- ----  {{item['items'] | json}}--- -->
-                                    <tr *ngFor="let childItem of item['items']">
+                                    <tr *ngFor="let childItem of children">
                                         <td *ngFor="let childKey of KeyNameChild">
                                             <span *ngIf="!childKey.pipe && !childKey.hasLink&& !childKey.onClick">
                                                 {{ childItem[childKey.name] }}
@@ -60,41 +60,17 @@
                                             </span>
                                         </td>
                                     </tr>
-
+                                    <tr class="text-right" *ngIf="children.length === 0">
+                                        <td colspan="16" class="font-1" style="text-align: right;">
+                                            اطلاعاتی جهت نمایش وجود نمی باشد ...
+                                        </td>
+                                    </tr>
+                                    <div *ngIf="isLoadingChild" class="spinner-grow text-primary"
+                                        style="position: absolute; left: 50%;"></div>
                                 </tbody>
                             </table>
                         </td>
                     </tr>
-
-
-                    <!-- <div  [style.height.px]="expandedRows[item.id] ? '50' : '0'"
-                        style="background-color: red; overflow: hidden;">
-                        <div style="width: 200px;">
-
-                        </div>
-                        
-                         <table class="table table-bordered table-hover">
-                                <thead class="table-dark">
-                                    <tr class="text-wrap" style="position: sticky;top: 0;">
-                                        <th *ngFor="let childHeader of columnNameChild" class="col">
-                                            {{childHeader}}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let childItem of item[key.name][key.uniqueKey]">
-                                        <td *ngFor="let childKey of KeyNameChild">
-                                            <span *ngIf="!key.pipe && !key.hasLink&& !key.onClick">
-                                                {{ childItem[childKey.name] }}
-                                            </span>
-                                            <span *ngIf="key.pipe">
-                                                {{ childItem[childKey.name] | number }}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                    </div> -->
                 </ng-container>
                 <tr class="text-right" *ngIf="data.length === 0">
                     <td colspan="16" class="font-1" style="text-align: right;">

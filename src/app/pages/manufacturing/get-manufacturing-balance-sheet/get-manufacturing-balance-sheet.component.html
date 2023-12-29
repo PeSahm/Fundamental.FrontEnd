@@ -60,6 +60,10 @@
 
     <app-table [data]="balanceSheetItems" [KeyName]="KeyName" [columnName]="columnName" [isLoading]="isLoading"
      [totalRecords]="totalRecords" [pageSize]="pageSize" [(page)]="page"
-        (changePageEvent)="changePage($event)" (changeSizeEvent)="changeSize($event)">
+        (changePageEvent)="changePage($event)" (changeSizeEvent)="changeSize($event)"
+        (expandRowEvent)="getDetailRow($event)" [isExpandable]="true" [children]="balanceSheetChildren" [columnNameChild]="columnNameChild"
+        [KeyNameChild]="KeyNameChild" [isLoadingChild]="isLoadingChild"
+        
+        >
     </app-table>
 </div>
