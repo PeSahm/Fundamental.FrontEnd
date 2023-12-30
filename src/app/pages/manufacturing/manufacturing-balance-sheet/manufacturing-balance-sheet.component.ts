@@ -21,6 +21,7 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
   searching = false;
   searchFailed = false;
   isLoading: boolean = false;
+  balanceSheetList:any[] = [];
   constructor(private fb: FormBuilder,
     private service: ScreenerService,
     private manufacturingService: ManufacturingService,
@@ -39,6 +40,7 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
       isAudited: [false, Validators.required],
       items: this.fb.array([]),
     });
+    this.getAllBalanceSheetSort();
   }
   get balanceSheetFormSubmitted() {
     return this.balanceSheetForm?.controls;
@@ -48,8 +50,7 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
   }
   addItem() {
     this.items.push(this.fb.group({
-      codalCategory: null,
-      codalRow: null,
+      balanceSheetSort: null,
       value: null,
     }));
   }
@@ -57,11 +58,11 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
     this.items.removeAt(index);
   }
   onSubmit() {
-    if (this.balanceSheetForm?.invalid) {
-      this.isBalanceSheetFormSubmit = true;
+    // if (this.balanceSheetForm?.invalid) {
+    //   this.isBalanceSheetFormSubmit = true;
 
-      return;
-    }
+    //   return;
+    // }
     const command = {
       "isin": this.balanceSheetForm?.value.selectedSymbol.isin,
       "traceNo": parseInt(toEnDigit(this.balanceSheetForm?.value.traceNo)),
@@ -79,29 +80,45 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
       })
     }
 
-    this.manufacturingService.addBalanceSheet(command)
-      .subscribe({
-        next: (res: any) => {
-          this.toastr.success(`ثبت اطلاعات نماد ${this.balanceSheetForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
-          this.balanceSheetForm?.reset();
-        },
-        error: (err => {
-          const errorCode = String(err?.error?.error?.code);
-          this.errorService.getError()
-            .subscribe((res) => {
-              if (errorCode.includes('_800')) {
-                this.toastr.error(err?.error?.error?.values?.message);
-              } else {
-                const errMessage = res[errorCode]
-                this.toastr.error(errMessage);
-              }
-            })
-        })
-      })
+    console.log("this.balanceSheetForm?.value.items : " , this.balanceSheetForm?.value.items);
+    
 
-
-
+    // this.manufacturingService.addBalanceSheet(command)
+    //   .subscribe({
+    //     next: (res: any) => {
+    //       this.toastr.success(`ثبت اطلاعات نماد ${this.balanceSheetForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
+    //       this.balanceSheetForm?.reset();
+    //     },
+    //     error: (err => {
+    //       const errorCode = String(err?.error?.error?.code);
+    //       this.errorService.getError()
+    //         .subscribe((res) => {
+    //           if (errorCode.includes('_800')) {
+    //             this.toastr.error(err?.error?.error?.values?.message);
+    //           } else {
+    //             const errMessage = res[errorCode]
+    //             this.toastr.error(errMessage);
+    //           }
+    //         })
+    //     })
+    //   })
   }
+
+  getAllBalanceSheetSort() {
+    this.manufacturingService.getBalanceSheetSort()
+      .subscribe((res: any) => {
+        this.balanceSheetList = res;
+      })
+  }
+
+  balanceSheetChange(event:any){
+    console.log("value : " , event.target.value);
+    
+  }
+
+
+
+
 
   search = (text$: Observable<string>) =>
     text$.pipe(

@@ -30,17 +30,14 @@
         <div class=" col-4  my-4">
             <label for="yearEndMonth" class="form-label"> ماه انتهای سال مالی:</label>
             <input type="input" class="form-control" id="yearEndMonth" name="yearEndMonth"
-                formControlName="yearEndMonth"
-                mask="00" [allowNegativeNumbers]="false"
+                formControlName="yearEndMonth" mask="00" [allowNegativeNumbers]="false"
                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.yearEndMonth.errors }">
         </div>
         <div class=" col-4  my-4">
             <label for="reportMonth" class="form-label"> ماه گزارش سال مالی:</label>
             <input type="input" class="form-control" id="reportMonth"
                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.reportMonth.errors }"
-                name="reportMonth" formControlName="reportMonth"
-                mask="00" [allowNegativeNumbers]="false"
-                >
+                name="reportMonth" formControlName="reportMonth" mask="00" [allowNegativeNumbers]="false">
         </div>
 
         <div class=" col-4 my-4">
@@ -56,15 +53,23 @@
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
 
-            <div class="my-4 d-flex align-items-center" *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
-                    <input class="form-control w-25 "  formControlName="codalCategory" placeholder="Codal Category">
-                    <input class="form-control w-25 mx-2" formControlName="codalRow" placeholder="Codal Row">
-                    <input class="form-control w-25" formControlName="value" placeholder="Value">
-                    <button type="button" (click)="removeItem(i)"
-                    title="حذف ردیف"
+            <div class="my-4 d-flex align-items-center" *ngFor="let item of items.controls; let i = index"
+                [formGroupName]="i">
+                <select class="form-select w-50"
+                formControlName="balanceSheetSort"
+                >
+                    <option></option>
+                    <option *ngFor="let item of balanceSheetList"
+                    
+                    >{{item.description}}</option>
+                </select>
+                <!-- <input class="form-control w-25 " formControlName="codalCategory" placeholder="Codal Category">
+                <input class="form-control w-25 mx-2" formControlName="codalRow" placeholder="Codal Row"> -->
+                <input class="form-control w-25" formControlName="value" placeholder="مقدار">
+                <button type="button" (click)="removeItem(i)" title="حذف ردیف"
                     class="btn btn-light btn-sm text-danger m-2">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </button>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
 
             </div>
         </div>

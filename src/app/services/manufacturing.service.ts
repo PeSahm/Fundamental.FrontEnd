@@ -30,4 +30,13 @@ export class ManufacturingService {
                 })
             )
     }
+
+    getBalanceSheetSort(){
+        return this.http.get('https://api.stockscreeners.ir/Manufacturing/balance-sheet-sort')
+        .pipe(
+            map((res: any) => {
+                return res.data
+            })
+        )
+    }
 }
