@@ -19,6 +19,8 @@ import { GetSalesReportComponent } from './pages/manufacturing/get-sales-report/
 import { TableComponent } from './components/table/table.component';
 import { ManufacturingBalanceSheetComponent } from './pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component';
 import { GetManufacturingBalanceSheetComponent } from './pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component';
+import { ManufacturingIncomeStatementComponent } from './pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component';
+import { GetIncomeStatementComponent } from './pages/manufacturing/get-income-statement/get-income-statement.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { GetManufacturingBalanceSheetComponent } from './pages/manufacturing/get
     TableComponent,
     ManufacturingBalanceSheetComponent,
     GetManufacturingBalanceSheetComponent,
+    ManufacturingIncomeStatementComponent,
+    GetIncomeStatementComponent,
     
   ],
   imports: [

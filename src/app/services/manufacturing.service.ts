@@ -12,8 +12,6 @@ export class ManufacturingService {
     constructor(private http: HttpClient) { }
 
     addBalanceSheet(command: any) {
-        console.log("here : ");
-        
         return this.http.post('https://api.stockscreeners.ir/Manufacturing/balance-sheet', command)
     }
     getAllManufacturingBalanceSheet(command: any) {
@@ -41,4 +39,23 @@ export class ManufacturingService {
             })
         )
     }
+
+    getAllManufacturingIncomeStatement(command: any) {
+        return this.http.get(`https://api.stockscreeners.ir/Manufacturing/income-statement`, { params: command })
+            .pipe(
+                map((res: any) => {
+                    return res.data
+                })
+            )
+    }
+    getManufacturingIncomeStatementDetail(command: any) {
+        return this.http.get(`https://api.stockscreeners.ir/Manufacturing/income-statement/${command.traceNo}/${command.fiscalYear}/${command.reportMonth}/details`)
+            .pipe(
+                map((res: any) => {
+                    return res.data
+                })
+            )
+    }
+
+
 }

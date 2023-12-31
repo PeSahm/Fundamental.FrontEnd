@@ -1,15 +1,15 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Observable, catchError, debounceTime, distinctUntilChanged, of, switchMap, tap } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, tap, switchMap, catchError, of } from 'rxjs';
 import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
 import { ManufacturingService } from 'src/app/services/manufacturing.service';
 import { ScreenerService } from 'src/app/services/screener.service';
 
 @Component({
-  selector: 'app-get-manufacturing-balance-sheet',
-  templateUrl: './get-manufacturing-balance-sheet.component.html',
-  styleUrls: ['./get-manufacturing-balance-sheet.component.scss']
+  selector: 'app-get-income-statement',
+  templateUrl: './get-income-statement.component.html',
+  styleUrls: ['./get-income-statement.component.scss']
 })
-export class GetManufacturingBalanceSheetComponent implements OnInit {
+export class GetIncomeStatementComponent implements OnInit {
   selectedSymbol = '';
   searching = false;
   searchFailed = false;
@@ -27,10 +27,10 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   KeyName: any[] = [];
   KeyNameChild: any[] = [];
   columnName: string[] = [];
-  balanceSheetItems = [];
+  incomeStatementItems = [];
   columnNameChild: string[] = [];
   selectedItems: any = [];
-  balanceSheetChildren: any[] = [];
+  incomeStatementChildren: any[] = [];
   @ViewChild('input') searchInput!: ElementRef;
   isLoading = true;
   isLoadingChild = false;
@@ -41,8 +41,10 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   ) {
 
   }
+
+
   ngOnInit(): void {
-    this.getAllManufacturingBalanceSheet();
+    this.getAllManufacturingIncomeStatement();
     this.makeTableConst();
   }
 
@@ -75,12 +77,12 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
       { name: 'value', pipe: 'number' },
     ];
   }
-
-  getAllManufacturingBalanceSheet() {
-    this.manufacturingService.getAllManufacturingBalanceSheet(this.reportFilter)
+  
+  getAllManufacturingIncomeStatement() {
+    this.manufacturingService.getAllManufacturingIncomeStatement(this.reportFilter)
       .subscribe({
         next: (res: any) => {
-          this.balanceSheetItems = res.items;
+          this.incomeStatementItems = res.items;
           this.totalRecords = res.meta.total;
 
         },
@@ -92,10 +94,9 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
         }
       });
   }
-
   searchTable() {
     this.isLoading = true;
-    this.balanceSheetItems = [];
+    this.incomeStatementItems = [];
     this.page = 1;
     this.pageSize = 20;
     const command = {
@@ -109,10 +110,10 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
 
     }
     this.reportFilter = command;
-    this.manufacturingService.getAllManufacturingBalanceSheet(this.reportFilter)
+    this.manufacturingService.getAllManufacturingIncomeStatement(this.reportFilter)
       .subscribe({
         next: (res: any) => {
-          this.balanceSheetItems = res.items
+          this.incomeStatementItems = res.items
           this.totalRecords = res.meta.total
         },
         complete: () => {
@@ -124,18 +125,18 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   }
   changePage(e: any) {
     this.isLoading = true;
-    this.balanceSheetItems = [];
+    this.incomeStatementItems = [];
     this.page = e;
     this.reportFilter = {
       ...this.reportFilter,
       pageNumber: this.page
     }
-    this.getAllManufacturingBalanceSheet();
+    this.getAllManufacturingIncomeStatement();
   }
 
   changeSize(e: any) {
     this.isLoading = true;
-    this.balanceSheetItems = [];
+    this.incomeStatementItems = [];
     this.pageSize = Number(e.target.value);
     this.page = 1;
     this.reportFilter = {
@@ -143,7 +144,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
       pageSize: this.pageSize,
       pageNumber: 1,
     }
-    this.getAllManufacturingBalanceSheet();
+    this.getAllManufacturingIncomeStatement();
   }
 
   selected(e: any) {
@@ -164,10 +165,10 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   getDetailRow(row: any) {
     if (row.expand) {
       this.isLoadingChild = true;
-      this.balanceSheetChildren = [];
-      this.manufacturingService.getManufacturingBalanceSheetDetail(row.rowData)
+      this.incomeStatementChildren = [];
+      this.manufacturingService.getManufacturingIncomeStatementDetail(row.rowData)
         .subscribe((res: any) => {
-          this.balanceSheetChildren = res;
+          this.incomeStatementChildren = res;
           this.isLoadingChild = false;
         })
     }
@@ -192,6 +193,4 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
     );
   resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
   inputFormatter = (result: SymbolDetail) => result.name;
-
-
 }
