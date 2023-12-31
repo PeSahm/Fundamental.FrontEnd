@@ -21,7 +21,7 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
   searching = false;
   searchFailed = false;
   isLoading: boolean = false;
-  balanceSheetList:any[] = [];
+  balanceSheetList: any[] = [];
   constructor(private fb: FormBuilder,
     private service: ScreenerService,
     private manufacturingService: ManufacturingService,
@@ -31,13 +31,13 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.balanceSheetForm = this.fb.group({
-      selectedSymbol: ['', Validators.required],
+      selectedSymbol: [null, Validators.required],
       traceNo: ['', Validators.required],
       uri: ['', Validators.required],
       fiscalYear: ['', Validators.required],
       yearEndMonth: ['', Validators.required],
       reportMonth: ['', Validators.required],
-      isAudited: [false, Validators.required],
+      isAudited: [false],
       items: this.fb.array([]),
     });
     this.getAllBalanceSheetSort();
@@ -57,51 +57,61 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
   removeItem(index: number) {
     this.items.removeAt(index);
   }
-  onSubmit() {
+  submitForm() {
+
     // if (this.balanceSheetForm?.invalid) {
     //   this.isBalanceSheetFormSubmit = true;
-
     //   return;
     // }
-    const command = {
-      "isin": this.balanceSheetForm?.value.selectedSymbol.isin,
-      "traceNo": parseInt(toEnDigit(this.balanceSheetForm?.value.traceNo)),
-      "uri": this.balanceSheetForm?.value.uri,
-      "fiscalYear": parseInt(toEnDigit(this.balanceSheetForm?.value.fiscalYear)),
-      "yearEndMonth": parseInt(toEnDigit(this.balanceSheetForm?.value.yearEndMonth)),
-      "reportMonth": parseInt(toEnDigit(this.balanceSheetForm?.value.reportMonth)),
-      "isAudited": this.balanceSheetForm?.value.isAudited,
-      "items": this.balanceSheetForm?.value.items.map((item: any) => {
-        return {
-          codalCategory: Number(item.codalCategory) ?? 0,
-          codalRow: Number(item.codalRow) ?? 0,
-          value: Number(item.value) ?? 0,
-        }
-      })
+
+    const isItemEmpty = this.balanceSheetForm?.value.items.find((item: any) => {
+      return item.value === null || item.balanceSheetSort === null
+    });
+    if (isItemEmpty) {
+      this.toastr.error('یکی از آیتم ها خالی است.');
+      return;
     }
-
-    console.log("this.balanceSheetForm?.value.items : " , this.balanceSheetForm?.value.items);
-    
-
-    // this.manufacturingService.addBalanceSheet(command)
-    //   .subscribe({
-    //     next: (res: any) => {
-    //       this.toastr.success(`ثبت اطلاعات نماد ${this.balanceSheetForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
-    //       this.balanceSheetForm?.reset();
-    //     },
-    //     error: (err => {
-    //       const errorCode = String(err?.error?.error?.code);
-    //       this.errorService.getError()
-    //         .subscribe((res) => {
-    //           if (errorCode.includes('_800')) {
-    //             this.toastr.error(err?.error?.error?.values?.message);
-    //           } else {
-    //             const errMessage = res[errorCode]
-    //             this.toastr.error(errMessage);
-    //           }
-    //         })
-    //     })
-    //   })
+    if (this.balanceSheetForm?.value.items.length === 0
+    ) {
+      this.toastr.error('حتما باید یک ردیف اضافه کنید');
+      return;
+    }
+    this.manufacturingService.addBalanceSheet(
+      {
+        "isin": this.balanceSheetForm?.value.selectedSymbol?.isin,
+        "traceNo": parseInt(toEnDigit(this.balanceSheetForm?.value.traceNo)),
+        "uri": this.balanceSheetForm?.value.uri,
+        "fiscalYear": parseInt(toEnDigit(this.balanceSheetForm?.value.fiscalYear)),
+        "yearEndMonth": parseInt(toEnDigit(this.balanceSheetForm?.value.yearEndMonth)),
+        "reportMonth": parseInt(toEnDigit(this.balanceSheetForm?.value.reportMonth)),
+        "isAudited": this.balanceSheetForm?.value.isAudited,
+        "items": this.balanceSheetForm?.value.items.map((item: any) => {
+          return {
+            codalCategory: Number(item.balanceSheetSort.category) ?? 0,
+            codalRow: Number(item.balanceSheetSort.codalRow) ?? 0,
+            value: Number(item.value) ?? 0,
+          }
+        })
+      }
+    )
+      .subscribe({
+        next: (res: any) => {
+          this.toastr.success(`ثبت اطلاعات نماد ${this.balanceSheetForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
+          this.balanceSheetForm?.reset();
+        },
+        error: (err => {
+          const errorCode = String(err?.error?.error?.code);
+          this.errorService.getError()
+            .subscribe((res) => {
+              if (errorCode.includes('_800')) {
+                this.toastr.error(err?.error?.error?.values?.message);
+              } else {
+                const errMessage = res[errorCode]
+                this.toastr.error(errMessage);
+              }
+            })
+        })
+      })
   }
 
   getAllBalanceSheetSort() {
@@ -110,16 +120,6 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
         this.balanceSheetList = res;
       })
   }
-
-  balanceSheetChange(event:any){
-    console.log("value : " , event.target.value);
-    
-  }
-
-
-
-
-
   search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(600),
@@ -139,8 +139,8 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
   inputFormatter = (result: SymbolDetail) => result.name;
 
   selectSymbol(e: any) {
-    this.balanceSheetForm?.setValue({ isin: e.item.isin });
-    this.selectedSymbol = { isin: e.item.isin, name: e.item.name }
+    this.balanceSheetForm?.patchValue({ selectedSymbol: { isin: e.item.isin, name: e.item.name } });
+    // this.selectedSymbol = { isin: e.item.isin, name: e.item.name }
   }
 
 

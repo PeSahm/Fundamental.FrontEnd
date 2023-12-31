@@ -1,4 +1,4 @@
-<form *ngIf="balanceSheetForm && !isLoading" [formGroup]="balanceSheetForm" (ngSubmit)="onSubmit()">
+<form *ngIf="balanceSheetForm" [formGroup]="balanceSheetForm" >
     <div class="row p-3">
         <div class="col-4">
             <label for="symbol" class="form-label">نماد:</label>
@@ -44,7 +44,7 @@
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="isAudited" name="isAudited"
                     formControlName="isAudited"
-                    [ngClass]="{ 'error-validation': isSalesFormSubmit && salesFormSubmitted.isAudited.errors }">
+                    [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.isAudited.errors }">
                 <label class="form-check-label" for="isAudited">حسابرسی شده</label>
             </div>
         </div>
@@ -55,17 +55,13 @@
 
             <div class="my-4 d-flex align-items-center" *ngFor="let item of items.controls; let i = index"
                 [formGroupName]="i">
-                <select class="form-select w-50"
-                formControlName="balanceSheetSort"
-                >
-                    <option></option>
-                    <option *ngFor="let item of balanceSheetList"
-                    
-                    >{{item.description}}</option>
+                <select class="form-select w-50" formControlName="balanceSheetSort">
+                    <option [ngValue]="null"></option>
+                    <option *ngFor="let item of balanceSheetList" [ngValue]="item">{{item.description}}</option>
                 </select>
-                <!-- <input class="form-control w-25 " formControlName="codalCategory" placeholder="Codal Category">
-                <input class="form-control w-25 mx-2" formControlName="codalRow" placeholder="Codal Row"> -->
-                <input class="form-control w-25" formControlName="value" placeholder="مقدار">
+                <input class="form-control w-25" formControlName="value"
+                mask="0000000000000000" [allowNegativeNumbers]="false"
+                placeholder="مقدار">
                 <button type="button" (click)="removeItem(i)" title="حذف ردیف"
                     class="btn btn-light btn-sm text-danger m-2">
                     <i class="fa fa-times" aria-hidden="true"></i>
@@ -74,7 +70,10 @@
             </div>
         </div>
         <hr class="my-4" />
-        <button type="submit" class="w-25 btn btn-primary">ثبت</button>
+        <button type="button" class="w-25 btn btn-primary"
+        (click)="submitForm()"
+        
+        >ثبت</button>
 
     </div>
 </form>

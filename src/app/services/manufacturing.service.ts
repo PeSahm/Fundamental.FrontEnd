@@ -12,6 +12,8 @@ export class ManufacturingService {
     constructor(private http: HttpClient) { }
 
     addBalanceSheet(command: any) {
+        console.log("here : ");
+        
         return this.http.post('https://api.stockscreeners.ir/Manufacturing/balance-sheet', command)
     }
     getAllManufacturingBalanceSheet(command: any) {
