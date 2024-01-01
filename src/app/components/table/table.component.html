@@ -25,7 +25,17 @@
                                 {{ item[key.name] }}
                             </span>
                             <span *ngIf="key.pipe">
-                                {{ item[key.name] | number }}
+                                <div *ngIf="item[key.name] >= 0;else handleNegativeNumber">
+                                    {{ item[key.name] | number }}
+                                </div>
+                                <ng-template #handleNegativeNumber>
+                                    <span class="text-danger">
+                                        <bdi>
+                                            {{ item[key.name] | number }}
+
+                                        </bdi>
+                                    </span>
+                                </ng-template>
                             </span>
                             <span *ngIf="key.hasLink && key.hasView">
                                 <a [href]="item[key.name]" target="_blank">
@@ -56,7 +66,19 @@
                                                 {{ childItem[childKey.name] }}
                                             </span>
                                             <span *ngIf="childKey.pipe">
-                                                {{ childItem[childKey.name] | number }}
+                                                <!-- {{ childItem[childKey.name] | number }} -->
+                                                <div *ngIf="childItem[childKey.name] >= 0;else handleNegativeNumber">
+                                                    {{childItem[childKey.name] | number }}
+                                                </div>
+                                                <ng-template #handleNegativeNumber>
+                                                    <span class="text-danger">
+                                                        <bdi>
+                                                            {{ childItem[childKey.name] | number }}
+
+                                                        </bdi>
+                                                    </span>
+                                                </ng-template>
+
                                             </span>
                                         </td>
                                     </tr>

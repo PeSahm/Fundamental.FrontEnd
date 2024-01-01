@@ -67,13 +67,11 @@ export class GetIncomeStatementComponent implements OnInit {
 
     this.columnNameChild = [
       'توضیحات',
-      'عنوان',
       'مقدار',
     ]
 
     this.KeyNameChild = [
       { name: 'description' },
-      { name: 'categoryDescription' },
       { name: 'value', pipe: 'number' },
     ];
   }
