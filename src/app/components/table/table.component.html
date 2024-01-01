@@ -4,23 +4,23 @@
             <thead class="table-dark">
                 <tr class="text-wrap" style="position: sticky;top: 0;">
                     <th *ngIf="isExpandable"></th>
-                    <th *ngFor="let item of columnName" class="col">{{item}}</th>
+                    <th *ngFor="let item of columnName" class="col p-3">{{item}}</th>
                 </tr>
             </thead>
             <tbody>
                 <ng-container *ngFor="let item of data; let i = index">
                     <tr>
-                        <td *ngIf="isExpandable">
-                            <button (click)="ExpandCollapse(item , i)" class="btn btn-primary btn-sm">
+                        <td *ngIf="isExpandable" (click)="ExpandCollapse(item , i)" class="cursor-pointer">
+                            <span >
                                 <div *ngIf="expandedRows[i];else mines">
-                                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                    <i class="fa fa-2x fa-angle-up" aria-hidden="true"></i>
                                 </div>
                                 <ng-template #mines>
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    <i class="fa fa-2x fa-angle-down" aria-hidden="true"></i>
                                 </ng-template>
-                            </button>
+                            </span>
                         </td>
-                        <td *ngFor="let key of KeyName">
+                        <td *ngFor="let key of KeyName" >
                             <span *ngIf="!key.pipe && !key.hasLink&& !key.onClick">
                                 {{ item[key.name] }}
                             </span>
@@ -53,7 +53,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="table-dark">
                                     <tr class="text-wrap" style="position: sticky;top: 0;">
-                                        <th *ngFor="let childHeader of columnNameChild" class="col">
+                                        <th *ngFor="let childHeader of columnNameChild" class="col p-3">
                                             {{childHeader}}
                                         </th>
                                     </tr>
