@@ -1,9 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Observable, catchError, debounceTime, distinctUntilChanged, of, switchMap, tap } from 'rxjs';
-import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
 import { ManufacturingService } from 'src/app/services/manufacturing.service';
 import { ScreenerService } from 'src/app/services/screener.service';
-
 @Component({
   selector: 'app-get-manufacturing-balance-sheet',
   templateUrl: './get-manufacturing-balance-sheet.component.html',
@@ -146,16 +143,10 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
     this.getAllManufacturingBalanceSheet();
   }
 
-  selected(e: any) {
-    e.preventDefault();
-    let selectedSymbol = e['item']
-    this.selectedItems.push(selectedSymbol);
-    this.searchInput.nativeElement.value = '';
+  selected(items: any) {
+    this.selectedItems = items;
   }
-  close(item: any) {
-    this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
-    this.searchInput.nativeElement.focus();
-  }
+
 
   toggleSearchFilter(el: ElementRef) {
     this.isSearchBarOpen = !this.isSearchBarOpen;
@@ -171,27 +162,5 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
           this.isLoadingChild = false;
         })
     }
-
-
   }
-
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(() => (this.searching = true)),
-      switchMap(term =>
-        this.service.searchSymbol(term)
-          .pipe(
-            tap(() => (this.searchFailed = false)),
-            catchError(() => of<SearchSymbol>({ success: false, data: [], error: null }))
-          )
-      ),
-      switchMap(result => of(result)),
-      tap(() => (this.searching = false)),
-    );
-  resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
-  inputFormatter = (result: SymbolDetail) => result.name;
-
-
 }

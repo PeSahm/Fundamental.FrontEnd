@@ -1,8 +1,15 @@
 <input [ngbTypeahead]="search" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter"
     (selectItem)="selectSymbol($event)" class="form-control" [class.is-invalid]="searchFailed" id="symbol"
-    [formControl]="fc"
+    [formControl]="fc" #input
     />
-<!-- <input *ngIf="hasFormControl" formControlName="formControlName" [ngbTypeahead]="search"
-    [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" (selectItem)="selectSymbol($event)"
-    class="form-control" [class.is-invalid]="searchFailed" id="symbol" /> -->
 <small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>
+<div *ngIf="selectedItems.length > 0" class="mt-2">
+    <span *ngFor="let item of selectedItems" style="background-color: #0dcaf0 !important;
+    padding: 2px 12px;
+    border-radius: 6px;color: #fff;margin: 0 0 0 8px;">
+        {{item.name}}
+        <i class="fa fa-times" style="cursor: pointer;" aria-hidden="true"
+            (click)="close(item)"></i>
+    </span>
+
+</div>

@@ -16,14 +16,18 @@ import { ControlValueAccessor, FormControl, FormControlName, NG_VALUE_ACCESSOR }
     },
   ],
 })
-export class SymbolSearchComponent implements OnInit,ControlValueAccessor {
+export class SymbolSearchComponent implements OnInit, ControlValueAccessor {
   searching = false;
   searchFailed = false;
   @Output() selectSearchSymbol = new EventEmitter();
-  @Input() formControlName:FormControlName | undefined ;
-  @Input() hasFormControl:boolean = false;
+  @Input() formControlName: FormControlName | undefined;
+  @Input() hasFormControl: boolean = false;
+  @Input() isMulti: boolean = false;
+  @ViewChild('input') searchInput!: ElementRef;
+  selectedItems: any = [];
+
   fc = new FormControl();
-  onChange = (item: string) => {};
+  onChange = (item: string) => { };
 
   constructor(
     private screenerService: ScreenerService
@@ -43,11 +47,24 @@ export class SymbolSearchComponent implements OnInit,ControlValueAccessor {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {}
+  registerOnTouched(fn: any): void { }
 
   selectSymbol(e: any) {
-    this.selectSearchSymbol.emit(e);
+    if (this.isMulti) {
+      e.preventDefault();
+      let selectedSymbol = e['item']
+      this.selectedItems.push(selectedSymbol);
+      this.searchInput.nativeElement.value = '';
+    }
+    this.selectSearchSymbol.emit(this.isMulti ? this.selectedItems : e);
   }
+  close(item: any) {
+    this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
+    this.searchInput.nativeElement.focus();
+  }
+
+
+
   search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(300),
