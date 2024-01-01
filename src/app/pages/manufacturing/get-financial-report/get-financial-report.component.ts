@@ -179,7 +179,7 @@ export class GetFinancialReportComponent implements OnInit {
 
 
   openEditPage(item: Statement) {
-    this.router.navigate(['/financial-report'], { state: { id: item.id } })
+    this.router.navigate(['/financial-report'], { state: { id: item } })
   }
 
 
