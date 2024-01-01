@@ -57,5 +57,17 @@ export class ManufacturingService {
             )
     }
 
+    addIncomeStatement(command: any) {
+        return this.http.post('https://api.stockscreeners.ir/Manufacturing/income-statement', command)
+    }
+    getIncomeStatementSort(){
+        return this.http.get('https://api.stockscreeners.ir/Manufacturing/income-statement-sort')
+        .pipe(
+            map((res: any) => {
+                return res.data
+            })
+        )
+    }
+
 
 }
