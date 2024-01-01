@@ -1,0 +1,11 @@
+.collapsed .card-body {
+    height: 0;
+    overflow: hidden;
+    transition: height 2s ease-in-out;
+    padding: 0;
+}
+
+.card-body {
+    transition: height 2s ease-in-out;
+
+}

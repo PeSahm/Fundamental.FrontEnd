@@ -1,0 +1,18 @@
+<div class="card" [ngClass]="{'collapsed': !isSearchBarOpen}">
+    <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+        (click)="toggleSearchFilter(searchFilter)">
+        <div class="font-12">
+            فیلتر جستجو
+        </div>
+        <div *ngIf="isSearchBarOpen;else closeFilterSearch">
+            <i class="fa fa-angle-up font-12" aria-hidden="true"></i>
+        </div>
+        <ng-template #closeFilterSearch>
+            <i class="fa fa-angle-down font-12" aria-hidden="true"></i>
+
+        </ng-template>
+    </div>
+    <div class="card-body" #searchFilter>
+        <ng-content></ng-content>
+    </div>
+</div>

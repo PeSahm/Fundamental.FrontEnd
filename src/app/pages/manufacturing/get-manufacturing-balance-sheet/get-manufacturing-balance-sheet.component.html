@@ -1,45 +1,30 @@
 <div class="d-flex flex-column p-2">
-    <div class="card" [ngClass]="{'collapsed': !isSearchBarOpen}">
-        <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
-            (click)="toggleSearchFilter(searchFilter)">
-            <div class="font-12">
-                فیلتر جستجو
+    <app-search-filter>
+        <div class="row">
+            <div class="col-4">
+                <label for="symbol" class="form-label font-12">نماد:</label>
+                <app-symbol-search [isMulti]="true" (selectSearchSymbol)="selected($event)"></app-symbol-search>
             </div>
-            <div *ngIf="isSearchBarOpen;else closeFilterSearch">
-                <i class="fa fa-angle-up font-12" aria-hidden="true"></i>
+            <div class=" col-2">
+                <label for="traceNo" class="form-label font-12"> شماره گزارش:</label>
+                <input type="input" class="form-control" id="traceNo" name="traceNo" [(ngModel)]="traceNo"
+                    mask="000000000" [allowNegativeNumbers]="false">
             </div>
-            <ng-template #closeFilterSearch>
-                <i class="fa fa-angle-down font-12" aria-hidden="true"></i>
-
-            </ng-template>
-        </div>
-        <div class="card-body" #searchFilter>
-            <div class="row">
-                <div class="col-4">
-                    <label for="symbol" class="form-label font-12">نماد:</label>
-                    <app-symbol-search [isMulti]="true" (selectSearchSymbol)="selected($event)"></app-symbol-search>
-                </div>
-                <div class=" col-2">
-                    <label for="traceNo" class="form-label font-12"> شماره گزارش:</label>
-                    <input type="input" class="form-control" id="traceNo" name="traceNo" [(ngModel)]="traceNo"
-                        mask="000000000" [allowNegativeNumbers]="false">
-                </div>
-                <div class=" col-2">
-                    <label for="fiscalYear" class="form-label font-12">سال مالی:</label>
-                    <input type="input" class="form-control" id="fiscalYear" name="fiscalYear" [(ngModel)]="fiscalYear"
-                        mask="0000" [allowNegativeNumbers]="false">
-                </div>
-                <div class=" col-2">
-                    <label for="reportMonth" class="form-label font-12"> ماه گزارش:</label>
-                    <input type="input" class="form-control" id="reportMonth" [(ngModel)]="reportMonth"
-                        name="reportMonth" mask="0000" [allowNegativeNumbers]="false">
-                </div>
-                <div class=" col-2 d-flex align-items-end justify-content-end">
-                    <button class="btn btn-primary btn-sm" (click)="searchTable()">جستجو</button>
-                </div>
+            <div class=" col-2">
+                <label for="fiscalYear" class="form-label font-12">سال مالی:</label>
+                <input type="input" class="form-control" id="fiscalYear" name="fiscalYear" [(ngModel)]="fiscalYear"
+                    mask="0000" [allowNegativeNumbers]="false">
+            </div>
+            <div class=" col-2">
+                <label for="reportMonth" class="form-label font-12"> ماه گزارش:</label>
+                <input type="input" class="form-control" id="reportMonth" [(ngModel)]="reportMonth" name="reportMonth"
+                    mask="0000" [allowNegativeNumbers]="false">
+            </div>
+            <div class=" col-2 d-flex align-items-end justify-content-end">
+                <button class="btn btn-primary btn-sm" (click)="searchTable()">جستجو</button>
             </div>
         </div>
-    </div>
+    </app-search-filter>
     <hr class="my-4" />
     <!-- Table content -->
 
