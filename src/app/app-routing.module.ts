@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { FinancialReportComponent } from './pages/financial-report/financial-report.component';
+import { FinancialReportComponent } from './pages/manufacturing/financial-report/financial-report.component';
 import { SalesReportComponent } from './pages/manufacturing/sales-report/sales-report.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { GetFinancialReportComponent } from './pages/get-financial-report/get-financial-report.component';
+import { GetFinancialReportComponent } from './pages/manufacturing/get-financial-report/get-financial-report.component';
 import { GetSalesReportComponent } from './pages/manufacturing/get-sales-report/get-sales-report.component';
 import { ManufacturingBalanceSheetComponent } from './pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component';
 import { GetManufacturingBalanceSheetComponent } from './pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component';
