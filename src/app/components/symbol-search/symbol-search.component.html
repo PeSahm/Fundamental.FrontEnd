@@ -1,0 +1,8 @@
+<input [ngbTypeahead]="search" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter"
+    (selectItem)="selectSymbol($event)" class="form-control" [class.is-invalid]="searchFailed" id="symbol"
+    [formControl]="fc"
+    />
+<!-- <input *ngIf="hasFormControl" formControlName="formControlName" [ngbTypeahead]="search"
+    [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" (selectItem)="selectSymbol($event)"
+    class="form-control" [class.is-invalid]="searchFailed" id="symbol" /> -->
+<small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>

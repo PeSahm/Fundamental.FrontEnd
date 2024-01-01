@@ -37,6 +37,12 @@ export class AppComponent implements OnInit {
   }
 
 
+  selectSymbol(symbol:any){
+    console.log("symbol : " , symbol);
+    
+  }
+
+
 
 
 }

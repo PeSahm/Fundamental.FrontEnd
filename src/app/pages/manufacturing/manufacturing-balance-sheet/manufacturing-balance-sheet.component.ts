@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import toEnDigit from 'src/app/utils/toEnDigit';
 import { ScreenerService } from 'src/app/services/screener.service';
-import { Observable, of } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
-import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
 import { ManufacturingService } from 'src/app/services/manufacturing.service';
 import { ToastrService } from 'ngx-toastr';
 import { GetErrorService } from 'src/app/services/getError.service';
+import toEnDigit from 'src/app/utils/toEnDigit';
 
 @Component({
   selector: 'app-manufacturing-balance-sheet',
@@ -59,6 +56,7 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
   }
   submitForm() {
 
+    
     // if (this.balanceSheetForm?.invalid) {
     //   this.isBalanceSheetFormSubmit = true;
     //   return;
@@ -120,27 +118,10 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
         this.balanceSheetList = res;
       })
   }
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(600),
-      distinctUntilChanged(),
-      tap(() => (this.searching = true)),
-      switchMap(term =>
-        this.service.searchSymbol(term)
-          .pipe(
-            tap(() => (this.searchFailed = false)),
-            catchError(() => of<SearchSymbol>({ success: false, data: [], error: null }))
-          )
-      ),
-      switchMap(result => of(result)),
-      tap(() => (this.searching = false)),
-    );
-  resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
-  inputFormatter = (result: SymbolDetail) => result.name;
+
 
   selectSymbol(e: any) {
     this.balanceSheetForm?.patchValue({ selectedSymbol: { isin: e.item.isin, name: e.item.name } });
-    // this.selectedSymbol = { isin: e.item.isin, name: e.item.name }
   }
 
 
