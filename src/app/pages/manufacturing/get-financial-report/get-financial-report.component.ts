@@ -17,14 +17,15 @@ export class GetFinancialReportComponent implements OnInit {
   reportMonth = null;
   reportFilter = {
     pageSize: 20,
-    pageNumber: 1
+    pageNumber: 1,
   };
   isSearchBarOpen = true;
   page = 1;
   totalRecords: number = 0;
   pageSize = 20;
+  sortOption: any = { OrderBy: '', sortOrder: '' }
   KeyName: any[] = [];
-  columnName: string[] = [];
+  columnName: any[] = [];
   @ViewChild('input') searchInput!: ElementRef;
   selectedItems: SymbolDetail[] = [];
   statements: Statement[] = [];
@@ -44,10 +45,22 @@ export class GetFinancialReportComponent implements OnInit {
 
   makeTableConst() {
     this.columnName = [
-      'عملیات', 'نماد', 'شماره گزارش', 'لینک', 'سال مالی', 'ماه انتهای سال مالی',
-      'ماه گزارش سال مالی', 'درآمد عملیاتی', 'سود(زيان) ناخالص', 'سود(زيان) عملياتى',
-      'سود(زيان) خالص عمليات در حال تداوم', 'دارایی', 'هزینه', 'حقوق مالکانه', 'دريافتني‌هاي تجاري و ساير دريافتني‌ها',
-      'سود سپرده بانکی', 'درآمد حاصل از سرمایه گذاری'
+      { name: '', title: 'عملیات', hasSort: false },
+      { name: 'symbol', title: 'نماد', hasSort: true },
+      { name: 'traceNo', title: 'شماره گزارش', hasSort: false },
+      { name: 'uri', title: 'لینک', hasSort: false },
+      { name: 'fiscalYear', title: 'سال مالی', hasSort: true },
+      { name: 'yearEndMonth', title: 'ماه انتهای سال مالی', hasSort: true },
+      { name: 'reportMonth', title: 'ماه گزارش سال مالی', hasSort: true },
+      { name: 'operatingIncome', title: 'درآمد عملیاتی', hasSort: false },
+      { name: 'grossProfit', title: 'سود(زيان) ناخالص', hasSort: false },
+      { name: 'netProfit', title: 'سود(زيان) عملياتى', hasSort: false },
+      { name: 'expense', title: 'هزینه', hasSort: false },
+      { name: 'asset', title: 'دارایی', hasSort: false },
+      { name: 'ownersEquity', title: 'دريافتني‌هاي تجاري و ساير دريافتني‌ها', hasSort: false },
+      { name: 'receivables', title: 'حقوق مالکانه', hasSort: false },
+      { name: 'bankInterestIncome', title: 'سود سپرده بانکی', hasSort: false },
+      { name: 'investmentIncome', title: 'درآمد حاصل از سرمایه گذاری', hasSort: false },
     ];
     this.KeyName =
       [
@@ -147,6 +160,34 @@ export class GetFinancialReportComponent implements OnInit {
   }
   openEditPage(item: Statement) {
     this.router.navigate(['/financial-report'], { state: { id: item } })
+  }
+
+  handleSort(option: any) {
+    this.isLoading = true;
+    this.statements = [];
+    this.page = 1;
+    this.pageSize = 20;
+    const command = {
+      ...this.reportFilter,
+      year: this.fiscalYear,
+      reportMonth: this.reportMonth,
+      IsinList: this.selectedItems.map((item: any) => item?.isin),
+      pageNumber: 1,
+      pageSize: 20,
+      OrderBy : `${option.column} ${option.sortOrder}`
+    }
+    this.reportFilter = command;
+    this.statementService.getAllStatements(this.reportFilter)
+      .subscribe({
+        next: (res: ResponseStatementRoot) => {
+          this.statements = res.data.items
+          this.totalRecords = res.data.meta.total
+        },
+        complete: () => {
+          this.isLoading = false;
+
+        }
+      })
   }
 
 

@@ -23,9 +23,12 @@ export class TableComponent implements OnInit {
   @Output() changePageEvent = new EventEmitter();
   @Output() changeSizeEvent = new EventEmitter();
   @Output() expandRowEvent = new EventEmitter();
+  @Output() sortEvent = new EventEmitter();
+
   expandedRowId: number = 0;
   expandedRows: { [key: string]: boolean } = {};
-
+  sortOrder = 'asc';
+  sortedColumn: string | null = null;
 
   ngOnInit(): void {
   }
@@ -42,6 +45,25 @@ export class TableComponent implements OnInit {
 
   ExpandCollapse(item: any, id: any) {
     this.expandedRows[id] = !this.expandedRows[id];
-    this.expandRowEvent.emit({rowData : item , expand : this.expandedRows[id]})
+    this.expandRowEvent.emit({ rowData: item, expand: this.expandedRows[id] })
+  }
+
+
+  sortColumn(item: any) {
+    if (item.hasSort) {
+      if (this.sortedColumn === item.name) {
+        // If the clicked column is already the sorted column, toggle the sortOrder
+        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+      } else {
+        // If a new column is clicked, set the sortOrder to 'asc'
+        this.sortOrder = 'asc';
+      }
+
+      // Update the sortedColumn property
+      this.sortedColumn = item.name;
+
+      // Emit the sort event
+      this.sortEvent.emit({ column: item.name, sortOrder: this.sortOrder });
+    }
   }
 }

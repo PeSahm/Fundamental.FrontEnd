@@ -27,6 +27,6 @@
             (clickOnRow)="openEditPage($event)"
             [totalRecords]="totalRecords" [pageSize]="pageSize" [(page)]="page" 
              (changePageEvent)="changePage($event)"
-            (changeSizeEvent)="changeSize($event)">
+            (changeSizeEvent)="changeSize($event)" (sortEvent)="handleSort($event)">
         </app-table>
     </div>

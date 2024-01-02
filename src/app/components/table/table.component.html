@@ -4,14 +4,23 @@
             <thead class="table-dark">
                 <tr class="text-wrap" style="position: sticky;top: 0;">
                     <th *ngIf="isExpandable"></th>
-                    <th *ngFor="let item of columnName" class="col p-3">{{item}}</th>
+                    <th *ngFor="let item of columnName" [ngClass]="{'cursor-pointer': item.hasSort}" class="col p-3" (click)="sortColumn(item)">
+                        <span *ngIf="item.hasSort">
+                            <i *ngIf="sortedColumn === item.name && sortOrder === 'asc'; else desc"
+                                class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                            <ng-template #desc>
+                                <i *ngIf="sortedColumn === item.name" class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                            </ng-template>
+                        </span>
+                        {{item.title}}
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <ng-container *ngFor="let item of data; let i = index">
                     <tr>
                         <td *ngIf="isExpandable" (click)="ExpandCollapse(item , i)" class="cursor-pointer">
-                            <span >
+                            <span>
                                 <div *ngIf="expandedRows[i];else mines">
                                     <i class="fa fa-2x fa-angle-up" aria-hidden="true"></i>
                                 </div>
@@ -20,7 +29,7 @@
                                 </ng-template>
                             </span>
                         </td>
-                        <td *ngFor="let key of KeyName" >
+                        <td *ngFor="let key of KeyName">
                             <span *ngIf="!key.pipe && !key.hasLink&& !key.onClick">
                                 {{ item[key.name] }}
                             </span>
