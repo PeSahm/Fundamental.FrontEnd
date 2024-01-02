@@ -75,7 +75,7 @@ export class GetIncomeStatementComponent implements OnInit {
       { name: 'value', pipe: 'number' },
     ];
   }
-  
+
   getAllManufacturingIncomeStatement() {
     this.manufacturingService.getAllManufacturingIncomeStatement(this.reportFilter)
       .subscribe({
@@ -144,22 +144,9 @@ export class GetIncomeStatementComponent implements OnInit {
     }
     this.getAllManufacturingIncomeStatement();
   }
-
-  selected(e: any) {
-    e.preventDefault();
-    let selectedSymbol = e['item']
-    this.selectedItems.push(selectedSymbol);
-    this.searchInput.nativeElement.value = '';
+  selected(items: any) {
+    this.selectedItems = items;
   }
-  close(item: any) {
-    this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
-    this.searchInput.nativeElement.focus();
-  }
-
-  toggleSearchFilter(el: ElementRef) {
-    this.isSearchBarOpen = !this.isSearchBarOpen;
-  }
-
   getDetailRow(row: any) {
     if (row.expand) {
       this.isLoadingChild = true;
@@ -174,21 +161,4 @@ export class GetIncomeStatementComponent implements OnInit {
 
   }
 
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(() => (this.searching = true)),
-      switchMap(term =>
-        this.service.searchSymbol(term)
-          .pipe(
-            tap(() => (this.searchFailed = false)),
-            catchError(() => of<SearchSymbol>({ success: false, data: [], error: null }))
-          )
-      ),
-      switchMap(result => of(result)),
-      tap(() => (this.searching = false)),
-    );
-  resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
-  inputFormatter = (result: SymbolDetail) => result.name;
 }

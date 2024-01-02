@@ -1,9 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
 import { ScreenerService } from 'src/app/services/screener.service';
-import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import toEnDigit from 'src/app/utils/toEnDigit';
 import { ToastrService } from 'ngx-toastr';
@@ -190,25 +187,7 @@ export class FinancialReportComponent implements OnInit {
   }
 
   selectSymbol(e: any) {
-    this.statementsForm?.setValue({ isin: e.item.isin });
-    this.selectedSymbol = { isin: e.item.isin, name: e.item.name }
-  }
+    this.statementsForm?.patchValue({ selectedSymbol: { isin: e.item.isin, name: e.item.name } });
 
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(() => (this.searching = true)),
-      switchMap(term =>
-        this.service.searchSymbol(term)
-          .pipe(
-            tap(() => (this.searchFailed = false)),
-            catchError(() => of<SearchSymbol>({ success: false, data: [], error: null }))
-          )
-      ),
-      switchMap(result => of(result)),
-      tap(() => (this.searching = false)),
-    );
-  resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
-  inputFormatter = (result: SymbolDetail) => result.name;
+  }
 }

@@ -1,8 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ScreenerService } from 'src/app/services/screener.service';
-import { ResponseStatementRoot, SearchSymbol, SelectSymbol, Statement, SymbolDetail } from 'src/app/models/models';
-import { catchError, debounceTime, distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
-import { Observable, Observer, of } from 'rxjs';
+import { ResponseStatementRoot, Statement, SymbolDetail } from 'src/app/models/models';
 import { Router } from '@angular/router';
 import { StatementService } from 'src/app/services/statement.service';
 
@@ -53,7 +51,7 @@ export class GetFinancialReportComponent implements OnInit {
     ];
     this.KeyName =
       [
-        { name: 'عملیات', onClick: true, hasEdit: true , uniqueKey :'id' },
+        { name: 'عملیات', onClick: true, hasEdit: true, uniqueKey: 'id' },
         { name: 'symbol' },
         { name: 'traceNo' },
         { name: 'uri', hasLink: true, hasView: true },
@@ -90,15 +88,8 @@ export class GetFinancialReportComponent implements OnInit {
 
   }
 
-  selected(e: SelectSymbol) {
-    e.preventDefault();
-    let selectedSymbol = e.item
-    this.selectedItems.push(selectedSymbol);
-    this.searchInput.nativeElement.value = '';
-  }
-  close(item: SymbolDetail) {
-    this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
-    this.searchInput.nativeElement.focus();
+  selected(e: any) {
+    this.selectedItems = e;
   }
 
   searchTable() {
@@ -130,10 +121,6 @@ export class GetFinancialReportComponent implements OnInit {
     this.isSearchBarOpen = false;
   }
 
-  toggleSearchFilter(el: ElementRef) {
-    this.isSearchBarOpen = !this.isSearchBarOpen;
-  }
-
   changePage(e: number) {
     this.isLoading = true;
     this.statements = [];
@@ -158,26 +145,6 @@ export class GetFinancialReportComponent implements OnInit {
     }
     this.getAllStatements();
   }
-
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(() => (this.searching = true)),
-      switchMap(term =>
-        this.service.searchSymbol(term)
-          .pipe(
-            tap(() => (this.searchFailed = false)),
-            catchError(() => of<SearchSymbol>({ success: false, data: [], error: null }))
-          )
-      ),
-      switchMap(result => of(result)),
-      tap(() => (this.searching = false)),
-    );
-  resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
-  inputFormatter = (result: SymbolDetail) => result.name;
-
-
   openEditPage(item: Statement) {
     this.router.navigate(['/financial-report'], { state: { id: item } })
   }

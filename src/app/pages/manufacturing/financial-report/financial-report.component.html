@@ -2,13 +2,7 @@
     <div class="row p-3">
         <div class="col-4">
             <label for="symbol" class="form-label">نماد:</label>
-            <div>
-                <input formControlName="selectedSymbol" [ngbTypeahead]="search" [resultFormatter]="resultFormatter"
-                    [inputFormatter]="inputFormatter" (selectItem)="selectSymbol($event)" class="form-control"
-                    [class.is-invalid]="searchFailed" id="symbol"
-                    [ngClass]="{'error-validation' : isStatementsFormSubmit && statementsFormSubmitted.selectedSymbol.errors}" />
-                <small *ngIf="searching" class="form-text text-muted">در حال جستجو...</small>
-            </div>
+            <app-symbol-search formControlName="selectedSymbol"></app-symbol-search>
         </div>
         <div class="col-4">
             <label for="traceNo" class="form-label"> شماره گزارش:</label>

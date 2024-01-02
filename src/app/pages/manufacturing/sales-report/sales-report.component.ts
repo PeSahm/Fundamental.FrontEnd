@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ScreenerService } from 'src/app/services/screener.service';
-import { Observable, of } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
-import { SearchSymbol, SymbolDetail } from 'src/app/models/models';
 import toEnDigit from 'src/app/utils/toEnDigit';
 import { GetErrorService } from 'src/app/services/getError.service';
 import { Router } from '@angular/router';
@@ -155,30 +152,7 @@ export class SalesReportComponent implements OnInit {
         })
     }
   }
-
-
-
-
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(600),
-      distinctUntilChanged(),
-      tap(() => (this.searching = true)),
-      switchMap(term =>
-        this.service.searchSymbol(term)
-          .pipe(
-            tap(() => (this.searchFailed = false)),
-            catchError(() => of<SearchSymbol>({ success: false, data: [], error: null }))
-          )
-      ),
-      switchMap(result => of(result)),
-      tap(() => (this.searching = false)),
-    );
-  resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
-  inputFormatter = (result: SymbolDetail) => result.name;
-
   selectSymbol(e: any) {
-    this.salesForm?.setValue({ isin: e.item.isin });
-    this.selectedSymbol = { isin: e.item.isin, name: e.item.name }
+    this.salesForm?.patchValue({ selectedSymbol: { isin: e.item.isin, name: e.item.name } });
   }
 }

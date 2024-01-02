@@ -146,12 +146,6 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   selected(items: any) {
     this.selectedItems = items;
   }
-
-
-  toggleSearchFilter(el: ElementRef) {
-    this.isSearchBarOpen = !this.isSearchBarOpen;
-  }
-
   getDetailRow(row: any) {
     if (row.expand) {
       this.isLoadingChild = true;
