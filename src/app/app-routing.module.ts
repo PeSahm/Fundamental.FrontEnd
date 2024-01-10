@@ -32,7 +32,7 @@ const routes: Routes = [
     path: 'manufacturing/get-income-statement', component: GetIncomeStatementComponent, data: { title: '  گزارش صورت   سود و زیان ' }
   },
   {
-    path: 'symbol-share-holders', component: SymbolShareHoldersComponent
+    path: 'symbol-share-holders', component: SymbolShareHoldersComponent  , data: { title: 'گزارش سهامداری' }
   },
   {
     path: '**',

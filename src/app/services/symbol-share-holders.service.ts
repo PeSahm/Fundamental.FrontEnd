@@ -8,7 +8,10 @@ export class SymbolShareHoldersService {
 
   constructor(private http: HttpClient) {
   }
-  getAllSymbolShareHolders(command : any){
+  getAllSymbolShareHolders(command: any) {
     return this.http.get(`https://api.stockscreeners.ir/symbol-share-holders`, { params: command })
+  }
+  rejectShareHolders(id) {
+    return this.http.post(`https://api.stockscreeners.ir/symbol-share-holders/reject/${id}`, null)
   }
 }

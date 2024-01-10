@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title">وضعیت بررسی</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-6">
+            <label for="reviewStatus" class="form-label">نوع وضعیت:</label>
+            <select class="form-select" [(ngModel)]="reviewStatus" id="reviewStatus" (change)="selectStatusSide()">
+                <option value="1">تایید</option>
+                <option value="2">رد</option>
+
+            </select>
+        </div>
+    </div>
+    <div *ngIf="isApproved;else isRejected">
+
+    </div>
+    <ng-template #isRejected>
+
+    </ng-template>
+
+</div>
+<div class="modal-footer">
+    <button type="submit" [ngClass]=" isApproved ? ' btn btn-primary text-white' : 'btn btn-danger'"
+    (click) = "registerReviewStatus(isApproved)"
+    >{{isApproved
+        ?
+        ' تایید' : 'عدم تایید'}}
+    </button>
+
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">بستن</button>
+</div>
