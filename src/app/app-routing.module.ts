@@ -10,6 +10,7 @@ import { ManufacturingBalanceSheetComponent } from './pages/manufacturing/manufa
 import { GetManufacturingBalanceSheetComponent } from './pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component';
 import { ManufacturingIncomeStatementComponent } from './pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component';
 import { GetIncomeStatementComponent } from './pages/manufacturing/get-income-statement/get-income-statement.component';
+import { SymbolShareHoldersComponent } from './pages/symbol-share-holders/symbol-share-holders.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -29,6 +30,9 @@ const routes: Routes = [
   },
   {
     path: 'manufacturing/get-income-statement', component: GetIncomeStatementComponent, data: { title: '  گزارش صورت   سود و زیان ' }
+  },
+  {
+    path: 'symbol-share-holders', component: SymbolShareHoldersComponent
   },
   {
     path: '**',

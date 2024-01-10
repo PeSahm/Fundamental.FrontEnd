@@ -23,6 +23,7 @@ import { ManufacturingIncomeStatementComponent } from './pages/manufacturing/man
 import { GetIncomeStatementComponent } from './pages/manufacturing/get-income-statement/get-income-statement.component';
 import { SymbolSearchComponent } from './components/symbol-search/symbol-search.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
+import { SymbolShareHoldersComponent } from './pages/symbol-share-holders/symbol-share-holders.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
     GetIncomeStatementComponent,
     SymbolSearchComponent,
     SearchFilterComponent,
+    SymbolShareHoldersComponent,
     
   ],
   imports: [

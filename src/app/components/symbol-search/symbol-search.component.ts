@@ -16,6 +16,8 @@ import { ControlValueAccessor, FormControl, FormControlName, NG_VALUE_ACCESSOR }
     },
   ],
 })
+// TODO: remove item from single mode not deleted value.
+
 export class SymbolSearchComponent implements OnInit, ControlValueAccessor {
   searching = false;
   searchFailed = false;
