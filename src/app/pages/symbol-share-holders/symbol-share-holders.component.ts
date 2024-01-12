@@ -65,7 +65,10 @@ export class SymbolShareHoldersComponent implements OnInit {
     ];
     this.KeyName =
       [
-        { name: 'عملیات', onClick: true, hasEdit: true, uniqueKey: 'id' },
+        {
+          name: 'عملیات', onClick: true, uniqueKey: 'id', iconClass: 'fa fa-tasks text-primary'
+          , title: 'وضعبت بررسی', hasModal: true
+        },
         { name: 'symbolName' },
         { name: 'shareHolderName' },
         { name: 'sharePercentage', pipe: 'number' },
@@ -138,10 +141,15 @@ export class SymbolShareHoldersComponent implements OnInit {
     this.getAllSymbolShareHolders();
   }
 
-  openStatusModal(id) {
-    const modalRef = this.modalService.open(ShareHoldersModalComponent , { size: 'lg' });
-		modalRef.componentInstance.id = id;
-    
+  openStatusModal(rowItem) {
+    const modalRef = this.modalService.open(ShareHoldersModalComponent, { size: 'lg' });
+    modalRef.componentInstance.rowItem = rowItem;
+    modalRef.closed.subscribe(data => {
+      if (data === '1' || data === '2') {
+        this.getAllSymbolShareHolders();
+      }
+    })
+
   }
 
 

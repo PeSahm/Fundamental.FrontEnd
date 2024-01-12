@@ -14,4 +14,8 @@ export class SymbolShareHoldersService {
   rejectShareHolders(id) {
     return this.http.post(`https://api.stockscreeners.ir/symbol-share-holders/reject/${id}`, null)
   }
+  approveShareHolders(command){
+    return this.http.post(`https://api.stockscreeners.ir/symbol-share-holders/approve`, command)
+
+  }
 }

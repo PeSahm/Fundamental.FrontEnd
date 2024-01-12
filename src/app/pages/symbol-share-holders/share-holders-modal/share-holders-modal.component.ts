@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { SymbolShareHoldersService } from 'src/app/services/symbol-share-holders.service';
 
 @Component({
   selector: 'app-share-holders-modal',
@@ -8,10 +10,17 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ShareHoldersModalComponent implements OnInit {
 
-  @Input() id;
+  @Input() rowItem;
   reviewStatus = "1";
   isApproved = true;
-  constructor(public activeModal: NgbActiveModal) { }
+  selectedSymbol;
+  constructor(
+    public activeModal: NgbActiveModal,
+    private symbolShareHolderService: SymbolShareHoldersService,
+    private toastr: ToastrService,
+
+
+  ) { }
   ngOnInit(): void {
 
   }
@@ -20,11 +29,31 @@ export class ShareHoldersModalComponent implements OnInit {
     this.isApproved = parseInt(this.reviewStatus) === 1 ? true : false;
   }
 
-  registerReviewStatus(isApproved){
-    if(isApproved){
+  registerReviewStatus(isApproved) {
+    if (isApproved) {
+      this.symbolShareHolderService.approveShareHolders({
+        id: this.rowItem?.id,
+        shareHolderIsin: this.selectedSymbol.isin
+      })
+      .subscribe((res:any)=>{
+        if (res?.success) {
+          this.activeModal.close('1');
+          this.toastr.success(`عملیات  تایید نماد ${this.rowItem?.symbolName} با موفقیت انجام شد.`)
+        }
+      })
 
-    }else{
-      
+    } else {
+      this.symbolShareHolderService.rejectShareHolders(this.rowItem?.id)
+        .subscribe((res: any) => {
+          if (res.success) {
+            this.activeModal.close('2');
+            this.toastr.success(`عملیات عدم تایید نماد ${this.rowItem?.symbolName} با موفقیت انجام شد.`)
+          }
+        })
     }
+  }
+
+  selected(items: any) {
+    this.selectedSymbol = items['item'];
   }
 }

@@ -4,12 +4,14 @@
             <thead class="table-dark">
                 <tr class="text-wrap" style="position: sticky;top: 0;">
                     <th *ngIf="isExpandable"></th>
-                    <th *ngFor="let item of columnName" [ngClass]="{'cursor-pointer': item.hasSort}" class="col p-3" (click)="sortColumn(item)">
+                    <th *ngFor="let item of columnName" [ngClass]="{'cursor-pointer': item.hasSort}" class="col p-3"
+                        (click)="sortColumn(item)">
                         <span *ngIf="item.hasSort">
                             <i *ngIf="sortedColumn === item.name && sortOrder === 'asc'; else desc"
                                 class="fa fa-sort-amount-asc" aria-hidden="true"></i>
                             <ng-template #desc>
-                                <i *ngIf="sortedColumn === item.name" class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                                <i *ngIf="sortedColumn === item.name" class="fa fa-sort-amount-desc"
+                                    aria-hidden="true"></i>
                             </ng-template>
                         </span>
                         {{item.title}}
@@ -53,8 +55,13 @@
                             </span>
                             <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd(item[key.uniqueKey])"
                                 class="cursor-pointer">
-                                <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i>
+                                <i class="fa fa-pencil-square-o text-success mx-3" aria-hidden="true"></i>
                             </span>
+                            <span *ngIf="key.onClick && key.hasModal" (click)="clickOnTd(item)"
+                                title="{{key.title}}" class="cursor-pointer">
+                                <i class="{{key.iconClass}}" aria-hidden="true"></i>
+                            </span>
+
                         </td>
                     </tr>
                     <tr *ngIf="expandedRows[i]">
