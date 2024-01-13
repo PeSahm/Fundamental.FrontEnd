@@ -13,11 +13,12 @@ import { ShareHoldersModalComponent } from './share-holders-modal/share-holders-
 
 export class SymbolShareHoldersComponent implements OnInit {
   selectedSymbol;
-  reviewStatus;
+  reviewStatus = "1";
   source;
   reportFilter = {
     pageSize: 20,
-    pageNumber: 1
+    pageNumber: 1,
+    reviewStatus : 1
   };
   page = 1;
   totalRecords: number = 0;
@@ -92,9 +93,9 @@ export class SymbolShareHoldersComponent implements OnInit {
     this.pageSize = 20;
     const command = {
       ...this.reportFilter,
-      isin: this.selectedSymbol?.isin,
-      source: parseInt(this.source),
-      reviewStatus: parseInt(this.reviewStatus),
+      isin: this.selectedSymbol?.isin ?? null,
+      source: parseInt(this.source)?? null,
+      reviewStatus: parseInt(this.reviewStatus)?? null,
       pageNumber: 1,
       pageSize: 20,
 
