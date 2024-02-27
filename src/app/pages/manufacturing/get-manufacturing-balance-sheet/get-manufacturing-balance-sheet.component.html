@@ -32,6 +32,6 @@
         [totalRecords]="totalRecords" [pageSize]="pageSize" [(page)]="page" (changePageEvent)="changePage($event)"
         (changeSizeEvent)="changeSize($event)" (expandRowEvent)="getDetailRow($event)" [isExpandable]="true"
         [children]="balanceSheetChildren" [columnNameChild]="columnNameChild" [KeyNameChild]="KeyNameChild"
-        [isLoadingChild]="isLoadingChild">
+        [isLoadingChild]="isLoadingChild" (sortEvent)="handleSort($event)">
     </app-table>
 </div>

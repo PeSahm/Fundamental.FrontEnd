@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { finalize } from 'rxjs';
 import { ManufacturingService } from 'src/app/services/manufacturing.service';
 import { ScreenerService } from 'src/app/services/screener.service';
 @Component({
@@ -23,7 +24,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   pageSize = 20;
   KeyName: any[] = [];
   KeyNameChild: any[] = [];
-  columnName: string[] = [];
+  columnName: any[] = [];
   balanceSheetItems = [];
   columnNameChild: string[] = [];
   selectedItems: any = [];
@@ -45,9 +46,12 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
 
   makeTableConst() {
     this.columnName = [
-      'نماد', 'شماره گزارش', 'لینک', 'سال مالی',
-      'ماه گزارش سال مالی',
-      'عنوان'
+      { name: 'symbol', title: 'نماد', hasSort: true },
+      { name: 'traceNo', title: 'شماره گزارش', hasSort: true },
+      { name: 'uri', title: 'لینک', hasLink: true, hasView: true },
+      { name: 'fiscalYear', title: 'سال مالی', hasSort: true },
+      { name: 'reportMonth', title: 'ماه گزارش سال مالی', hasSort: true },
+      { name: 'title', title: 'عنوان' },
     ];
     this.KeyName =
       [
@@ -157,4 +161,31 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
         })
     }
   }
+  handleSort(option: any) {
+    this.isLoading = true;
+    this.balanceSheetItems = [];
+    this.page = 1;
+    this.pageSize = 20;
+    const command = {
+      ...this.reportFilter,
+      year: this.fiscalYear,
+      reportMonth: this.reportMonth,
+      IsinList: this.selectedItems.map((item: any) => item?.isin),
+      pageNumber: 1,
+      pageSize: 20,
+      OrderBy: `${option.column} ${option.sortOrder}`
+    }
+    this.reportFilter = command;
+    this.manufacturingService.getAllManufacturingBalanceSheet(this.reportFilter)
+      .pipe(finalize(() => {
+        this.isLoading = false;
+      }))
+      .subscribe({
+        next: (res: any) => {
+          this.balanceSheetItems = res.items
+          this.totalRecords = res.meta.total
+        }
+      })
+  }
+
 }
