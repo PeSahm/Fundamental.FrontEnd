@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ScreenerService } from 'src/app/services/screener.service';
 import { MonthlyActivityService } from 'src/app/services/monthly-activity.service';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 @Component({
   selector: 'app-get-sales-report',
   templateUrl: './get-sales-report.component.html',
@@ -28,7 +29,7 @@ export class GetSalesReportComponent implements OnInit {
   sales = [];
   isLoading = true;
   KeyName: any[] = [];
-  columnName: string[] = [];
+  columnName: any[] = [];
   constructor(
     private service: ScreenerService,
     private monthlyReportService: MonthlyActivityService,
@@ -45,14 +46,19 @@ export class GetSalesReportComponent implements OnInit {
   }
   makeTableConst() {
     this.columnName = [
-      'عملیات', 'نماد', 'شماره گزارش', 'لینک', 'سال مالی', 'ماه انتهای سال مالی',
-      'ماه گزارش سال مالی',
-       'فروش اول سال مالی تا ماه قبل سال جاری',
-        'فروش ماه جاری', 
-        'فروش از ابتدای سال مالی تا انتهای ماه جاری	', 
-        'فروش اول سال مالی تا ماه قبل سال قبل	', 
-        'دارای فروش شرکت های زیر مجموعه', 
+      { name: null, title: 'عملیات' },
+      { name: 'symbol', title: 'نماد', hasSort: true },
+      { name: 'traceNo', title: 'شماره گزارش', hasSort: true },
+      { name: 'uri', title: 'لینک', hasLink: true, hasView: true },
+      { name: 'fiscalYear', title: 'سال مالی', hasSort: true },
+      { name: 'reportMonth', title: 'ماه گزارش سال مالی', hasSort: true },
+      { name: 'saleBeforeCurrentMonth', title: 'فروش اول سال مالی تا ماه قبل سال جاری' , hasSort: true},
+      { name: 'saleCurrentMonth', title: 'فروش ماه جاری' , hasSort: true},
+      { name: 'saleIncludeCurrentMonth', title: 'فروش از ابتدای سال مالی تا انتهای ماه جاری', hasSort: true },
+      { name: 'saleLastYear', title: 'فروش اول سال مالی تا ماه قبل سال قبل' , hasSort: true},
     ];
+
+
     this.KeyName =
       [
         { name: 'عملیات', onClick: true, hasEdit: true , uniqueKey :'id' },
@@ -60,7 +66,6 @@ export class GetSalesReportComponent implements OnInit {
         { name: 'traceNo' },
         { name: 'uri', hasLink: true, hasView: true },
         { name: 'fiscalYear' },
-        { name: 'yearEndMonth' },
         { name: 'reportMonth' },
         { name: 'saleBeforeCurrentMonth', pipe: 'number' },
         { name: 'saleCurrentMonth', pipe: 'number' },
@@ -140,6 +145,33 @@ export class GetSalesReportComponent implements OnInit {
 
   selected(items: any) {
     this.selectedItems = items;
+  }
+
+  handleSort(option: any) {
+    this.isLoading = true;
+    this.sales = [];
+    this.page = 1;
+    this.pageSize = 20;
+    const command = {
+      ...this.reportFilter,
+      year: this.fiscalYear,
+      reportMonth: this.reportMonth,
+      IsinList: this.selectedItems.map((item: any) => item?.isin),
+      pageNumber: 1,
+      pageSize: 20,
+      OrderBy: `${option.column} ${option.sortOrder}`
+    }
+    this.reportFilter = command;
+    this.monthlyReportService.getAllMonthlyReport(this.reportFilter)
+      .pipe(finalize(() => {
+        this.isLoading = false;
+      }))
+      .subscribe({
+        next: (res: any) => {
+          this.sales = res.data.items
+          this.totalRecords = res.data.meta.total
+        }
+      })
   }
 
 }

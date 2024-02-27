@@ -57,8 +57,8 @@
                                 class="cursor-pointer">
                                 <i class="fa fa-pencil-square-o text-success mx-3" aria-hidden="true"></i>
                             </span>
-                            <span *ngIf="key.onClick && key.hasModal" (click)="clickOnTd(item)"
-                                title="{{key.title}}" class="cursor-pointer">
+                            <span *ngIf="key.onClick && key.hasModal" (click)="clickOnTd(item)" title="{{key.title}}"
+                                class="cursor-pointer">
                                 <i class="{{key.iconClass}}" aria-hidden="true"></i>
                             </span>
 
@@ -89,7 +89,7 @@
                                                 <ng-template #handleNegativeNumber>
                                                     <span class="text-danger">
                                                         <bdi>
-                                                            {{ childItem[childKey.name] | number }}
+                                                            {{ Math.abs(childItem[childKey.name]) | number }}
 
                                                         </bdi>
                                                     </span>
@@ -121,7 +121,7 @@
                 </tr>
                 <tr *ngIf="isLoading">
                     <td colspan="16" style="text-align: center;">
-                        <div  class="spinner-border text-primary"></div>
+                        <div class="spinner-border text-primary"></div>
                     </td>
                 </tr>
             </tbody>

@@ -24,6 +24,7 @@ export class TableComponent implements OnInit {
   @Output() changeSizeEvent = new EventEmitter();
   @Output() expandRowEvent = new EventEmitter();
   @Output() sortEvent = new EventEmitter();
+  Math = Math
 
   expandedRowId: number = 0;
   expandedRows: { [key: string]: boolean } = {};

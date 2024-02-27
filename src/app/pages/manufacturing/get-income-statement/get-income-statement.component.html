@@ -34,6 +34,7 @@
         (changePageEvent)="changePage($event)" (changeSizeEvent)="changeSize($event)"
         (expandRowEvent)="getDetailRow($event)" [isExpandable]="true" [children]="incomeStatementChildren" [columnNameChild]="columnNameChild"
         [KeyNameChild]="KeyNameChild" [isLoadingChild]="isLoadingChild"
+        (sortEvent)="handleSort($event)"
         
         >
     </app-table>
