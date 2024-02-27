@@ -24,6 +24,7 @@ import { GetIncomeStatementComponent } from './pages/manufacturing/get-income-st
 import { SymbolSearchComponent } from './components/symbol-search/symbol-search.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 import { SymbolShareHoldersComponent } from './pages/symbol-share-holders/symbol-share-holders.component';
+import { ShareHoldersModalComponent } from './pages/symbol-share-holders/share-holders-modal/share-holders-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SymbolShareHoldersComponent } from './pages/symbol-share-holders/symbol
     SymbolSearchComponent,
     SearchFilterComponent,
     SymbolShareHoldersComponent,
+    ShareHoldersModalComponent,
     
   ],
   imports: [

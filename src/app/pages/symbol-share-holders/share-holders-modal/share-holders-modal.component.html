@@ -1,0 +1,61 @@
+<div class="modal-header">
+    <h4 class="modal-title">وضعیت بررسی</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-6">
+            <label for="reviewStatus" class="form-label">نوع وضعیت:</label>
+            <select class="form-select" [(ngModel)]="reviewStatus" id="reviewStatus" (change)="selectStatusSide()">
+                <option value="1">تایید</option>
+                <option value="2">رد</option>
+
+            </select>
+        </div>
+    </div>
+    <hr />
+    <div *ngIf="isApproved;else isRejected">
+        <h5 class="mt-2">
+            <strong>{{rowItem.symbolName}}</strong>
+        </h5>
+        <div class="row my-3">
+            <div class="col-6">
+                <label for="symbol" class="form-label font-12">نماد:</label>
+                <app-symbol-search (selectSearchSymbol)="selected($event)"></app-symbol-search>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label for="fiscalYear" class="form-label font-12">سهامدار:</label>
+            <input type="input" class="form-control" id="fiscalYear" disabled value="{{rowItem.shareHolderName}}">
+        </div>
+        <div class="col-6">
+            <label for="fiscalYear" class="form-label font-12">درصد سهامداری:</label>
+            <input type="input" class="form-control" id="fiscalYear" disabled value="{{rowItem.sharePercentage}}">
+        </div>
+        <div class="col-6">
+            <label for="fiscalYear" class="form-label font-12">منبع:</label>
+            <input type="input" class="form-control" id="fiscalYear" disabled value="{{rowItem.shareHolderSourceName}}">
+        </div>
+        <div class="col-6">
+            <label for="fiscalYear" class="form-label font-12">وضعیت بررسی:</label>
+            <input type="input" class="form-control" id="fiscalYear" disabled value="{{rowItem.reviewStatusName}}">
+        </div>
+    </div>
+
+    <ng-template #isRejected>
+        <h5 class="my-5">
+            آیا از رد کردن اطلاعات سهامداری نماد <strong>{{rowItem.symbolName}}</strong> مطمئن هستید؟
+        </h5>
+
+    </ng-template>
+
+</div>
+<div class="modal-footer">
+    <button type="submit" [ngClass]=" isApproved ? ' btn btn-primary text-white' : 'btn btn-danger'"
+        (click)="registerReviewStatus(isApproved)">
+        ثبت
+    </button>
+
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">بستن</button>
+</div>
