@@ -20,6 +20,9 @@ export class MonthlyActivityService {
   editMonthlyActivityForm(command:any){
     return this.http.put(`https://api.stockscreeners.ir/Manufacturing/monthly-activity/${command.id}`, command)
   }
+ addMonthlyActivity(command: MonthlyActivity) {
+    return this.http.post('https://api.stockscreeners.ir/Manufacturing/monthly-activity', command)
+  }
 
 
 

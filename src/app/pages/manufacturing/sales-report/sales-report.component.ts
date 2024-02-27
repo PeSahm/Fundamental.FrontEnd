@@ -6,6 +6,7 @@ import toEnDigit from 'src/app/utils/toEnDigit';
 import { GetErrorService } from 'src/app/services/getError.service';
 import { Router } from '@angular/router';
 import { MonthlyActivityService } from 'src/app/services/monthly-activity.service';
+import { finalize } from 'rxjs';
 @Component({
   selector: 'app-sales-report',
   templateUrl: './sales-report.component.html',
@@ -19,6 +20,7 @@ export class SalesReportComponent implements OnInit {
   reportId;
   isLoading: boolean = false;
   selectedSymbol = {};
+  isClickedBtn = false;
   constructor(
     private service: ScreenerService,
     private fb: FormBuilder,
@@ -92,8 +94,10 @@ export class SalesReportComponent implements OnInit {
   }
 
   registerSales() {
+    this.isClickedBtn = true;
     if (this.salesForm?.invalid) {
       this.isSalesFormSubmit = true;
+      this.isClickedBtn = false;
       return;
     }
     const command = {
@@ -111,7 +115,8 @@ export class SalesReportComponent implements OnInit {
       "hasSubCompanySale": this.salesForm?.value.hasSubCompanySale,
     }
     if (!this.reportId) {
-      this.service.registerMonthlyActivity(command)
+      this.monthlyActivityService.addMonthlyActivity(command)
+        .pipe(finalize(() => this.isClickedBtn = false))
         .subscribe({
           next: (res: any) => {
             this.toastr.success(`ثبت اطلاعات نماد ${this.salesForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);
@@ -132,6 +137,7 @@ export class SalesReportComponent implements OnInit {
         })
     } else {
       this.monthlyActivityService.editMonthlyActivityForm(command)
+        .pipe(finalize(() => this.isClickedBtn = false))
         .subscribe({
           next: (res) => {
             this.toastr.success(`ویرایش اطلاعات نماد ${this.salesForm?.value.selectedSymbol.name} با موفقیت انجام شد.`);

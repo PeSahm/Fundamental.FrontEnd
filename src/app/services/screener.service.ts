@@ -24,9 +24,7 @@ export class ScreenerService {
     return this.http.post('https://api.stockscreeners.ir/statements', command)
   }
 
-  registerMonthlyActivity(command: MonthlyActivity) {
-    return this.http.post('https://api.stockscreeners.ir/monthly-activity', command)
-  }
+
 
 
 

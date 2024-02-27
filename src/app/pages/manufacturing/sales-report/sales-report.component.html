@@ -66,9 +66,14 @@
         </div>
     </div>
     <hr class="my-4" />
-    <button type="submit" [ngClass]=" reportId ? 'w-25 btn btn-info text-white' : 'w-25 btn btn-primary'">{{reportId
+    <button
+     type="submit" [ngClass]=" reportId ? 'w-25 btn btn-info text-white' : 'w-25 btn btn-primary'"
+     [disabled]="isClickedBtn"
+     >{{reportId
         ?
-        'ویرایش' : 'ثبت'}}</button>
+        'ویرایش' : 'ثبت'}}
+        <span *ngIf="isClickedBtn" class="spinner-border spinner-border-sm"></span>
+    </button>
 </form>
 <div *ngIf="isLoading" class="loading-container">
     <div class="spinner-grow text-primary" style="position: absolute; left: 50%;top: 50%;"></div>
