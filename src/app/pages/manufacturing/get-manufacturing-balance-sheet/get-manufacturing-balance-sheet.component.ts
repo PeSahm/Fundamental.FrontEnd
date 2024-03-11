@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { finalize } from 'rxjs';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subject, finalize, takeUntil } from 'rxjs';
+import { KeyName, ManufacturingBalanceSheet, ManufacturingBalanceSheetDataFrom, ManufacturingBalanceSheetDetailsRow, SortOption } from 'src/app/models/models';
 import { ManufacturingService } from 'src/app/services/manufacturing.service';
 import { ScreenerService } from 'src/app/services/screener.service';
 @Component({
@@ -7,7 +8,7 @@ import { ScreenerService } from 'src/app/services/screener.service';
   templateUrl: './get-manufacturing-balance-sheet.component.html',
   styleUrls: ['./get-manufacturing-balance-sheet.component.scss']
 })
-export class GetManufacturingBalanceSheetComponent implements OnInit {
+export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy {
   selectedSymbol = '';
   searching = false;
   searchFailed = false;
@@ -22,16 +23,17 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   page = 1;
   totalRecords: number = 0;
   pageSize = 20;
-  KeyName: any[] = [];
+  KeyName: KeyName[] = [];
   KeyNameChild: any[] = [];
   columnName: any[] = [];
-  balanceSheetItems = [];
+  balanceSheetItems: ManufacturingBalanceSheet[] = [];
   columnNameChild: string[] = [];
   selectedItems: any = [];
   balanceSheetChildren: any[] = [];
   @ViewChild('input') searchInput!: ElementRef;
   isLoading = true;
   isLoadingChild = false;
+  destroy$ = new Subject<void>();
   constructor(
     private manufacturingService: ManufacturingService,
     private service: ScreenerService,
@@ -39,6 +41,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   ) {
 
   }
+
   ngOnInit(): void {
     this.getAllManufacturingBalanceSheet();
     this.makeTableConst();
@@ -78,18 +81,18 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   }
 
   getAllManufacturingBalanceSheet() {
+    this.isLoading = true;
     this.manufacturingService.getAllManufacturingBalanceSheet(this.reportFilter)
+      .pipe(takeUntil(this.destroy$),
+        finalize(() => this.isLoading = false)
+      )
       .subscribe({
-        next: (res: any) => {
-          this.balanceSheetItems = res.items;
-          this.totalRecords = res.meta.total;
-
+        next: (res) => {
+          this.balanceSheetItems = res.data.items;
+          this.totalRecords = res.data.meta.total;
         },
         error: (err) => {
           // Handle errors here
-        },
-        complete: () => {
-          this.isLoading = false;
         }
       });
   }
@@ -112,9 +115,9 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
     this.reportFilter = command;
     this.manufacturingService.getAllManufacturingBalanceSheet(this.reportFilter)
       .subscribe({
-        next: (res: any) => {
-          this.balanceSheetItems = res.items
-          this.totalRecords = res.meta.total
+        next: (res: ManufacturingBalanceSheetDataFrom) => {
+          this.balanceSheetItems = res.data.items;
+          this.totalRecords = res.data.meta.total
         },
         complete: () => {
           this.isLoading = false;
@@ -150,18 +153,23 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
   selected(items: any) {
     this.selectedItems = items;
   }
-  getDetailRow(row: any) {
+  getDetailRow(row: {
+    expand: boolean,
+    rowData: ManufacturingBalanceSheet
+  }) {
     if (row.expand) {
       this.isLoadingChild = true;
       this.balanceSheetChildren = [];
       this.manufacturingService.getManufacturingBalanceSheetDetail(row.rowData)
-        .subscribe((res: any) => {
-          this.balanceSheetChildren = res;
-          this.isLoadingChild = false;
+        .pipe(takeUntil(this.destroy$),
+          finalize(() => this.isLoadingChild = false)
+        )
+        .subscribe((res: ManufacturingBalanceSheetDetailsRow) => {
+          this.balanceSheetChildren = res.data;
         })
     }
   }
-  handleSort(option: any) {
+  handleSort(option: SortOption) {    
     this.isLoading = true;
     this.balanceSheetItems = [];
     this.page = 1;
@@ -181,11 +189,16 @@ export class GetManufacturingBalanceSheetComponent implements OnInit {
         this.isLoading = false;
       }))
       .subscribe({
-        next: (res: any) => {
-          this.balanceSheetItems = res.items
-          this.totalRecords = res.meta.total
+        next: (res) => {
+          this.balanceSheetItems = res.data.items
+          this.totalRecords = res.data.meta.total
         }
       })
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

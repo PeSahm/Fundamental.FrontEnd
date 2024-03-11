@@ -72,3 +72,48 @@ export interface Meta {
   to: number
 }
 
+export interface ManufacturingBalanceSheetDataFrom {
+  data: {
+    items: ManufacturingBalanceSheet[];
+    meta: Meta;
+  };
+  error?: any;
+  success?: boolean;
+}
+
+export interface ManufacturingBalanceSheet {
+  isin?: string;
+  symbol?: string;
+  traceNo?: number;
+  uri?: string;
+  fiscalYear?: number;
+  reportMonth?: number;
+  title?: string;
+}
+export interface ManufacturingBalanceSheetDetailsRow {
+  success: boolean;
+  data: ManufacturingBalanceSheetDetails[];
+  error?: any;
+}
+
+export interface ManufacturingBalanceSheetDetails {
+  order: number;
+  codalRow: number;
+  description: string;
+  category: number;
+  categoryDescription: string;
+  value: number;
+}
+
+export interface SortOption {
+  column: string;
+  sortOrder: string;
+}
+
+export interface KeyName{
+  // { name: 'uri', hasLink: true, hasView: true }
+  name : string;
+  hasLink?:boolean;
+  hasView?:boolean;
+}
+
