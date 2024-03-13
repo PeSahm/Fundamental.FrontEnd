@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable, of, OperatorFunction } from 'rxjs';
-import { MonthlyActivity, ResponseStatementRoot, SearchSymbol, Statement } from '../models/models';
+import { MonthlyActivity, SearchSymbol, Statement } from '../models/models';
 
 @Injectable({
   providedIn: 'root'

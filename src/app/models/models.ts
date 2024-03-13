@@ -1,3 +1,45 @@
+
+
+// new interface implementation for the app.
+
+
+export interface Result<T> {
+  data: Data<T>,
+  error: any,
+  success: boolean
+}
+
+export interface DetailResult<T> {
+  data: T,
+  error: any,
+  success: boolean
+}
+
+export interface Data<T> {
+  items: T,
+  meta?: Meta
+}
+export interface Meta {
+  total: number
+  from: number
+  to: number
+}
+
+export interface ManufacturingBalanceSheetDetails {
+  order: number;
+  codalRow: number;
+  description: string;
+  category: number;
+  categoryDescription: string;
+  value: number;
+}
+
+
+export interface SortOption {
+  column: string;
+  sortOrder: string;
+}
+
 export interface SearchSymbol {
   success: boolean
   data: SymbolDetail[]
@@ -5,11 +47,11 @@ export interface SearchSymbol {
 }
 
 export interface SymbolDetail {
-  isin: string
-  tseInsCode: string
-  title: string
-  name: string
-  marketCap: number
+  isin?: string
+  tseInsCode?: string
+  title?: string
+  name?: string
+  marketCap?: number
 }
 
 
@@ -53,34 +95,6 @@ export interface MonthlyActivity {
   hasSubCompanySale: boolean;
 }
 
-export interface ResponseStatementRoot {
-  success: boolean
-  data: Data
-  error: any
-}
-
-export interface Data {
-  items: Statement[]
-  meta: Meta
-}
-
-
-
-export interface Meta {
-  total: number
-  from: number
-  to: number
-}
-
-export interface ManufacturingBalanceSheetDataFrom {
-  data: {
-    items: ManufacturingBalanceSheet[];
-    meta: Meta;
-  };
-  error?: any;
-  success?: boolean;
-}
-
 export interface ManufacturingBalanceSheet {
   isin?: string;
   symbol?: string;
@@ -90,30 +104,38 @@ export interface ManufacturingBalanceSheet {
   reportMonth?: number;
   title?: string;
 }
-export interface ManufacturingBalanceSheetDetailsRow {
-  success: boolean;
-  data: ManufacturingBalanceSheetDetails[];
-  error?: any;
+
+export interface KeyName {
+  name: string;
+  hasLink?: boolean;
+  hasView?: boolean;
 }
 
-export interface ManufacturingBalanceSheetDetails {
-  order: number;
-  codalRow: number;
-  description: string;
-  category: number;
-  categoryDescription: string;
-  value: number;
+export interface KeyNameChild {
+  name?: string;
+  pipe?: string;
 }
 
-export interface SortOption {
-  column: string;
-  sortOrder: string;
-}
-
-export interface KeyName{
-  // { name: 'uri', hasLink: true, hasView: true }
-  name : string;
+export interface ColumnName {
+  name?: string;
+  title?: string;
+  hasSort?:boolean;
   hasLink?:boolean;
   hasView?:boolean;
 }
+
+export interface DetailRow<T>{
+  expand: boolean;
+  rowData: T
+}
+
+
+
+
+
+
+
+
+
+
 

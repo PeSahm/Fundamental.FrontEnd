@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ScreenerService } from 'src/app/services/screener.service';
-import { ResponseStatementRoot, Statement, SymbolDetail } from 'src/app/models/models';
+import {  Statement, SymbolDetail } from 'src/app/models/models';
 import { Router } from '@angular/router';
 import { StatementService } from 'src/app/services/statement.service';
 
@@ -87,7 +87,7 @@ export class GetFinancialReportComponent implements OnInit {
   getAllStatements() {
     this.statementService.getAllStatements(this.reportFilter)
       .subscribe({
-        next: (res: ResponseStatementRoot) => {
+        next: (res: any) => {
           this.statements = res.data.items;
           this.totalRecords = res.data.meta.total;
         },
@@ -122,7 +122,7 @@ export class GetFinancialReportComponent implements OnInit {
     this.reportFilter = command;
     this.statementService.getAllStatements(this.reportFilter)
       .subscribe({
-        next: (res: ResponseStatementRoot) => {
+        next: (res: any) => {
           this.statements = res.data.items
           this.totalRecords = res.data.meta.total
         },
@@ -179,7 +179,7 @@ export class GetFinancialReportComponent implements OnInit {
     this.reportFilter = command;
     this.statementService.getAllStatements(this.reportFilter)
       .subscribe({
-        next: (res: ResponseStatementRoot) => {
+        next: (res: any) => {
           this.statements = res.data.items
           this.totalRecords = res.data.meta.total
         },
