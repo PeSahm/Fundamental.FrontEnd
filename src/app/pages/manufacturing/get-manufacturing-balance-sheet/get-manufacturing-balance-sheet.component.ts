@@ -1,9 +1,8 @@
+// #Best Practice Solution
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { ColumnName, DetailRow, KeyName, KeyNameChild, ManufacturingBalanceSheet, ManufacturingBalanceSheetDetails, SortOption, SymbolDetail } from 'src/app/models/models';
 import { ManufacturingService } from 'src/app/services/manufacturing.service';
-import { ScreenerService } from 'src/app/services/screener.service';
-
 @Component({
   selector: 'app-get-manufacturing-balance-sheet',
   templateUrl: './get-manufacturing-balance-sheet.component.html',
@@ -147,8 +146,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
     if (row.expand) {
       this.manufacturingService.getManufacturingBalanceSheetDetail(row.rowData)
         .pipe(takeUntil(this.destroy$),
-          finalize(() => this.isLoadingChild = false)
-        )
+          finalize(() => this.isLoadingChild = false))
         .subscribe((res) => {
           this.balanceSheetChildren = res.data;
         })
