@@ -31,8 +31,8 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
   isLoading = true;
   isLoadingChild = false;
   destroy$ = new Subject<void>();
-  balanceSheetItems: ManufacturingBalanceSheet[] = [];
-  balanceSheetChildren: ManufacturingBalanceSheetDetails[] = [];
+  balanceSheetItems: ManufacturingBalanceSheet[];
+  balanceSheetChildren: ManufacturingBalanceSheetDetails[] | null;
   totalRecords: number = 0;
 
   constructor(
@@ -141,9 +141,9 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
     this.selectedItems = items;
   }
   getDetailRow(row: DetailRow<ManufacturingBalanceSheet>) {
-    this.isLoadingChild = true;
-    this.balanceSheetChildren = [];
     if (row.expand) {
+      this.isLoadingChild = true;
+      this.balanceSheetChildren = null;
       this.manufacturingService.getManufacturingBalanceSheetDetail(row.rowData)
         .pipe(takeUntil(this.destroy$),
           finalize(() => this.isLoadingChild = false))
