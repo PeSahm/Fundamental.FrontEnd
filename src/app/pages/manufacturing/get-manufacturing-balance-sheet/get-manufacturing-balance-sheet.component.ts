@@ -31,7 +31,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
   isLoading = true;
   isLoadingChild = false;
   destroy$ = new Subject<void>();
-  balanceSheetItems: ManufacturingBalanceSheet[];
+  balanceSheetItems: ManufacturingBalanceSheet[] | null;
   balanceSheetChildren: ManufacturingBalanceSheetDetails[] | null;
   totalRecords: number = 0;
 
@@ -96,7 +96,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
 
   searchTable() {
     this.isLoading = true;
-    this.balanceSheetItems = [];
+    this.balanceSheetItems = null;
     this.page = 1;
     this.pageSize = 20;
     const command = {
@@ -115,7 +115,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
   }
   changePage(e: number) {
     this.isLoading = true;
-    this.balanceSheetItems = [];
+    this.balanceSheetItems = null;
     this.page = e;
     this.reportFilter = {
       ...this.reportFilter,
@@ -126,7 +126,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
 
   changeSize(e: Event) {
     this.isLoading = true;
-    this.balanceSheetItems = [];
+    this.balanceSheetItems = null;
     this.pageSize = Number((e.target as HTMLInputElement).value);
     this.page = 1;
     this.reportFilter = {
@@ -154,7 +154,7 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
   }
   handleSort(option: SortOption) {
     this.isLoading = true;
-    this.balanceSheetItems = [];
+    this.balanceSheetItems = null;
     this.page = 1;
     this.pageSize = 20;
     const command = {

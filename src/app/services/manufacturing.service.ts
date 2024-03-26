@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, map } from "rxjs";
+import { Observable, catchError, map, of } from "rxjs";
 import { environment } from "src/environments/environment";
 import { DetailResult, ManufacturingBalanceSheet, ManufacturingBalanceSheetDetails, Result } from "../models/models";
 
@@ -19,9 +19,15 @@ export class ManufacturingService {
     }
     getAllManufacturingBalanceSheet(command): Observable<Result<ManufacturingBalanceSheet[]>> {
         return this.http.get<Result<ManufacturingBalanceSheet[]>>(environment.basePath + 'Manufacturing/balance-sheet', { params: command })
+            .pipe(
+                catchError((err) => of())
+            )
     }
     getManufacturingBalanceSheetDetail(command): Observable<DetailResult<ManufacturingBalanceSheetDetails[]>> {
         return this.http.get<DetailResult<ManufacturingBalanceSheetDetails[]>>(environment.basePath + `Manufacturing/balance-sheet/${command.traceNo}/${command.fiscalYear}/${command.reportMonth}/details`)
+            .pipe(
+                catchError((err) => of())
+            )
     }
 
     getBalanceSheetSort() {
