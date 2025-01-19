@@ -36,11 +36,13 @@
                                 {{ item[key.name] }}
                             </span>
                             <span *ngIf="key.pipe">
-                                <div *ngIf="item[key.name] >= 0;else handleNegativeNumber">
+                                <div *ngIf="item[key.name] >= 0;else handleNegativeNumber" [ngbTooltip]="convertToToman(item[key.name] | number)"
+                                    tooltipClass="tooltip-class"
+                                    >
                                     {{ item[key.name] | number }}
                                 </div>
-                                <ng-template #handleNegativeNumber>
-                                    <span class="text-danger">
+                                <ng-template #handleNegativeNumber [ngbTooltip]="convertToToman(item[key.name] | number)" tooltipClass="tooltip-class-negative"	>
+                                    <span class="text-danger" >
                                         <bdi>
                                             {{ item[key.name] | number }}
 
@@ -83,11 +85,14 @@
                                             </span>
                                             <span *ngIf="childKey.pipe">
                                                 <!-- {{ childItem[childKey.name] | number }} -->
-                                                <div *ngIf="childItem[childKey.name] >= 0;else handleNegativeNumber">
+                                                <div *ngIf="childItem[childKey.name] >= 0;else handleNegativeNumber" [ngbTooltip]="convertToToman(childItem[childKey.name] | number)"
+                                                    
+                                                    tooltipClass="tooltip-class"
+                                                    >
                                                     {{childItem[childKey.name] | number }}
                                                 </div>
                                                 <ng-template #handleNegativeNumber>
-                                                    <span class="text-danger">
+                                                    <span class="text-danger" tooltipClass="tooltip-class-negative"  [ngbTooltip]="convertToToman(childItem[childKey.name] | number)">
                                                         <bdi>
                                                             {{ Math.abs(childItem[childKey.name]) | number }}
 

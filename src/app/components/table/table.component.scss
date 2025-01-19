@@ -2,6 +2,8 @@ table thead th {
     font-size: 13px;
     white-space: nowrap;
     text-align: center;
+    color: #fff;
+
 }
 
 table tbody td {
@@ -23,16 +25,28 @@ table tbody td {
 }
 
 ::ng-deep {
+
     .page-item:last-child .page-link,
-    .page-item:first-child .page-link
-    {
+    .page-item:first-child .page-link {
         border-radius: 0 !important;
+    }
+
+    .tooltip-class .tooltip-inner {
+        padding: 0.5rem 1rem;
+        background-color: #0d6efd;
+
+    }
+
+    .tooltip-class-negative .tooltip-inner {
+        padding: 0.5rem 1rem;
+        background-color: #dc3545;
     }
 }
 
 .expandedRow {
     display: none;
-  }
-  .expandedRow.active {
+}
+
+.expandedRow.active {
     display: block;
-  }
+}

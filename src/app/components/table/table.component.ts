@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-table',
@@ -25,7 +26,7 @@ export class TableComponent implements OnInit {
   @Output() expandRowEvent = new EventEmitter();
   @Output() sortEvent = new EventEmitter();
   Math = Math;
-
+  convertToToman = convertToToman;
   expandedRowId: number = 0;
   expandedRows: { [key: string]: boolean } = {};
   sortOrder = 'asc';
