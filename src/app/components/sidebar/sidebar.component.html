@@ -10,10 +10,11 @@
                         خانه
                     </div>
                 </li>
-                
+
             </ul>
             <div id="card" class="card" [ngClass]="{'collapsed': !isSearchBarOpen}">
-                <div id="card-header" class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                <div id="card-header"
+                    class="card-header d-flex align-items-center justify-content-between cursor-pointer"
                     (click)="toggleSearchFilter(searchFilter)">
                     <div>
                         صنایع تولیدی
@@ -33,36 +34,38 @@
                             <!-- <TimeLine class='sidebarIcon' /> -->
                             <i class="fa fa-book" aria-hidden="true"></i>
                             <div class="white-no py-1" style="margin-right: 15px;">
-                                ثبت صورت وضعیت مالی 
+                                ثبت صورت وضعیت مالی
                             </div>
                         </li>
-                        
+
                         <li class="sidebarListItem w-100" routerLink='/manufacturing/balance-sheet-report'
-                        routerLinkActive='active'>
-                        <!-- <TimeLine class='sidebarIcon' /> -->
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                        <div class="white-no py-1" style="margin-right: 15px;">
-                            گزارش صورت وضعیت مالی 
-                        </div>
-                    </li>
-                    <li class="sidebarListItem w-100" routerLink='/manufacturing/income-statement' routerLinkActive='active'>
-                        <i class="fa fa-usd" aria-hidden="true"></i>
-                        <div class="white-no py-1" style="margin-right: 15px;">
-                            ثبت صورت سود و زیان 
+                            routerLinkActive='active'>
+                            <!-- <TimeLine class='sidebarIcon' /> -->
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">
+                                گزارش صورت وضعیت مالی
+                            </div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/manufacturing/income-statement'
+                            routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">
+                                ثبت صورت سود و زیان
 
-                        </div>
-                    </li>
-                    <li class="sidebarListItem w-100" routerLink='/manufacturing/get-income-statement' routerLinkActive='active'>
-                        <i class="fa fa-usd" aria-hidden="true"></i>
-                        <div class="white-no py-1" style="margin-right: 15px;">
-                            گزارش صورت سود و زیان 
+                            </div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/manufacturing/get-income-statement'
+                            routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">
+                                گزارش صورت سود و زیان
 
-                        </div>
-                    </li>
+                            </div>
+                        </li>
                         <li class="sidebarListItem w-100" routerLink="/get-sales-report" routerLinkActive='active'>
                             <i class="fa fa-table" aria-hidden="true"></i>
                             <div class="white-no py-1" style="margin-right: 15px;">
-    
+
                                 گزارش فروش های ماهانه
                             </div>
                         </li>
@@ -70,11 +73,18 @@
                             <i class="fa fa-usd" aria-hidden="true"></i>
                             <div class="white-no py-1" style="margin-right: 15px;">
                                 ثبت فروش های ماهانه
-    
+
+                            </div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/manufacturing/non-operational-income'
+                            routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">
+                                گزارش درآمد غیرعملیاتی
                             </div>
                         </li>
 
-    
+
                     </ul>
                 </div>
             </div>
@@ -85,7 +95,7 @@
                     سهامداری
                 </div>
             </li>
-            
+
         </div>
 
     </div>

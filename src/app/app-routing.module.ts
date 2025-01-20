@@ -11,6 +11,7 @@ import { GetManufacturingBalanceSheetComponent } from './pages/manufacturing/get
 import { ManufacturingIncomeStatementComponent } from './pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component';
 import { GetIncomeStatementComponent } from './pages/manufacturing/get-income-statement/get-income-statement.component';
 import { SymbolShareHoldersComponent } from './pages/symbol-share-holders/symbol-share-holders.component';
+import { NonOperationalIncomeComponent } from './pages/manufacturing/non-operational-income/non-operational-income.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -30,6 +31,9 @@ const routes: Routes = [
   },
   {
     path: 'manufacturing/get-income-statement', component: GetIncomeStatementComponent, data: { title: '  گزارش صورت   سود و زیان ' }
+  },
+  {
+    path: 'manufacturing/non-operational-income', component: NonOperationalIncomeComponent, data: { title: 'گزارش درآمد غیرعملیاتی' }
   },
   {
     path: 'symbol-share-holders', component: SymbolShareHoldersComponent  , data: { title: 'گزارش سهامداری' }
