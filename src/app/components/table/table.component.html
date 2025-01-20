@@ -41,8 +41,8 @@
                                     >
                                     {{ item[key.name] | number }}
                                 </div>
-                                <ng-template #handleNegativeNumber [ngbTooltip]="convertToToman(item[key.name] | number)" tooltipClass="tooltip-class-negative"	>
-                                    <span class="text-danger" >
+                                <ng-template #handleNegativeNumber 	>
+                                    <span class="text-danger" [ngbTooltip]="convertToToman(item[key.name] | number)" tooltipClass="tooltip-class-negative">
                                         <bdi>
                                             {{ item[key.name] | number }}
 
