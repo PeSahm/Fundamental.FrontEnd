@@ -26,6 +26,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { SymbolShareHoldersComponent } from './pages/symbol-share-holders/symbol-share-holders.component';
 import { ShareHoldersModalComponent } from './pages/symbol-share-holders/share-holders-modal/share-holders-modal.component';
 import { NonOperationalIncomeComponent } from './pages/manufacturing/non-operational-income/non-operational-income.component';
+import { StatusOfViableCompaniesComponent } from './pages/status-of-viable-companies/status-of-viable-companies.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { NonOperationalIncomeComponent } from './pages/manufacturing/non-operati
     SymbolShareHoldersComponent,
     ShareHoldersModalComponent,
     NonOperationalIncomeComponent,
+    StatusOfViableCompaniesComponent,
     
   ],
   imports: [

@@ -12,6 +12,7 @@ import { ManufacturingIncomeStatementComponent } from './pages/manufacturing/man
 import { GetIncomeStatementComponent } from './pages/manufacturing/get-income-statement/get-income-statement.component';
 import { SymbolShareHoldersComponent } from './pages/symbol-share-holders/symbol-share-holders.component';
 import { NonOperationalIncomeComponent } from './pages/manufacturing/non-operational-income/non-operational-income.component';
+import { StatusOfViableCompaniesComponent } from './pages/status-of-viable-companies/status-of-viable-companies.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -37,6 +38,9 @@ const routes: Routes = [
   },
   {
     path: 'symbol-share-holders', component: SymbolShareHoldersComponent  , data: { title: 'گزارش سهامداری' }
+  },
+  {
+    path: 'status-of-viable-companies', component: StatusOfViableCompaniesComponent  , data: { title: 'گزارش تفسیری صفحه 4 - شرکت های سرمایه پذیر' }
   },
   {
     path: '**',

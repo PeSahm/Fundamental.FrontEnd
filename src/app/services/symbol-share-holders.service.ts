@@ -9,7 +9,6 @@ export class SymbolShareHoldersService {
   constructor(private http: HttpClient) {
   }
   getAllSymbolShareHolders(command: any) {
-    console.log("command : " , command);
     let params = new HttpParams();
     Object.keys(command).forEach(
         key => command[key] && (params = params.append(key, command[key]))
@@ -24,4 +23,14 @@ export class SymbolShareHoldersService {
     return this.http.post(`https://api.stockscreeners.ir/symbol-share-holders/approve`, command)
 
   }
+  getAllStatusOfViablecompanies(command: any) {
+    let params = new HttpParams();
+    Object.keys(command).forEach(
+        key => command[key] && (params = params.append(key, command[key]))
+    );
+    
+    return this.http.get(`https://api.stockscreeners.ir/status-of-viable-companies`, { params })
+  }
+
+
 }
