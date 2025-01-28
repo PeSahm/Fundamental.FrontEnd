@@ -14,7 +14,7 @@ import { ShareHoldersModalComponent } from './share-holders-modal/share-holders-
 export class SymbolShareHoldersComponent implements OnInit {
   selectedSymbol;
   reviewStatus = "1";
-  source;
+  // source;
   reportFilter = {
     pageSize: 20,
     pageNumber: 1,
@@ -61,7 +61,7 @@ export class SymbolShareHoldersComponent implements OnInit {
       { name: 'symbolName', title: 'نماد', hasSort: false },
       { name: 'shareHolderName', title: 'سهامدار', hasSort: false },
       { name: 'sharePercentage', title: 'درصد سهامداری', hasSort: false },
-      { name: 'shareHolderSourceName', title: 'منبع', hasSort: false },
+      // { name: 'shareHolderSourceName', title: 'منبع', hasSort: false },
       { name: 'reviewStatusName', title: 'وضعیت بررسی', hasSort: false },
     ];
     this.KeyName =
@@ -73,7 +73,7 @@ export class SymbolShareHoldersComponent implements OnInit {
         { name: 'symbolName' },
         { name: 'shareHolderName' },
         { name: 'sharePercentage', pipe: 'number' },
-        { name: 'shareHolderSourceName' },
+        // { name: 'shareHolderSourceName' },
         { name: 'reviewStatusName' },
       ]
 
@@ -84,6 +84,7 @@ export class SymbolShareHoldersComponent implements OnInit {
     this.selectedSymbol = items['item'];
 
   }
+  
 
   searchTable() {
 
@@ -94,7 +95,7 @@ export class SymbolShareHoldersComponent implements OnInit {
     const command = {
       ...this.reportFilter,
       isin: this.selectedSymbol?.isin ?? null,
-      source: parseInt(this.source)?? null,
+      // source: parseInt(this.source)?? null,
       reviewStatus: parseInt(this.reviewStatus)?? null,
       pageNumber: 1,
       pageSize: 20,
