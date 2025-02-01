@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
-import { SymbolShareHoldersService } from 'src/app/services/symbol-share-holders.service';
+import { ShareHoldersModalComponent } from '../symbol-share-holders/share-holders-modal/share-holders-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StatusOfViableCompanyService } from 'src/app/services/status-of-viable-company.service';
 
 @Component({
   selector: 'app-status-of-viable-companies',
@@ -24,8 +26,8 @@ export class StatusOfViableCompaniesComponent implements OnInit {
   columnName: any[] = [];
   isLoading = true;
   constructor(
-    private symbolShareHoldersService: SymbolShareHoldersService,
-    // private modalService: NgbModal
+    private statusOfViableCompanyService: StatusOfViableCompanyService,
+    private modalService: NgbModal
   ) {
 
   }
@@ -34,7 +36,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
     this.makeTableConst();
   }
   getAllTableData() {
-    this.symbolShareHoldersService.getAllStatusOfViablecompanies(this.reportFilter)
+    this.statusOfViableCompanyService.getAllStatusOfViablecompanies(this.reportFilter)
       .pipe(finalize(()=>this.isLoading = false))
       .subscribe({
         next: (res: any) => {
@@ -45,7 +47,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
   }
   makeTableConst() {
     this.columnName = [
-      // { name: '', title: 'عملیات', hasSort: false },
+      { name: '', title: 'عملیات', hasSort: false },
       { name: 'patentSymbol', title: ' نماد سرمایه گذار', hasSort: false },
       { name: 'subsidiarySymbolName', title: 'نماد سرمایه پذیر', hasSort: false },
       { name: 'ownershipPercentage', title: 'درصد مالکیت', hasSort: false },
@@ -53,14 +55,14 @@ export class StatusOfViableCompaniesComponent implements OnInit {
     ];
     this.KeyName =
       [
-        // {
-        //   name: 'عملیات', onClick: true, uniqueKey: 'id', iconClass: 'fa fa-tasks text-primary'
-        //   , title: 'وضعبت بررسی', hasModal: true
-        // },
+        {
+          name: 'عملیات', onClick: true, uniqueKey: 'id', iconClass: 'fa fa-tasks text-primary'
+          , title: 'وضعبت بررسی', hasModal: true
+        },
         { name: 'patentSymbol' },
         { name: 'subsidiarySymbolName' },
-        { name: 'ownershipPercentage', pipe: 'number' },
-        { name: 'costPrice' },
+        { name: 'ownershipPercentage' },
+        { name: 'costPrice' , pipe: 'number'},
       ]
 
 
@@ -88,7 +90,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
 
     }
     this.reportFilter = command;
-    this.symbolShareHoldersService.getAllSymbolShareHolders(command)
+    this.statusOfViableCompanyService.getAllStatusOfViablecompanies(command)
     .pipe(finalize(()=>this.isLoading = false))
       .subscribe({
         next: (res: any) => {
@@ -125,5 +127,17 @@ export class StatusOfViableCompaniesComponent implements OnInit {
     }
     this.getAllTableData();
   }
+
+  
+    openStatusModal(rowItem) {
+      const modalRef = this.modalService.open(ShareHoldersModalComponent, { size: 'lg' });
+      modalRef.componentInstance.rowItem = rowItem;
+      modalRef.closed.subscribe(data => {
+        if (data === '1' || data === '2') {
+          this.getAllTableData();
+        }
+      })
+  
+    }
 
 }
