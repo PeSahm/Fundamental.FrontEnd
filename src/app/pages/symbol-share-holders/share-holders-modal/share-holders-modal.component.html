@@ -13,46 +13,39 @@
         </div>
     </div>
     <hr />
-    <div class="d-flex align-items-center mt-2 mb-4" *ngIf="isApproved;else isRejected">
-        <span>
-            نماد سرمایه گذار :
-        </span>
-        <h5 class="mr-1 mb-0">
-            <strong>{{rowItem.patentSymbol}}</strong>
+    <div *ngIf="isApproved;else isRejected">
+        <h5 class="mt-2">
+            <strong>{{rowItem.symbolName}}</strong>
         </h5>
-
-    </div>
-
-    <div class="row">
-        <div *ngIf="isApproved" class="row my-3">
+        <div class="row my-3">
             <div class="col-6">
                 <label for="symbol" class="form-label font-12">نماد:</label>
                 <app-symbol-search (selectSearchSymbol)="selected($event)"></app-symbol-search>
             </div>
         </div>
-        <div class="col-6 mb-3">
-            <label for="subsidiarySymbolName" class="form-label font-12">نماد سرمایه پذیر:</label>
-            <input type="input" class="form-control" id="subsidiarySymbolName" disabled value="{{rowItem.subsidiarySymbolName}}">
-        </div>
-        <div class="col-6 mb-3">
-            <label for="ownershipPercentage" class="form-label font-12">درصد مالکیت:</label>
-            <input type="input" class="form-control" id="ownershipPercentage" disabled
-                value="{{rowItem.ownershipPercentage}}">
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label for="fiscalYear" class="form-label font-12">سهامدار:</label>
+            <input type="input" class="form-control" id="fiscalYear" disabled value="{{rowItem.shareHolderName}}">
         </div>
         <div class="col-6">
-            <label for="reviewStatusName" class="form-label font-12">وضعیت بررسی:</label>
-            <input type="input" class="form-control" id="reviewStatusName" disabled
-                value="{{rowItem.reviewStatusName}}">
+            <label for="fiscalYear" class="form-label font-12">درصد سهامداری:</label>
+            <input type="input" class="form-control" id="fiscalYear" disabled value="{{rowItem.sharePercentage}}">
         </div>
         <div class="col-6">
-            <label for="costPrice" class="form-label font-12"> بهای تمام شده (میلیون ریال):</label>
-            <input type="input" class="form-control" id="costPrice" disabled value="{{rowItem.costPrice | number}}">
+            <label for="fiscalYear" class="form-label font-12">منبع:</label>
+            <input type="input" class="form-control" id="fiscalYear" disabled value="{{rowItem.shareHolderSourceName}}">
+        </div>
+        <div class="col-6">
+            <label for="fiscalYear" class="form-label font-12">وضعیت بررسی:</label>
+            <input type="input" class="form-control" id="fiscalYear" disabled value="{{rowItem.reviewStatusName}}">
         </div>
     </div>
 
     <ng-template #isRejected>
         <h5 class="my-5">
-            آیا از رد کردن اطلاعات سهامداری نماد <strong>{{rowItem.patentSymbol}}</strong> مطمئن هستید؟
+            آیا از رد کردن اطلاعات سهامداری نماد <strong>{{rowItem.symbolName}}</strong> مطمئن هستید؟
         </h5>
 
     </ng-template>

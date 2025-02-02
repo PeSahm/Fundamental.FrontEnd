@@ -3,6 +3,7 @@ import { finalize } from 'rxjs';
 import { ShareHoldersModalComponent } from '../symbol-share-holders/share-holders-modal/share-holders-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StatusOfViableCompanyService } from 'src/app/services/status-of-viable-company.service';
+import { ViableCompanyReviewModalComponent } from './viable-company-review-modal/viable-company-review-modal.component';
 
 @Component({
   selector: 'app-status-of-viable-companies',
@@ -134,7 +135,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
 
 
   openStatusModal(rowItem) {
-    const modalRef = this.modalService.open(ShareHoldersModalComponent, { size: 'lg' });
+    const modalRef = this.modalService.open(ViableCompanyReviewModalComponent, { size: 'lg' });
     modalRef.componentInstance.rowItem = rowItem;
     modalRef.closed.subscribe(data => {
       if (data === '1' || data === '2') {

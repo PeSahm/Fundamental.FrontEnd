@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h4 class="modal-title">وضعیت بررسی</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-6">
+            <label for="reviewStatus" class="form-label">نوع وضعیت:</label>
+            <select class="form-select" [(ngModel)]="reviewStatus" id="reviewStatus" (change)="selectStatusSide()">
+                <option value="1">تایید</option>
+                <option value="2">رد</option>
+
+            </select>
+        </div>
+    </div>
+    <hr />
+    <div class="d-flex align-items-center mt-2 mb-4" *ngIf="isApproved;else isRejected">
+        <span>
+            نماد سرمایه گذار :
+        </span>
+        <h5 class="mr-1 mb-0">
+            <strong>{{rowItem.patentSymbol}}</strong>
+        </h5>
+
+    </div>
+
+    <div class="row">
+        <div *ngIf="isApproved" class="row my-3">
+            <div class="col-6">
+                <label for="symbol" class="form-label font-12">نماد:</label>
+                <app-symbol-search (selectSearchSymbol)="selected($event)"></app-symbol-search>
+            </div>
+        </div>
+        <div class="col-6 mb-3">
+            <label for="subsidiarySymbolName" class="form-label font-12">نماد سرمایه پذیر:</label>
+            <input type="input" class="form-control" id="subsidiarySymbolName" disabled value="{{rowItem.subsidiarySymbolName}}">
+        </div>
+        <div class="col-6 mb-3">
+            <label for="ownershipPercentage" class="form-label font-12">درصد مالکیت:</label>
+            <input type="input" class="form-control" id="ownershipPercentage" disabled
+                value="{{rowItem.ownershipPercentage}}">
+        </div>
+        <div class="col-6">
+            <label for="reviewStatusName" class="form-label font-12">وضعیت بررسی:</label>
+            <input type="input" class="form-control" id="reviewStatusName" disabled
+                value="{{rowItem.reviewStatusName}}">
+        </div>
+        <div class="col-6">
+            <label for="costPrice" class="form-label font-12"> بهای تمام شده (میلیون ریال):</label>
+            <input type="input" class="form-control" id="costPrice" disabled value="{{rowItem.costPrice | number}}">
+        </div>
+    </div>
+
+    <ng-template #isRejected>
+        <h5 class="my-5">
+            آیا از رد کردن اطلاعات سهامداری نماد <strong>{{rowItem.patentSymbol}}</strong> مطمئن هستید؟
+        </h5>
+
+    </ng-template>
+
+</div>
+<div class="modal-footer">
+    <button type="submit" [ngClass]=" isApproved ? ' btn btn-primary text-white' : 'btn btn-danger'"
+        (click)="registerReviewStatus(isApproved)">
+        ثبت
+    </button>
+
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">بستن</button>
+</div>
