@@ -34,7 +34,7 @@ export class ShareHoldersModalComponent implements OnInit {
     if (isApproved) {
       this.statusOfViableCompanyService.approved({
         id: this.rowItem?.id,
-        subsidiaryIsin: this.rowItem?.subsidiarySymbolIsin
+        subsidiaryIsin: this.selectedSymbol?.isin
       })
       .subscribe((res:any)=>{
         if (res?.success) {
@@ -55,6 +55,6 @@ export class ShareHoldersModalComponent implements OnInit {
   }
 
   selected(items: any) {
-    this.selectedSymbol = items['item'];
+    this.selectedSymbol = items['item'];    
   }
 }

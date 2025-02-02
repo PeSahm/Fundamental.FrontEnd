@@ -15,26 +15,34 @@
     <hr />
     <div class="d-flex align-items-center mt-2 mb-4" *ngIf="isApproved;else isRejected">
         <span>
-            نماد سرمایه گذار : 
+            نماد سرمایه گذار :
         </span>
         <h5 class="mr-1 mb-0">
             <strong>{{rowItem.patentSymbol}}</strong>
         </h5>
 
     </div>
-    
+
     <div class="row">
+        <div *ngIf="isApproved" class="row my-3">
+            <div class="col-6">
+                <label for="symbol" class="form-label font-12">نماد:</label>
+                <app-symbol-search (selectSearchSymbol)="selected($event)"></app-symbol-search>
+            </div>
+        </div>
         <div class="col-6 mb-3">
             <label for="subsidiarySymbolName" class="form-label font-12">نماد سرمایه پذیر:</label>
             <input type="input" class="form-control" id="subsidiarySymbolName" disabled value="{{rowItem.subsidiarySymbolName}}">
         </div>
         <div class="col-6 mb-3">
             <label for="ownershipPercentage" class="form-label font-12">درصد مالکیت:</label>
-            <input type="input" class="form-control" id="ownershipPercentage" disabled value="{{rowItem.ownershipPercentage}}">
+            <input type="input" class="form-control" id="ownershipPercentage" disabled
+                value="{{rowItem.ownershipPercentage}}">
         </div>
         <div class="col-6">
             <label for="reviewStatusName" class="form-label font-12">وضعیت بررسی:</label>
-            <input type="input" class="form-control" id="reviewStatusName" disabled value="{{rowItem.reviewStatusName}}">
+            <input type="input" class="form-control" id="reviewStatusName" disabled
+                value="{{rowItem.reviewStatusName}}">
         </div>
         <div class="col-6">
             <label for="costPrice" class="form-label font-12"> بهای تمام شده (میلیون ریال):</label>
