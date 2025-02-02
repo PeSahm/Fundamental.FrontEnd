@@ -72,7 +72,7 @@ export class SymbolShareHoldersComponent implements OnInit {
         },
         { name: 'symbolName' },
         { name: 'shareHolderName' },
-        { name: 'sharePercentage', pipe: 'number' },
+        { name: 'sharePercentage' },
         // { name: 'shareHolderSourceName' },
         { name: 'reviewStatusName' },
       ]

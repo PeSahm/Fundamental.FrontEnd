@@ -37,7 +37,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
   }
   getAllTableData() {
     this.statusOfViableCompanyService.getAllStatusOfViablecompanies(this.reportFilter)
-      .pipe(finalize(()=>this.isLoading = false))
+      .pipe(finalize(() => this.isLoading = false))
       .subscribe({
         next: (res: any) => {
           this.tableData = res.data.items;
@@ -52,6 +52,8 @@ export class StatusOfViableCompaniesComponent implements OnInit {
       { name: 'subsidiarySymbolName', title: 'نماد سرمایه پذیر', hasSort: false },
       { name: 'ownershipPercentage', title: 'درصد مالکیت', hasSort: false },
       { name: 'costPrice', title: 'بهای تمام شده', hasSort: false },
+      { name: 'reviewStatusName', title: 'وضعیت', hasSort: false },
+
     ];
     this.KeyName =
       [
@@ -62,7 +64,9 @@ export class StatusOfViableCompaniesComponent implements OnInit {
         { name: 'patentSymbol' },
         { name: 'subsidiarySymbolName' },
         { name: 'ownershipPercentage' },
-        { name: 'costPrice' , pipe: 'number'},
+        { name: 'costPrice', pipe: 'number' },
+        { name: 'reviewStatusName', },
+
       ]
 
 
@@ -72,7 +76,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
     this.selectedSymbol = items['item'];
 
   }
-  
+
 
   searchTable() {
 
@@ -84,14 +88,14 @@ export class StatusOfViableCompaniesComponent implements OnInit {
       ...this.reportFilter,
       isin: this.selectedSymbol?.isin ?? null,
       // source: parseInt(this.source)?? null,
-      reviewStatus: parseInt(this.reviewStatus)?? null,
+      reviewStatus: parseInt(this.reviewStatus) ?? null,
       pageNumber: 1,
       pageSize: 20,
 
     }
     this.reportFilter = command;
     this.statusOfViableCompanyService.getAllStatusOfViablecompanies(command)
-    .pipe(finalize(()=>this.isLoading = false))
+      .pipe(finalize(() => this.isLoading = false))
       .subscribe({
         next: (res: any) => {
           this.tableData = res.data.items;
@@ -128,16 +132,16 @@ export class StatusOfViableCompaniesComponent implements OnInit {
     this.getAllTableData();
   }
 
-  
-    openStatusModal(rowItem) {
-      const modalRef = this.modalService.open(ShareHoldersModalComponent, { size: 'lg' });
-      modalRef.componentInstance.rowItem = rowItem;
-      modalRef.closed.subscribe(data => {
-        if (data === '1' || data === '2') {
-          this.getAllTableData();
-        }
-      })
-  
-    }
+
+  openStatusModal(rowItem) {
+    const modalRef = this.modalService.open(ShareHoldersModalComponent, { size: 'lg' });
+    modalRef.componentInstance.rowItem = rowItem;
+    modalRef.closed.subscribe(data => {
+      if (data === '1' || data === '2') {
+        this.getAllTableData();
+      }
+    })
+
+  }
 
 }
