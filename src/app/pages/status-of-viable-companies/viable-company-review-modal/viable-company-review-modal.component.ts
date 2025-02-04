@@ -11,54 +11,64 @@ import { StatusOfViableCompanyService } from 'src/app/services/status-of-viable-
 export class ViableCompanyReviewModalComponent implements OnInit {
 
   @Input() rowItem;
-    reviewStatus = "1";
-    isApproved = true;
-    selectedSymbol;
-    constructor(
-      public activeModal: NgbActiveModal,
-      private statusOfViableCompanyService: StatusOfViableCompanyService,
-      private toastr: ToastrService,
-  
-  
-    ) { }
-    ngOnInit(): void {
-    
-    }
-  
-    selectStatusSide() {
-      this.isApproved = parseInt(this.reviewStatus) === 1 ? true : false;
-    }
-  
-    registerReviewStatus(isApproved) {
-      if (isApproved) {
-        if(this.selectedSymbol?.isin){
-          this.statusOfViableCompanyService.approved({
-            id: this.rowItem?.id,
-            subsidiaryIsin: this.selectedSymbol?.isin
-          })
-          .subscribe((res:any)=>{
-            if (res?.success) {
-              this.activeModal.close('1');
-              this.toastr.success(`عملیات  تایید نماد ${this.rowItem?.parentSymbolName} با موفقیت انجام شد.`)
-            }
-          })
-        }else{
-          this.toastr.warning(`انتخاب نماد الزامی است.`)
-        }
-  
+  reviewStatus = "1";
+  isApproved = true;
+  selectedSymbol;
+  percentage = '';
+  constructor(
+    public activeModal: NgbActiveModal,
+    private statusOfViableCompanyService: StatusOfViableCompanyService,
+    private toastr: ToastrService,
+
+
+  ) { }
+  ngOnInit(): void {
+
+  }
+
+  selectStatusSide() {
+    this.isApproved = parseInt(this.reviewStatus) === 1 ? true : false;
+  }
+
+  registerReviewStatus(isApproved) {
+    if (isApproved) {
+      if (this.selectedSymbol?.isin) {
+        this.statusOfViableCompanyService.approved({
+          id: this.rowItem?.id,
+          subsidiaryIsin: this.selectedSymbol?.isin,
+          percentage: Number(this.percentage)
+        })
+        .subscribe((res:any)=>{
+          if (res?.success) {
+            this.activeModal.close('1');
+            this.toastr.success(`عملیات  تایید نماد ${this.rowItem?.parentSymbolName} با موفقیت انجام شد.`)
+          }
+        })
       } else {
-        this.statusOfViableCompanyService.reject(this.rowItem?.id)
-          .subscribe((res: any) => {
-            if (res.success) {
-              this.activeModal.close('2');
-              this.toastr.success(`عملیات عدم تایید نماد ${this.rowItem?.parentSymbolName} با موفقیت انجام شد.`)
-            }
-          })
+        this.toastr.warning(`انتخاب نماد الزامی است.`)
       }
+
+    } else {
+      this.statusOfViableCompanyService.reject(this.rowItem?.id)
+        .subscribe((res: any) => {
+          if (res.success) {
+            this.activeModal.close('2');
+            this.toastr.success(`عملیات عدم تایید نماد ${this.rowItem?.parentSymbolName} با موفقیت انجام شد.`)
+          }
+        })
     }
-  
-    selected(items: any) {
-      this.selectedSymbol = items['item'];    
+  }
+
+  selected(items: any) {
+    this.selectedSymbol = items['item'];
+  }
+
+  validateInput(event: KeyboardEvent): void {
+    const charCode = event.key;
+    if (!charCode.match(/[0-9.]/) || (charCode === '.' && this.percentage?.includes('.'))) {
+      event.preventDefault();
     }
+  }
+
 
 }
