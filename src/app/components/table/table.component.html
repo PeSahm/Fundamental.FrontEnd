@@ -52,7 +52,8 @@
                             </span>
                             <span *ngIf="key.hasLink && key.hasView">
                                 <a [href]="item[key.name]" target="_blank">
-                                    <i class="fa fa-eye text-info" aria-hidden="true"></i>
+                                    
+                                    <i *ngIf="item[key.name]" class="fa fa-eye text-info" aria-hidden="true"></i>
                                 </a>
                             </span>
                             <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd(item[key.uniqueKey])"

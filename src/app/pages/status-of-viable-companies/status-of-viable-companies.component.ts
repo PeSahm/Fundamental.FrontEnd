@@ -56,7 +56,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
       { name: 'ownershipPercentageProvidedByAdmin', title: 'درصد تایید شده توسط ادمین', hasSort: true },
       { name: 'costPrice', title: 'بهای تمام شده', hasSort: true },
       { name: 'reviewStatusName', title: 'وضعیت', hasSort: false },
-      { name: 'uri', title: 'لینک', hasLink: true, hasView: false },
+      { name: 'url', title: 'لینک', hasLink: true, hasView: false },
 
     ];
     this.KeyName =
@@ -71,7 +71,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
         { name: 'ownershipPercentageProvidedByAdmin' },
         { name: 'costPrice', pipe: 'number' },
         { name: 'reviewStatusName', },
-        { name: 'uri', },
+        { name: 'url', hasLink: true, hasView: true  },
 
 
       ]
