@@ -68,4 +68,10 @@ export class TableComponent implements OnInit {
       this.sortEvent.emit({ column: item.name, sortOrder: this.sortOrder });
     }
   }
+
+  getDisplayedRange(): string {
+    const start = (this.page - 1) * this.pageSize + 1;
+    const end = Math.min(this.page * this.pageSize, this.totalRecords);
+    return `${start} - ${end} از ${this.totalRecords} مورد`;
+  }
 }
