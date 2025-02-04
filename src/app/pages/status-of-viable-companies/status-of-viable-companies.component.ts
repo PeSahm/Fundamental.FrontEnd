@@ -4,6 +4,7 @@ import { ShareHoldersModalComponent } from '../symbol-share-holders/share-holder
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StatusOfViableCompanyService } from 'src/app/services/status-of-viable-company.service';
 import { ViableCompanyReviewModalComponent } from './viable-company-review-modal/viable-company-review-modal.component';
+import { SortOption } from 'src/app/models/models';
 
 @Component({
   selector: 'app-status-of-viable-companies',
@@ -51,9 +52,11 @@ export class StatusOfViableCompaniesComponent implements OnInit {
       { name: '', title: 'عملیات', hasSort: false },
       { name: 'patentSymbol', title: ' نماد سرمایه گذار', hasSort: false },
       { name: 'subsidiarySymbolName', title: 'نماد سرمایه پذیر', hasSort: false },
-      { name: 'ownershipPercentage', title: 'درصد مالکیت', hasSort: false },
-      { name: 'costPrice', title: 'بهای تمام شده', hasSort: false },
+      { name: 'ownershipPercentage', title: 'درصد مالکیت', hasSort: true },
+      { name: 'ownershipPercentageProvidedByAdmin', title: 'درصد تایید شده توسط ادمین', hasSort: true },
+      { name: 'costPrice', title: 'بهای تمام شده', hasSort: true },
       { name: 'reviewStatusName', title: 'وضعیت', hasSort: false },
+      { name: 'uri', title: 'لینک', hasLink: true, hasView: false },
 
     ];
     this.KeyName =
@@ -65,8 +68,11 @@ export class StatusOfViableCompaniesComponent implements OnInit {
         { name: 'patentSymbol' },
         { name: 'subsidiarySymbolName' },
         { name: 'ownershipPercentage' },
+        { name: 'ownershipPercentageProvidedByAdmin' },
         { name: 'costPrice', pipe: 'number' },
         { name: 'reviewStatusName', },
+        { name: 'uri', },
+
 
       ]
 
@@ -144,5 +150,20 @@ export class StatusOfViableCompaniesComponent implements OnInit {
     })
 
   }
+
+    handleSort(option: SortOption) {
+      this.isLoading = true;
+      this.tableData = [];
+      this.page = 1;
+      this.pageSize = 20;
+      const command = {
+        ...this.reportFilter,
+        pageNumber: 1,
+        pageSize: 20,
+        OrderBy: `${option.column} ${option.sortOrder}`
+      }
+      this.reportFilter = command;
+      this.getAllTableData();
+    }
 
 }
