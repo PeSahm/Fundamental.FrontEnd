@@ -28,6 +28,7 @@ import { ShareHoldersModalComponent } from './pages/symbol-share-holders/share-h
 import { NonOperationalIncomeComponent } from './pages/manufacturing/non-operational-income/non-operational-income.component';
 import { StatusOfViableCompaniesComponent } from './pages/status-of-viable-companies/status-of-viable-companies.component';
 import { ViableCompanyReviewModalComponent } from './pages/status-of-viable-companies/viable-company-review-modal/viable-company-review-modal.component';
+import { NonOperationalIncomeTagModalComponent } from './pages/manufacturing/non-operational-income/non-operational-income-tag-modal/non-operational-income-tag-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ViableCompanyReviewModalComponent } from './pages/status-of-viable-comp
     NonOperationalIncomeComponent,
     StatusOfViableCompaniesComponent,
     ViableCompanyReviewModalComponent,
+    NonOperationalIncomeTagModalComponent,
     
   ],
   imports: [

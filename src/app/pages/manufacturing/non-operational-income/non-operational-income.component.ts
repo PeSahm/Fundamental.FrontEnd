@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
 import { ManufacturingService } from 'src/app/services/manufacturing.service';
+import { NonOperationalIncomeTagModalComponent } from './non-operational-income-tag-modal/non-operational-income-tag-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-non-operational-income',
@@ -26,6 +28,8 @@ export class NonOperationalIncomeComponent implements OnInit {
 
   constructor(
     private manufacturingService: ManufacturingService,
+    private modalService: NgbModal
+
 
   ) {
 
@@ -38,14 +42,14 @@ export class NonOperationalIncomeComponent implements OnInit {
 
   makeTableConst() {
     this.columnName = [
-      // { name: null, title: 'عملیات' },
+      { name: null, title: 'عملیات' },
       { name: 'symbol', title: 'نماد', hasSort: true },
       { name: 'title', title: 'عنوان', hasSort: true },
       { name: 'traceNo', title: 'شماره گزارش', hasSort: true },
       { name: 'uri', title: 'لینک', hasLink: true, hasView: true },
       { name: 'fiscalYear', title: 'سال مالی', hasSort: true },
       { name: 'reportMonth', title: 'ماه گزارش سال مالی', hasSort: true },
-      { name: 'value', title: 'مقدار' , hasSort: true},
+      { name: 'value', title: 'مقدار', hasSort: true },
       { name: 'description', title: 'شرح', },
 
     ];
@@ -53,7 +57,9 @@ export class NonOperationalIncomeComponent implements OnInit {
 
     this.KeyName =
       [
-        // { name: 'عملیات', onClick: true, hasEdit: true , uniqueKey :'id' },
+        {
+          name: 'عملیات', onClick: true, uniqueKey: 'id', iconClass: 'fa fa-edit text-success', hasModal: true
+        },
         { name: 'symbol' },
         { name: 'title' },
 
@@ -82,7 +88,7 @@ export class NonOperationalIncomeComponent implements OnInit {
       IsinList: this.selectedItems.map((item: any) => item?.isin),
       pageNumber: 1,
       pageSize: 20,
-      OrderBy:''
+      OrderBy: ''
 
     }
     this.reportFilter = command;
@@ -165,6 +171,12 @@ export class NonOperationalIncomeComponent implements OnInit {
           this.totalRecords = res.meta.total
         }
       })
+  }
+
+  openAddTagModal(rowItem) {
+    const modalRef = this.modalService.open(NonOperationalIncomeTagModalComponent, { size: 'lg' });
+    modalRef.componentInstance.rowItem = rowItem;
+
   }
 
 

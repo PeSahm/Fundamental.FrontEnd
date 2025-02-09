@@ -68,13 +68,17 @@ export class ManufacturingService {
             )
     }
 
-    getAllNonOperationalIncome(command:any){
+    getAllNonOperationalIncome(command: any) {
         return this.http.get(`https://api.stockscreeners.ir/Manufacturing/non-operation-income`, { params: command })
-        .pipe(
-            map((res: any) => {
-                return res.data
-            })
-        )
+            .pipe(
+                map((res: any) => {
+                    return res.data
+                })
+            )
+    }
+
+    addTagInNonOperationalIncome(command: { id: string, tags: number[] }) {
+        return this.http.put(`https://api.stockscreeners.ir/Manufacturing/non-operation-income/tags/${command.id}`, command)
     }
 
 

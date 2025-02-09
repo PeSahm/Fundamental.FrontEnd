@@ -1,0 +1,65 @@
+<div class="modal-header">
+    <h4 class="modal-title">افزودن تگ</h4>
+</div>
+<div class="modal-body">
+    <div class="d-flex align-items-center mt-2 mb-4">
+        <span>
+            درآمد غیرعملیاتی نماد :
+        </span>
+        <h5 class="mr-1 mb-0">
+            <strong>{{rowItem.symbol}}</strong>
+        </h5>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label for="tag" class="form-label">نوع تگ:</label>
+            <select class="form-select" [(ngModel)]="tag" id="tag">
+                <option></option>
+                <option value="1">درآمد بانکی و سپرده های کوتاه مدت تکرار پذیر</option>
+                <option value="2">درآمد سهام و سود سهام</option>
+                <option value="3">سایر درآمدهای غیر عملیاتی تکرار پذیر</option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-4 mb-3">
+            <label for="title" class="form-label font-12">عنوان :</label>
+            <input type="input" class="form-control" id="title" disabled value="{{rowItem.title}}">
+        </div>
+        <div class="col-4 mb-3">
+            <label for="fiscalYear" class="form-label font-12">سال مالی :</label>
+            <input type="input" class="form-control" id="fiscalYear" disabled value="{{rowItem.fiscalYear}}">
+        </div>
+        <div class="col-4 mb-3">
+            <label for="reportMonth" class="form-label font-12">ماه گزارش سال مالی :</label>
+            <input type="input" class="form-control" id="reportMonth" disabled value="{{rowItem.reportMonth}}">
+        </div>
+        <div class="col-7 mb-3">
+            <label for="description" class="form-label font-12">شرح :</label>
+            <input type="input" class="form-control" id="description" disabled value="{{rowItem.description}}">
+        </div>
+        <div class="col-3 mb-3">
+            <label for="value" class="form-label font-12">مقدار (میلیون ریال) :</label>
+            <input type="input" class="form-control" id="value" disabled value="{{rowItem.value | number}}">
+        </div>
+
+        <div class="col-2 mb-3 d-flex align-items-center">
+            <a href="{{rowItem.uri}}" target="_blank">لینک گزارش</a>
+        </div>
+
+
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary text-white" (click)="insertTag()">
+        ثبت
+    </button>
+
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">بستن</button>
+</div>

@@ -29,7 +29,7 @@
      [totalRecords]="totalRecords" [pageSize]="pageSize" [(page)]="page"
         (changePageEvent)="changePage($event)" (changeSizeEvent)="changeSize($event)"
         (sortEvent)="handleSort($event)"
-        
+        (clickOnRow)="openAddTagModal($event)"
         >
     </app-table>
 </div>
