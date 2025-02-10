@@ -23,8 +23,8 @@ export class StatusOfViableCompanyService {
     return this.http.put(`https://api.stockscreeners.ir/Manufacturing/status-of-viable-companies/approve`, command)
   }
 
-  reject(command:any){
-    return this.http.put(`https://api.stockscreeners.ir/Manufacturing/status-of-viable-companies/reject/${command.id}`, null)
+  reject(id:any){
+    return this.http.put(`https://api.stockscreeners.ir/Manufacturing/status-of-viable-companies/reject/${id}`, null)
 
   }
 
