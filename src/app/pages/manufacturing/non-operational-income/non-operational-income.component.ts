@@ -25,6 +25,7 @@ export class NonOperationalIncomeComponent implements OnInit {
   isSearchBarOpen = true;
   KeyName: any[] = [];
   columnName: any[] = [];
+  onlyTagged = false;
 
   constructor(
     private manufacturingService: ManufacturingService,
@@ -50,6 +51,7 @@ export class NonOperationalIncomeComponent implements OnInit {
       { name: 'fiscalYear', title: 'سال مالی', hasSort: true },
       { name: 'reportMonth', title: 'ماه گزارش سال مالی', hasSort: true },
       { name: 'value', title: 'مقدار', hasSort: true },
+      { name: 'tags', title: 'دارای تگ'},
       { name: 'description', title: 'شرح', },
 
     ];
@@ -68,6 +70,7 @@ export class NonOperationalIncomeComponent implements OnInit {
         { name: 'fiscalYear' },
         { name: 'reportMonth' },
         { name: 'value', pipe: 'number' },
+        { name: 'tags' , isBoolean:true},
         { name: 'description' },
 
       ]
@@ -88,7 +91,9 @@ export class NonOperationalIncomeComponent implements OnInit {
       IsinList: this.selectedItems.map((item: any) => item?.isin),
       pageNumber: 1,
       pageSize: 20,
-      OrderBy: ''
+      OrderBy: '',
+      onlyTagged : this.onlyTagged
+
 
     }
     this.reportFilter = command;

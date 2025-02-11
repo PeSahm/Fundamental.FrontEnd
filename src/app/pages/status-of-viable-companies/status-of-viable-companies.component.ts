@@ -18,7 +18,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
   reportFilter = {
     pageSize: 20,
     pageNumber: 1,
-    reviewStatus: 1
+    reviewStatus: 1,
   };
   page = 1;
   totalRecords: number = 0;
@@ -80,6 +80,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
   }
 
   selected(items: any) {
+    console.log("items : " , items)
     this.selectedSymbol = items['item'];
 
   }
