@@ -11,7 +11,7 @@ import { StatusOfViableCompanyService } from 'src/app/services/status-of-viable-
 export class ViableCompanyReviewModalComponent implements OnInit {
 
   @Input() rowItem;
-  reviewStatus = "1";
+  reviewStatus = "";
   isApproved = true;
   selectedSymbol;
   percentage = '';
@@ -32,7 +32,7 @@ export class ViableCompanyReviewModalComponent implements OnInit {
 
   registerReviewStatus(isApproved) {
     if (isApproved) {
-      if (this.selectedSymbol?.isin) {
+      if (this.selectedSymbol?.isin && this.reviewStatus) {
         this.statusOfViableCompanyService.approved({
           id: this.rowItem?.id,
           subsidiaryIsin: this.selectedSymbol?.isin,
@@ -46,6 +46,9 @@ export class ViableCompanyReviewModalComponent implements OnInit {
         })
       } else {
         this.toastr.warning(`انتخاب نماد الزامی است.`)
+      }
+      if(this.reviewStatus === '' || !this.reviewStatus){
+        this.toastr.warning(`انتخاب نوع وضعیت الزامی است.`)
       }
 
     } else {

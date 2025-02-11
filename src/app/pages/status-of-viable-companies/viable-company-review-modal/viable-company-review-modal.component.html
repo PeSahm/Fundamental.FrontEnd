@@ -6,6 +6,7 @@
         <div class="col-6">
             <label for="reviewStatus" class="form-label">نوع وضعیت:</label>
             <select class="form-select" [(ngModel)]="reviewStatus" id="reviewStatus" (change)="selectStatusSide()">
+                <option value=""></option>
                 <option value="1">تایید</option>
                 <option value="2">رد</option>
 
