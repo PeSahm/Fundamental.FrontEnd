@@ -80,8 +80,12 @@ export class StatusOfViableCompaniesComponent implements OnInit {
   }
 
   selected(items: any) {
-    console.log("items : " , items)
-    this.selectedSymbol = items['item'];
+    console.log("items out: " , items)
+    if(items) {
+      this.selectedSymbol = items['item'];
+    } else{
+      this.selectedSymbol = null;
+    }
 
   }
 

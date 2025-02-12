@@ -16,7 +16,6 @@ import { ControlValueAccessor, FormControl, FormControlName, NG_VALUE_ACCESSOR }
     },
   ],
 })
-// TODO: remove item from single mode not deleted value.
 
 export class SymbolSearchComponent implements OnInit, ControlValueAccessor {
   searching = false;
@@ -34,7 +33,12 @@ export class SymbolSearchComponent implements OnInit, ControlValueAccessor {
   constructor(
     private screenerService: ScreenerService
   ) {
-    this.fc.valueChanges.subscribe((v) => this.onChange(v));
+    this.fc.valueChanges.subscribe((v:any) => {
+      this.onChange(v);
+      if(v?.length === 0) {
+        this.selectSearchSymbol.emit(null)
+      }
+    });
   }
 
 
