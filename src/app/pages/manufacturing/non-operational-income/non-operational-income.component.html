@@ -14,15 +14,16 @@
             </div>
             <div class=" col-2">
                 <label for="reportMonth" class="form-label font-12"> ماه گزارش:</label>
-                <input type="input" class="form-control" id="reportMonth" [(ngModel)]="reportMonth"
-                    name="reportMonth" mask="0000" [allowNegativeNumbers]="false">
+                <input type="input" class="form-control" id="reportMonth" [(ngModel)]="reportMonth" name="reportMonth"
+                    mask="0000" [allowNegativeNumbers]="false">
             </div>
             <div class="col-2">
-                <div class="form-group form-check">
-                    <label class="form-check-label" for="onlyTagged">
-                        <input class="form-check-input" type="checkbox" id="onlyTagged" [(ngModel)]="onlyTagged">  دارای تگ
-                    </label>
-                </div>
+                    <label for="tagStatus" class="form-label">وضعیت تگ:</label>
+                    <select class="form-select" [(ngModel)]="tagStatus" id="tagStatus">
+                        <option value="1">دارد</option>
+                        <option value="2">ندارد</option>
+
+                    </select>
             </div>
             <div class=" col-2 d-flex align-items-end justify-content-end">
                 <button class="btn btn-primary btn-sm" (click)="searchTable()">جستجو</button>
@@ -33,10 +34,7 @@
     <!-- Table content -->
 
     <app-table [data]="nonOperationalIncomeList" [KeyName]="KeyName" [columnName]="columnName" [isLoading]="isLoading"
-     [totalRecords]="totalRecords" [pageSize]="pageSize" [(page)]="page"
-        (changePageEvent)="changePage($event)" (changeSizeEvent)="changeSize($event)"
-        (sortEvent)="handleSort($event)"
-        (clickOnRow)="openAddTagModal($event)"
-        >
+        [totalRecords]="totalRecords" [pageSize]="pageSize" [(page)]="page" (changePageEvent)="changePage($event)"
+        (changeSizeEvent)="changeSize($event)" (sortEvent)="handleSort($event)" (clickOnRow)="openAddTagModal($event)">
     </app-table>
 </div>

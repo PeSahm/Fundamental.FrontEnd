@@ -17,7 +17,7 @@ export class NonOperationalIncomeComponent implements OnInit {
   nonOperationalIncomeList = [];
   reportFilter = {
     pageSize: 20,
-    pageNumber: 1
+    pageNumber: 1,
   };
   page = 1;
   totalRecords: number = 0;
@@ -26,7 +26,7 @@ export class NonOperationalIncomeComponent implements OnInit {
   KeyName: any[] = [];
   columnName: any[] = [];
   onlyTagged = false;
-
+  tagStatus="1"
   constructor(
     private manufacturingService: ManufacturingService,
     private modalService: NgbModal
@@ -92,7 +92,7 @@ export class NonOperationalIncomeComponent implements OnInit {
       pageNumber: 1,
       pageSize: 20,
       OrderBy: '',
-      onlyTagged : this.onlyTagged
+      tagStatus : this.tagStatus
 
 
     }
@@ -136,7 +136,8 @@ export class NonOperationalIncomeComponent implements OnInit {
   }
 
   getAllNonOperationalIncome() {
-    this.manufacturingService.getAllNonOperationalIncome(this.reportFilter)
+    const command  = {...this.reportFilter , tagStatus : this.tagStatus}
+    this.manufacturingService.getAllNonOperationalIncome(command)
       .subscribe({
         next: (res: any) => {
           this.nonOperationalIncomeList = res.items;
