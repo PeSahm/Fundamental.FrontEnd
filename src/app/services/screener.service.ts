@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable, of, OperatorFunction } from 'rxjs';
-import { MonthlyActivity, SearchSymbol, Statement } from '../models/models';
+import { map, Observable, of } from 'rxjs';
+import { SearchSymbol, Statement } from '../models/models';
+import { ApiService } from './api.service';
+import { API_ENDPOINTS } from '../config/api-endpoints';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScreenerService {
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private apiService: ApiService) { }
   searchSymbol(term: string) {
     if (term === '' || term.length < 2) {
       return of([]);
     }
-    return this.http
-      .get<SearchSymbol>(`https://api.stockscreeners.ir/symbols?Filter=${term}`)
+    return this.apiService
+      .get<SearchSymbol>(`${API_ENDPOINTS.SYMBOLS}?Filter=${term}`)
       .pipe(map((response: SearchSymbol) => response.data));
   }
 
   registerStatement(command: Statement) {
-    return this.http.post('https://api.stockscreeners.ir/statements', command)
+    return this.apiService.post(API_ENDPOINTS.STATEMENTS, command);
   }
 
 

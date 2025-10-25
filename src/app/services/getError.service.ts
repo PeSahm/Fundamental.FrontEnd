@@ -1,18 +1,17 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs";
-
-
+import { ApiService } from './api.service';
+import { API_ENDPOINTS, CULTURE } from '../config/api-endpoints';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class GetErrorService {
-    constructor(private http: HttpClient) { }
+    constructor(private apiService: ApiService) { }
 
     getError() {
-        return this.http.get('https://api.stockscreeners.ir/error-messages/admin?culture=fa-ir')
-            .pipe(map((res: any) => res.data))
+        return this.apiService.get(`${API_ENDPOINTS.ERROR_MESSAGES}?culture=${CULTURE.FA_IR}`)
+            .pipe(map((res: any) => res.data));
     }
 }
