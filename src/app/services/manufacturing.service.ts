@@ -1,85 +1,84 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map, of } from "rxjs";
-import { environment } from "src/environments/environment";
 import { DetailResult, ManufacturingBalanceSheet, ManufacturingBalanceSheetDetails, Result } from "../models/models";
-
-
+import { ApiService } from './api.service';
+import { API_ENDPOINTS } from '../config/api-endpoints';
 
 @Injectable({
     providedIn: 'root'
 })
 
-
 export class ManufacturingService {
-    constructor(private http: HttpClient) { }
+    constructor(private apiService: ApiService) { }
 
     addBalanceSheet(command: any) {
-        return this.http.post('https://api.stockscreeners.ir/Manufacturing/balance-sheet', command)
+        return this.apiService.post(API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET, command);
     }
+
     getAllManufacturingBalanceSheet(command): Observable<Result<ManufacturingBalanceSheet[]>> {
-        return this.http.get<Result<ManufacturingBalanceSheet[]>>(environment.basePath + 'Manufacturing/balance-sheet', { params: command })
+        return this.apiService.get<Result<ManufacturingBalanceSheet[]>>(API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET, command)
             .pipe(
                 catchError((err) => of())
-            )
+            );
     }
+
     getManufacturingBalanceSheetDetail(command): Observable<DetailResult<ManufacturingBalanceSheetDetails[]>> {
-        return this.http.get<DetailResult<ManufacturingBalanceSheetDetails[]>>(environment.basePath + `Manufacturing/balance-sheet/${command.traceNo}/${command.fiscalYear}/${command.reportMonth}/details`)
+        return this.apiService.get<DetailResult<ManufacturingBalanceSheetDetails[]>>(`${API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET}/${command.traceNo}/${command.fiscalYear}/${command.reportMonth}/details`)
             .pipe(
                 catchError((err) => of())
-            )
+            );
     }
 
     getBalanceSheetSort() {
-        return this.http.get('https://api.stockscreeners.ir/Manufacturing/balance-sheet-sort')
+        return this.apiService.get(API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET_SORT)
             .pipe(
                 map((res: any) => {
-                    return res.data
+                    return res.data;
                 })
-            )
+            );
     }
 
     getAllManufacturingIncomeStatement(command: any) {
-        return this.http.get(`https://api.stockscreeners.ir/Manufacturing/income-statement`, { params: command })
+        return this.apiService.get(API_ENDPOINTS.MANUFACTURING.INCOME_STATEMENT, command)
             .pipe(
                 map((res: any) => {
-                    return res.data
+                    return res.data;
                 })
-            )
+            );
     }
+
     getManufacturingIncomeStatementDetail(command: any) {
-        return this.http.get(`https://api.stockscreeners.ir/Manufacturing/income-statement/${command.traceNo}/${command.fiscalYear}/${command.reportMonth}/details`)
+        return this.apiService.get(`${API_ENDPOINTS.MANUFACTURING.INCOME_STATEMENT}/${command.traceNo}/${command.fiscalYear}/${command.reportMonth}/details`)
             .pipe(
                 map((res: any) => {
-                    return res.data
+                    return res.data;
                 })
-            )
+            );
     }
 
     addIncomeStatement(command: any) {
-        return this.http.post('https://api.stockscreeners.ir/Manufacturing/income-statement', command)
+        return this.apiService.post(API_ENDPOINTS.MANUFACTURING.INCOME_STATEMENT, command);
     }
+
     getIncomeStatementSort() {
-        return this.http.get('https://api.stockscreeners.ir/Manufacturing/income-statement-sort')
+        return this.apiService.get(API_ENDPOINTS.MANUFACTURING.INCOME_STATEMENT_SORT)
             .pipe(
                 map((res: any) => {
-                    return res.data
+                    return res.data;
                 })
-            )
+            );
     }
 
     getAllNonOperationalIncome(command: any) {
-        return this.http.get(`https://api.stockscreeners.ir/Manufacturing/non-operation-income`, { params: command })
+        return this.apiService.get(API_ENDPOINTS.MANUFACTURING.NON_OPERATION_INCOME, command)
             .pipe(
                 map((res: any) => {
-                    return res.data
+                    return res.data;
                 })
-            )
+            );
     }
 
     addTagInNonOperationalIncome(command: { id: string, tags: number[] }) {
-        return this.http.put(`https://api.stockscreeners.ir/Manufacturing/non-operation-income/tags/${command.id}`, command)
+        return this.apiService.put(`${API_ENDPOINTS.MANUFACTURING.NON_OPERATION_INCOME}/tags/${command.id}`, command);
     }
-
-
 }
