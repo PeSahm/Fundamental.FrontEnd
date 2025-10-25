@@ -99,16 +99,25 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
     this.balanceSheetItems = null;
     this.page = 1;
     this.pageSize = 20;
-    const command = {
+    const command: any = {
       ...this.reportFilter,
-      year: this.fiscalYear,
-      reportMonth: this.reportMonth,
-      IsinList: this.selectedItems.map((item) => item?.isin),
-      traceNo: this.traceNo,
       pageNumber: 1,
       pageSize: 20,
+    };
 
+    if (this.fiscalYear) {
+      command.year = this.fiscalYear;
     }
+    if (this.reportMonth) {
+      command.reportMonth = this.reportMonth;
+    }
+    if (this.selectedItems.length > 0) {
+      command.IsinList = this.selectedItems.map((item) => item?.isin);
+    }
+    if (this.traceNo) {
+      command.traceNo = this.traceNo;
+    }
+
     this.reportFilter = command;
     this.getAllManufacturingBalanceSheet();
     this.isSearchBarOpen = false;
@@ -157,15 +166,23 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
     this.balanceSheetItems = null;
     this.page = 1;
     this.pageSize = 20;
-    const command = {
+    const command: any = {
       ...this.reportFilter,
-      year: this.fiscalYear,
-      reportMonth: this.reportMonth,
-      IsinList: this.selectedItems.map((item) => item.isin),
       pageNumber: 1,
       pageSize: 20,
       OrderBy: `${option.column} ${option.sortOrder}`
+    };
+
+    if (this.fiscalYear) {
+      command.year = this.fiscalYear;
     }
+    if (this.reportMonth) {
+      command.reportMonth = this.reportMonth;
+    }
+    if (this.selectedItems.length > 0) {
+      command.IsinList = this.selectedItems.map((item) => item.isin);
+    }
+
     this.reportFilter = command;
     this.getAllManufacturingBalanceSheet();
   }
