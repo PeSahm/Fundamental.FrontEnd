@@ -37,6 +37,14 @@ yarn-error.log
 testem.log
 /typings
 
+# SSL Certificates (generated locally)
+*.crt
+*.key
+ca.crt
+ca.key
+cert.crt
+cert.key
+
 # System files
 .DS_Store
 Thumbs.db
