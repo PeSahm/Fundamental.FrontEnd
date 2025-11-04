@@ -1,4 +1,9 @@
-function convertToToman(amount: string): string {
+function convertToToman(amount: string | null | undefined): string {
+    // Handle null, undefined, or empty values
+    if (!amount || amount === '' || amount === '0') {
+        return '—';
+    }
+    
     const cleanedAmount = amount.replace(/,/g, '');
     const millionRial = parseFloat(cleanedAmount);
     
