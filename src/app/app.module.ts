@@ -29,6 +29,7 @@ import { NonOperationalIncomeComponent } from './pages/manufacturing/non-operati
 import { StatusOfViableCompaniesComponent } from './pages/status-of-viable-companies/status-of-viable-companies.component';
 import { ViableCompanyReviewModalComponent } from './pages/status-of-viable-companies/viable-company-review-modal/viable-company-review-modal.component';
 import { NonOperationalIncomeTagModalComponent } from './pages/manufacturing/non-operational-income/non-operational-income-tag-modal/non-operational-income-tag-modal.component';
+import { MonthlyActivityDetailComponent } from './pages/manufacturing/monthly-activity-detail/monthly-activity-detail.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { NonOperationalIncomeTagModalComponent } from './pages/manufacturing/non
     StatusOfViableCompaniesComponent,
     ViableCompanyReviewModalComponent,
     NonOperationalIncomeTagModalComponent,
+    MonthlyActivityDetailComponent,
     
   ],
   imports: [
