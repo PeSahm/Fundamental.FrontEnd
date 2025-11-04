@@ -61,7 +61,7 @@ export class GetSalesReportComponent implements OnInit {
 
     this.KeyName =
       [
-        { name: 'عملیات', onClick: true, hasEdit: true , uniqueKey :'id' },
+        { name: 'عملیات', onClick: true, hasView: true, hasEdit: true, uniqueKey: 'id' },
         { name: 'symbol' },
         { name: 'traceNo' },
         { name: 'uri', hasLink: true, hasView: true },
@@ -139,8 +139,12 @@ export class GetSalesReportComponent implements OnInit {
     }
     this.getAllSales();
   }
-  openEditPage(id: any) {
-    this.router.navigate(['/sales-report'], { state: { id } })
+  openEditPage(actionData: any) {
+    if (actionData.action === 'edit') {
+      this.router.navigate(['/sales-report'], { state: { id: actionData.data } });
+    } else if (actionData.action === 'view') {
+      this.router.navigate(['/monthly-activity-detail', actionData.data]);
+    }
   }
 
   selected(items: any) {
