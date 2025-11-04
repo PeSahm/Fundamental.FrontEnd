@@ -56,9 +56,13 @@
                                     <i *ngIf="item[key.name]" class="fa fa-eye text-info" aria-hidden="true"></i>
                                 </a>
                             </span>
-                            <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd(item[key.uniqueKey])"
+                            <span *ngIf="key.onClick && key.hasEdit" (click)="clickOnTd({action: 'edit', data: item[key.uniqueKey]})"
                                 class="cursor-pointer">
-                                <i class="fa fa-pencil-square-o text-success mx-3" aria-hidden="true"></i>
+                                <i class="fa fa-pencil-square-o text-success mx-1" title="ویرایش" aria-hidden="true"></i>
+                            </span>
+                            <span *ngIf="key.onClick && key.hasView" (click)="clickOnTd({action: 'view', data: item[key.uniqueKey]})"
+                                class="cursor-pointer">
+                                <i class="fa fa-eye text-info mx-1" title="مشاهده جزئیات" aria-hidden="true"></i>
                             </span>
                             <span *ngIf="key.onClick && key.hasModal" (click)="clickOnTd(item)" title="{{key.title}}"
                                 class="cursor-pointer">
