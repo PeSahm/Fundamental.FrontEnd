@@ -1,14 +1,14 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ScreenerService } from 'src/app/services/screener.service';
 import { MonthlyActivityService } from 'src/app/services/monthly-activity.service';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-get-sales-report',
   templateUrl: './get-sales-report.component.html',
   styleUrls: ['./get-sales-report.component.scss']
 })
-export class GetSalesReportComponent implements OnInit {
+export class GetSalesReportComponent implements OnInit, OnDestroy {
 
   selectedSymbol = '';
   searching = false;
@@ -26,8 +26,9 @@ export class GetSalesReportComponent implements OnInit {
 
   @ViewChild('input') searchInput!: ElementRef;
   selectedItems: any = [];
-  sales = [];
+  sales: any[] | null = null;
   isLoading = true;
+  destroy$ = new Subject<void>();
   KeyName: any[] = [];
   columnName: any[] = [];
   constructor(
@@ -61,7 +62,7 @@ export class GetSalesReportComponent implements OnInit {
 
     this.KeyName =
       [
-        { name: 'عملیات', onClick: true, hasView: true, hasEdit: true, uniqueKey: 'id' },
+        { name: null, onClick: true, hasView: true, hasEdit: true, uniqueKey: 'id' },
         { name: 'symbol' },
         { name: 'traceNo' },
         { name: 'uri', hasLink: true, hasView: true },
@@ -75,50 +76,53 @@ export class GetSalesReportComponent implements OnInit {
   }
 
   getAllSales() {
+    this.isLoading = true;
     this.monthlyReportService.getAllMonthlyReport(this.reportFilter)
-      .subscribe((res: any) => {
-        this.sales = res.data.items
-        this.totalRecords = res.data.meta.total
-      }, err => {
-
-      }, () => {
-        this.isLoading = false;
-      })
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.isLoading = false)
+      )
+      .subscribe({
+        next: (res: any) => {
+          this.sales = res.data?.items;
+          this.totalRecords = res.data?.meta?.total || 0;
+        },
+        error: (err) => {
+          // Handle errors here
+        }
+      });
   }
 
 
   searchTable() {
     this.isLoading = true;
-    this.sales = [];
+    this.sales = null;
     this.page = 1;
     this.pageSize = 20;
-    const command = {
+    const command: any = {
       ...this.reportFilter,
-      year: this.fiscalYear,
-      reportMonth: this.reportMonth,
-      IsinList: this.selectedItems.map((item: any) => item?.isin),
       pageNumber: 1,
       pageSize: 20,
+    };
 
+    if (this.fiscalYear) {
+      command.year = this.fiscalYear;
     }
-    this.reportFilter = command;
-    this.monthlyReportService.getAllMonthlyReport(this.reportFilter)
-      .subscribe({
-        next: (res: any) => {
-          this.sales = res.data.items
-          this.totalRecords = res.data.meta.total
-        },
-        complete: () => {
-          this.isLoading = false;
+    if (this.reportMonth) {
+      command.reportMonth = this.reportMonth;
+    }
+    if (this.selectedItems.length > 0) {
+      command.IsinList = this.selectedItems.map((item: any) => item?.isin);
+    }
 
-        }
-      })
+    this.reportFilter = command;
+    this.getAllSales();
     this.isSearchBarOpen = false;
   }
 
   changePage(e: any) {
     this.isLoading = true;
-    this.sales = [];
+    this.sales = null;
     this.page = e;
     this.reportFilter = {
       ...this.reportFilter,
@@ -129,7 +133,7 @@ export class GetSalesReportComponent implements OnInit {
 
   changeSize(e: any) {
     this.isLoading = true;
-    this.sales = [];
+    this.sales = null;
     this.pageSize = Number(e.target.value);
     this.page = 1;
     this.reportFilter = {
@@ -153,29 +157,33 @@ export class GetSalesReportComponent implements OnInit {
 
   handleSort(option: any) {
     this.isLoading = true;
-    this.sales = [];
+    this.sales = null;
     this.page = 1;
     this.pageSize = 20;
-    const command = {
+    const command: any = {
       ...this.reportFilter,
-      year: this.fiscalYear,
-      reportMonth: this.reportMonth,
-      IsinList: this.selectedItems.map((item: any) => item?.isin),
       pageNumber: 1,
       pageSize: 20,
       OrderBy: `${option.column} ${option.sortOrder}`
+    };
+
+    if (this.fiscalYear) {
+      command.year = this.fiscalYear;
     }
+    if (this.reportMonth) {
+      command.reportMonth = this.reportMonth;
+    }
+    if (this.selectedItems.length > 0) {
+      command.IsinList = this.selectedItems.map((item: any) => item?.isin);
+    }
+
     this.reportFilter = command;
-    this.monthlyReportService.getAllMonthlyReport(this.reportFilter)
-      .pipe(finalize(() => {
-        this.isLoading = false;
-      }))
-      .subscribe({
-        next: (res: any) => {
-          this.sales = res.data.items
-          this.totalRecords = res.data.meta.total
-        }
-      })
+    this.getAllSales();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }
