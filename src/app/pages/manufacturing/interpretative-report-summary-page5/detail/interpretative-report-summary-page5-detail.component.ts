@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { InterpretativeReportSummaryPage5Service } from 'src/app/services/interpretative-report-summary-page5.service';
 import { InterpretativeReportSummaryPage5Detail } from 'src/app/models/interpretative-report-summary-page5';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-interpretative-report-summary-page5-detail',
@@ -35,8 +36,8 @@ export class InterpretativeReportSummaryPage5DetailComponent implements OnInit {
   loadDetail(id: string): void {
     this.isLoading = true;
     this.service.getById(id).subscribe({
-      next: (data) => {
-        this.detail = data;
+      next: (res: any) => {
+        this.detail = res.data;
         this.isLoading = false;
       },
       error: (err) => {
@@ -62,5 +63,29 @@ export class InterpretativeReportSummaryPage5DetailComponent implements OnInit {
 
   isSummaryRow(rowCode: number): boolean {
     return rowCode !== -1;
+  }
+
+  getSectionTitle(sectionName: string): string {
+    const titles: { [key: string]: string } = {
+      'P5Desc1': 'توضیحات کلی',
+      'DescriptionForDetailsOfTheFinancing': 'توضیحات جزئیات تأمین مالی',
+      'CompanyEstimatesOfFinancingPrograms': 'برآورد شرکت از برنامه‌های تأمین مالی',
+      'CorporateIncomeProgram': 'برنامه درآمدی شرکت',
+      'OtherImportantPrograms': 'سایر برنامه‌های مهم',
+      'OtherImportantNotes': 'سایر نکات مهم',
+      'P5Desc2': 'توضیحات تکمیلی'
+    };
+    return titles[sectionName] || sectionName;
+  }
+
+  formatNumber(value: number | null | undefined): string {
+    if (value === null || value === undefined) {
+      return '—';
+    }
+    return value.toLocaleString('en-US');
+  }
+
+  convertToToman(formattedAmount: string): string {
+    return convertToToman(formattedAmount);
   }
 }

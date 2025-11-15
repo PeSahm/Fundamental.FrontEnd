@@ -1,294 +1,290 @@
-<div class="container-fluid p-4" dir="rtl" *ngIf="detail">
+<div class="d-flex flex-column p-2" *ngIf="detail">
   <!-- Header Section -->
-  <div class="row mb-4">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-          <h4 class="mb-0">گزیده گزارش تفسیری صفحه 5</h4>
-          <button class="btn btn-light btn-sm" (click)="goBack()">
-            <i class="fa fa-arrow-right me-1"></i> بازگشت
-          </button>
+  <div class="card mb-3">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0 font-14">گزیده گزارش تفسیری صفحه 5</h5>
+      <button class="btn btn-light btn-sm" routerLink="/interpretative-report-summary-page5">
+        <i class="fa fa-arrow-right me-1"></i> بازگشت
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3 mb-2">
+          <span class="label font-12 text-muted">نماد:</span>
+          <span class="value fw-bold ms-2">{{ detail.symbol }}</span>
         </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <div class="info-row">
-                <span class="label">نماد:</span>
-                <span class="value fw-bold">{{ detail.symbol }}</span>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="info-row">
-                <span class="label">ISIN:</span>
-                <span class="value">{{ detail.isin }}</span>
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <div class="info-row">
-                <span class="label">سال مالی:</span>
-                <span class="value">{{ detail.fiscalYear }}</span>
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <div class="info-row">
-                <span class="label">ماه گزارش:</span>
-                <span class="value">{{ getMonthName(detail.reportMonth) }}</span>
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <div class="info-row">
-                <span class="label">نسخه:</span>
-                <span class="value">V{{ detail.version }}</span>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="info-row">
-                <span class="label">تاریخ انتشار:</span>
-                <span class="value">{{ detail.publishDate | date:'yyyy/MM/dd' }}</span>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="info-row">
-                <a [href]="detail.uri" target="_blank" class="btn btn-sm btn-outline-primary">
-                  <i class="fa fa-external-link me-1"></i> مشاهده در CODAL
-                </a>
-              </div>
-            </div>
-          </div>
+        <div class="col-md-3 mb-2">
+          <span class="label font-12 text-muted">ISIN:</span>
+          <span class="value ms-2">{{ detail.isin }}</span>
+        </div>
+        <div class="col-md-2 mb-2">
+          <span class="label font-12 text-muted">سال مالی:</span>
+          <span class="value ms-2">{{ detail.fiscalYear }}</span>
+        </div>
+        <div class="col-md-2 mb-2">
+          <span class="label font-12 text-muted">ماه گزارش:</span>
+          <span class="value ms-2">{{ getMonthName(detail.reportMonth) }}</span>
+        </div>
+        <div class="col-md-2 mb-2">
+          <span class="label font-12 text-muted">نسخه:</span>
+          <span class="value ms-2">V{{ detail.version }}</span>
+        </div>
+        <div class="col-md-6 mb-2">
+          <span class="label font-12 text-muted">تاریخ انتشار:</span>
+          <span class="value ms-2">{{ detail.publishDate | date:'yyyy/MM/dd' }}</span>
+        </div>
+        <div class="col-md-6 mb-2">
+          <a [href]="detail.uri" target="_blank" class="btn btn-sm btn-outline-primary">
+            <i class="fa fa-external-link me-1"></i> مشاهده در CODAL
+          </a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Tabs Section -->
-  <div class="row">
-    <div class="col-12">
-      <ngb-accordion #acc="ngbAccordion">
-        <!-- Other Operating Incomes -->
-        <ngb-panel id="panel-operating-incomes" *ngIf="detail.otherOperatingIncomes && detail.otherOperatingIncomes.length > 0">
-          <ng-template ngbPanelTitle>
-            <span class="accordion-title">سایر درآمدهای عملیاتی</span>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover">
-                <thead class="table-light">
-                  <tr>
-                    <th>شرح ردیف</th>
-                    <th>مبالغ دوره جاری</th>
-                    <th>مبالغ مدت مشابه سال قبل</th>
-                    <th>مبالغ از ابتدای سال تا پایان دوره</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of detail.otherOperatingIncomes" 
-                      [class.summary-row]="isSummaryRow(item.rowCode)"
-                      [class.data-row]="isDataRow(item.rowCode)">
-                    <td>{{ item.itemDescription }}</td>
-                    <td class="text-end">{{ item.currentPeriodAmount | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.lastYearSamePeriodAmount | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.fromStartOfYearToEndOfPeriodAmount | number:'1.0-0' }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-template>
-        </ngb-panel>
+  <ngb-accordion #acc="ngbAccordion" activeIds="panel-operating-incomes">
+    <!-- Other Operating Incomes -->
+    <ngb-panel id="panel-operating-incomes" *ngIf="detail.otherOperatingIncomes && detail.otherOperatingIncomes.length > 0">
+      <ng-template ngbPanelTitle>
+        <span class="font-14 fw-bold">سایر درآمدهای عملیاتی ({{ detail.otherOperatingIncomes.length }})</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm table-hover font-12">
+            <thead class="table-light">
+              <tr>
+                <th class="text-end">شرح ردیف</th>
+                <th class="text-center">مبالغ دوره جاری</th>
+                <th class="text-center">مبالغ دوره قبل</th>
+                <th class="text-center">مبالغ برآوردی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of detail.otherOperatingIncomes" 
+                  [class.summary-row]="isSummaryRow(item.rowCode)"
+                  [class.data-row]="isDataRow(item.rowCode)">
+                <td class="text-end">{{ item.itemDescription || 'جمع' }}</td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.currentPeriodAmount))" tooltipClass="tooltip-class">{{ item.currentPeriodAmount | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </ngb-panel>
 
-        <!-- Other Non-Operating Expenses -->
-        <ngb-panel id="panel-non-operating-expenses" *ngIf="detail.otherNonOperatingExpenses && detail.otherNonOperatingExpenses.length > 0">
-          <ng-template ngbPanelTitle>
-            <span class="accordion-title">سایر هزینههای غیر عملیاتی</span>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover">
-                <thead class="table-light">
-                  <tr>
-                    <th>شرح ردیف</th>
-                    <th>مبالغ دوره جاری</th>
-                    <th>مبالغ مدت مشابه سال قبل</th>
-                    <th>مبالغ از ابتدای سال تا پایان دوره</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of detail.otherNonOperatingExpenses"
-                      [class.summary-row]="isSummaryRow(item.rowCode)"
-                      [class.data-row]="isDataRow(item.rowCode)">
-                    <td>{{ item.itemDescription }}</td>
-                    <td class="text-end">{{ item.currentPeriodAmount | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.lastYearSamePeriodAmount | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.fromStartOfYearToEndOfPeriodAmount | number:'1.0-0' }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-template>
-        </ngb-panel>
+    <!-- Other Non-Operating Expenses -->
+    <ngb-panel id="panel-non-operating-expenses" *ngIf="detail.otherNonOperatingExpenses && detail.otherNonOperatingExpenses.length > 0">
+      <ng-template ngbPanelTitle>
+        <span class="font-14 fw-bold">سایر هزینه‌های غیر عملیاتی ({{ detail.otherNonOperatingExpenses.length }})</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm table-hover font-12">
+            <thead class="table-light">
+              <tr>
+                <th class="text-end">شرح ردیف</th>
+                <th class="text-center">مبالغ دوره جاری</th>
+                <th class="text-center">مبالغ دوره قبل</th>
+                <th class="text-center">مبالغ برآوردی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of detail.otherNonOperatingExpenses"
+                  [class.summary-row]="isSummaryRow(item.rowCode)"
+                  [class.data-row]="isDataRow(item.rowCode)">
+                <td class="text-end">{{ item.itemDescription || 'جمع' }}</td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.currentPeriodAmount))" tooltipClass="tooltip-class">{{ item.currentPeriodAmount | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </ngb-panel>
 
-        <!-- Financing Details -->
-        <ngb-panel id="panel-financing-details" *ngIf="detail.financingDetails && detail.financingDetails.length > 0">
-          <ng-template ngbPanelTitle>
-            <span class="accordion-title">جزئیات تأمین مالی</span>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover table-sm">
-                <thead class="table-light">
-                  <tr>
-                    <th>منبع تأمین مالی</th>
-                    <th>نرخ سود (%)</th>
-                    <th>مانده وام ابتدای سال</th>
-                    <th>مبلغ وام دریافتی</th>
-                    <th>مبلغ بازپرداختی</th>
-                    <th>مانده وام پایان دوره</th>
-                    <th>هزینه مالی</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of detail.financingDetails"
-                      [class.summary-row]="isSummaryRow(item.rowCode)"
-                      [class.data-row]="isDataRow(item.rowCode)">
-                    <td>{{ item.financingSource }}</td>
-                    <td class="text-end">{{ item.interestRate | number:'1.2-2' }}</td>
-                    <td class="text-end">{{ item.loanBalanceAtStartOfYear | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.loanAmountReceivedDuringPeriod | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.repaidAmountDuringPeriod | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.loanBalanceAtEndOfPeriod | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.financialExpense | number:'1.0-0' }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-template>
-        </ngb-panel>
+    <!-- Financing Details -->
+    <ngb-panel id="panel-financing-details" *ngIf="detail.financingDetails && detail.financingDetails.length > 0">
+      <ng-template ngbPanelTitle>
+        <span class="font-14 fw-bold">جزئیات تأمین مالی ({{ detail.financingDetails.length }})</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm table-hover font-12">
+            <thead class="table-light">
+              <tr>
+                <th class="text-end">منبع تأمین مالی</th>
+                <th class="text-center">نرخ سود (%)</th>
+                <th class="text-center">مانده ابتدای دوره</th>
+                <th class="text-center">مانده پایان دوره (ریال)</th>
+                <th class="text-center">ارز خارجی</th>
+                <th class="text-center">کوتاه مدت</th>
+                <th class="text-center">بلند مدت</th>
+                <th class="text-center">هزینه مالی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of detail.financingDetails"
+                  [class.summary-row]="isSummaryRow(item.rowCode)"
+                  [class.data-row]="isDataRow(item.rowCode)">
+                <td class="text-end">{{ item.financingSource }}</td>
+                <td class="text-center">{{ item.interestRate | number:'1.2-2' }}</td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.beginningBalance))" tooltipClass="tooltip-class">{{ item.beginningBalance | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.endingBalanceRial))" tooltipClass="tooltip-class">{{ item.endingBalanceRial | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.foreignRialEquivalent))" tooltipClass="tooltip-class">{{ item.foreignRialEquivalent | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.shortTerm))" tooltipClass="tooltip-class">{{ item.shortTerm | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.longTerm))" tooltipClass="tooltip-class">{{ item.longTerm | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.financialExpense))" tooltipClass="tooltip-class">{{ item.financialExpense | number:'1.0-0' }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </ngb-panel>
 
-        <!-- Financing Details Estimated -->
-        <ngb-panel id="panel-financing-details-estimated" *ngIf="detail.financingDetailsEstimated && detail.financingDetailsEstimated.length > 0">
-          <ng-template ngbPanelTitle>
-            <span class="accordion-title">جزئیات تأمین مالی (برآوردی)</span>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover table-sm">
-                <thead class="table-light">
-                  <tr>
-                    <th>منبع تأمین مالی</th>
-                    <th>نرخ سود (%)</th>
-                    <th>مانده وام ابتدای سال</th>
-                    <th>مبلغ وام دریافتی</th>
-                    <th>مبلغ بازپرداختی</th>
-                    <th>مانده وام پایان دوره</th>
-                    <th>هزینه مالی</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of detail.financingDetailsEstimated"
-                      [class.summary-row]="isSummaryRow(item.rowCode)"
-                      [class.data-row]="isDataRow(item.rowCode)">
-                    <td>{{ item.financingSource }}</td>
-                    <td class="text-end">{{ item.interestRate | number:'1.2-2' }}</td>
-                    <td class="text-end">{{ item.loanBalanceAtStartOfYear | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.loanAmountReceivedDuringPeriod | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.repaidAmountDuringPeriod | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.loanBalanceAtEndOfPeriod | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.financialExpense | number:'1.0-0' }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-template>
-        </ngb-panel>
+    <!-- Financing Details Estimated -->
+    <ngb-panel id="panel-financing-details-estimated" *ngIf="detail.financingDetailsEstimated && detail.financingDetailsEstimated.length > 0">
+      <ng-template ngbPanelTitle>
+        <span class="font-14 fw-bold">جزئیات تأمین مالی (برآوردی) ({{ detail.financingDetailsEstimated.length }})</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm table-hover font-12">
+            <thead class="table-light">
+              <tr>
+                <th class="text-end">منبع تأمین مالی</th>
+                <th class="text-center">نرخ سود (%)</th>
+                <th class="text-center">مانده ابتدای دوره</th>
+                <th class="text-center">مانده پایان دوره (ریال)</th>
+                <th class="text-center">ارز خارجی</th>
+                <th class="text-center">کوتاه مدت</th>
+                <th class="text-center">بلند مدت</th>
+                <th class="text-center">هزینه مالی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of detail.financingDetailsEstimated"
+                  [class.summary-row]="isSummaryRow(item.rowCode)"
+                  [class.data-row]="isDataRow(item.rowCode)">
+                <td class="text-end">{{ item.financingSource }}</td>
+                <td class="text-center">{{ item.interestRate | number:'1.2-2' }}</td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.beginningBalance))" tooltipClass="tooltip-class">{{ item.beginningBalance | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.endingBalanceRial))" tooltipClass="tooltip-class">{{ item.endingBalanceRial | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.foreignRialEquivalent))" tooltipClass="tooltip-class">{{ item.foreignRialEquivalent | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.shortTerm))" tooltipClass="tooltip-class">{{ item.shortTerm | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.longTerm))" tooltipClass="tooltip-class">{{ item.longTerm | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.financialExpense))" tooltipClass="tooltip-class">{{ item.financialExpense | number:'1.0-0' }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </ngb-panel>
 
-        <!-- Investment Incomes -->
-        <ngb-panel id="panel-investment-incomes" *ngIf="detail.investmentIncomes && detail.investmentIncomes.length > 0">
-          <ng-template ngbPanelTitle>
-            <span class="accordion-title">درآمدهای سرمایهگذاری</span>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover">
-                <thead class="table-light">
-                  <tr>
-                    <th>شرح ردیف</th>
-                    <th>مبالغ دوره جاری</th>
-                    <th>مبالغ مدت مشابه سال قبل</th>
-                    <th>مبالغ از ابتدای سال تا پایان دوره</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of detail.investmentIncomes"
-                      [class.summary-row]="isSummaryRow(item.rowCode)"
-                      [class.data-row]="isDataRow(item.rowCode)">
-                    <td>{{ item.itemDescription }}</td>
-                    <td class="text-end">{{ item.currentPeriodAmount | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.lastYearSamePeriodAmount | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.fromStartOfYearToEndOfPeriodAmount | number:'1.0-0' }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-template>
-        </ngb-panel>
+    <!-- Investment Incomes -->
+    <ngb-panel id="panel-investment-incomes" *ngIf="detail.investmentIncomes && detail.investmentIncomes.length > 0">
+      <ng-template ngbPanelTitle>
+        <span class="font-14 fw-bold">درآمدهای سرمایه‌گذاری ({{ detail.investmentIncomes.length }})</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm table-hover font-12">
+            <thead class="table-light">
+              <tr>
+                <th class="text-end">شرح ردیف</th>
+                <th class="text-center">مبالغ دوره جاری</th>
+                <th class="text-center">مبالغ دوره قبل</th>
+                <th class="text-center">مبالغ برآوردی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of detail.investmentIncomes"
+                  [class.summary-row]="isSummaryRow(item.rowCode)"
+                  [class.data-row]="isDataRow(item.rowCode)">
+                <td class="text-end">{{ item.itemDescription || 'جمع' }}</td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.currentPeriodAmount))" tooltipClass="tooltip-class">{{ item.currentPeriodAmount | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </ngb-panel>
 
-        <!-- Miscellaneous Expenses -->
-        <ngb-panel id="panel-miscellaneous-expenses" *ngIf="detail.miscellaneousExpenses && detail.miscellaneousExpenses.length > 0">
-          <ng-template ngbPanelTitle>
-            <span class="accordion-title">هزینههای متفرقه</span>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover">
-                <thead class="table-light">
-                  <tr>
-                    <th>شرح ردیف</th>
-                    <th>مبالغ دوره جاری</th>
-                    <th>مبالغ مدت مشابه سال قبل</th>
-                    <th>مبالغ از ابتدای سال تا پایان دوره</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of detail.miscellaneousExpenses"
-                      [class.summary-row]="isSummaryRow(item.rowCode)"
-                      [class.data-row]="isDataRow(item.rowCode)">
-                    <td>{{ item.itemDescription }}</td>
-                    <td class="text-end">{{ item.currentPeriodAmount | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.lastYearSamePeriodAmount | number:'1.0-0' }}</td>
-                    <td class="text-end">{{ item.fromStartOfYearToEndOfPeriodAmount | number:'1.0-0' }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-template>
-        </ngb-panel>
+    <!-- Miscellaneous Expenses -->
+    <ngb-panel id="panel-miscellaneous-expenses" *ngIf="detail.miscellaneousExpenses && detail.miscellaneousExpenses.length > 0">
+      <ng-template ngbPanelTitle>
+        <span class="font-14 fw-bold">هزینه‌های متفرقه ({{ detail.miscellaneousExpenses.length }})</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm table-hover font-12">
+            <thead class="table-light">
+              <tr>
+                <th class="text-end">شرح ردیف</th>
+                <th class="text-center">مبالغ دوره جاری</th>
+                <th class="text-center">مبالغ دوره قبل</th>
+                <th class="text-center">مبالغ برآوردی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of detail.miscellaneousExpenses"
+                  [class.summary-row]="isSummaryRow(item.rowCode)"
+                  [class.data-row]="isDataRow(item.rowCode)">
+                <td class="text-end">{{ item.itemDescription || 'جمع' }}</td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.currentPeriodAmount))" tooltipClass="tooltip-class">{{ item.currentPeriodAmount | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </ngb-panel>
 
-        <!-- Descriptions -->
-        <ngb-panel id="panel-descriptions" *ngIf="detail.descriptions && detail.descriptions.length > 0">
-          <ng-template ngbPanelTitle>
-            <span class="accordion-title">توضیحات</span>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover">
-                <thead class="table-light">
-                  <tr>
-                    <th>بخش</th>
-                    <th>توضیحات</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of detail.descriptions">
-                    <td>{{ item.sectionName }}</td>
-                    <td>{{ item.description }}</td>
-                  </tr>
-                </tbody>
-              </table>
+    <!-- Descriptions -->
+    <ngb-panel id="panel-descriptions" *ngIf="detail.descriptions && detail.descriptions.length > 0">
+      <ng-template ngbPanelTitle>
+        <span class="font-14 fw-bold">توضیحات ({{ detail.descriptions.length }})</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="descriptions-section">
+          <div *ngFor="let item of detail.descriptions" class="description-item mb-3 p-3 border rounded">
+            <div class="row">
+              <div class="col-12" *ngIf="item.sectionName">
+                <h6 class="text-primary mb-2">
+                  <i class="fa fa-info-circle me-1"></i>
+                  {{ getSectionTitle(item.sectionName) }}
+                </h6>
+              </div>
+              <div class="col-12" *ngIf="item.description">
+                <p class="mb-2">{{ item.description }}</p>
+              </div>
+              <div class="col-12" *ngIf="item.additionalValue1">
+                <p class="mb-1 font-12 text-muted">{{ item.additionalValue1 }}</p>
+              </div>
+              <div class="col-12" *ngIf="item.additionalValue2">
+                <p class="mb-1 font-12 text-muted">{{ item.additionalValue2 }}</p>
+              </div>
+              <div class="col-12" *ngIf="item.additionalValue3">
+                <p class="mb-1 font-12 text-muted">{{ item.additionalValue3 }}</p>
+              </div>
+              <div class="col-12" *ngIf="item.additionalValue4">
+                <p class="mb-1 font-12 text-muted">{{ item.additionalValue4 }}</p>
+              </div>
+              <div class="col-12" *ngIf="item.additionalValue5">
+                <p class="mb-1 font-12 text-muted">{{ item.additionalValue5 }}</p>
+              </div>
             </div>
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
-    </div>
-  </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
 </div>
 
 <!-- Loading Spinner -->

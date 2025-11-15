@@ -10,20 +10,18 @@ import { InterpretativeReportSummaryPage5ListItem } from 'src/app/models/interpr
   styleUrls: ['./interpretative-report-summary-page5-list.component.scss']
 })
 export class InterpretativeReportSummaryPage5ListComponent implements OnInit, OnDestroy {
-  selectedSymbol = '';
+  selectedItems: any = [];
   fiscalYear: number | null = null;
   reportMonth: number | null = null;
   reportFilter = {
     pageSize: 20,
     pageNumber: 1
   };
-  isSearchBarOpen = true;
   page = 1;
   totalRecords: number = 0;
   pageSize = 20;
 
-  selectedItems: any = [];
-  reports: InterpretativeReportSummaryPage5ListItem[] | null = null;
+  reports: InterpretativeReportSummaryPage5ListItem[] = [];
   isLoading = true;
   destroy$ = new Subject<void>();
   KeyName: any[] = [];
@@ -58,7 +56,7 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
     this.columnName = [
       { name: null, title: 'عملیات' },
       { name: 'symbol', title: 'نماد', hasSort: true },
-      { name: 'isin', title: 'ISIN', hasSort: true },
+      { name: 'isin', title: 'ISIN', hasSort: false },
       { name: 'fiscalYear', title: 'سال مالی', hasSort: true },
       { name: 'reportMonth', title: 'ماه گزارش', hasSort: true },
       { name: 'publishDate', title: 'تاریخ انتشار', hasSort: true },
@@ -67,12 +65,12 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
     ];
 
     this.KeyName = [
-      { name: null, onClick: true, hasView: true, uniqueKey: 'id' },
+      { name: 'عملیات', onClick: true, uniqueKey: 'id', iconClass: 'fa fa-eye text-primary', title: 'مشاهده جزئیات', hasModal: true },
       { name: 'symbol' },
       { name: 'isin' },
       { name: 'fiscalYear' },
       { name: 'reportMonth' },
-      { name: 'publishDate', pipe: 'date' },
+      { name: 'publishDate' },
       { name: 'version' },
       { name: 'uri', hasLink: true, hasView: true }
     ];
@@ -94,19 +92,20 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
         finalize(() => this.isLoading = false)
       )
       .subscribe({
-        next: (res) => {
-          this.reports = res.items;
-          this.totalRecords = res.totalCount || 0;
+        next: (res: any) => {
+          this.reports = res.data?.items || [];
+          this.totalRecords = res.data?.meta?.total || 0;
         },
         error: (err) => {
           console.error('Error fetching reports:', err);
+          this.reports = [];
         }
       });
   }
 
   searchTable() {
     this.isLoading = true;
-    this.reports = null;
+    this.reports = [];
     this.page = 1;
     this.pageSize = 20;
     this.reportFilter = {
@@ -114,12 +113,11 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
       pageSize: 20
     };
     this.getAllReports();
-    this.isSearchBarOpen = false;
   }
 
   changePage(e: any) {
     this.isLoading = true;
-    this.reports = null;
+    this.reports = [];
     this.page = e;
     this.reportFilter = {
       ...this.reportFilter,
@@ -130,7 +128,7 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
 
   changeSize(e: any) {
     this.isLoading = true;
-    this.reports = null;
+    this.reports = [];
     this.pageSize = Number(e.target.value);
     this.page = 1;
     this.reportFilter = {
@@ -141,19 +139,19 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
     this.getAllReports();
   }
 
-  openViewPage(actionData: any) {
-    if (actionData.action === 'view') {
-      this.router.navigate(['/interpretative-report-summary-page5', actionData.data]);
+  openViewPage(rowItem: any) {
+    if (rowItem && rowItem.id) {
+      this.router.navigate(['/interpretative-report-summary-page5', rowItem.id]);
     }
   }
 
   selected(items: any) {
-    this.selectedItems = items;
+    this.selectedItems = items?.item ? [items.item] : [];
   }
 
   handleSort(option: any) {
     this.isLoading = true;
-    this.reports = null;
+    this.reports = [];
     this.page = 1;
     this.pageSize = 20;
     this.reportFilter = {

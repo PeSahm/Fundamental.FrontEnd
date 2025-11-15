@@ -1,5 +1,5 @@
 
 export const environment = {
     production: false,
-    basePath: 'https://localhost:5001/'
+    basePath: 'https://localhost:5006/'
 }
