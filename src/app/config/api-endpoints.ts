@@ -8,7 +8,8 @@ export const API_ENDPOINTS = {
     INCOME_STATEMENT_SORT: 'Manufacturing/income-statement-sort',
     NON_OPERATION_INCOME: 'Manufacturing/non-operation-income',
     MONTHLY_ACTIVITY: 'Manufacturing/monthly-activity',
-    STATUS_OF_VIABLE_COMPANIES: 'Manufacturing/status-of-viable-companies'
+    STATUS_OF_VIABLE_COMPANIES: 'Manufacturing/status-of-viable-companies',
+    INTERPRETATIVE_REPORT_SUMMARY_PAGE5: 'Manufacturing/interpretative-report-summary-page5'
   },
   
   // Statement endpoints

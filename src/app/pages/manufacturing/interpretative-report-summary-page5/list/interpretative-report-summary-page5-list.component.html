@@ -1,0 +1,72 @@
+<div class="container-fluid p-4" dir="rtl">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="mb-4">گزیده گزارش تفسیری صفحه 5</h3>
+    </div>
+  </div>
+
+  <!-- Search/Filter Section -->
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">فیلترها</h5>
+          <button class="btn btn-sm btn-secondary" (click)="isSearchBarOpen = !isSearchBarOpen">
+            <i class="fa" [ngClass]="isSearchBarOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+          </button>
+        </div>
+        <div class="card-body" *ngIf="isSearchBarOpen">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label">نماد</label>
+              <app-symbol-search (selected)="selected($event)"></app-symbol-search>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">سال مالی</label>
+              <input type="number" class="form-control" [(ngModel)]="fiscalYear" placeholder="1404">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">ماه گزارش</label>
+              <select class="form-select" [(ngModel)]="reportMonth">
+                <option [value]="null">همه</option>
+                <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary me-2" (click)="searchTable()">
+                <i class="fa fa-search me-1"></i> جستجو
+              </button>
+              <button class="btn btn-secondary" (click)="fiscalYear = null; reportMonth = null; selectedItems = []; getAllReports()">
+                <i class="fa fa-refresh me-1"></i> پاک کردن فیلترها
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Table -->
+  <div class="row">
+    <div class="col-12">
+      <app-table 
+        *ngIf="reports"
+        [data]="reports" 
+        [columnName]="columnName" 
+        [keyName]="KeyName"
+        [totalRecords]="totalRecords" 
+        [page]="page" 
+        [pageSize]="pageSize"
+        (changePage)="changePage($event)" 
+        (changePageSize)="changeSize($event)"
+        (action)="openViewPage($event)"
+        (sort)="handleSort($event)">
+      </app-table>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner-grow text-primary" style="position: absolute; left: 50%; top: 50%;"></div>
+  </div>
+</div>

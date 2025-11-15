@@ -30,6 +30,8 @@ import { StatusOfViableCompaniesComponent } from './pages/status-of-viable-compa
 import { ViableCompanyReviewModalComponent } from './pages/status-of-viable-companies/viable-company-review-modal/viable-company-review-modal.component';
 import { NonOperationalIncomeTagModalComponent } from './pages/manufacturing/non-operational-income/non-operational-income-tag-modal/non-operational-income-tag-modal.component';
 import { MonthlyActivityDetailComponent } from './pages/manufacturing/monthly-activity-detail/monthly-activity-detail.component';
+import { InterpretativeReportSummaryPage5ListComponent } from './pages/manufacturing/interpretative-report-summary-page5/list/interpretative-report-summary-page5-list.component';
+import { InterpretativeReportSummaryPage5DetailComponent } from './pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { MonthlyActivityDetailComponent } from './pages/manufacturing/monthly-ac
     ViableCompanyReviewModalComponent,
     NonOperationalIncomeTagModalComponent,
     MonthlyActivityDetailComponent,
+    InterpretativeReportSummaryPage5ListComponent,
+    InterpretativeReportSummaryPage5DetailComponent,
     
   ],
   imports: [
