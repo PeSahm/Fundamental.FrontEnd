@@ -20,11 +20,11 @@ export interface InterpretativeReportSummaryPage5Detail {
   publishDate: string;
 
   // Financial Data Collections (6 grids)
-  otherOperatingIncomes: OtherOperatingIncomeItem[];
-  otherNonOperatingExpenses: OtherNonOperatingExpenseItem[];
-  financingDetails: FinancingDetailItem[];
-  financingDetailsEstimated: FinancingDetailItem[];
-  investmentIncomes: InvestmentIncomeItem[];
-  miscellaneousExpenses: MiscellaneousExpenseItem[];
-  descriptions: InterpretativeReportDescription[];
+  otherOperatingIncomes?: OtherOperatingIncomeItem[];
+  otherNonOperatingExpenses?: OtherNonOperatingExpenseItem[];
+  financingDetails?: FinancingDetailItem[];
+  financingDetailsEstimated?: FinancingDetailItem[];
+  investmentIncomes?: InvestmentIncomeItem[];
+  miscellaneousExpenses?: MiscellaneousExpenseItem[];
+  descriptions?: InterpretativeReportDescription[];
 }
