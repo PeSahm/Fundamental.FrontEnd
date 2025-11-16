@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { API_ENDPOINTS } from '../config/api-endpoints';
+import {
+  Paginated,
+  InterpretativeReportSummaryPage5ListItem
+} from '../models/interpretative-report-summary-page5';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +20,7 @@ export class InterpretativeReportSummaryPage5Service {
     reportMonth?: number,
     pageNumber: number = 1,
     pageSize: number = 10
-  ): Observable<any> {
+  ): Observable<Paginated<InterpretativeReportSummaryPage5ListItem>> {
     const params: any = {
       PageNumber: pageNumber,
       PageSize: pageSize
@@ -32,7 +36,7 @@ export class InterpretativeReportSummaryPage5Service {
       params.ReportMonth = reportMonth;
     }
 
-    return this.apiService.get(
+    return this.apiService.get<Paginated<InterpretativeReportSummaryPage5ListItem>>(
       API_ENDPOINTS.MANUFACTURING.INTERPRETATIVE_REPORT_SUMMARY_PAGE5,
       params
     );
