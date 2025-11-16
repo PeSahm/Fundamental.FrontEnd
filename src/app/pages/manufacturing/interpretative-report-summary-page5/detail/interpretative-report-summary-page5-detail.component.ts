@@ -28,8 +28,11 @@ export class InterpretativeReportSummaryPage5DetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
+    if (id && id.trim() !== '') {
       this.loadDetail(id);
+    } else {
+      this.toastr.error('شناسه گزارش نامعتبر است');
+      this.router.navigate(['/interpretative-report-summary-page5']);
     }
   }
 
