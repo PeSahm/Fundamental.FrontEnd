@@ -1,15 +1,12 @@
 export enum SessionOrderType {
-  BalanceSheetApproval = 0,
-  IncomeStatementApproval = 1,
-  CashFlowStatementApproval = 2,
-  BoardReportApproval = 3,
-  AuditorReportApproval = 4,
-  BoardMemberElection = 5,
-  InspectorElection = 6,
-  OfficialNewspaperSelection = 7,
-  ProfitDistribution = 8,
-  CapitalIncrease = 9,
-  Other = 10
+  ListenedBoardMemberReport = 0,
+  ApproveStatements = 1,
+  SelectInspector = 2,
+  SelectNewspaper = 3,
+  SelectBoardMember = 4,
+  BoardMemberWage = 5,
+  BoardMemberGift = 6,
+  Other = 8
 }
 
 export enum LegalCompanyType {
@@ -47,21 +44,20 @@ export enum InspectorType {
 }
 
 export enum WageAndGiftFieldType {
-  ChairmanWage = 0,
-  MembersWage = 1,
-  CEOWage = 2,
-  Gifts = 3,
-  BonusShares = 4,
-  TotalCompensation = 5,
-  Other = 6
+  AttendanceFee = 0,
+  Bonus = 1,
+  AuditCommitteeAttendanceFee = 2,
+  AppointmentCommitteeAttendanceFee = 3,
+  OtherCommitteesAttendanceFee = 4,
+  SocialResponsibilityExpenses = 5
 }
 
 export enum ProportionedRetainedEarningFieldName {
   NetIncomeLoss = 0,
-  BeginingRetainedEarnings = 1,
+  BeginningRetainedEarnings = 1,
   AnnualAdjustment = 2,
-  AdjustedBeginingRetainedEarnings = 3,
-  PreYearDevidedRetainedRetainedEarning = 4,
+  AdjustedBeginningRetainedEarnings = 3,
+  PreYearDividedRetainedEarning = 4,
   TransferToCapital = 5,
   UnallocatedRetainedEarningsAtTheBeginningOfPeriod = 6,
   TransfersFromOtherEquityItems = 7,

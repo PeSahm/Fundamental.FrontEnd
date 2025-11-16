@@ -1,22 +1,39 @@
 <div class="p-3" *ngIf="detail">
   <div class="card mb-3">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">تصمیمات مجمع عمومی عادی سالیانه</h5>
+    </div>
     <div class="card-body">
       <div class="row g-3">
-        <div class="col-md-3"><strong>نماد:</strong> {{detail.symbol}}</div>
-        <div class="col-md-3"><strong>ISIN:</strong> {{detail.isin}}</div>
-        <div class="col-md-3"><strong>سال مالی:</strong> {{detail.fiscalYear}}</div>
-        <div class="col-md-3"><strong>تاریخ مجمع:</strong> {{detail.assemblyDate}}</div>
-        <div class="col-md-3"><strong>نتیجه مجمع:</strong> {{detail.assemblyResultTypeTitle}}</div>
-        <div class="col-md-3"><strong>تاریخ انتشار:</strong> {{detail.publishDate}}</div>
-        <div class="col-md-3"><strong>شماره ردیابی:</strong> {{detail.traceNo}}</div>
+        <div class="col-md-6"><strong>نماد:</strong> {{detail.symbol}}</div>
+        <div class="col-md-6"><strong>ISIN:</strong> {{detail.isin}}</div>
+        <div class="col-md-6"><strong>عنوان شرکت:</strong> {{detail.title}}</div>
+        <div class="col-md-6"><strong>سال مالی:</strong> {{detail.fiscalYear}}</div>
+        <div class="col-md-6"><strong>تاریخ مجمع:</strong> {{detail.assemblyDate | date:'yyyy/MM/dd'}}</div>
+        <div class="col-md-6"><strong>ساعت:</strong> {{detail.assemblyHour || '-'}}</div>
+        <div class="col-md-6"><strong>روز:</strong> {{detail.assemblyDay || '-'}}</div>
+        <div class="col-md-6"><strong>محل برگزاری:</strong> {{detail.assemblyLocation || '-'}}</div>
+        <div class="col-md-6"><strong>نتیجه مجمع:</strong> {{detail.assemblyResultTypeTitle}}</div>
+        <div class="col-md-6"><strong>رئیس مجمع:</strong> {{detail.assemblyChief || '-'}}</div>
+        <div class="col-md-6"><strong>ناظر اول:</strong> {{detail.assemblySuperVisor1 || '-'}}</div>
+        <div class="col-md-6"><strong>ناظر دوم:</strong> {{detail.assemblySuperVisor2 || '-'}}</div>
+        <div class="col-md-6"><strong>منشی:</strong> {{detail.assemblySecretary || '-'}}</div>
+        <div class="col-md-6"><strong>تاریخ انتشار:</strong> {{detail.publishDate | date:'yyyy/MM/dd'}}</div>
+        <div class="col-md-6"><strong>شماره ردیابی:</strong> {{detail.traceNo}}</div>
+        <div class="col-md-6"><strong>شماره نامه:</strong> {{detail.letterTracingNo || '-'}}</div>
       </div>
       <div class="mt-3">
-        <a class="btn btn-outline-primary btn-sm" [href]="detail.htmlUrl" target="_blank" rel="noopener noreferrer">مشاهده در CODAL</a>
-        <button class="btn btn-secondary btn-sm ms-2" (click)="goBack()">بازگشت</button>
+        <a class="btn btn-outline-primary btn-sm" [href]="detail.htmlUrl" target="_blank" rel="noopener noreferrer">
+          <i class="fa fa-external-link"></i> مشاهده در CODAL
+        </a>
+        <button class="btn btn-secondary btn-sm ms-2" (click)="goBack()">
+          <i class="fa fa-arrow-right"></i> بازگشت
+        </button>
       </div>
     </div>
   </div>
 
+  <!-- Session Orders -->
   <div class="card mb-3">
     <div class="card-header">دستور جلسات</div>
     <div class="card-body p-0">
@@ -24,21 +41,301 @@
         <table class="table table-striped table-sm mb-0">
           <thead>
             <tr>
-              <th>نوع</th>
+              <th style="width: 50px;">نوع</th>
               <th>توضیحات</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of detail.sessionOrders">
               <td>{{item.type}}</td>
-              <td>{{item.description || '-'}}</td>
+              <td>{{getSessionOrderLabel(item.type)}}</td>
             </tr>
             <tr *ngIf="!detail.sessionOrders || detail.sessionOrders.length === 0">
-              <td colspan="2" class="text-center">موردی ثبت نشده است</td>
+              <td colspan="2" class="text-center text-muted">موردی ثبت نشده است</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+
+  <!-- Shareholders -->
+  <div class="card mb-3">
+    <div class="card-header">سهامداران حاضر در مجمع</div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm mb-0">
+          <thead>
+            <tr>
+              <th style="width: 80px;">ردیف</th>
+              <th>نام سهامدار</th>
+              <th style="width: 150px;">تعداد سهام</th>
+              <th style="width: 100px;">درصد</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detail.shareHolders">
+              <td>{{item.shareHolderSerial || '-'}}</td>
+              <td>{{item.name || '-'}}</td>
+              <td class="text-end">{{formatNumber(item.shareCount)}}</td>
+              <td class="text-end">{{formatPercent(item.sharePercent)}}</td>
+            </tr>
+            <tr *ngIf="!detail.shareHolders || detail.shareHolders.length === 0">
+              <td colspan="4" class="text-center text-muted">موردی ثبت نشده است</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assembly Board Members -->
+  <div class="card mb-3">
+    <div class="card-header">هیئت رئیسه مجمع</div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm mb-0">
+          <thead>
+            <tr>
+              <th style="width: 60px;">ردیف</th>
+              <th>نام و نام خانوادگی</th>
+              <th style="width: 120px;">کد ملی</th>
+              <th style="width: 100px;">سمت</th>
+              <th style="width: 100px;">نوع عضویت</th>
+              <th>نماینده</th>
+              <th style="width: 80px;">حضور</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detail.assemblyBoardMembers">
+              <td>{{item.boardMemberSerial || '-'}}</td>
+              <td>{{item.fullName || '-'}}</td>
+              <td>{{item.nationalCode || '-'}}</td>
+              <td>{{getBoardPositionLabel(item.position)}}</td>
+              <td>{{getBoardMembershipLabel(item.membershipType)}}</td>
+              <td>{{item.agentBoardMemberFullName || '-'}}</td>
+              <td class="text-center">
+                <i class="fa" [ngClass]="item.attendingMeeting ? 'fa-check text-success' : 'fa-times text-danger'"></i>
+              </td>
+            </tr>
+            <tr *ngIf="!detail.assemblyBoardMembers || detail.assemblyBoardMembers.length === 0">
+              <td colspan="7" class="text-center text-muted">موردی ثبت نشده است</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inspectors -->
+  <div class="card mb-3">
+    <div class="card-header">بازرسان</div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm mb-0">
+          <thead>
+            <tr>
+              <th style="width: 80px;">ردیف</th>
+              <th>نام</th>
+              <th style="width: 120px;">نوع</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detail.inspectors">
+              <td>{{item.serial || '-'}}</td>
+              <td>{{item.name || '-'}}</td>
+              <td>{{getInspectorTypeLabel(item.type)}}</td>
+            </tr>
+            <tr *ngIf="!detail.inspectors || detail.inspectors.length === 0">
+              <td colspan="3" class="text-center text-muted">موردی ثبت نشده است</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Board Members -->
+  <div class="card mb-3">
+    <div class="card-header">اعضای جدید هیئت مدیره</div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm mb-0">
+          <thead>
+            <tr>
+              <th style="width: 60px;">ردیف</th>
+              <th>نام</th>
+              <th style="width: 120px;">کد ملی/شناسه</th>
+              <th style="width: 120px;">نوع شخصیت</th>
+              <th style="width: 120px;">نوع عضویت</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detail.newBoardMembers">
+              <td>{{item.boardMemberSerial || '-'}}</td>
+              <td>{{item.name || '-'}}</td>
+              <td>{{item.nationalCode || '-'}}</td>
+              <td>{{getLegalTypeLabel(item.legalType)}}</td>
+              <td>{{getBoardMembershipLabel(item.membershipType)}}</td>
+            </tr>
+            <tr *ngIf="!detail.newBoardMembers || detail.newBoardMembers.length === 0">
+              <td colspan="5" class="text-center text-muted">موردی ثبت نشده است</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Board Member Wages and Gifts -->
+  <div class="card mb-3">
+    <div class="card-header">حق‌الزحمه و هدایای اعضای هیئت مدیره</div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm mb-0">
+          <thead>
+            <tr>
+              <th>عنوان</th>
+              <th style="width: 150px;">سال جاری (ریال)</th>
+              <th style="width: 150px;">سال قبل (ریال)</th>
+              <th>توضیحات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detail.boardMemberWageAndGifts">
+              <td>{{item.fieldName || getWageTypeLabel(item.type)}}</td>
+              <td class="text-end">{{formatNumber(item.currentYearValue)}}</td>
+              <td class="text-end">{{formatNumber(item.pastYearValue)}}</td>
+              <td>{{item.description || '-'}}</td>
+            </tr>
+            <tr *ngIf="!detail.boardMemberWageAndGifts || detail.boardMemberWageAndGifts.length === 0">
+              <td colspan="4" class="text-center text-muted">موردی ثبت نشده است</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newspapers -->
+  <div class="card mb-3">
+    <div class="card-header">روزنامه‌های کثیرالانتشار</div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm mb-0">
+          <thead>
+            <tr>
+              <th style="width: 100px;">شناسه</th>
+              <th>نام روزنامه</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detail.newsPapers">
+              <td>{{item.newsPaperId || '-'}}</td>
+              <td>{{item.name || '-'}}</td>
+            </tr>
+            <tr *ngIf="!detail.newsPapers || detail.newsPapers.length === 0">
+              <td colspan="2" class="text-center text-muted">موردی ثبت نشده است</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proportioned Retained Earnings -->
+  <div class="card mb-3">
+    <div class="card-header">تقسیم سود انباشته</div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-sm mb-0">
+          <thead>
+            <tr>
+              <th>شرح</th>
+              <th style="width: 200px;" class="text-end">مبلغ (میلیون ریال)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detail.proportionedRetainedEarnings" [ngClass]="{'table-warning fw-bold': item.rowClass === 'ComputationalRow'}">
+              <td>{{item.description || getRetainedEarningLabel(item.fieldName)}}</td>
+              <td class="text-end">{{formatNumber(item.yearEndToDateValue)}}</td>
+            </tr>
+            <tr *ngIf="!detail.proportionedRetainedEarnings || detail.proportionedRetainedEarnings.length === 0">
+              <td colspan="2" class="text-center text-muted">موردی ثبت نشده است</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Attendees -->
+  <div class="card mb-3">
+    <div class="card-header">حضور افراد خاص</div>
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6" *ngIf="detail.ceo">
+          <div class="border p-3 rounded">
+            <h6 class="text-primary mb-3">مدیرعامل</h6>
+            <div><strong>نام:</strong> {{detail.ceo.fullName || '-'}}</div>
+            <div><strong>کد ملی:</strong> {{detail.ceo.nationalCode || '-'}}</div>
+            <div><strong>حضور:</strong> {{detail.ceo.attendingMeeting ? 'بله' : 'خیر'}}</div>
+            <div><strong>مدرک:</strong> {{detail.ceo.degree || '-'}}</div>
+            <div><strong>رشته:</strong> {{detail.ceo.educationField || '-'}}</div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="detail.auditCommitteeChairman">
+          <div class="border p-3 rounded">
+            <h6 class="text-primary mb-3">رئیس کمیته حسابرسی</h6>
+            <div><strong>نام:</strong> {{detail.auditCommitteeChairman.fullName || '-'}}</div>
+            <div><strong>کد ملی:</strong> {{detail.auditCommitteeChairman.nationalCode || '-'}}</div>
+            <div><strong>حضور:</strong> {{detail.auditCommitteeChairman.attendingMeeting ? 'بله' : 'خیر'}}</div>
+            <div><strong>مدرک:</strong> {{detail.auditCommitteeChairman.degree || '-'}}</div>
+            <div><strong>رشته:</strong> {{detail.auditCommitteeChairman.educationField || '-'}}</div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="detail.independentAuditorRepresentative">
+          <div class="border p-3 rounded">
+            <h6 class="text-primary mb-3">نماینده حسابرس مستقل</h6>
+            <div><strong>نام:</strong> {{detail.independentAuditorRepresentative.fullName || '-'}}</div>
+            <div><strong>کد ملی:</strong> {{detail.independentAuditorRepresentative.nationalCode || '-'}}</div>
+            <div><strong>حضور:</strong> {{detail.independentAuditorRepresentative.attendingMeeting ? 'بله' : 'خیر'}}</div>
+            <div><strong>مدرک:</strong> {{detail.independentAuditorRepresentative.degree || '-'}}</div>
+            <div><strong>رشته:</strong> {{detail.independentAuditorRepresentative.educationField || '-'}}</div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="detail.topFinancialPosition">
+          <div class="border p-3 rounded">
+            <h6 class="text-primary mb-3">مقام مالی ارشد</h6>
+            <div><strong>نام:</strong> {{detail.topFinancialPosition.fullName || '-'}}</div>
+            <div><strong>کد ملی:</strong> {{detail.topFinancialPosition.nationalCode || '-'}}</div>
+            <div><strong>حضور:</strong> {{detail.topFinancialPosition.attendingMeeting ? 'بله' : 'خیر'}}</div>
+            <div><strong>مدرک:</strong> {{detail.topFinancialPosition.degree || '-'}}</div>
+            <div><strong>رشته:</strong> {{detail.topFinancialPosition.educationField || '-'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Other Descriptions -->
+  <div class="card mb-3" *ngIf="detail.otherDescription || detail.publishSecurityDescription || detail.boardMemberPeriod">
+    <div class="card-header">سایر اطلاعات</div>
+    <div class="card-body">
+      <div *ngIf="detail.boardMemberPeriod"><strong>دوره عضویت:</strong> {{detail.boardMemberPeriod}} سال</div>
+      <div *ngIf="detail.publishSecurityDescription" class="mt-2"><strong>توضیحات انتشار:</strong> {{detail.publishSecurityDescription}}</div>
+      <div *ngIf="detail.otherDescription" class="mt-2"><strong>سایر توضیحات:</strong> {{detail.otherDescription}}</div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!detail && !isLoading" class="text-center p-5">
+  <p class="text-muted">اطلاعات یافت نشد</p>
+  <button class="btn btn-primary" (click)="goBack()">بازگشت به لیست</button>
+</div>
+
+<div *ngIf="isLoading" class="text-center p-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">در حال بارگذاری...</span>
   </div>
 </div>
