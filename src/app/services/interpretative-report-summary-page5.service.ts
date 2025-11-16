@@ -20,7 +20,8 @@ export class InterpretativeReportSummaryPage5Service {
     fiscalYear?: number,
     reportMonth?: number,
     pageNumber: number = 1,
-    pageSize: number = 10
+    pageSize: number = 10,
+    orderBy?: string
   ): Observable<Paginated<InterpretativeReportSummaryPage5ListItem>> {
     const params: any = {
       PageNumber: pageNumber,
@@ -35,6 +36,9 @@ export class InterpretativeReportSummaryPage5Service {
     }
     if (reportMonth) {
       params.ReportMonth = reportMonth;
+    }
+    if (orderBy) {
+      params.OrderBy = orderBy;
     }
 
     return this.apiService.get<Paginated<InterpretativeReportSummaryPage5ListItem>>(

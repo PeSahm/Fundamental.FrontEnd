@@ -15,7 +15,8 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
   reportMonth: number | null = null;
   reportFilter = {
     pageSize: 20,
-    pageNumber: 1
+    pageNumber: 1,
+    orderBy: ''
   };
   totalRecords: number = 0;
 
@@ -83,7 +84,8 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
       this.fiscalYear || undefined,
       this.reportMonth || undefined,
       this.reportFilter.pageNumber,
-      this.reportFilter.pageSize
+      this.reportFilter.pageSize,
+      this.reportFilter.orderBy || undefined
     )
       .pipe(
         takeUntil(this.destroy$),
@@ -138,6 +140,7 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
     this.reports = [];
     this.reportFilter.pageNumber = 1;
     this.reportFilter.pageSize = 20;
+    this.reportFilter.orderBy = `${option.column} ${option.sortOrder}`;
     this.getAllReports();
   }
 
