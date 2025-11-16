@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { InterpretativeReportSummaryPage5Service } from 'src/app/services/interpretative-report-summary-page5.service';
 import { InterpretativeReportSummaryPage5Detail } from 'src/app/models/interpretative-report-summary-page5';
 import convertToToman from 'src/app/utils/toToman';
@@ -10,9 +12,10 @@ import convertToToman from 'src/app/utils/toToman';
   templateUrl: './interpretative-report-summary-page5-detail.component.html',
   styleUrls: ['./interpretative-report-summary-page5-detail.component.scss']
 })
-export class InterpretativeReportSummaryPage5DetailComponent implements OnInit {
+export class InterpretativeReportSummaryPage5DetailComponent implements OnInit, OnDestroy {
   detail?: InterpretativeReportSummaryPage5Detail;
   isLoading = true;
+  private destroy$ = new Subject<void>();
 
   months = [
     'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
@@ -36,9 +39,14 @@ export class InterpretativeReportSummaryPage5DetailComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   loadDetail(id: string): void {
     this.isLoading = true;
-    this.service.getById(id).subscribe({
+    this.service.getById(id).pipe(takeUntil(this.destroy$)).subscribe({
       next: (res: any) => {
         this.detail = res.data;
         this.isLoading = false;
