@@ -14,6 +14,8 @@ import { SymbolShareHoldersComponent } from './pages/symbol-share-holders/symbol
 import { NonOperationalIncomeComponent } from './pages/manufacturing/non-operational-income/non-operational-income.component';
 import { StatusOfViableCompaniesComponent } from './pages/status-of-viable-companies/status-of-viable-companies.component';
 import { MonthlyActivityDetailComponent } from './pages/manufacturing/monthly-activity-detail/monthly-activity-detail.component';
+import { InterpretativeReportSummaryPage5ListComponent } from './pages/manufacturing/interpretative-report-summary-page5/list/interpretative-report-summary-page5-list.component';
+import { InterpretativeReportSummaryPage5DetailComponent } from './pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -45,6 +47,12 @@ const routes: Routes = [
   },
   {
     path: 'monthly-activity-detail/:id', component: MonthlyActivityDetailComponent, data: { title: 'جزئیات فعالیت ماهانه' }
+  },
+  {
+    path: 'interpretative-report-summary-page5', component: InterpretativeReportSummaryPage5ListComponent, data: { title: 'گزیده گزارش تفسیری صفحه 5' }
+  },
+  {
+    path: 'interpretative-report-summary-page5/:id', component: InterpretativeReportSummaryPage5DetailComponent, data: { title: 'جزئیات گزیده گزارش تفسیری صفحه 5' }
   },
   {
     path: '**',

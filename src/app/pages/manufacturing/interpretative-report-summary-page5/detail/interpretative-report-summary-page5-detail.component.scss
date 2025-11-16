@@ -1,0 +1,99 @@
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+}
+
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.label {
+  font-weight: 600;
+  color: #6c757d;
+}
+
+.value {
+  color: #212529;
+}
+
+// Summary row styling - following CODAL convention
+.summary-row {
+  background-color: #fff9e6 !important; // Light yellow background
+  font-weight: 700 !important;
+  color: #d9534f !important; // Red text
+  border-top: 2px solid #f0ad4e !important;
+  border-bottom: 2px solid #f0ad4e !important;
+  
+  td {
+    background-color: #fff9e6 !important;
+    color: #d9534f !important;
+    font-weight: 700 !important;
+  }
+}
+
+.data-row {
+  background-color: #ffffff;
+  
+  &:hover {
+    background-color: #f8f9fa;
+  }
+}
+
+.table-responsive {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  margin-bottom: 0;
+  direction: rtl;
+  
+  th {
+    white-space: nowrap;
+    font-weight: 600;
+    background-color: #e9ecef;
+  }
+  
+  td {
+    vertical-align: middle;
+  }
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-end {
+  text-align: right !important;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+// Descriptions section styling
+.descriptions-section {
+  .description-item {
+    background-color: #f8f9fa;
+    border-left: 4px solid #6c757d;
+
+    p {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .text-muted {
+      color: #6c757d !important;
+      font-style: italic;
+    }
+  }
+}

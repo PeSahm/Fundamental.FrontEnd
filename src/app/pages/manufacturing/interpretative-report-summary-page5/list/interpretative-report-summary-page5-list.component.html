@@ -1,0 +1,32 @@
+<div class="d-flex flex-column p-2">
+  <app-search-filter>
+    <div class="row">
+      <div class="col-3">
+        <label for="symbol" class="form-label font-12">نماد:</label>
+        <app-symbol-search (selectSearchSymbol)="selected($event)"></app-symbol-search>
+      </div>
+      <div class="col-3">
+        <label for="fiscalYear" class="form-label font-12">سال مالی:</label>
+        <input type="input" class="form-control" id="fiscalYear" name="fiscalYear" [(ngModel)]="fiscalYear"
+          mask="0000" [allowNegativeNumbers]="false">
+      </div>
+      <div class="col-3">
+        <label for="reportMonth" class="form-label font-12">ماه گزارش:</label>
+        <select class="form-select" [(ngModel)]="reportMonth" id="reportMonth">
+          <option [value]="null">همه</option>
+          <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+        </select>
+      </div>
+      <div class="col-3 d-flex align-items-end justify-content-end">
+        <button class="btn btn-primary btn-sm" (click)="searchTable()">جستجو</button>
+      </div>
+    </div>
+  </app-search-filter>
+  <hr class="my-4" />
+  <!-- Table content -->
+  <app-table [data]="reports" [KeyName]="KeyName" [columnName]="columnName"
+    [isLoading]="isLoading" [totalRecords]="totalRecords" [pageSize]="reportFilter.pageSize" [(page)]="reportFilter.pageNumber"
+    (changePageEvent)="changePage($event)" (changeSizeEvent)="changeSize($event)"
+    (sortEvent)="handleSort($event)" (clickOnRow)="openViewPage($event)">
+  </app-table>
+</div>
