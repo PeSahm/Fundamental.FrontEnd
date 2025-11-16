@@ -130,7 +130,7 @@
               <tr *ngFor="let item of detail.financingDetails"
                   [class.summary-row]="isSummaryRow(item.rowCode)"
                   [class.data-row]="isDataRow(item.rowCode)">
-                <td class="text-end">{{ item.financingSource }}</td>
+                <td class="text-end">{{ item.financingSource || 'جمع' }}</td>
                 <td class="text-center">{{ item.interestRate | number:'1.2-2' }}</td>
                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.beginningBalance))" tooltipClass="tooltip-class">{{ item.beginningBalance | number:'1.0-0' }}</span></td>
                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.endingBalanceRial))" tooltipClass="tooltip-class">{{ item.endingBalanceRial | number:'1.0-0' }}</span></td>
@@ -169,7 +169,7 @@
               <tr *ngFor="let item of detail.financingDetailsEstimated"
                   [class.summary-row]="isSummaryRow(item.rowCode)"
                   [class.data-row]="isDataRow(item.rowCode)">
-                <td class="text-end">{{ item.financingSource }}</td>
+                <td class="text-end">{{ item.financingSource || 'جمع' }}</td>
                 <td class="text-center">{{ item.interestRate | number:'1.2-2' }}</td>
                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.beginningBalance))" tooltipClass="tooltip-class">{{ item.beginningBalance | number:'1.0-0' }}</span></td>
                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.endingBalanceRial))" tooltipClass="tooltip-class">{{ item.endingBalanceRial | number:'1.0-0' }}</span></td>
