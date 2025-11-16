@@ -4,7 +4,8 @@ import { ApiService } from './api.service';
 import { API_ENDPOINTS } from '../config/api-endpoints';
 import {
   Paginated,
-  InterpretativeReportSummaryPage5ListItem
+  InterpretativeReportSummaryPage5ListItem,
+  InterpretativeReportSummaryPage5Detail
 } from '../models/interpretative-report-summary-page5';
 
 @Injectable({
@@ -42,8 +43,8 @@ export class InterpretativeReportSummaryPage5Service {
     );
   }
 
-  getById(id: string): Observable<any> {
-    return this.apiService.get(
+  getById(id: string): Observable<InterpretativeReportSummaryPage5Detail> {
+    return this.apiService.get<InterpretativeReportSummaryPage5Detail>(
       `${API_ENDPOINTS.MANUFACTURING.INTERPRETATIVE_REPORT_SUMMARY_PAGE5}/${id}`
     );
   }
