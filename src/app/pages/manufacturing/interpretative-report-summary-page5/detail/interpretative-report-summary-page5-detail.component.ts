@@ -61,7 +61,10 @@ export class InterpretativeReportSummaryPage5DetailComponent implements OnInit, 
   }
 
   getMonthName(month: number): string {
-    return this.months[month - 1] || '';
+    if (!isFinite(month)) return '';
+    const roundedMonth = Math.round(month);
+    if (roundedMonth < 1 || roundedMonth > this.months.length) return '';
+    return this.months[roundedMonth - 1];
   }
 
   goBack(): void {
