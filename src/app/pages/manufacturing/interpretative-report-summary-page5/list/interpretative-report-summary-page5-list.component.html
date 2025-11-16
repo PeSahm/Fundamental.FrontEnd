@@ -25,7 +25,7 @@
   <hr class="my-4" />
   <!-- Table content -->
   <app-table [data]="reports" [KeyName]="KeyName" [columnName]="columnName"
-    [isLoading]="isLoading" [totalRecords]="totalRecords" [pageSize]="pageSize" [(page)]="page"
+    [isLoading]="isLoading" [totalRecords]="totalRecords" [pageSize]="reportFilter.pageSize" [(page)]="reportFilter.pageNumber"
     (changePageEvent)="changePage($event)" (changeSizeEvent)="changeSize($event)"
     (sortEvent)="handleSort($event)" (clickOnRow)="openViewPage($event)">
   </app-table>

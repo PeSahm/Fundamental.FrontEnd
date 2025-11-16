@@ -17,9 +17,7 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
     pageSize: 20,
     pageNumber: 1
   };
-  page = 1;
   totalRecords: number = 0;
-  pageSize = 20;
 
   reports: InterpretativeReportSummaryPage5ListItem[] = [];
   isLoading = true;
@@ -106,36 +104,23 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
   searchTable() {
     this.isLoading = true;
     this.reports = [];
-    this.page = 1;
-    this.pageSize = 20;
-    this.reportFilter = {
-      pageNumber: 1,
-      pageSize: 20
-    };
+    this.reportFilter.pageNumber = 1;
+    this.reportFilter.pageSize = 20;
     this.getAllReports();
   }
 
   changePage(e: any) {
     this.isLoading = true;
     this.reports = [];
-    this.page = e;
-    this.reportFilter = {
-      ...this.reportFilter,
-      pageNumber: this.page
-    };
+    this.reportFilter.pageNumber = e;
     this.getAllReports();
   }
 
   changeSize(e: any) {
     this.isLoading = true;
     this.reports = [];
-    this.pageSize = Number(e.target.value);
-    this.page = 1;
-    this.reportFilter = {
-      ...this.reportFilter,
-      pageSize: this.pageSize,
-      pageNumber: 1
-    };
+    this.reportFilter.pageSize = Number(e.target.value);
+    this.reportFilter.pageNumber = 1;
     this.getAllReports();
   }
 
@@ -152,12 +137,8 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
   handleSort(option: any) {
     this.isLoading = true;
     this.reports = [];
-    this.page = 1;
-    this.pageSize = 20;
-    this.reportFilter = {
-      pageNumber: 1,
-      pageSize: 20
-    };
+    this.reportFilter.pageNumber = 1;
+    this.reportFilter.pageSize = 20;
     this.getAllReports();
   }
 
