@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AnnualAssemblyDetail, SessionOrderType, BoardPosition, BoardMembershipType, LegalCompanyType, InspectorType, WageAndGiftFieldType, ProportionedRetainedEarningFieldName } from 'src/app/models/annual-assembly';
 import { AnnualAssemblyService } from 'src/app/services/annual-assembly.service';
 import { AnnualAssemblyEnumService } from 'src/app/services/annual-assembly-enum.service';
+import toToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-annual-assembly-detail',
@@ -98,5 +99,10 @@ export class AnnualAssemblyDetailComponent implements OnInit, OnDestroy {
   formatPercent(value: number | null | undefined): string {
     if (value === null || value === undefined) return '-';
     return value.toFixed(2) + '%';
+  }
+
+  getTomanTooltip(value: number | null | undefined): string {
+    if (value === null || value === undefined) return '';
+    return toToman(value.toString());
   }
 }

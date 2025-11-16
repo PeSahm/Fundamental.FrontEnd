@@ -204,8 +204,8 @@
           <tbody>
             <tr *ngFor="let item of detail.boardMemberWageAndGifts">
               <td>{{item.fieldName || getWageTypeLabel(item.type)}}</td>
-              <td class="text-end">{{formatNumber(item.currentYearValue)}}</td>
-              <td class="text-end">{{formatNumber(item.pastYearValue)}}</td>
+              <td class="text-end" [ngbTooltip]="getTomanTooltip(item.currentYearValue)" placement="top">{{formatNumber(item.currentYearValue)}}</td>
+              <td class="text-end" [ngbTooltip]="getTomanTooltip(item.pastYearValue)" placement="top">{{formatNumber(item.pastYearValue)}}</td>
               <td>{{item.description || '-'}}</td>
             </tr>
             <tr *ngIf="!detail.boardMemberWageAndGifts || detail.boardMemberWageAndGifts.length === 0">
@@ -258,7 +258,7 @@
           <tbody>
             <tr *ngFor="let item of detail.proportionedRetainedEarnings" [ngClass]="{'table-warning fw-bold': item.rowClass === 'ComputationalRow'}">
               <td>{{item.description || getRetainedEarningLabel(item.fieldName)}}</td>
-              <td class="text-end">{{formatNumber(item.yearEndToDateValue)}}</td>
+              <td class="text-end" [ngbTooltip]="getTomanTooltip(item.yearEndToDateValue)" placement="top">{{formatNumber(item.yearEndToDateValue)}}</td>
             </tr>
             <tr *ngIf="!detail.proportionedRetainedEarnings || detail.proportionedRetainedEarnings.length === 0">
               <td colspan="2" class="text-center text-muted">موردی ثبت نشده است</td>
