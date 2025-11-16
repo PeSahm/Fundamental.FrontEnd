@@ -32,6 +32,8 @@ import { NonOperationalIncomeTagModalComponent } from './pages/manufacturing/non
 import { MonthlyActivityDetailComponent } from './pages/manufacturing/monthly-activity-detail/monthly-activity-detail.component';
 import { InterpretativeReportSummaryPage5ListComponent } from './pages/manufacturing/interpretative-report-summary-page5/list/interpretative-report-summary-page5-list.component';
 import { InterpretativeReportSummaryPage5DetailComponent } from './pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component';
+import { AnnualAssemblyListComponent } from './pages/manufacturing/annual-assembly/list/annual-assembly-list.component';
+import { AnnualAssemblyDetailComponent } from './pages/manufacturing/annual-assembly/detail/annual-assembly-detail.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { InterpretativeReportSummaryPage5DetailComponent } from './pages/manufac
     MonthlyActivityDetailComponent,
     InterpretativeReportSummaryPage5ListComponent,
     InterpretativeReportSummaryPage5DetailComponent,
+    AnnualAssemblyListComponent,
+    AnnualAssemblyDetailComponent,
     
   ],
   imports: [

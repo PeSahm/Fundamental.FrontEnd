@@ -1,0 +1,44 @@
+<div class="p-3" *ngIf="detail">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-3"><strong>نماد:</strong> {{detail.symbol}}</div>
+        <div class="col-md-3"><strong>ISIN:</strong> {{detail.isin}}</div>
+        <div class="col-md-3"><strong>سال مالی:</strong> {{detail.fiscalYear}}</div>
+        <div class="col-md-3"><strong>تاریخ مجمع:</strong> {{detail.assemblyDate}}</div>
+        <div class="col-md-3"><strong>نتیجه مجمع:</strong> {{detail.assemblyResultTypeTitle}}</div>
+        <div class="col-md-3"><strong>تاریخ انتشار:</strong> {{detail.publishDate}}</div>
+        <div class="col-md-3"><strong>شماره ردیابی:</strong> {{detail.traceNo}}</div>
+      </div>
+      <div class="mt-3">
+        <a class="btn btn-outline-primary btn-sm" [href]="detail.htmlUrl" target="_blank" rel="noopener noreferrer">مشاهده در CODAL</a>
+        <button class="btn btn-secondary btn-sm ms-2" (click)="goBack()">بازگشت</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="card-header">دستور جلسات</div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm mb-0">
+          <thead>
+            <tr>
+              <th>نوع</th>
+              <th>توضیحات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detail.sessionOrders">
+              <td>{{item.type}}</td>
+              <td>{{item.description || '-'}}</td>
+            </tr>
+            <tr *ngIf="!detail.sessionOrders || detail.sessionOrders.length === 0">
+              <td colspan="2" class="text-center">موردی ثبت نشده است</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

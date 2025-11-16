@@ -16,6 +16,8 @@ import { StatusOfViableCompaniesComponent } from './pages/status-of-viable-compa
 import { MonthlyActivityDetailComponent } from './pages/manufacturing/monthly-activity-detail/monthly-activity-detail.component';
 import { InterpretativeReportSummaryPage5ListComponent } from './pages/manufacturing/interpretative-report-summary-page5/list/interpretative-report-summary-page5-list.component';
 import { InterpretativeReportSummaryPage5DetailComponent } from './pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component';
+import { AnnualAssemblyListComponent } from './pages/manufacturing/annual-assembly/list/annual-assembly-list.component';
+import { AnnualAssemblyDetailComponent } from './pages/manufacturing/annual-assembly/detail/annual-assembly-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -53,6 +55,12 @@ const routes: Routes = [
   },
   {
     path: 'interpretative-report-summary-page5/:id', component: InterpretativeReportSummaryPage5DetailComponent, data: { title: 'جزئیات گزیده گزارش تفسیری صفحه 5' }
+  },
+  {
+    path: 'annual-assembly', component: AnnualAssemblyListComponent, data: { title: 'تصمیمات مجمع عمومی عادی سالیانه' }
+  },
+  {
+    path: 'annual-assembly/:id', component: AnnualAssemblyDetailComponent, data: { title: 'جزئیات تصمیمات مجمع عمومی عادی سالیانه' }
   },
   {
     path: '**',
