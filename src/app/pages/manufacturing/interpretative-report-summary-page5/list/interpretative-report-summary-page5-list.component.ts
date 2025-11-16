@@ -105,7 +105,6 @@ export class InterpretativeReportSummaryPage5ListComponent implements OnInit, On
     this.isLoading = true;
     this.reports = [];
     this.reportFilter.pageNumber = 1;
-    this.reportFilter.pageSize = 20;
     this.getAllReports();
   }
 
