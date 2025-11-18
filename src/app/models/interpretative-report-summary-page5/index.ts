@@ -15,4 +15,4 @@ export * from './miscellaneous-expense-item.model';
 export * from './interpretative-report-description.model';
 export * from './interpretative-report-summary-page5-list-item.model';
 export * from './interpretative-report-summary-page5-detail.model';
-export * from './paginated.model';
+export * from '../shared/paginated.model';
