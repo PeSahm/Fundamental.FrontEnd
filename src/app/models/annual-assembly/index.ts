@@ -3,4 +3,4 @@ export * from './annual-assembly-detail.model';
 export * from './enums';
 export * from './models';
 export * from './types';
-export * from './paginated.model';
+export * from '../shared/paginated.model';
