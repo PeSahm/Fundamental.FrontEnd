@@ -18,6 +18,8 @@ import { InterpretativeReportSummaryPage5ListComponent } from './pages/manufactu
 import { InterpretativeReportSummaryPage5DetailComponent } from './pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component';
 import { AnnualAssemblyListComponent } from './pages/manufacturing/annual-assembly/list/annual-assembly-list.component';
 import { AnnualAssemblyDetailComponent } from './pages/manufacturing/annual-assembly/detail/annual-assembly-detail.component';
+import { ExtraAnnualAssemblyListComponent } from './pages/manufacturing/extra-annual-assembly/list/extra-annual-assembly-list.component';
+import { ExtraAnnualAssemblyDetailComponent } from './pages/manufacturing/extra-annual-assembly/detail/extra-annual-assembly-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -61,6 +63,12 @@ const routes: Routes = [
   },
   {
     path: 'annual-assembly/:id', component: AnnualAssemblyDetailComponent, data: { title: 'جزئیات تصمیمات مجمع عمومی عادی سالیانه' }
+  },
+  {
+    path: 'extra-annual-assembly', component: ExtraAnnualAssemblyListComponent, data: { title: 'تصمیمات مجمع عمومی فوق‌العاده سالیانه' }
+  },
+  {
+    path: 'extra-annual-assembly/:id', component: ExtraAnnualAssemblyDetailComponent, data: { title: 'جزئیات تصمیمات مجمع عمومی فوق‌العاده سالیانه' }
   },
   {
     path: '**',
