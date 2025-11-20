@@ -7,12 +7,12 @@
       </div>
       <div class="col-3">
         <label for="fiscalYear" class="form-label font-12">سال مالی:</label>
-        <input type="input" class="form-control" id="fiscalYear" name="fiscalYear" [(ngModel)]="fiscalYear" mask="0000" [allowNegativeNumbers]="false" />
+        <input type="text" class="form-control" id="fiscalYear" name="fiscalYear" [(ngModel)]="fiscalYear" mask="0000" [allowNegativeNumbers]="false" />
       </div>
       <div class="col-3">
         <label for="reportMonth" class="form-label font-12">ماه گزارش:</label>
         <select class="form-select" [(ngModel)]="reportMonth" id="reportMonth">
-          <option [value]="null">همه</option>
+          <option [ngValue]="null">همه</option>
           <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
         </select>
       </div>
