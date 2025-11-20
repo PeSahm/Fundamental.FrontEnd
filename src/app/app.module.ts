@@ -36,6 +36,8 @@ import { AnnualAssemblyListComponent } from './pages/manufacturing/annual-assemb
 import { AnnualAssemblyDetailComponent } from './pages/manufacturing/annual-assembly/detail/annual-assembly-detail.component';
 import { ExtraAnnualAssemblyListComponent } from './pages/manufacturing/extra-annual-assembly/list/extra-annual-assembly-list.component';
 import { ExtraAnnualAssemblyDetailComponent } from './pages/manufacturing/extra-annual-assembly/detail/extra-annual-assembly-detail.component';
+import { ExtraAssemblyListComponent } from './pages/manufacturing/extra-assembly/list/extra-assembly-list.component';
+import { ExtraAssemblyDetailComponent } from './pages/manufacturing/extra-assembly/detail/extra-assembly-detail.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { ExtraAnnualAssemblyDetailComponent } from './pages/manufacturing/extra-
     AnnualAssemblyDetailComponent,
     ExtraAnnualAssemblyListComponent,
     ExtraAnnualAssemblyDetailComponent,
+    ExtraAssemblyListComponent,
+    ExtraAssemblyDetailComponent,
     
   ],
   imports: [
