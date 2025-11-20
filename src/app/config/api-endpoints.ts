@@ -10,7 +10,8 @@ export const API_ENDPOINTS = {
     MONTHLY_ACTIVITY: 'Manufacturing/monthly-activity',
     STATUS_OF_VIABLE_COMPANIES: 'Manufacturing/status-of-viable-companies',
     INTERPRETATIVE_REPORT_SUMMARY_PAGE5: 'Manufacturing/interpretative-report-summary-page5',
-    ANNUAL_ASSEMBLY: 'Manufacturing/annual-assembly'
+    ANNUAL_ASSEMBLY: 'Manufacturing/annual-assembly',
+    EXTRA_ANNUAL_ASSEMBLY: 'Manufacturing/extra-annual-assembly'
   },
   
   // Statement endpoints
