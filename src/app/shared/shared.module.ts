@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule, NgbTypeaheadModule, NgbAccordionModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Shared Components
 import { TableComponent } from '../components/table/table.component';
@@ -18,10 +18,7 @@ import { SearchFilterComponent } from '../components/search-filter/search-filter
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
-    NgbTypeaheadModule,
-    NgbAccordionModule,
-    NgbPaginationModule
+    NgbModule
   ],
   exports: [
     TableComponent,
@@ -31,10 +28,7 @@ import { SearchFilterComponent } from '../components/search-filter/search-filter
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
-    NgbTypeaheadModule,
-    NgbAccordionModule,
-    NgbPaginationModule
+    NgbModule
   ]
 })
 export class SharedModule { }

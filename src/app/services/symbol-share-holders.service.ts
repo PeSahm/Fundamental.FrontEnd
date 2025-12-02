@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { API_ENDPOINTS } from '../config/api-endpoints';
+import { ApproveShareHoldersCommand } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class SymbolShareHoldersService {
     return this.apiService.post(`${API_ENDPOINTS.SYMBOL_SHARE_HOLDERS}/reject/${id}`, null);
   }
 
-  approveShareHolders(command: any) {
+  approveShareHolders(command: ApproveShareHoldersCommand) {
     return this.apiService.post(`${API_ENDPOINTS.SYMBOL_SHARE_HOLDERS}/approve`, command);
   }
 }
