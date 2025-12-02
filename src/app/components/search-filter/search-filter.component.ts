@@ -7,7 +7,7 @@ import { Component, ElementRef } from '@angular/core';
 })
 export class SearchFilterComponent {
   isSearchBarOpen = true;
-  toggleSearchFilter(el: ElementRef) {
+  toggleSearchFilter(el?: any) {
     this.isSearchBarOpen = !this.isSearchBarOpen;
   }
 
