@@ -17,7 +17,7 @@ export interface ExtraAssemblyShareValueChangeCapital {
 
 export interface ExtraAssemblyIncreaseCapital {
   cashIncoming: number | null; // مطالبات و اوردۀ نقدی (میلیون ریال)
-  retaindedEarning: number | null; // سود انباشته (میلیون ریال) - typo in API
+  retainedEarning: number | null; // سود انباشته (میلیون ریال) - typo in API
   reserves: number | null; // اندوخته (میلیون ریال)
   revaluationSurplus: number | null; // مازاد تجدید ارزیابی دارایی ها (میلیون ریال)
   sarfSaham: number | null; // صرف سهام (میلیون ریال)
