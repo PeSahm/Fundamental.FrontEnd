@@ -9,7 +9,7 @@ import { Component, ElementRef, ViewEncapsulation } from '@angular/core';
 })
 export class SidebarComponent {
   isSearchBarOpen = true;
-  toggleSearchFilter(el: ElementRef) {
+  toggleSearchFilter(el?: any) {
     this.isSearchBarOpen = !this.isSearchBarOpen;
   }
 

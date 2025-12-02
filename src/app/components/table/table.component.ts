@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import convertToToman from 'src/app/utils/toToman';
+import { ColumnName } from 'src/app/models/models';
 
 @Component({
   selector: 'app-table',
@@ -8,11 +9,11 @@ import convertToToman from 'src/app/utils/toToman';
 })
 export class TableComponent implements OnInit {
 
-  @Input() data: any[] = [];
-  @Input() children: any[] = [];
+  @Input() data: any[] | null = [];
+  @Input() children: any[] | null = [];
   @Input() KeyName: any[] = [];
   @Input() KeyNameChild: any[] = [];
-  @Input() columnName: string[] = [];
+  @Input() columnName: any[] = [];
   @Input() columnNameChild: string[] = [];
   @Input() isLoading: boolean = false;
   @Input() isLoadingChild: boolean = false;
@@ -20,6 +21,7 @@ export class TableComponent implements OnInit {
   @Input() pageSize = 0;
   @Input() page = 0;
   @Input() isExpandable = false;
+  @Output() pageChange = new EventEmitter<number>();
   @Output() clickOnRow = new EventEmitter();
   @Output() changePageEvent = new EventEmitter();
   @Output() changeSizeEvent = new EventEmitter();
@@ -39,6 +41,7 @@ export class TableComponent implements OnInit {
     this.clickOnRow.emit(item);
   }
   changePage(item: any) {
+    this.pageChange.emit(item);
     this.changePageEvent.emit(item);
   }
   changeSize(item: any) {

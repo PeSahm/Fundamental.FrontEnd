@@ -18,4 +18,9 @@ export interface FinancingDetailItem {
   currencyTypeAtEndOfPeriod: string; // نوع ارز پایان دوره
   loanRepaymentTerm: string; // مدت بازپرداخت وام
   financialExpense: number; // هزینه مالی
+  longTerm?: number; // Optional for template compatibility
+  shortTerm?: number; // Optional for template compatibility
+  endingBalanceRial?: number; // Optional for template compatibility
+  foreignRialEquivalent?: number; // Optional for template compatibility
+  beginningBalance?: number; // Optional for template compatibility
 }

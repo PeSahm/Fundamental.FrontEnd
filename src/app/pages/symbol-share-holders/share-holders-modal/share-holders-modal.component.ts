@@ -10,10 +10,10 @@ import { SymbolShareHoldersService } from 'src/app/services/symbol-share-holders
 })
 export class ShareHoldersModalComponent implements OnInit {
 
-  @Input() rowItem;
+  @Input() rowItem: any;
   reviewStatus = "1";
   isApproved = true;
-  selectedSymbol;
+  selectedSymbol: any = null;
   constructor(
     public activeModal: NgbActiveModal,
     private symbolShareHolderService: SymbolShareHoldersService,
@@ -29,7 +29,7 @@ export class ShareHoldersModalComponent implements OnInit {
     this.isApproved = parseInt(this.reviewStatus) === 1 ? true : false;
   }
 
-  registerReviewStatus(isApproved) {
+  registerReviewStatus(isApproved: boolean) {
     if (isApproved) {
       this.symbolShareHolderService.approveShareHolders({
         id: this.rowItem?.id,

@@ -10,4 +10,6 @@ export interface OtherOperatingIncomeItem {
   currentPeriodAmount: number; // مبالغ دوره جاری
   lastYearSamePeriodAmount: number; // مبالغ مدت مشابه سال قبل
   fromStartOfYearToEndOfPeriodAmount: number; // مبالغ از ابتدای سال تا پایان دوره
+  previousPeriodAmount?: number; // Optional for template compatibility
+  estimatedPeriodAmount?: number; // Optional for template compatibility
 }

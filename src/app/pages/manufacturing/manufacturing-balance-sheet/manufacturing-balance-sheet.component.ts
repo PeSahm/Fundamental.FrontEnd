@@ -40,7 +40,7 @@ export class ManufacturingBalanceSheetComponent implements OnInit {
     this.getAllBalanceSheetSort();
   }
   get balanceSheetFormSubmitted() {
-    return this.balanceSheetForm?.controls;
+    return this.balanceSheetForm?.controls as { [key: string]: any };
   }
   get items() {
     return this.balanceSheetForm?.get('items') as FormArray;

@@ -10,4 +10,6 @@ export interface OtherNonOperatingExpenseItem {
   currentPeriodAmount: number;
   lastYearSamePeriodAmount: number;
   fromStartOfYearToEndOfPeriodAmount: number;
+  previousPeriodAmount?: number; // Optional for template compatibility
+  estimatedPeriodAmount?: number; // Optional for template compatibility
 }

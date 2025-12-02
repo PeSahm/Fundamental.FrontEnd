@@ -9,7 +9,7 @@ import { ManufacturingService } from 'src/app/services/manufacturing.service';
   styleUrls: ['./non-operational-income-tag-modal.component.scss']
 })
 export class NonOperationalIncomeTagModalComponent implements OnInit {
-  @Input() rowItem;
+  @Input() rowItem: any;
   tag = '';
   constructor(
     public activeModal: NgbActiveModal,

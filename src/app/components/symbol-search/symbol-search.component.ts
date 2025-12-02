@@ -21,7 +21,6 @@ export class SymbolSearchComponent implements OnInit, ControlValueAccessor {
   searching = false;
   searchFailed = false;
   @Output() selectSearchSymbol = new EventEmitter();
-  @Input() formControlName: FormControlName | undefined;
   @Input() hasFormControl: boolean = false;
   @Input() isMulti: boolean = false;
   @ViewChild('input') searchInput!: ElementRef;
@@ -71,7 +70,7 @@ export class SymbolSearchComponent implements OnInit, ControlValueAccessor {
 
 
 
-  search = (text$: Observable<string>) =>
+  search = (text$: Observable<string>): Observable<readonly any[]> =>
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -83,9 +82,9 @@ export class SymbolSearchComponent implements OnInit, ControlValueAccessor {
             catchError(() => of<SearchSymbol>({ success: false, data: [], error: null }))
           )
       ),
-      switchMap(result => of(result)),
+      switchMap(result => of((result as SearchSymbol).data || [])),
       tap(() => (this.searching = false)),
     );
-  resultFormatter = (result: SymbolDetail) => result.name + ' - ' + result.title;
-  inputFormatter = (result: SymbolDetail) => result.name;
+  resultFormatter = (result: SymbolDetail): string => result.name + ' - ' + result.title;
+  inputFormatter = (result: SymbolDetail): string => result.name || '';
 }

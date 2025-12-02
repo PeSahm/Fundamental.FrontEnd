@@ -31,8 +31,8 @@ export class GetManufacturingBalanceSheetComponent implements OnInit, OnDestroy 
   isLoading = true;
   isLoadingChild = false;
   destroy$ = new Subject<void>();
-  balanceSheetItems: ManufacturingBalanceSheet[] | null;
-  balanceSheetChildren: ManufacturingBalanceSheetDetails[] | null;
+  balanceSheetItems: ManufacturingBalanceSheet[] | null = null;
+  balanceSheetChildren: ManufacturingBalanceSheetDetails[] | null = null;
   totalRecords: number = 0;
 
   constructor(

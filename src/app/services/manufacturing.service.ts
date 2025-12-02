@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map, of } from "rxjs";
-import { DetailResult, ManufacturingBalanceSheet, ManufacturingBalanceSheetDetails, Result } from "../models/models";
+import { DetailResult, ManufacturingBalanceSheet, ManufacturingBalanceSheetDetails, Result, BalanceSheetQueryCommand, BalanceSheetDetailCommand } from "../models/models";
 import { ApiService } from './api.service';
 import { API_ENDPOINTS } from '../config/api-endpoints';
 
@@ -15,14 +15,14 @@ export class ManufacturingService {
         return this.apiService.post(API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET, command);
     }
 
-    getAllManufacturingBalanceSheet(command): Observable<Result<ManufacturingBalanceSheet[]>> {
+    getAllManufacturingBalanceSheet(command: BalanceSheetQueryCommand): Observable<Result<ManufacturingBalanceSheet[]>> {
         return this.apiService.get<Result<ManufacturingBalanceSheet[]>>(API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET, command)
             .pipe(
                 catchError((err) => of())
             );
     }
 
-    getManufacturingBalanceSheetDetail(command): Observable<DetailResult<ManufacturingBalanceSheetDetails[]>> {
+    getManufacturingBalanceSheetDetail(command: BalanceSheetDetailCommand): Observable<DetailResult<ManufacturingBalanceSheetDetails[]>> {
         return this.apiService.get<DetailResult<ManufacturingBalanceSheetDetails[]>>(`${API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET}/${command.traceNo}/${command.fiscalYear}/${command.reportMonth}/details`)
             .pipe(
                 catchError((err) => of())

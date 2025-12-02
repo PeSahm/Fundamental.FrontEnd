@@ -12,7 +12,7 @@ import { SortOption } from 'src/app/models/models';
   styleUrls: ['./status-of-viable-companies.component.scss']
 })
 export class StatusOfViableCompaniesComponent implements OnInit {
-  selectedSymbol;
+  selectedSymbol: any = null;
   reviewStatus = "1";
   // source;
   reportFilter = {
@@ -145,7 +145,7 @@ export class StatusOfViableCompaniesComponent implements OnInit {
   }
 
 
-  openStatusModal(rowItem) {
+  openStatusModal(rowItem: any) {
     const modalRef = this.modalService.open(ViableCompanyReviewModalComponent, { size: 'lg' });
     modalRef.componentInstance.rowItem = rowItem;
     modalRef.closed.subscribe(data => {

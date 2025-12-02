@@ -129,6 +129,28 @@ export interface DetailRow<T>{
   rowData: T
 }
 
+// Command interfaces for services
+export interface BalanceSheetQueryCommand {
+  pageSize?: number;
+  pageNumber?: number;
+  year?: number;
+  reportMonth?: number;
+  IsinList?: string[];
+  traceNo?: number;
+  OrderBy?: string;
+}
+
+export interface BalanceSheetDetailCommand {
+  traceNo?: number;
+  fiscalYear?: number;
+  reportMonth?: number;
+}
+
+export interface ApproveShareHoldersCommand {
+  id: string;
+  shareHolderIsin: string;
+}
+
 
 
 
