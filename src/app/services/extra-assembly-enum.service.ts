@@ -15,8 +15,12 @@ export class ExtraAssemblyEnumService {
 
   getCapitalIncreaseTypeLabel(type: number): string {
     const labels: Record<number, string> = {
-      0: 'قطعی',
-      1: 'در اختیار هیئت‌مدیره'
+      0: 'نقدی',
+      1: 'غیرنقدی',
+      2: 'از اندوخته‌ها',
+      3: 'از سود انباشته',
+      4: 'ترکیبی',
+      5: 'نقدی با حق تقدم'
     };
     return labels[type] || 'نامشخص';
   }
