@@ -40,7 +40,7 @@ export class ManufacturingIncomeStatementComponent implements OnInit {
     this.getAllIncomeStatementSort();
   }
   get IncomeStatementFormSubmitted() {
-    return this.incomeStatementForm?.controls;
+    return this.incomeStatementForm?.controls as { [key: string]: any };
   }
   get items() {
     return this.incomeStatementForm?.get('items') as FormArray;

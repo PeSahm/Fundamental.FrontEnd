@@ -56,7 +56,7 @@ export class SalesReportComponent implements OnInit {
   }
 
   get salesFormSubmitted() {
-    return this.salesForm?.controls;
+    return this.salesForm?.controls as { [key: string]: any };
   }
 
 

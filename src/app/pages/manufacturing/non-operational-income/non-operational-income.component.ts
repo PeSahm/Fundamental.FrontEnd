@@ -179,7 +179,7 @@ export class NonOperationalIncomeComponent implements OnInit {
       })
   }
 
-  openAddTagModal(rowItem) {
+  openAddTagModal(rowItem: any) {
     const modalRef = this.modalService.open(NonOperationalIncomeTagModalComponent, { size: 'lg' });
     modalRef.componentInstance.rowItem = rowItem;
     modalRef.result.then((data) => {

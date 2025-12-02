@@ -12,7 +12,7 @@ import { ShareHoldersModalComponent } from './share-holders-modal/share-holders-
 
 
 export class SymbolShareHoldersComponent implements OnInit {
-  selectedSymbol;
+  selectedSymbol: any = null;
   reviewStatus = "1";
   // source;
   reportFilter = {
@@ -23,7 +23,7 @@ export class SymbolShareHoldersComponent implements OnInit {
   page = 1;
   totalRecords: number = 0;
   pageSize = 20;
-  symbolShareHoldersItems;
+  symbolShareHoldersItems: any[] = [];
   KeyName: any[] = [];
   KeyNameChild: any[] = [];
   columnName: any[] = [];
@@ -143,7 +143,7 @@ export class SymbolShareHoldersComponent implements OnInit {
     this.getAllSymbolShareHolders();
   }
 
-  openStatusModal(rowItem) {
+  openStatusModal(rowItem: any) {
     const modalRef = this.modalService.open(ShareHoldersModalComponent, { size: 'lg' });
     modalRef.componentInstance.rowItem = rowItem;
     modalRef.closed.subscribe(data => {

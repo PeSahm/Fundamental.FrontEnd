@@ -10,4 +10,6 @@ export interface MiscellaneousExpenseItem {
   currentPeriodAmount: number;
   lastYearSamePeriodAmount: number;
   fromStartOfYearToEndOfPeriodAmount: number;
+  previousPeriodAmount?: number; // Optional for template compatibility
+  estimatedPeriodAmount?: number; // Optional for template compatibility
 }

@@ -68,32 +68,32 @@
         <div class=" col-4 my-4">
             <label for="asset" class="form-label"> دارایی:</label>
             <input type="input" class="form-control" id="asset" name="asset" formControlName="asset"
-                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.asset.errors }">
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted?.['asset']?.errors }">
         </div>
         <div class=" col-4 ">
             <label for="ownersEquity" class="form-label"> حقوق مالکانه:</label>
             <input type="input" class="form-control" id="ownersEquity" name="ownersEquity"
                 formControlName="ownersEquity"
-                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.ownersEquity.errors }">
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted?.['ownersEquity']?.errors }">
         </div>
         <div class=" col-4">
             <label for="receivables" class="form-label"> دريافتني‌هاي تجاري و ساير دريافتني‌ها:</label>
             <input type="input" class="form-control" id="receivables" name="receivables" formControlName="receivables"
-                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.receivables.errors }">
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted?.['receivables']?.errors }">
         </div>
 
         <div class=" col-4">
             <label for="bankInterestIncome" class="form-label"> سود سپرده بانکی :</label>
             <input type="input" class="form-control" id="bankInterestIncome" name="bankInterestIncome"
                 formControlName="bankInterestIncome"
-                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.bankInterestIncome.errors }">
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted?.['bankInterestIncome']?.errors }">
 
         </div>
         <div class=" col-4 my-4">
             <label for="investmentIncome" class="form-label"> درآمد حاصل از سرمایه گذاری:</label>
             <input type="input" class="form-control" id="investmentIncome" name="investmentIncome"
                 formControlName="investmentIncome"
-                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.investmentIncome.errors }">
+                [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted?.['investmentIncome']?.errors }">
 
         </div>
 

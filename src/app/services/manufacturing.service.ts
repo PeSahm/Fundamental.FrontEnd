@@ -15,14 +15,14 @@ export class ManufacturingService {
         return this.apiService.post(API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET, command);
     }
 
-    getAllManufacturingBalanceSheet(command): Observable<Result<ManufacturingBalanceSheet[]>> {
+    getAllManufacturingBalanceSheet(command: any): Observable<Result<ManufacturingBalanceSheet[]>> {
         return this.apiService.get<Result<ManufacturingBalanceSheet[]>>(API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET, command)
             .pipe(
                 catchError((err) => of())
             );
     }
 
-    getManufacturingBalanceSheetDetail(command): Observable<DetailResult<ManufacturingBalanceSheetDetails[]>> {
+    getManufacturingBalanceSheetDetail(command: any): Observable<DetailResult<ManufacturingBalanceSheetDetails[]>> {
         return this.apiService.get<DetailResult<ManufacturingBalanceSheetDetails[]>>(`${API_ENDPOINTS.MANUFACTURING.BALANCE_SHEET}/${command.traceNo}/${command.fiscalYear}/${command.reportMonth}/details`)
             .pipe(
                 catchError((err) => of())

@@ -13,11 +13,11 @@ export class SymbolShareHoldersService {
     return this.apiService.get(API_ENDPOINTS.SYMBOL_SHARE_HOLDERS, command);
   }
 
-  rejectShareHolders(id) {
+  rejectShareHolders(id: string) {
     return this.apiService.post(`${API_ENDPOINTS.SYMBOL_SHARE_HOLDERS}/reject/${id}`, null);
   }
 
-  approveShareHolders(command) {
+  approveShareHolders(command: any) {
     return this.apiService.post(`${API_ENDPOINTS.SYMBOL_SHARE_HOLDERS}/approve`, command);
   }
 }

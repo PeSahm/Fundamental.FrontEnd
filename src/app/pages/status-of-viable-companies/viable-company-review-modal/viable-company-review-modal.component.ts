@@ -10,10 +10,10 @@ import { StatusOfViableCompanyService } from 'src/app/services/status-of-viable-
 })
 export class ViableCompanyReviewModalComponent implements OnInit {
 
-  @Input() rowItem;
+  @Input() rowItem: any;
   reviewStatus = "";
   isApproved = true;
-  selectedSymbol;
+  selectedSymbol: any = null;
   percentage = '';
   constructor(
     public activeModal: NgbActiveModal,
@@ -30,7 +30,7 @@ export class ViableCompanyReviewModalComponent implements OnInit {
     this.isApproved = parseInt(this.reviewStatus) === 1 ? true : false;
   }
 
-  registerReviewStatus(isApproved) {
+  registerReviewStatus(isApproved: boolean) {
     if (isApproved) {
       if (this.selectedSymbol?.isin && this.reviewStatus) {
         this.statusOfViableCompanyService.approved({

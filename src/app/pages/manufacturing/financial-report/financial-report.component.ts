@@ -62,7 +62,7 @@ export class FinancialReportComponent implements OnInit {
 
   }
   get statementsFormSubmitted() {
-    return this.statementsForm?.controls;
+    return this.statementsForm?.controls as { [key: string]: any };
   }
 
   registerStatementForm() {

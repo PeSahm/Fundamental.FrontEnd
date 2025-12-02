@@ -21,7 +21,6 @@ export class SymbolSearchComponent implements OnInit, ControlValueAccessor {
   searching = false;
   searchFailed = false;
   @Output() selectSearchSymbol = new EventEmitter();
-  @Input() formControlName: FormControlName | undefined;
   @Input() hasFormControl: boolean = false;
   @Input() isMulti: boolean = false;
   @ViewChild('input') searchInput!: ElementRef;
