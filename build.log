@@ -1,0 +1,1145 @@
+
+> screener@0.0.0 build
+> ng build
+
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+✔ Browser application bundle generation complete.
+
+Warning: /mnt/storage/repos/personal/Fundamental.FrontEnd/src/app/pages/manufacturing/monthly-activity-detail/monthly-activity-detail.component.scss exceeded maximum budget. Budget 2.00 kB was not met by 412 bytes with a total of 2.40 kB.
+
+
+
+Error: src/app/components/search-filter/search-filter.component.html:3:37 - error TS2345: Argument of type 'HTMLDivElement' is not assignable to parameter of type 'ElementRef<any>'.
+
+3         (click)="toggleSearchFilter(searchFilter)">
+                                      ~~~~~~~~~~~~
+
+  src/app/components/search-filter/search-filter.component.ts:5:16
+    5   templateUrl: './search-filter.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SearchFilterComponent.
+
+
+Error: src/app/components/sidebar/sidebar.component.html:18:49 - error TS2345: Argument of type 'HTMLDivElement' is not assignable to parameter of type 'ElementRef<any>'.
+  Property 'nativeElement' is missing in type 'HTMLDivElement' but required in type 'ElementRef<any>'.
+
+18                     (click)="toggleSearchFilter(searchFilter)">
+                                                   ~~~~~~~~~~~~
+
+  src/app/components/sidebar/sidebar.component.ts:5:16
+    5   templateUrl: './sidebar.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SidebarComponent.
+
+
+Error: src/app/components/symbol-search/symbol-search.component.html:1:9 - error TS2322: Type '(text$: Observable<string>) => Observable<SymbolDetail[] | SearchSymbol>' is not assignable to type 'OperatorFunction<string, readonly any[]>'.
+  Type 'Observable<SymbolDetail[] | SearchSymbol>' is not assignable to type 'Observable<readonly any[]>'.
+    Type 'SymbolDetail[] | SearchSymbol' is not assignable to type 'readonly any[]'.
+      Type 'SearchSymbol' is missing the following properties from type 'readonly any[]': length, concat, join, slice, and 20 more.
+
+1 <input [ngbTypeahead]="search" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter"
+          ~~~~~~~~~~~~
+
+  src/app/components/symbol-search/symbol-search.component.ts:9:16
+    9   templateUrl: './symbol-search.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SymbolSearchComponent.
+
+
+Error: src/app/components/symbol-search/symbol-search.component.html:1:69 - error TS2322: Type '(result: SymbolDetail) => string | undefined' is not assignable to type '(item: any) => string'.
+  Type 'string | undefined' is not assignable to type 'string'.
+    Type 'undefined' is not assignable to type 'string'.
+
+1 <input [ngbTypeahead]="search" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter"
+                                                                      ~~~~~~~~~~~~~~
+
+  src/app/components/symbol-search/symbol-search.component.ts:9:16
+    9   templateUrl: './symbol-search.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SymbolSearchComponent.
+
+
+Error: src/app/components/table/table.component.html:7:92 - error TS2339: Property 'hasSort' does not exist on type 'string'.
+
+7                     <th *ngFor="let item of columnName" [ngClass]="{'cursor-pointer': item.hasSort}" class="col p-3"
+                                                                                             ~~~~~~~
+
+  src/app/components/table/table.component.ts:6:16
+    6   templateUrl: './table.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component TableComponent.
+
+
+Error: src/app/components/table/table.component.html:9:43 - error TS2339: Property 'hasSort' does not exist on type 'string'.
+
+9                         <span *ngIf="item.hasSort">
+                                            ~~~~~~~
+
+  src/app/components/table/table.component.ts:6:16
+    6   templateUrl: './table.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component TableComponent.
+
+
+Error: src/app/components/table/table.component.html:10:61 - error TS2339: Property 'name' does not exist on type 'string'.
+
+10                             <i *ngIf="sortedColumn === item.name && sortOrder === 'asc'; else desc"
+                                                               ~~~~
+
+  src/app/components/table/table.component.ts:6:16
+    6   templateUrl: './table.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component TableComponent.
+
+
+Error: src/app/components/table/table.component.html:13:65 - error TS2339: Property 'name' does not exist on type 'string'.
+
+13                                 <i *ngIf="sortedColumn === item.name" class="fa fa-sort-amount-desc"
+                                                                   ~~~~
+
+  src/app/components/table/table.component.ts:6:16
+    6   templateUrl: './table.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component TableComponent.
+
+
+Error: src/app/components/table/table.component.html:17:32 - error TS2339: Property 'title' does not exist on type 'string'.
+
+17                         {{item.title}}
+                                  ~~~~~
+
+  src/app/components/table/table.component.ts:6:16
+    6   templateUrl: './table.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component TableComponent.
+
+
+Error: src/app/pages/manufacturing/annual-assembly/list/annual-assembly-list.component.html:32:7 - error NG8007: The property and event halves of the two-way binding 'page' are not bound to the same target.
+            Find more
+
+Error: src/app/pages/manufacturing/extra-annual-assembly/list/extra-annual-assembly-list.component.html:32:7 - error NG8007: The property and event halves of the two-way binding 'page' are not bound to the same target.
+            Find more
+
+Error: src/app/pages/manufacturing/extra-assembly/list/extra-assembly-list.component.html:32:7 - error NG8007: The property and event halves of the two-way binding 'page' are not bound to the same target.
+            Find more
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:5:32 - error TS2322: Type 'string' is not assignable to type 'FormControlName'.
+
+5             <app-symbol-search formControlName="selectedSymbol"></app-symbol-search>
+                                 ~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:10:100 - error TS2532: Object is possibly 'undefined'.
+
+10                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.traceNo.errors }"
+                                                                                                      ~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:10:100 - error TS4111: Property 'traceNo' comes from an index signature, so it must be accessed with ['traceNo'].
+
+10                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.traceNo.errors }"
+                                                                                                      ~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:17:100 - error TS2532: Object is possibly 'undefined'.
+
+17                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.uri.errors }">
+                                                                                                      ~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:17:100 - error TS4111: Property 'uri' comes from an index signature, so it must be accessed with ['uri'].
+
+17                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.uri.errors }">
+                                                                                                      ~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:22:100 - error TS2532: Object is possibly 'undefined'.
+
+22                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.fiscalYear.errors }"
+                                                                                                      ~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:22:100 - error TS4111: Property 'fiscalYear' comes from an index signature, so it must be accessed with ['fiscalYear'].
+
+22                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.fiscalYear.errors }"
+                                                                                                      ~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:30:100 - error TS2532: Object is possibly 'undefined'.
+
+30                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.yearEndMonth.errors }">
+                                                                                                      ~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:30:100 - error TS4111: Property 'yearEndMonth' comes from an index signature, so it must be accessed with ['yearEndMonth'].
+
+30                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.yearEndMonth.errors }">
+                                                                                                      ~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:35:100 - error TS2532: Object is possibly 'undefined'.
+
+35                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.reportMonth.errors }"
+                                                                                                      ~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:35:100 - error TS4111: Property 'reportMonth' comes from an index signature, so it must be accessed with ['reportMonth'].
+
+35                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.reportMonth.errors }"
+                                                                                                      ~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:42:100 - error TS2532: Object is possibly 'undefined'.
+
+42                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.operatingIncome.errors }">
+                                                                                                      ~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:42:100 - error TS4111: Property 'operatingIncome' comes from an index signature, so it must be accessed with ['operatingIncome'].
+
+42                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.operatingIncome.errors }">
+                                                                                                      ~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:47:100 - error TS2532: Object is possibly 'undefined'.
+
+47                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.grossProfit.errors }"
+                                                                                                      ~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:47:100 - error TS4111: Property 'grossProfit' comes from an index signature, so it must be accessed with ['grossProfit'].
+
+47                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.grossProfit.errors }"
+                                                                                                      ~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:54:100 - error TS2532: Object is possibly 'undefined'.
+
+54                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.operatingProfit.errors }">
+                                                                                                      ~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:54:100 - error TS4111: Property 'operatingProfit' comes from an index signature, so it must be accessed with ['operatingProfit'].
+
+54                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.operatingProfit.errors }">
+                                                                                                      ~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:59:100 - error TS2532: Object is possibly 'undefined'.
+
+59                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.netProfit.errors }"
+                                                                                                      ~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:59:100 - error TS4111: Property 'netProfit' comes from an index signature, so it must be accessed with ['netProfit'].
+
+59                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.netProfit.errors }"
+                                                                                                      ~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:65:100 - error TS2532: Object is possibly 'undefined'.
+
+65                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.expense.errors }"
+                                                                                                      ~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:65:100 - error TS4111: Property 'expense' comes from an index signature, so it must be accessed with ['expense'].
+
+65                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.expense.errors }"
+                                                                                                      ~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:71:100 - error TS2532: Object is possibly 'undefined'.
+
+71                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.asset.errors }">
+                                                                                                      ~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:71:100 - error TS4111: Property 'asset' comes from an index signature, so it must be accessed with ['asset'].
+
+71                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.asset.errors }">
+                                                                                                      ~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:77:100 - error TS2532: Object is possibly 'undefined'.
+
+77                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.ownersEquity.errors }">
+                                                                                                      ~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:77:100 - error TS4111: Property 'ownersEquity' comes from an index signature, so it must be accessed with ['ownersEquity'].
+
+77                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.ownersEquity.errors }">
+                                                                                                      ~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:82:100 - error TS2532: Object is possibly 'undefined'.
+
+82                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.receivables.errors }">
+                                                                                                      ~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:82:100 - error TS4111: Property 'receivables' comes from an index signature, so it must be accessed with ['receivables'].
+
+82                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.receivables.errors }">
+                                                                                                      ~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:89:100 - error TS2532: Object is possibly 'undefined'.
+
+89                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.bankInterestIncome.errors }">
+                                                                                                      ~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:89:100 - error TS4111: Property 'bankInterestIncome' comes from an index signature, so it must be accessed with ['bankInterestIncome'].
+
+89                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.bankInterestIncome.errors }">
+                                                                                                      ~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:96:100 - error TS2532: Object is possibly 'undefined'.
+
+96                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.investmentIncome.errors }">
+                                                                                                      ~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/financial-report/financial-report.component.html:96:100 - error TS4111: Property 'investmentIncome' comes from an index signature, so it must be accessed with ['investmentIncome'].
+
+96                 [ngClass]="{ 'error-validation': isStatementsFormSubmit && statementsFormSubmitted.investmentIncome.errors }">
+                                                                                                      ~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/financial-report/financial-report.component.ts:12:16
+    12   templateUrl: './financial-report.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component FinancialReportComponent.
+
+
+Error: src/app/pages/manufacturing/get-financial-report/get-financial-report.component.html:28:67 - error NG8007: The property and event halves of the two-way binding 'page' are not bound to the same target.
+            Find more
+
+Error: src/app/pages/manufacturing/get-income-statement/get-income-statement.component.html:33:60 - error NG8007: The property and event halves of the two-way binding 'page' are not bound to the same target.
+            Find more
+
+Error: src/app/pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component.html:31:17 - error TS2322: Type 'ManufacturingBalanceSheet[] | null' is not assignable to type 'any[]'.
+  Type 'null' is not assignable to type 'any[]'.
+
+31     <app-table [data]="balanceSheetItems" [KeyName]="KeyName" [columnName]="columnName" [isLoading]="isLoading"
+                   ~~~~
+
+  src/app/pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component.ts:8:16
+    8   templateUrl: './get-manufacturing-balance-sheet.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component GetManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component.html:31:64 - error TS2322: Type 'ColumnName[]' is not assignable to type 'string[]'.
+  Type 'ColumnName' is not assignable to type 'string'.
+
+31     <app-table [data]="balanceSheetItems" [KeyName]="KeyName" [columnName]="columnName" [isLoading]="isLoading"
+                                                                  ~~~~~~~~~~
+
+  src/app/pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component.ts:8:16
+    8   templateUrl: './get-manufacturing-balance-sheet.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component GetManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component.html:32:63 - error NG8007: The property and event halves of the two-way binding 'page' are not bound to the same target.
+            Find more
+
+Error: src/app/pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component.html:34:10 - error TS2322: Type 'ManufacturingBalanceSheetDetails[] | null' is not assignable to type 'any[]'.
+  Type 'null' is not assignable to type 'any[]'.
+
+34         [children]="balanceSheetChildren" [columnNameChild]="columnNameChild" [KeyNameChild]="KeyNameChild"
+            ~~~~~~~~
+
+  src/app/pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component.ts:8:16
+    8   templateUrl: './get-manufacturing-balance-sheet.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component GetManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component.ts:34:3 - error TS2564: Property 'balanceSheetItems' has no initializer and is not definitely assigned in the constructor.
+
+34   balanceSheetItems: ManufacturingBalanceSheet[] | null;
+     ~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/pages/manufacturing/get-manufacturing-balance-sheet/get-manufacturing-balance-sheet.component.ts:35:3 - error TS2564: Property 'balanceSheetChildren' has no initializer and is not definitely assigned in the constructor.
+
+35   balanceSheetChildren: ManufacturingBalanceSheetDetails[] | null;
+     ~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/pages/manufacturing/get-sales-report/get-sales-report.component.html:27:17 - error TS2322: Type 'any[] | null' is not assignable to type 'any[]'.
+  Type 'null' is not assignable to type 'any[]'.
+
+27     <app-table [data]="sales" [KeyName]="KeyName" [columnName]="columnName" [isLoading]="isLoading"
+                   ~~~~
+
+  src/app/pages/manufacturing/get-sales-report/get-sales-report.component.ts:8:16
+    8   templateUrl: './get-sales-report.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component GetSalesReportComponent.
+
+
+Error: src/app/pages/manufacturing/get-sales-report/get-sales-report.component.html:28:99 - error NG8007: The property and event halves of the two-way binding 'page' are not bound to the same target.
+            Find more
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:69:94 - error TS2339: Property 'previousPeriodAmount' does not exist on type 'OtherOperatingIncomeItem'.
+
+69                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:69:155 - error TS2339: Property 'previousPeriodAmount' does not exist on type 'OtherOperatingIncomeItem'.
+
+69                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                                                                             ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:70:94 - error TS2339: Property 'estimatedPeriodAmount' does not exist on type 'OtherOperatingIncomeItem'.
+
+70                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:70:156 - error TS2339: Property 'estimatedPeriodAmount' does not exist on type 'OtherOperatingIncomeItem'.
+
+70                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                                                                              ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:100:94 - error TS2339: Property 'previousPeriodAmount' does not exist on type 'OtherNonOperatingExpenseItem'.
+
+100                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:100:155 - error TS2339: Property 'previousPeriodAmount' does not exist on type 'OtherNonOperatingExpenseItem'.
+
+100                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                                                                              ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:101:94 - error TS2339: Property 'estimatedPeriodAmount' does not exist on type 'OtherNonOperatingExpenseItem'.
+
+101                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:101:156 - error TS2339: Property 'estimatedPeriodAmount' does not exist on type 'OtherNonOperatingExpenseItem'.
+
+101                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                                                                               ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:135:94 - error TS2339: Property 'beginningBalance' does not exist on type 'FinancingDetailItem'.
+
+135                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.beginningBalance))" tooltipClass="tooltip-class">{{ item.beginningBalance | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:135:151 - error TS2339: Property 'beginningBalance' does not exist on type 'FinancingDetailItem'.
+
+135                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.beginningBalance))" tooltipClass="tooltip-class">{{ item.beginningBalance | number:'1.0-0' }}</span></td>
+                                                                                                                                                          ~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:136:94 - error TS2339: Property 'endingBalanceRial' does not exist on type 'FinancingDetailItem'.
+
+136                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.endingBalanceRial))" tooltipClass="tooltip-class">{{ item.endingBalanceRial | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:136:152 - error TS2339: Property 'endingBalanceRial' does not exist on type 'FinancingDetailItem'.
+
+136                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.endingBalanceRial))" tooltipClass="tooltip-class">{{ item.endingBalanceRial | number:'1.0-0' }}</span></td>
+                                                                                                                                                           ~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:137:94 - error TS2339: Property 'foreignRialEquivalent' does not exist on type 'FinancingDetailItem'.
+
+137                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.foreignRialEquivalent))" tooltipClass="tooltip-class">{{ item.foreignRialEquivalent | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:137:156 - error TS2339: Property 'foreignRialEquivalent' does not exist on type 'FinancingDetailItem'.
+
+137                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.foreignRialEquivalent))" tooltipClass="tooltip-class">{{ item.foreignRialEquivalent | number:'1.0-0' }}</span></td>
+                                                                                                                                                               ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:138:94 - error TS2339: Property 'shortTerm' does not exist on type 'FinancingDetailItem'.
+
+138                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.shortTerm))" tooltipClass="tooltip-class">{{ item.shortTerm | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:138:144 - error TS2339: Property 'shortTerm' does not exist on type 'FinancingDetailItem'.
+
+138                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.shortTerm))" tooltipClass="tooltip-class">{{ item.shortTerm | number:'1.0-0' }}</span></td>
+                                                                                                                                                   ~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:139:94 - error TS2339: Property 'longTerm' does not exist on type 'FinancingDetailItem'.
+
+139                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.longTerm))" tooltipClass="tooltip-class">{{ item.longTerm | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:139:143 - error TS2339: Property 'longTerm' does not exist on type 'FinancingDetailItem'.
+
+139                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.longTerm))" tooltipClass="tooltip-class">{{ item.longTerm | number:'1.0-0' }}</span></td>
+                                                                                                                                                  ~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:174:94 - error TS2339: Property 'beginningBalance' does not exist on type 'FinancingDetailItem'.
+
+174                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.beginningBalance))" tooltipClass="tooltip-class">{{ item.beginningBalance | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:174:151 - error TS2339: Property 'beginningBalance' does not exist on type 'FinancingDetailItem'.
+
+174                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.beginningBalance))" tooltipClass="tooltip-class">{{ item.beginningBalance | number:'1.0-0' }}</span></td>
+                                                                                                                                                          ~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:175:94 - error TS2339: Property 'endingBalanceRial' does not exist on type 'FinancingDetailItem'.
+
+175                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.endingBalanceRial))" tooltipClass="tooltip-class">{{ item.endingBalanceRial | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:175:152 - error TS2339: Property 'endingBalanceRial' does not exist on type 'FinancingDetailItem'.
+
+175                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.endingBalanceRial))" tooltipClass="tooltip-class">{{ item.endingBalanceRial | number:'1.0-0' }}</span></td>
+                                                                                                                                                           ~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:176:94 - error TS2339: Property 'foreignRialEquivalent' does not exist on type 'FinancingDetailItem'.
+
+176                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.foreignRialEquivalent))" tooltipClass="tooltip-class">{{ item.foreignRialEquivalent | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:176:156 - error TS2339: Property 'foreignRialEquivalent' does not exist on type 'FinancingDetailItem'.
+
+176                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.foreignRialEquivalent))" tooltipClass="tooltip-class">{{ item.foreignRialEquivalent | number:'1.0-0' }}</span></td>
+                                                                                                                                                               ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:177:94 - error TS2339: Property 'shortTerm' does not exist on type 'FinancingDetailItem'.
+
+177                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.shortTerm))" tooltipClass="tooltip-class">{{ item.shortTerm | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:177:144 - error TS2339: Property 'shortTerm' does not exist on type 'FinancingDetailItem'.
+
+177                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.shortTerm))" tooltipClass="tooltip-class">{{ item.shortTerm | number:'1.0-0' }}</span></td>
+                                                                                                                                                   ~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:178:94 - error TS2339: Property 'longTerm' does not exist on type 'FinancingDetailItem'.
+
+178                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.longTerm))" tooltipClass="tooltip-class">{{ item.longTerm | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:178:143 - error TS2339: Property 'longTerm' does not exist on type 'FinancingDetailItem'.
+
+178                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.longTerm))" tooltipClass="tooltip-class">{{ item.longTerm | number:'1.0-0' }}</span></td>
+                                                                                                                                                  ~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:209:94 - error TS2339: Property 'previousPeriodAmount' does not exist on type 'InvestmentIncomeItem'.
+
+209                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:209:155 - error TS2339: Property 'previousPeriodAmount' does not exist on type 'InvestmentIncomeItem'.
+
+209                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                                                                              ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:210:94 - error TS2339: Property 'estimatedPeriodAmount' does not exist on type 'InvestmentIncomeItem'.
+
+210                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:210:156 - error TS2339: Property 'estimatedPeriodAmount' does not exist on type 'InvestmentIncomeItem'.
+
+210                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                                                                               ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:240:94 - error TS2339: Property 'previousPeriodAmount' does not exist on type 'MiscellaneousExpenseItem'.
+
+240                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:240:155 - error TS2339: Property 'previousPeriodAmount' does not exist on type 'MiscellaneousExpenseItem'.
+
+240                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.previousPeriodAmount))" tooltipClass="tooltip-class">{{ item.previousPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                                                                              ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:241:94 - error TS2339: Property 'estimatedPeriodAmount' does not exist on type 'MiscellaneousExpenseItem'.
+
+241                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.html:241:156 - error TS2339: Property 'estimatedPeriodAmount' does not exist on type 'MiscellaneousExpenseItem'.
+
+241                 <td class="text-center"><span [ngbTooltip]="convertToToman(formatNumber(item.estimatedPeriodAmount))" tooltipClass="tooltip-class">{{ item.estimatedPeriodAmount | number:'1.0-0' }}</span></td>
+                                                                                                                                                               ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/interpretative-report-summary-page5/detail/interpretative-report-summary-page5-detail.component.ts:12:16
+    12   templateUrl: './interpretative-report-summary-page5-detail.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component InterpretativeReportSummaryPage5DetailComponent.
+
+
+Error: src/app/pages/manufacturing/interpretative-report-summary-page5/list/interpretative-report-summary-page5-list.component.html:28:96 - error NG8007: The property and event halves of the two-way binding 'page' are not bound to the same target.
+            Find more
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:5:36 - error TS2322: Type 'string' is not assignable to type 'FormControlName'.
+
+5                 <app-symbol-search formControlName="selectedSymbol"></app-symbol-search>
+                                     ~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:10:104 - error TS2532: Object is possibly 'undefined'.
+
+10                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.traceNo.errors }"
+                                                                                                          ~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:10:104 - error TS4111: Property 'traceNo' comes from an index signature, so it must be accessed with ['traceNo'].
+
+10                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.traceNo.errors }"
+                                                                                                          ~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:16:104 - error TS2532: Object is possibly 'undefined'.
+
+16                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.uri.errors }">
+                                                                                                          ~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:16:104 - error TS4111: Property 'uri' comes from an index signature, so it must be accessed with ['uri'].
+
+16                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.uri.errors }">
+                                                                                                          ~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:21:104 - error TS2532: Object is possibly 'undefined'.
+
+21                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.fiscalYear.errors }"
+                                                                                                          ~~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:21:104 - error TS4111: Property 'fiscalYear' comes from an index signature, so it must be accessed with ['fiscalYear'].
+
+21                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.fiscalYear.errors }"
+                                                                                                          ~~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:28:104 - error TS2532: Object is possibly 'undefined'.
+
+28                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.yearEndMonth.errors }">
+                                                                                                          ~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:28:104 - error TS4111: Property 'yearEndMonth' comes from an index signature, so it must be accessed with ['yearEndMonth'].
+
+28                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.yearEndMonth.errors }">
+                                                                                                          ~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:33:104 - error TS2532: Object is possibly 'undefined'.
+
+33                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.reportMonth.errors }"
+                                                                                                          ~~~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:33:104 - error TS4111: Property 'reportMonth' comes from an index signature, so it must be accessed with ['reportMonth'].
+
+33                 [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.reportMonth.errors }"
+                                                                                                          ~~~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:41:108 - error TS2532: Object is possibly 'undefined'.
+
+41                     [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.isAudited.errors }">
+                                                                                                              ~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.html:41:108 - error TS4111: Property 'isAudited' comes from an index signature, so it must be accessed with ['isAudited'].
+
+41                     [ngClass]="{ 'error-validation': isBalanceSheetFormSubmit && balanceSheetFormSubmitted.isAudited.errors }">
+                                                                                                              ~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-balance-sheet/manufacturing-balance-sheet.component.ts:11:16
+    11   templateUrl: './manufacturing-balance-sheet.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingBalanceSheetComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.html:5:36 - error TS2322: Type 'string' is not assignable to type 'FormControlName'.
+
+5                 <app-symbol-search formControlName="selectedSymbol"></app-symbol-search>
+                                     ~~~~~~~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.ts:11:16
+    11   templateUrl: './manufacturing-income-statement.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingIncomeStatementComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.html:10:110 - error TS2532: Object is possibly 'undefined'.
+
+10                 [ngClass]="{ 'error-validation': isIncomeStatementFormSubmit && IncomeStatementFormSubmitted.traceNo.errors }"
+                                                                                                                ~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.ts:11:16
+    11   templateUrl: './manufacturing-income-statement.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingIncomeStatementComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.html:10:110 - error TS4111: Property 'traceNo' comes from an index signature, so it must be accessed with ['traceNo'].
+
+10                 [ngClass]="{ 'error-validation': isIncomeStatementFormSubmit && IncomeStatementFormSubmitted.traceNo.errors }"
+                                                                                                                ~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.ts:11:16
+    11   templateUrl: './manufacturing-income-statement.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingIncomeStatementComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.html:16:110 - error TS2532: Object is possibly 'undefined'.
+
+16                 [ngClass]="{ 'error-validation': isIncomeStatementFormSubmit && IncomeStatementFormSubmitted.uri.errors }">
+                                                                                                                ~~~
+
+  src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.ts:11:16
+    11   templateUrl: './manufacturing-income-statement.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingIncomeStatementComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.html:16:110 - error TS4111: Property 'uri' comes from an index signature, so it must be accessed with ['uri'].
+
+16                 [ngClass]="{ 'error-validation': isIncomeStatementFormSubmit && IncomeStatementFormSubmitted.uri.errors }">
+                                                                                                                ~~~
+
+  src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.ts:11:16
+    11   templateUrl: './manufacturing-income-statement.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingIncomeStatementComponent.
+
+
+Error: src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.html:21:110 - error TS2532: Object is possibly 'undefined'.
+
+21                 [ngClass]="{ 'error-validation': isIncomeStatementFormSubmit && IncomeStatementFormSubmitted.fiscalYear.errors }"
+                                                                                                                ~~~~~~~~~~
+
+  src/app/pages/manufacturing/manufacturing-income-statement/manufacturing-income-statement.component.ts:11:16
+    11   templateUrl: './manufacturing-income-statement.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManufacturingIncomeStatementComponent.
