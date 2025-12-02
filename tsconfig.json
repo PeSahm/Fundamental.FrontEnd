@@ -23,14 +23,13 @@
       "ES2022",
       "dom"
     ],
-    "strictPropertyInitialization": false,
-    "noImplicitAny": false
+    "noImplicitAny": true,
+    "strictPropertyInitialization": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": false,
-    "strictInputAccessModifiers": false,
-    "strictTemplates": false,
-    "strictPropertyInitialization": false
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   }
 }
