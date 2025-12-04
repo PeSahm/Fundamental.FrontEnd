@@ -27,7 +27,7 @@ export interface ExtraAssemblyIncreaseCapital {
   type: number; // نحوۀ تصویب: 0=قطعی, 1=در اختیار هیئت‌مدیره
   cashForceclosurePriorityStockPrice: number | null; // قیمت سهام جهت عرضه عمومی-ریال
   cashForceclosurePriorityStockDesc: string | null; // توضیحات در خصوص قیمت سهام جهت عرضه عمومی
-  cashForceclosurePriorityAvalableStockCount: number | null; // تعداد سهام قابل عرضه به عموم
+  CashForceclosurePriorityAvailableStockCount: number | null; // تعداد سهام قابل عرضه به عموم
   cashForceclosurePriorityPrizeStockCount: number | null; // تعداد سهام جایزه
   cashForceclosurePriority: number | null; // آورده نقدی با سلب حق تقدم از سهامداران فعلی
 }
