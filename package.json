@@ -7,7 +7,8 @@
     "start:http": "ng serve --port 4200",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org fundamental --project angular-frontend ./dist && sentry-cli sourcemaps upload --org fundamental --project angular-frontend ./dist"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,8 @@
     "@angular/router": "^16.2.0",
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "@popperjs/core": "^2.11.6",
+    "@sentry/angular-ivy": "^7.119.2",
+    "@sentry/cli": "^2.39.1",
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0",
     "i": "^0.3.7",

@@ -1,11 +1,13 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbAccordionModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
+import * as Sentry from '@sentry/angular-ivy';
 import { HomeComponent } from './pages/home/home.component';
 import { FinancialReportComponent } from './pages/manufacturing/financial-report/financial-report.component';
 import { SalesReportComponent } from './pages/manufacturing/sales-report/sales-report.component';
@@ -93,7 +95,20 @@ import { ExtraAssemblyDetailComponent } from './pages/manufacturing/extra-assemb
     NgxMaskPipe
   ],
   providers: [
-    provideNgxMask()
+    provideNgxMask(),
+    // Sentry Error Handler - captures Angular errors
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: false, // Don't show dialog on errors
+        logErrors: true, // Also log to console
+      }),
+    },
+    // Sentry Tracing - captures route changes for performance monitoring
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
   ],
   bootstrap: [AppComponent]
 })

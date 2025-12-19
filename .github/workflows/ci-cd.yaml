@@ -67,8 +67,33 @@ jobs:
       - name: Lint
         run: npm run lint --if-present
       
-      - name: Build
-        run: npm run build -- --configuration production
+      - name: Determine Sentry Release
+        id: sentry-release
+        run: |
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+          RELEASE="fundamental-frontend@${SHORT_SHA}"
+          echo "release=${RELEASE}" >> $GITHUB_OUTPUT
+      
+      - name: Build with Sentry Release
+        run: |
+          # Inject Sentry DSN and Release into environment.prod.ts
+          sed -i "s|\${SENTRY_DSN}|${{ secrets.SENTRY_DSN }}|g" src/environments/environment.prod.ts
+          sed -i "s|\${SENTRY_RELEASE}|${{ steps.sentry-release.outputs.release }}|g" src/environments/environment.prod.ts
+          npm run build -- --configuration production --source-map
+        env:
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      
+      - name: Upload Source Maps to Sentry
+        if: github.event_name != 'pull_request' && secrets.SENTRY_AUTH_TOKEN != ''
+        run: |
+          npx sentry-cli releases new ${{ steps.sentry-release.outputs.release }}
+          npx sentry-cli releases files ${{ steps.sentry-release.outputs.release }} upload-sourcemaps ./dist/screener --url-prefix '~/'
+          npx sentry-cli releases finalize ${{ steps.sentry-release.outputs.release }}
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: fundamental
+          SENTRY_PROJECT: angular-frontend
+          SENTRY_URL: https://sentry.academind.ir
       
       - name: Test
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
