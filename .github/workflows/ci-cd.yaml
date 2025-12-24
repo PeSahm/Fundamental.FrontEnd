@@ -84,7 +84,7 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       
       - name: Upload Source Maps to Sentry
-        if: github.event_name != 'pull_request' && secrets.SENTRY_AUTH_TOKEN != ''
+        if: github.event_name != 'pull_request' && vars.SENTRY_ENABLED == 'true'
         run: |
           npx sentry-cli releases new ${{ steps.sentry-release.outputs.release }}
           npx sentry-cli releases files ${{ steps.sentry-release.outputs.release }} upload-sourcemaps ./dist/screener --url-prefix '~/'
