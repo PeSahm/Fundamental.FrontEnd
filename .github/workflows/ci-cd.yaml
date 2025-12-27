@@ -70,7 +70,7 @@ jobs:
         id: sentry-release
         run: |
           SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
-          RELEASE="fundamental-frontend@${SHORT_SHA}"
+          RELEASE="fundamental-angular-admin@${SHORT_SHA}"
           echo "release=${RELEASE}" >> $GITHUB_OUTPUT
       
       - name: Build with Sentry Release
@@ -91,7 +91,7 @@ jobs:
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: fundamental
-          SENTRY_PROJECT: angular-frontend
+          SENTRY_PROJECT: fundamental-angular-admin
           SENTRY_URL: https://sentry.academind.ir
       
       - name: Test

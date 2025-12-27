@@ -34,7 +34,7 @@ if (environment.sentry?.dsn) {
     replaysOnErrorSampleRate: 1.0,
     
     // Release tracking
-    release: environment.sentry.release || 'fundamental-frontend@unknown',
+    release: environment.sentry.release || 'fundamental-angular-admin@unknown',
     
     // Ignore specific errors
     ignoreErrors: [

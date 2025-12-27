@@ -5,7 +5,7 @@ export const environment = {
     // Set enableInDev to true to see errors in Sentry while developing
     sentry: {
         dsn: 'https://38844401c136737920b02d7ee173ecbc@sentry.academind.ir/2',
-        release: 'fundamental-frontend@dev',
+        release: 'fundamental-angular-admin@dev',
         enableInDev: true, // Enable Sentry in development mode
     }
 }
