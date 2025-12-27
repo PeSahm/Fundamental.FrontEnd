@@ -6,7 +6,8 @@ node_modules/
 .npm/
 
 # Build outputs
-dist/
+# NOTE: dist/ is NOT excluded because Dockerfile.prebuilt uses pre-built artifacts
+# dist/
 .angular/
 
 # IDE
