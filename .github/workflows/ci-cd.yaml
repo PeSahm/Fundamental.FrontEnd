@@ -49,7 +49,7 @@ jobs:
   # ===========================================================================
   build-and-test:
     name: Build & Test
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, iran]
     
     steps:
       - name: Checkout
@@ -59,7 +59,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
       
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -111,7 +110,7 @@ jobs:
   # ===========================================================================
   build-image:
     name: Build Docker Image
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, iran]
     needs: build-and-test
     if: github.event_name != 'pull_request'
     
@@ -122,6 +121,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/screener
       
       - name: Determine environment
         id: env
@@ -167,7 +172,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile.prebuilt
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }}
@@ -190,7 +195,7 @@ jobs:
   # ===========================================================================
   trigger-deploy:
     name: Trigger GitOps Deploy
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, iran]
     needs: build-image
     if: github.event_name != 'pull_request'
     

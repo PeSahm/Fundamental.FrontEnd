@@ -19,10 +19,6 @@ if (environment.sentry?.dsn) {
       Sentry.browserTracingIntegration(),
       // Session Replay for debugging user sessions
       Sentry.replayIntegration({
-        // Capture 10% of all sessions
-        sessionSampleRate: environment.production ? 0.1 : 1.0,
-        // Capture 100% of sessions with errors
-        errorSampleRate: 1.0,
         // Mask all text for privacy
         maskAllText: false,
         // Block all media
