@@ -5,7 +5,8 @@
 # This dockerfile expects dist/screener to already exist with built files
 # =============================================================================
 
-FROM nginx:1.27-alpine AS final
+# Use nginx from local registry (Docker Hub is blocked in Iran)
+FROM registry.academind.ir/library/nginx:1.27-alpine AS final
 
 # Install curl for health checks
 RUN apk add --no-cache curl
