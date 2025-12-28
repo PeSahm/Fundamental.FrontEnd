@@ -67,3 +67,4 @@ if (environment.sentry?.dsn) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+// Force new release
