@@ -4,105 +4,181 @@
             <h5 class='sidebarTitle'>خانه</h5>
             <ul class='sidebarList'>
                 <li class="sidebarListItem w-100" routerLink='/home' routerLinkActive='active'>
-                    <!-- <LineStyleIcon class='sidebarIcon' /> -->
                     <i class="fa fa-home font-12" aria-hidden="true"></i>
                     <div class="white-no py-1" style="margin-right: 15px;">
                         خانه
                     </div>
                 </li>
-
             </ul>
-            <div id="card" class="card" [ngClass]="{'collapsed': !isSearchBarOpen}">
-                <div id="card-header"
-                    class="card-header d-flex align-items-center justify-content-between cursor-pointer"
-                    (click)="toggleSearchFilter(searchFilter)">
-                    <div>
-                        صنایع تولیدی
-                    </div>
-                    <div *ngIf="isSearchBarOpen;else closeFilterSearch">
-                        <i class="fa fa-angle-up " aria-hidden="true"></i>
-                    </div>
-                    <ng-template #closeFilterSearch>
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
 
-                    </ng-template>
+            <!-- Manufacturing (صنایع تولیدی) -->
+            <div class="card" [ngClass]="{'collapsed': !isManufacturingOpen}">
+                <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSection('manufacturing')">
+                    <div>صنایع تولیدی</div>
+                    <i class="fa" [ngClass]="isManufacturingOpen ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
                 </div>
-                <div id="card-body" class="card-body" #searchFilter>
+                <div class="card-body" [ngClass]="{'d-none': !isManufacturingOpen}">
                     <ul class='sidebarList'>
-
-                        <li class="sidebarListItem w-100" routerLink='/manufacturing/balance-sheet-report'
-                            routerLinkActive='active'>
-                            <!-- <TimeLine class='sidebarIcon' /> -->
+                        <li class="sidebarListItem w-100" routerLink='/manufacturing/balance-sheet-report' routerLinkActive='active'>
                             <i class="fa fa-book" aria-hidden="true"></i>
-                            <div class="white-no py-1" style="margin-right: 15px;">
-                                گزارش صورت وضعیت مالی
-                            </div>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت وضعیت مالی</div>
                         </li>
-                        <li class="sidebarListItem w-100" routerLink='/manufacturing/get-income-statement'
-                            routerLinkActive='active'>
+                        <li class="sidebarListItem w-100" routerLink='/manufacturing/get-income-statement' routerLinkActive='active'>
                             <i class="fa fa-usd" aria-hidden="true"></i>
-                            <div class="white-no py-1" style="margin-right: 15px;">
-                                گزارش صورت سود و زیان
-
-                            </div>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان</div>
                         </li>
                         <li class="sidebarListItem w-100" routerLink="/get-sales-report" routerLinkActive='active'>
                             <i class="fa fa-table" aria-hidden="true"></i>
-                            <div class="white-no py-1" style="margin-right: 15px;">
-
-                                گزارش فروش های ماهانه
-                            </div>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش فروش‌های ماهانه</div>
                         </li>
-                        <li class="sidebarListItem w-100" routerLink='/manufacturing/non-operational-income'
-                            routerLinkActive='active'>
+                        <li class="sidebarListItem w-100" routerLink='/manufacturing/non-operational-income' routerLinkActive='active'>
                             <i class="fa fa-usd" aria-hidden="true"></i>
-                            <div class="white-no py-1" style="margin-right: 15px;">
-                                گزارش درآمد غیرعملیاتی
-                            </div>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش درآمد غیرعملیاتی</div>
                         </li>
-
-                        <li class="sidebarListItem w-100" routerLink='/status-of-viable-companies'
-                            routerLinkActive='active'>
+                        <li class="sidebarListItem w-100" routerLink='/status-of-viable-companies' routerLinkActive='active'>
                             <i class="fa fa-usd" aria-hidden="true"></i>
-                            <div class="white-no py-1" style="margin-right: 15px;">
-                                گزارش تفسیری صفحه 4 - شرکت های سرمایه پذیر
-                            </div>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش تفسیری صفحه 4 - شرکت‌های سرمایه‌پذیر</div>
                         </li>
-
-                        <li class="sidebarListItem w-100" routerLink='/interpretative-report-summary-page5'
-                            routerLinkActive='active'>
+                        <li class="sidebarListItem w-100" routerLink='/interpretative-report-summary-page5' routerLinkActive='active'>
                             <i class="fa fa-usd" aria-hidden="true"></i>
-                            <div class="white-no py-1" style="margin-right: 15px;">
-                                 گزیده گزارش تفسیری صفحه 5
-                            </div>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزیده گزارش تفسیری صفحه 5</div>
                         </li>
+                    </ul>
+                </div>
+            </div>
 
+            <!-- Structural (صنایع ساختمانی) -->
+            <div class="card" [ngClass]="{'collapsed': !isStructuralOpen}">
+                <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSection('structural')">
+                    <div>صنایع ساختمانی</div>
+                    <i class="fa" [ngClass]="isStructuralOpen ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                </div>
+                <div class="card-body" [ngClass]="{'d-none': !isStructuralOpen}">
+                    <ul class='sidebarList'>
+                        <li class="sidebarListItem w-100" routerLink='/structural/balance-sheet' routerLinkActive='active'>
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت وضعیت مالی</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/structural/income-statement' routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/structural/cash-flow' routerLinkActive='active'>
+                            <i class="fa fa-exchange" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش جریان وجوه نقد</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/structural/monthly-activity' routerLinkActive='active'>
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش فعالیت ماهانه</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ServicesIndustry (صنایع خدماتی) -->
+            <div class="card" [ngClass]="{'collapsed': !isServicesOpen}">
+                <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSection('services')">
+                    <div>صنایع خدماتی</div>
+                    <i class="fa" [ngClass]="isServicesOpen ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                </div>
+                <div class="card-body" [ngClass]="{'d-none': !isServicesOpen}">
+                    <ul class='sidebarList'>
+                        <li class="sidebarListItem w-100" routerLink='/services-industry/balance-sheet' routerLinkActive='active'>
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت وضعیت مالی</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/services-industry/income-statement' routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/services-industry/cash-flow' routerLinkActive='active'>
+                            <i class="fa fa-exchange" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش جریان وجوه نقد</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/services-industry/monthly-activity' routerLinkActive='active'>
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش فعالیت ماهانه</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Investment (سرمایه‌گذاری) -->
+            <div class="card" [ngClass]="{'collapsed': !isInvestmentOpen}">
+                <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSection('investment')">
+                    <div>سرمایه‌گذاری</div>
+                    <i class="fa" [ngClass]="isInvestmentOpen ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                </div>
+                <div class="card-body" [ngClass]="{'d-none': !isInvestmentOpen}">
+                    <ul class='sidebarList'>
+                        <li class="sidebarListItem w-100" routerLink='/investment/balance-sheet' routerLinkActive='active'>
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت وضعیت مالی</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/investment/income-statement' routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/investment/cash-flow' routerLinkActive='active'>
+                            <i class="fa fa-exchange" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش جریان وجوه نقد</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/investment/portfolio-statement' routerLinkActive='active'>
+                            <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش سبد سرمایه‌گذاری</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Agriculture (کشاورزی) -->
+            <div class="card" [ngClass]="{'collapsed': !isAgricultureOpen}">
+                <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSection('agriculture')">
+                    <div>کشاورزی</div>
+                    <i class="fa" [ngClass]="isAgricultureOpen ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                </div>
+                <div class="card-body" [ngClass]="{'d-none': !isAgricultureOpen}">
+                    <ul class='sidebarList'>
+                        <li class="sidebarListItem w-100" routerLink='/agriculture/balance-sheet' routerLinkActive='active'>
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت وضعیت مالی</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/agriculture/income-statement' routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/agriculture/cash-flow' routerLinkActive='active'>
+                            <i class="fa fa-exchange" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش جریان وجوه نقد</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/agriculture/monthly-activity' routerLinkActive='active'>
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش فعالیت ماهانه</div>
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <li class="sidebarListItem w-100" routerLink='/annual-assembly' routerLinkActive='active'>
                 <i class="fa fa-university font-12" aria-hidden="true"></i>
-                <div class="py-1" style="margin-right: 15px;">
-                    تصمیمات مجمع عمومی عادی سالیانه
-                </div>
+                <div class="py-1" style="margin-right: 15px;">تصمیمات مجمع عمومی عادی سالیانه</div>
             </li>
 
             <li class="sidebarListItem w-100" routerLink='/extra-annual-assembly' routerLinkActive='active'>
                 <i class="fa fa-university font-12" aria-hidden="true"></i>
-                <div class="py-1" style="margin-right: 15px;">
-                    تصمیمات مجمع عمومی فوق‌العاده سالیانه
-                </div>
+                <div class="py-1" style="margin-right: 15px;">تصمیمات مجمع عمومی فوق‌العاده سالیانه</div>
             </li>
 
             <li class="sidebarListItem w-100" routerLink='/extra-assembly' routerLinkActive='active'>
                 <i class="fa fa-university font-12" aria-hidden="true"></i>
-                <div class="py-1" style="margin-right: 15px;">
-                    تصمیمات مجمع عمومی فوق‌العاده
-                </div>
+                <div class="py-1" style="margin-right: 15px;">تصمیمات مجمع عمومی فوق‌العاده</div>
             </li>
 
         </div>
-
     </div>
 </div>
