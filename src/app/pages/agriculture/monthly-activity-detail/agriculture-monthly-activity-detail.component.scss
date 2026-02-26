@@ -1,0 +1,9 @@
+.agriculture-monthly-activity-detail {
+  font-family: iranSans;
+  .header-section .card-header { background: linear-gradient(135deg, #56ab2f, #a8e063); }
+  .section-card { box-shadow: 0 2px 10px rgba(0,0,0,.1); border: 0; margin-bottom: 2rem; .card-header { border: 0; font-weight: bold; h5 { font-size: 1.1rem; margin: 0; } } }
+  .summary-row { background: #E8F5E9!important; border-left: 4px solid #4CAF50; font-weight: bold; }
+  .data-row:hover { background: #f8f9fa; }
+  .table { font-size: .85rem; th { font-weight: bold; font-size: .8rem; padding: .5rem .25rem; text-align: center; background: #343a40!important; color: #fff; border: 1px solid #495057; } td { padding: .4rem .25rem; border: 1px solid #dee2e6; } .text-end { text-align: left; font-size: .8rem; } }
+  .btn { border-radius: .375rem; font-weight: 500; padding: .5rem 1.5rem; &:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,.1); } }
+}
