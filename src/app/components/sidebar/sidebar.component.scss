@@ -78,18 +78,19 @@
 }
 
 
-    #card {
+    .card {
         border: none;
+        background-color: rgb(14, 34, 56);
     }
 
-    #card-body {
+    .card-body {
         background-color: rgb(14, 34, 56);
         border: none;
         padding: 0;
     }
 
-    #card-header {
+    .card-header {
         background-color: rgb(14, 34, 56);
         border: none;
-
+        color: rgb(158, 169, 180);
     }
