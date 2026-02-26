@@ -13,16 +13,31 @@
       </div>
     </div>
     <div class="section-card card mb-4" *ngIf="reportData.items?.length">
-      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-list me-2"></i>اقلام گزارش</h5></div>
+      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-list me-2"></i>اقلام فعالیت ماهانه</h5></div>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-striped table-hover">
-            <thead class="table-dark"><tr><th class="text-center">شرح</th><th class="text-center">مقدار سال جاری</th><th class="text-center">مقدار سال قبل</th></tr></thead>
+          <table class="table table-striped table-hover table-sm" style="font-size: 0.85rem;">
+            <thead class="table-dark">
+              <tr>
+                <th>نام محصول</th>
+                <th>واحد</th>
+                <th class="text-end">ارزش فروش از ابتدای سال</th>
+                <th class="text-end">ارزش فروش اصلاح‌شده</th>
+                <th class="text-end">ارزش فروش ماهانه</th>
+                <th class="text-end">ارزش فروش انباشته</th>
+                <th class="text-end">ارزش فروش سال قبل</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr *ngFor="let item of reportData.items" [ngClass]="item.rowCode && item.rowCode !== -1 ? 'summary-row' : 'data-row'">
-                <td>{{ item.description || item.title }}</td>
-                <td class="text-end">{{ formatNumber(item.currentYearValue ?? item.value) }}</td>
-                <td class="text-end">{{ formatNumber(item.previousYearValue) }}</td>
+              <tr *ngFor="let item of reportData.items"
+                [ngClass]="{'table-secondary fw-bold': item.rowCode && item.rowCode !== -1}">
+                <td>{{ item.productName }}</td>
+                <td>{{ item.unit || '' }}</td>
+                <td class="text-end">{{ formatNumber(item.yearToDateSalesAmount) }}</td>
+                <td class="text-end">{{ formatNumber(item.correctedYearToDateSalesAmount) }}</td>
+                <td class="text-end">{{ formatNumber(item.monthlySalesAmount) }}</td>
+                <td class="text-end">{{ formatNumber(item.cumulativeToPeriodSalesAmount) }}</td>
+                <td class="text-end">{{ formatNumber(item.previousYearSalesAmount) }}</td>
               </tr>
             </tbody>
           </table>
