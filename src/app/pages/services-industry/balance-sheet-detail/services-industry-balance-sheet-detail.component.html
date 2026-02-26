@@ -1,0 +1,41 @@
+<div class="container-fluid" dir="rtl">
+  <div *ngIf="isLoading" class="text-center my-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">در حال بارگذاری...</span></div><p class="mt-2">در حال بارگذاری صورت وضعیت مالی خدمات...</p></div>
+  <div *ngIf="error && !isLoading" class="alert alert-danger text-center" role="alert"><i class="fas fa-exclamation-triangle me-2"></i>{{ error }}<button type="button" class="btn btn-outline-danger btn-sm ms-3" (click)="goBack()">بازگشت</button></div>
+  <div *ngIf="reportData && !isLoading" class="services-industry-balance-sheet-detail">
+    <div class="header-section card mb-4">
+      <div class="card-header bg-info text-white"><h4 class="mb-0"><i class="fas fa-balance-scale me-2"></i>جزئیات صورت وضعیت مالی خدمات</h4></div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>نماد:</strong> {{ reportData.symbol }} <span *ngIf="reportData.isin">({{ reportData.isin }})</span></p>
+            <p><strong>عنوان شرکت:</strong> {{ reportData.title }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>سال مالی:</strong> {{ formatNumber(reportData.fiscalYear) }}</p>
+            <p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ formatNumber(reportData.reportMonth) }}</p>
+            <p *ngIf="reportData.isAudited !== undefined"><strong>وضعیت حسابرسی:</strong><span class="badge ms-1" [ngClass]="reportData.isAudited ? 'bg-success' : 'bg-warning'">{{ reportData.isAudited ? 'حسابرسی شده' : 'حسابرسی نشده' }}</span></p>
+          </div>
+        </div>
+        <div *ngIf="reportData.uri" class="mt-2"><a [href]="reportData.uri" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-external-link-alt me-1"></i>مشاهده در سامانه کدال</a></div>
+      </div>
+    </div>
+    <div class="section-card card mb-4" *ngIf="reportData.items?.length">
+      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-list me-2"></i>اقلام صورت وضعیت مالی</h5></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead class="table-dark"><tr><th class="text-center">شرح</th><th class="text-center">مقدار سال جاری</th><th class="text-center">مقدار سال قبل</th></tr></thead>
+            <tbody>
+              <tr *ngFor="let item of reportData.items" [ngClass]="item.rowCode && item.rowCode !== -1 ? 'summary-row' : 'data-row'">
+                <td>{{ item.description || item.title || item.categoryDescription }}</td>
+                <td class="text-end">{{ formatNumber(item.currentYearValue ?? item.value) }}</td>
+                <td class="text-end">{{ formatNumber(item.previousYearValue) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="mt-3 mb-4"><button type="button" class="btn btn-secondary" (click)="goBack()"><i class="fas fa-arrow-right me-2"></i>بازگشت به لیست</button></div>
+  </div>
+</div>
