@@ -19,18 +19,24 @@ describe('JalaliDatePipe', () => {
     expect(pipe.transform('')).toBe('—');
   });
 
-  it('should format an ISO date string as a Jalali date with Persian digits in 3 parts', () => {
-    const result = pipe.transform('2026-03-21'); // Nowruz-ish: Jalali year 1404 or 1405
-    expect(result).toMatch(/[۰-۹]/); // contains Persian digits
-    expect(result.split('/').length).toBe(3); // year/month/day
-    expect(result.includes('۱۴۰۵') || result.includes('۱۴۰۴')).toBeTrue();
+  it('should format an ISO instant as an exact Tehran-pinned Jalali date', () => {
+    expect(pipe.transform('2026-06-12T12:00:00Z')).toBe('۱۴۰۵/۰۳/۲۲');
   });
 
-  it('should format a Date object as a Jalali date with Persian digits', () => {
-    const result = pipe.transform(new Date(2026, 2, 21)); // 2026-03-21 local time
-    expect(result).toMatch(/[۰-۹]/);
-    expect(result.split('/').length).toBe(3);
-    expect(result.includes('۱۴۰۵') || result.includes('۱۴۰۴')).toBeTrue();
+  it('should format an ISO date-only string (UTC midnight) as Nowruz 1405', () => {
+    expect(pipe.transform('2026-03-21')).toBe('۱۴۰۵/۰۱/۰۱');
+  });
+
+  it('should format a Date object as an exact Tehran-pinned Jalali date', () => {
+    expect(pipe.transform(new Date(Date.UTC(2026, 5, 12, 12, 0, 0)))).toBe('۱۴۰۵/۰۳/۲۲');
+  });
+
+  it('should pass through already-Jalali slash strings with digits mapped to Persian', () => {
+    expect(pipe.transform('1403/07/21')).toBe('۱۴۰۳/۰۷/۲۱');
+  });
+
+  it('should pass through already-Jalali dash strings with digits mapped to Persian', () => {
+    expect(pipe.transform('1404-12-29')).toBe('۱۴۰۴-۱۲-۲۹');
   });
 
   it('should return — for an invalid date string', () => {

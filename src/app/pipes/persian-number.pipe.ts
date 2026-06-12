@@ -1,30 +1,44 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { toPersianDigits } from './digit-utils';
 
 const EMPTY_PLACEHOLDER = '—';
-const PERSIAN_DIGITS = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+const NUMERIC_STRING = /^-?[\d,]+(\.\d+)?$/;
 
 /**
  * Renders numbers with Persian digits and Persian grouping (fa-IR locale).
- * - null/undefined/'' → '—'
- * - numbers and numeric strings (Latin digits, optional commas) → localized fa-IR format
- * - other strings → Latin digits mapped to Persian digits, remaining characters untouched
+ * - null/undefined/empty/whitespace-only → '—'
+ * - finite numbers and numeric strings (Latin digits, optional commas and
+ *   decimal part) → localized fa-IR format
+ * - other strings (incl. hex like '0x1F' and exponents like '1e3') → Latin
+ *   and Arabic-Indic digits mapped to Persian digits, the rest untouched
  */
 @Pipe({ name: 'persianNumber' })
 export class PersianNumberPipe implements PipeTransform {
+  private static readonly numberFormatter = new Intl.NumberFormat('fa-IR');
+
   transform(value: number | string | null | undefined): string {
-    if (value === null || value === undefined || value === '') {
+    if (value === null || value === undefined) {
       return EMPTY_PLACEHOLDER;
     }
 
     if (typeof value === 'number') {
-      return Number.isFinite(value) ? value.toLocaleString('fa-IR') : EMPTY_PLACEHOLDER;
+      return Number.isFinite(value)
+        ? PersianNumberPipe.numberFormatter.format(value)
+        : EMPTY_PLACEHOLDER;
     }
 
-    const numericCandidate = value.replace(/,/g, '').trim();
-    if (numericCandidate !== '' && !Number.isNaN(Number(numericCandidate))) {
-      return Number(numericCandidate).toLocaleString('fa-IR');
+    const trimmed = value.trim();
+    if (trimmed === '') {
+      return EMPTY_PLACEHOLDER;
     }
 
-    return value.replace(/[0-9]/g, (digit) => PERSIAN_DIGITS[+digit]);
+    if (NUMERIC_STRING.test(trimmed)) {
+      const parsed = Number(trimmed.replace(/,/g, ''));
+      if (Number.isFinite(parsed)) {
+        return PersianNumberPipe.numberFormatter.format(parsed);
+      }
+    }
+
+    return toPersianDigits(trimmed);
   }
 }
