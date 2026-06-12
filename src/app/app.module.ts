@@ -81,6 +81,10 @@ import { InvestmentCashFlowDetailComponent } from './pages/investment/cash-flow-
 import { InvestmentPortfolioStatementListComponent } from './pages/investment/portfolio-statement-list/investment-portfolio-statement-list.component';
 import { InvestmentPortfolioStatementDetailComponent } from './pages/investment/portfolio-statement-detail/investment-portfolio-statement-detail.component';
 
+// Shared pipes
+import { PersianNumberPipe } from './pipes/persian-number.pipe';
+import { JalaliDatePipe } from './pipes/jalali-date.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -153,6 +157,10 @@ import { InvestmentPortfolioStatementDetailComponent } from './pages/investment/
     InvestmentCashFlowDetailComponent,
     InvestmentPortfolioStatementListComponent,
     InvestmentPortfolioStatementDetailComponent,
+
+    // Shared pipes
+    PersianNumberPipe,
+    JalaliDatePipe,
   ],
   imports: [
     BrowserModule,
