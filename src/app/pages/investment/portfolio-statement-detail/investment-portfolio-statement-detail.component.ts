@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InvestmentPortfolioStatementService } from 'src/app/services/investment-portfolio-statement.service';
+import { InvestmentPortfolioStatementDetail } from 'src/app/models/investment/portfolio-statement.model';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -10,7 +11,7 @@ import { finalize } from 'rxjs';
 })
 export class InvestmentPortfolioStatementDetailComponent implements OnInit {
   isLoading = true;
-  reportData: any = null;
+  reportData: InvestmentPortfolioStatementDetail | null = null;
   error: string | null = null;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: InvestmentPortfolioStatementService) {}
@@ -26,15 +27,10 @@ export class InvestmentPortfolioStatementDetailComponent implements OnInit {
       .pipe(finalize(() => this.isLoading = false))
       .subscribe({
         next: (response: any) => {
-          if (response?.data) { this.reportData = response.data; } else { this.error = 'داده‌های گزارش یافت نشد'; }
+          if (response?.data) { this.reportData = response.data as InvestmentPortfolioStatementDetail; } else { this.error = 'داده‌های گزارش یافت نشد'; }
         },
         error: (err) => { this.error = 'خطا در بارگذاری داده‌های صورت سبد سهام سرمایه‌گذاری'; console.error(err); }
       });
-  }
-
-  formatNumber(value: number | undefined | null): string {
-    if (value == null) return '—';
-    return value.toLocaleString('en-US');
   }
 
   goBack(): void { this.router.navigate(['/investment/portfolio-statement']); }

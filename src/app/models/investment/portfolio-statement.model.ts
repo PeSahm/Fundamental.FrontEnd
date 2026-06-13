@@ -119,9 +119,17 @@ export interface InvestmentPortfolioStatementDetail {
   yearEndMonth: number;
   reportMonth: number;
   isAudited: boolean;
+  currency: string | null;
   publishDate: string;
   createdAt: string;
   updatedAt: string;
+  reserveForInvestment: number | null;
+  investmentDescription: string | null;
+  dividendCurrentMonth: number | null;
+  dividendLastMonth: number | null;
+  dividendYearEndToDate: number | null;
+  dividendPastYearEndToDate: number | null;
+  dividendDescription: string | null;
   acceptedPortfolioItems: InvestmentPortfolioAcceptedItem[];
   notAcceptedPortfolioItems: InvestmentPortfolioNotAcceptedItem[];
   incomeBuyItems: InvestmentIncomeBuyItem[];

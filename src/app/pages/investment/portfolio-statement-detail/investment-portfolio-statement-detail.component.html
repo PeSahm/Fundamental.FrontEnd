@@ -6,41 +6,285 @@
       <div class="card-header bg-warning text-dark"><h4 class="mb-0"><i class="fas fa-briefcase me-2"></i>جزئیات صورت سبد سهام سرمایه‌گذاری</h4></div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6"><p><strong>نماد:</strong> {{ reportData.symbol }} <span *ngIf="reportData.isin">({{ reportData.isin }})</span></p><p><strong>عنوان شرکت:</strong> {{ reportData.title }}</p></div>
-          <div class="col-md-6"><p><strong>سال مالی:</strong> {{ formatNumber(reportData.fiscalYear) }}</p><p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ formatNumber(reportData.reportMonth) }}</p><p *ngIf="reportData.publishDate"><strong>تاریخ انتشار:</strong> {{ reportData.publishDate }}</p></div>
+          <div class="col-md-6"><p><strong>نماد:</strong> {{ reportData.symbol }} <span *ngIf="reportData.isin">({{ reportData.isin }})</span></p><p *ngIf="reportData.currency"><strong>واحد پول:</strong> {{ reportData.currency }}</p></div>
+          <div class="col-md-6"><p><strong>سال مالی:</strong> {{ reportData.fiscalYear | persianNumber }}</p><p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ reportData.reportMonth | persianNumber }}</p><p *ngIf="reportData.publishDate"><strong>تاریخ انتشار:</strong> {{ reportData.publishDate | jalali }}</p></div>
         </div>
         <div *ngIf="reportData.uri" class="mt-2"><a [href]="reportData.uri" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-external-link-alt me-1"></i>مشاهده در سامانه کدال</a></div>
       </div>
     </div>
-    <div class="section-card card mb-4" *ngIf="reportData.periodicPortfoAcceptedData || reportData.periodicPortfoNotAcceptedData || reportData.investmentIncomeBuyData || reportData.investmentIncomeSaleData || reportData.periodicPortfoDividendData || reportData.industryGroupData">
-      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-list me-2"></i>داده‌های سبد سهام</h5></div>
+
+    <!-- 1) سبد سهام شرکت‌های پذیرفته‌شده در بورس -->
+    <div class="section-card card mb-4" *ngIf="reportData.acceptedPortfolioItems?.length">
+      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-list me-2"></i>سبد سهام شرکت‌های پذیرفته‌شده در بورس</h5></div>
       <div class="card-body">
-        <div *ngIf="reportData.periodicPortfoAcceptedData" class="mb-3">
-          <h6 class="fw-bold">سبد دوره‌ای پذیرفته شده</h6>
-          <pre class="bg-light p-2 rounded" style="font-size: 0.8rem; overflow-x: auto;">{{ reportData.periodicPortfoAcceptedData }}</pre>
-        </div>
-        <div *ngIf="reportData.periodicPortfoNotAcceptedData" class="mb-3">
-          <h6 class="fw-bold">سبد دوره‌ای پذیرفته نشده</h6>
-          <pre class="bg-light p-2 rounded" style="font-size: 0.8rem; overflow-x: auto;">{{ reportData.periodicPortfoNotAcceptedData }}</pre>
-        </div>
-        <div *ngIf="reportData.investmentIncomeBuyData" class="mb-3">
-          <h6 class="fw-bold">درآمد سرمایه‌گذاری - خرید</h6>
-          <pre class="bg-light p-2 rounded" style="font-size: 0.8rem; overflow-x: auto;">{{ reportData.investmentIncomeBuyData }}</pre>
-        </div>
-        <div *ngIf="reportData.investmentIncomeSaleData" class="mb-3">
-          <h6 class="fw-bold">درآمد سرمایه‌گذاری - فروش</h6>
-          <pre class="bg-light p-2 rounded" style="font-size: 0.8rem; overflow-x: auto;">{{ reportData.investmentIncomeSaleData }}</pre>
-        </div>
-        <div *ngIf="reportData.periodicPortfoDividendData" class="mb-3">
-          <h6 class="fw-bold">سود سبد دوره‌ای</h6>
-          <pre class="bg-light p-2 rounded" style="font-size: 0.8rem; overflow-x: auto;">{{ reportData.periodicPortfoDividendData }}</pre>
-        </div>
-        <div *ngIf="reportData.industryGroupData" class="mb-3">
-          <h6 class="fw-bold">گروه صنعت</h6>
-          <pre class="bg-light p-2 rounded" style="font-size: 0.8rem; overflow-x: auto;">{{ reportData.industryGroupData }}</pre>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-sm" dir="rtl">
+            <thead class="table-dark">
+              <tr>
+                <th>نام شرکت</th>
+                <th>نماد</th>
+                <th class="text-end">سرمایه</th>
+                <th class="text-end">ارزش اسمی هر سهم</th>
+                <th class="text-end">تعداد سهام ابتدای دوره</th>
+                <th class="text-end">بهای تمام‌شده ابتدای دوره</th>
+                <th class="text-end">ارزش بازار ابتدای دوره</th>
+                <th class="text-end">تغییر تعداد سهام</th>
+                <th class="text-end">تغییر بهای تمام‌شده</th>
+                <th class="text-end">تغییر ارزش بازار</th>
+                <th class="text-end">درصد مالکیت پایان دوره</th>
+                <th class="text-end">بهای تمام‌شده پایان دوره</th>
+                <th class="text-end">ارزش بازار پایان دوره</th>
+                <th class="text-end">بهای هر سهم پایان دوره</th>
+                <th class="text-end">ارزش هر سهم پایان دوره</th>
+                <th class="text-end">سود/زیان</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reportData.acceptedPortfolioItems">
+                <td>{{ item.companyName }}</td>
+                <td>{{ item.companySymbol }}</td>
+                <td class="text-end">{{ item.capital | persianNumber }}</td>
+                <td class="text-end">{{ item.shareNominalValue | persianNumber }}</td>
+                <td class="text-end">{{ item.startShareCount | persianNumber }}</td>
+                <td class="text-end">{{ item.startCost | persianNumber }}</td>
+                <td class="text-end">{{ item.startMarketValue | persianNumber }}</td>
+                <td class="text-end">{{ item.shareCountChange | persianNumber }}</td>
+                <td class="text-end">{{ item.costChange | persianNumber }}</td>
+                <td class="text-end">{{ item.marketValueChange | persianNumber }}</td>
+                <td class="text-end">{{ item.endOwnershipPercent | persianNumber }}</td>
+                <td class="text-end">{{ item.endCost | persianNumber }}</td>
+                <td class="text-end">{{ item.endMarketValue | persianNumber }}</td>
+                <td class="text-end">{{ item.endCostPerShare | persianNumber }}</td>
+                <td class="text-end">{{ item.endValuePerShare | persianNumber }}</td>
+                <td class="text-end" [class.text-success]="(item.profitLoss ?? 0) > 0" [class.text-danger]="(item.profitLoss ?? 0) < 0">{{ item.profitLoss | persianNumber }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+
+    <!-- 2) سبد سهام شرکت‌های خارج از بورس -->
+    <div class="section-card card mb-4" *ngIf="reportData.notAcceptedPortfolioItems?.length">
+      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-list me-2"></i>سبد سهام شرکت‌های خارج از بورس</h5></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-sm" dir="rtl">
+            <thead class="table-dark">
+              <tr>
+                <th>نام شرکت</th>
+                <th>نماد</th>
+                <th class="text-end">سرمایه</th>
+                <th class="text-end">ارزش اسمی هر سهم</th>
+                <th class="text-end">تعداد سهام ابتدای دوره</th>
+                <th class="text-end">بهای تمام‌شده ابتدای دوره</th>
+                <th class="text-end">تغییر تعداد سهام</th>
+                <th class="text-end">تغییر بهای تمام‌شده</th>
+                <th class="text-end">درصد مالکیت پایان دوره</th>
+                <th class="text-end">بهای تمام‌شده پایان دوره</th>
+                <th class="text-end">بهای هر سهم پایان دوره</th>
+                <th>وضعیت</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reportData.notAcceptedPortfolioItems">
+                <td>{{ item.companyName }}</td>
+                <td>{{ item.companySymbol }}</td>
+                <td class="text-end">{{ item.capital | persianNumber }}</td>
+                <td class="text-end">{{ item.shareNominalValue | persianNumber }}</td>
+                <td class="text-end">{{ item.startShareCount | persianNumber }}</td>
+                <td class="text-end">{{ item.startCost | persianNumber }}</td>
+                <td class="text-end">{{ item.shareCountChange | persianNumber }}</td>
+                <td class="text-end">{{ item.costChange | persianNumber }}</td>
+                <td class="text-end">{{ item.endOwnershipPercent | persianNumber }}</td>
+                <td class="text-end">{{ item.endCost | persianNumber }}</td>
+                <td class="text-end">{{ item.endCostPerShare | persianNumber }}</td>
+                <td>{{ item.statusDescription }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3) خرید سهام طی دوره -->
+    <div class="section-card card mb-4" *ngIf="reportData.incomeBuyItems?.length">
+      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-cart-plus me-2"></i>خرید سهام طی دوره</h5></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-sm" dir="rtl">
+            <thead class="table-dark">
+              <tr>
+                <th>نام شرکت</th>
+                <th>نماد</th>
+                <th class="text-end">تعداد سهام</th>
+                <th class="text-end">بهای هر سهم</th>
+                <th class="text-end">بهای کل (پذیرفته‌شده)</th>
+                <th class="text-end">بهای کل (خارج از بورس)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reportData.incomeBuyItems">
+                <td>{{ item.companyName }}</td>
+                <td>{{ item.companySymbol }}</td>
+                <td class="text-end">{{ item.shareCount | persianNumber }}</td>
+                <td class="text-end">{{ item.costPerShare | persianNumber }}</td>
+                <td class="text-end">{{ item.acceptedTotalCost | persianNumber }}</td>
+                <td class="text-end">{{ item.notAcceptedTotalCost | persianNumber }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4) فروش سهام طی دوره -->
+    <div class="section-card card mb-4" *ngIf="reportData.incomeSaleItems?.length">
+      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-cart-arrow-down me-2"></i>فروش سهام طی دوره</h5></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-sm" dir="rtl">
+            <thead class="table-dark">
+              <tr>
+                <th>نام شرکت</th>
+                <th>نماد</th>
+                <th class="text-end">تعداد سهام</th>
+                <th class="text-end">بهای هر سهم</th>
+                <th class="text-end">بهای تمام‌شده</th>
+                <th class="text-end">قیمت فروش هر سهم</th>
+                <th class="text-end">مبلغ کل فروش</th>
+                <th class="text-end">سود/زیان</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reportData.incomeSaleItems">
+                <td>{{ item.companyName }}</td>
+                <td>{{ item.companySymbol }}</td>
+                <td class="text-end">{{ item.shareCount | persianNumber }}</td>
+                <td class="text-end">{{ item.costPerShare | persianNumber }}</td>
+                <td class="text-end">{{ item.totalCost | persianNumber }}</td>
+                <td class="text-end">{{ item.salePricePerShare | persianNumber }}</td>
+                <td class="text-end">{{ item.totalSaleAmount | persianNumber }}</td>
+                <td class="text-end" [class.text-success]="(item.profitLoss ?? 0) > 0" [class.text-danger]="(item.profitLoss ?? 0) < 0">{{ item.profitLoss | persianNumber }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5) درآمد سود سهام محقق‌شده -->
+    <div class="section-card card mb-4" *ngIf="reportData.dividendItems?.length || reportData.dividendDescription">
+      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-coins me-2"></i>درآمد سود سهام محقق‌شده</h5></div>
+      <div class="card-body">
+        <div class="dividend-summary mb-3" *ngIf="reportData.dividendCurrentMonth != null || reportData.dividendYearEndToDate != null || reportData.dividendDescription">
+          <div class="row">
+            <div class="col-md-3" *ngIf="reportData.dividendCurrentMonth != null"><strong>سود ماه جاری:</strong> {{ reportData.dividendCurrentMonth | persianNumber }}</div>
+            <div class="col-md-3" *ngIf="reportData.dividendLastMonth != null"><strong>سود ماه قبل:</strong> {{ reportData.dividendLastMonth | persianNumber }}</div>
+            <div class="col-md-3" *ngIf="reportData.dividendYearEndToDate != null"><strong>سود از ابتدای سال:</strong> {{ reportData.dividendYearEndToDate | persianNumber }}</div>
+            <div class="col-md-3" *ngIf="reportData.dividendPastYearEndToDate != null"><strong>سود سال گذشته:</strong> {{ reportData.dividendPastYearEndToDate | persianNumber }}</div>
+          </div>
+          <p class="mb-0 mt-2" *ngIf="reportData.dividendDescription"><strong>توضیحات:</strong> {{ reportData.dividendDescription }}</p>
+        </div>
+        <div class="table-responsive" *ngIf="reportData.dividendItems?.length">
+          <table class="table table-striped table-hover table-sm" dir="rtl">
+            <thead class="table-dark">
+              <tr>
+                <th>نام شرکت</th>
+                <th>سال مالی شرکت سرمایه‌پذیر</th>
+                <th>تاریخ مجمع</th>
+                <th class="text-end">تعداد سهام در تاریخ مجمع</th>
+                <th class="text-end">سرمایه</th>
+                <th class="text-end">ارزش اسمی هر سهم</th>
+                <th class="text-end">درصد مالکیت</th>
+                <th class="text-end">سود هر سهم</th>
+                <th class="text-end">سود نقدی هر سهم</th>
+                <th class="text-end">درآمد سود سال جاری</th>
+                <th class="text-end">درآمد سود سال قبل</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reportData.dividendItems">
+                <td>{{ item.companyName }}</td>
+                <td>{{ item.investeeCompanyFiscalYear }}</td>
+                <td>{{ item.assemblyDate | jalali }}</td>
+                <td class="text-end">{{ item.shareCountAtAssemblyDate | persianNumber }}</td>
+                <td class="text-end">{{ item.capital | persianNumber }}</td>
+                <td class="text-end">{{ item.shareNominalValue | persianNumber }}</td>
+                <td class="text-end">{{ item.ownershipPercent | persianNumber }}</td>
+                <td class="text-end">{{ item.earningsPerShare | persianNumber }}</td>
+                <td class="text-end">{{ item.cashEarningsPerShare | persianNumber }}</td>
+                <td class="text-end">{{ item.currentYearDividendIncome | persianNumber }}</td>
+                <td class="text-end">{{ item.priorYearDividendIncome | persianNumber }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6) سرمایه‌گذاری به تفکیک گروه صنعت -->
+    <div class="section-card card mb-4" *ngIf="reportData.industryGroupItems?.length">
+      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-industry me-2"></i>سرمایه‌گذاری به تفکیک گروه صنعت</h5></div>
+      <div class="card-body">
+        <div *ngIf="reportData.reserveForInvestment != null || reportData.investmentDescription" class="mb-3">
+          <div *ngIf="reportData.reserveForInvestment != null"><strong>ذخیره کاهش ارزش سرمایه‌گذاری:</strong> {{ reportData.reserveForInvestment | persianNumber }}</div>
+          <p class="mb-0" *ngIf="reportData.investmentDescription"><strong>توضیحات سرمایه‌گذاری:</strong> {{ reportData.investmentDescription }}</p>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-sm text-nowrap" dir="rtl">
+            <thead class="table-dark">
+              <tr>
+                <th rowspan="2">شرح گروه صنعت</th>
+                <th colspan="6" class="text-center group-accepted">بورسی</th>
+                <th colspan="4" class="text-center group-notaccepted">خارج از بورس</th>
+                <th colspan="6" class="text-center group-total">جمع</th>
+              </tr>
+              <tr>
+                <th class="text-end group-accepted">تعداد ابتدا</th>
+                <th class="text-end group-accepted">بهای تمام‌شده ابتدا</th>
+                <th class="text-end group-accepted">ارزش بازار ابتدا</th>
+                <th class="text-end group-accepted">تغییر بهای تمام‌شده</th>
+                <th class="text-end group-accepted">تغییر ارزش بازار</th>
+                <th class="text-end group-accepted">بهای تمام‌شده پایان</th>
+                <th class="text-end group-notaccepted">تعداد ابتدا</th>
+                <th class="text-end group-notaccepted">بهای تمام‌شده ابتدا</th>
+                <th class="text-end group-notaccepted">تغییر بهای تمام‌شده</th>
+                <th class="text-end group-notaccepted">بهای تمام‌شده پایان</th>
+                <th class="text-end group-total">تعداد ابتدا</th>
+                <th class="text-end group-total">بهای تمام‌شده ابتدا</th>
+                <th class="text-end group-total">درصد بهای ابتدا</th>
+                <th class="text-end group-total">تغییر بهای تمام‌شده</th>
+                <th class="text-end group-total">بهای تمام‌شده پایان</th>
+                <th class="text-end group-total">درصد بهای پایان</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reportData.industryGroupItems">
+                <td>{{ item.description }}</td>
+                <td class="text-end">{{ item.acceptedStartCompanyCount | persianNumber }}</td>
+                <td class="text-end">{{ item.acceptedStartCost | persianNumber }}</td>
+                <td class="text-end">{{ item.acceptedStartMarketValue | persianNumber }}</td>
+                <td class="text-end">{{ item.acceptedCostChange | persianNumber }}</td>
+                <td class="text-end">{{ item.acceptedMarketValueChange | persianNumber }}</td>
+                <td class="text-end">{{ item.acceptedEndCost | persianNumber }}</td>
+                <td class="text-end">{{ item.notAcceptedStartCompanyCount | persianNumber }}</td>
+                <td class="text-end">{{ item.notAcceptedStartCost | persianNumber }}</td>
+                <td class="text-end">{{ item.notAcceptedCostChange | persianNumber }}</td>
+                <td class="text-end">{{ item.notAcceptedEndCost | persianNumber }}</td>
+                <td class="text-end">{{ item.totalStartCompanyCount | persianNumber }}</td>
+                <td class="text-end">{{ item.totalStartCost | persianNumber }}</td>
+                <td class="text-end">{{ item.totalStartCostPercent | persianNumber }}</td>
+                <td class="text-end">{{ item.totalCostChange | persianNumber }}</td>
+                <td class="text-end">{{ item.totalEndCost | persianNumber }}</td>
+                <td class="text-end">{{ item.totalEndCostPercent | persianNumber }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <div class="mt-3 mb-4"><button type="button" class="btn btn-secondary" (click)="goBack()"><i class="fas fa-arrow-right me-2"></i>بازگشت به لیست</button></div>
   </div>
 </div>
