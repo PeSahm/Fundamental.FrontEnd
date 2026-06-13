@@ -7,7 +7,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6"><p><strong>نماد:</strong> {{ reportData.symbol }} <span *ngIf="reportData.isin">({{ reportData.isin }})</span></p><p><strong>عنوان شرکت:</strong> {{ reportData.title }}</p></div>
-          <div class="col-md-6"><p><strong>سال مالی:</strong> {{ formatNumber(reportData.fiscalYear) }}</p><p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ formatNumber(reportData.reportMonth) }}</p></div>
+          <div class="col-md-6"><p><strong>سال مالی:</strong> {{ reportData.fiscalYear | persianNumber }}</p><p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ reportData.reportMonth | persianNumber }}</p></div>
         </div>
         <div *ngIf="reportData.uri" class="mt-2"><a [href]="reportData.uri" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-external-link-alt me-1"></i>مشاهده در سامانه کدال</a></div>
       </div>
@@ -34,10 +34,10 @@
                 <td>{{ item.description }}</td>
                 <td>{{ item.location || '' }}</td>
                 <td>{{ item.usageType || '' }}</td>
-                <td class="text-end">{{ formatNumber(item.yearToDateAmount) }}</td>
-                <td class="text-end">{{ formatNumber(item.correctedYearToDateAmount) }}</td>
-                <td class="text-end">{{ formatNumber(item.monthlyAmount) }}</td>
-                <td class="text-end">{{ formatNumber(item.cumulativeAmount) }}</td>
+                <td class="text-end">{{ item.yearToDateAmount | persianNumber }}</td>
+                <td class="text-end">{{ item.correctedYearToDateAmount | persianNumber }}</td>
+                <td class="text-end">{{ item.monthlyAmount | persianNumber }}</td>
+                <td class="text-end">{{ item.cumulativeAmount | persianNumber }}</td>
               </tr>
             </tbody>
           </table>

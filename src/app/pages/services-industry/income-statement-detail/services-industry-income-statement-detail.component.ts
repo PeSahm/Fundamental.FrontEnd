@@ -32,10 +32,5 @@ export class ServicesIndustryIncomeStatementDetailComponent implements OnInit {
       });
   }
 
-  formatNumber(value: number | undefined | null): string {
-    if (value == null) return '—';
-    return value.toLocaleString('en-US');
-  }
-
   goBack(): void { this.router.navigate(['/services-industry/income-statement']); }
 }

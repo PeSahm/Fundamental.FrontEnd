@@ -31,13 +31,13 @@
           <div class="col-md-6">
             <p><strong>نماد:</strong> {{ reportData.symbol }} <span *ngIf="reportData.isin">({{ reportData.isin }})</span></p>
             <p><strong>عنوان شرکت:</strong> {{ reportData.title }}</p>
-            <p *ngIf="reportData.traceNo"><strong>شماره پیگیری:</strong> {{ formatNumber(reportData.traceNo) }}</p>
+            <p *ngIf="reportData.traceNo"><strong>شماره پیگیری:</strong> {{ reportData.traceNo | persianNumber }}</p>
           </div>
           <div class="col-md-6">
-            <p><strong>سال مالی:</strong> {{ formatNumber(reportData.fiscalYear) }}</p>
-            <p><strong>ماه گزارش:</strong> {{ formatNumber(reportData.reportMonth) }}</p>
-            <p *ngIf="reportData.yearEndMonth"><strong>پایان سال مالی:</strong> ماه {{ formatNumber(reportData.yearEndMonth) }}</p>
-            <p *ngIf="reportData.publishDate"><strong>تاریخ انتشار:</strong> {{ reportData.publishDate }}</p>
+            <p><strong>سال مالی:</strong> {{ reportData.fiscalYear | persianNumber }}</p>
+            <p><strong>ماه گزارش:</strong> {{ reportData.reportMonth | persianNumber }}</p>
+            <p *ngIf="reportData.yearEndMonth"><strong>پایان سال مالی:</strong> ماه {{ reportData.yearEndMonth | persianNumber }}</p>
+            <p *ngIf="reportData.publishDate"><strong>تاریخ انتشار:</strong> {{ reportData.publishDate | jalali }}</p>
           </div>
         </div>
         <div class="row mt-2" *ngIf="reportData.uri">
@@ -80,11 +80,11 @@
                 [ngClass]="{'table-secondary fw-bold': item.rowCode && item.rowCode !== -1}">
                 <td>{{ item.productName }}</td>
                 <td>{{ item.unit || '' }}</td>
-                <td class="text-end">{{ formatNumber(item.yearToDateSalesAmount) }}</td>
-                <td class="text-end">{{ formatNumber(item.correctedYearToDateSalesAmount) }}</td>
-                <td class="text-end">{{ formatNumber(item.monthlySalesAmount) }}</td>
-                <td class="text-end">{{ formatNumber(item.cumulativeToPeriodSalesAmount) }}</td>
-                <td class="text-end">{{ formatNumber(item.previousYearSalesAmount) }}</td>
+                <td class="text-end">{{ item.yearToDateSalesAmount | persianNumber }}</td>
+                <td class="text-end">{{ item.correctedYearToDateSalesAmount | persianNumber }}</td>
+                <td class="text-end">{{ item.monthlySalesAmount | persianNumber }}</td>
+                <td class="text-end">{{ item.cumulativeToPeriodSalesAmount | persianNumber }}</td>
+                <td class="text-end">{{ item.previousYearSalesAmount | persianNumber }}</td>
               </tr>
             </tbody>
           </table>

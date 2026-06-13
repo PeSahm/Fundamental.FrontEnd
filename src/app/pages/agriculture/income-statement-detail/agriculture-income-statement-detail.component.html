@@ -21,8 +21,8 @@
             <p><strong>عنوان شرکت:</strong> {{ reportData.title }}</p>
           </div>
           <div class="col-md-6">
-            <p><strong>سال مالی:</strong> {{ formatNumber(reportData.fiscalYear) }}</p>
-            <p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ formatNumber(reportData.reportMonth) }}</p>
+            <p><strong>سال مالی:</strong> {{ reportData.fiscalYear | persianNumber }}</p>
+            <p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ reportData.reportMonth | persianNumber }}</p>
             <p *ngIf="reportData.isAudited !== undefined"><strong>وضعیت حسابرسی:</strong>
               <span class="badge" [ngClass]="reportData.isAudited ? 'bg-success' : 'bg-warning'">
                 {{ reportData.isAudited ? 'حسابرسی شده' : 'حسابرسی نشده' }}
@@ -58,7 +58,7 @@
               <tr *ngFor="let item of reportData.details">
                 <td>{{ item.row }}</td>
                 <td>{{ item.description }}</td>
-                <td class="text-end">{{ formatNumber(item.value) }}</td>
+                <td class="text-end">{{ item.value | persianNumber }}</td>
               </tr>
             </tbody>
           </table>

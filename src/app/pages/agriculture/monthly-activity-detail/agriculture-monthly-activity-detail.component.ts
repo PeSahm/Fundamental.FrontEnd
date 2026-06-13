@@ -48,11 +48,6 @@ export class AgricultureMonthlyActivityDetailComponent implements OnInit {
       });
   }
 
-  formatNumber(value: number | undefined | null): string {
-    if (value == null) return '—';
-    return value.toLocaleString('en-US');
-  }
-
   goBack(): void {
     this.router.navigate(['/agriculture/monthly-activity']);
   }

@@ -19,8 +19,8 @@
             <p><strong>عنوان شرکت:</strong> {{ reportData.title }}</p>
           </div>
           <div class="col-md-6">
-            <p><strong>سال مالی:</strong> {{ formatNumber(reportData.fiscalYear) }}</p>
-            <p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ formatNumber(reportData.reportMonth) }}</p>
+            <p><strong>سال مالی:</strong> {{ reportData.fiscalYear | persianNumber }}</p>
+            <p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ reportData.reportMonth | persianNumber }}</p>
           </div>
         </div>
         <div class="row mt-2" *ngIf="reportData.uri">
@@ -57,11 +57,11 @@
                 <td>{{ item.serviceDescription }}</td>
                 <td>{{ item.contractStartDate || '' }}</td>
                 <td>{{ item.contractDurationMonths || '' }}</td>
-                <td class="text-end">{{ formatNumber(item.yearToDateRevenue) }}</td>
-                <td class="text-end">{{ formatNumber(item.correctedYearToDateRevenue) }}</td>
-                <td class="text-end">{{ formatNumber(item.monthlyRevenue) }}</td>
-                <td class="text-end">{{ formatNumber(item.cumulativeToPeriodRevenue) }}</td>
-                <td class="text-end">{{ formatNumber(item.previousYearRevenue) }}</td>
+                <td class="text-end">{{ item.yearToDateRevenue | persianNumber }}</td>
+                <td class="text-end">{{ item.correctedYearToDateRevenue | persianNumber }}</td>
+                <td class="text-end">{{ item.monthlyRevenue | persianNumber }}</td>
+                <td class="text-end">{{ item.cumulativeToPeriodRevenue | persianNumber }}</td>
+                <td class="text-end">{{ item.previousYearRevenue | persianNumber }}</td>
               </tr>
             </tbody>
           </table>
