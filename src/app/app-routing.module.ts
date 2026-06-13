@@ -32,6 +32,8 @@ import { AgricultureIncomeStatementListComponent } from './pages/agriculture/inc
 import { AgricultureIncomeStatementDetailComponent } from './pages/agriculture/income-statement-detail/agriculture-income-statement-detail.component';
 import { AgricultureCashFlowListComponent } from './pages/agriculture/cash-flow-list/agriculture-cash-flow-list.component';
 import { AgricultureCashFlowDetailComponent } from './pages/agriculture/cash-flow-detail/agriculture-cash-flow-detail.component';
+import { AgricultureComprehensiveIncomeListComponent } from './pages/agriculture/comprehensive-income-list/agriculture-comprehensive-income-list.component';
+import { AgricultureComprehensiveIncomeDetailComponent } from './pages/agriculture/comprehensive-income-detail/agriculture-comprehensive-income-detail.component';
 
 // ServicesIndustry
 import { ServicesIndustryMonthlyActivityListComponent } from './pages/services-industry/monthly-activity-list/services-industry-monthly-activity-list.component';
@@ -42,6 +44,8 @@ import { ServicesIndustryIncomeStatementListComponent } from './pages/services-i
 import { ServicesIndustryIncomeStatementDetailComponent } from './pages/services-industry/income-statement-detail/services-industry-income-statement-detail.component';
 import { ServicesIndustryCashFlowListComponent } from './pages/services-industry/cash-flow-list/services-industry-cash-flow-list.component';
 import { ServicesIndustryCashFlowDetailComponent } from './pages/services-industry/cash-flow-detail/services-industry-cash-flow-detail.component';
+import { ServicesIndustryComprehensiveIncomeListComponent } from './pages/services-industry/comprehensive-income-list/services-industry-comprehensive-income-list.component';
+import { ServicesIndustryComprehensiveIncomeDetailComponent } from './pages/services-industry/comprehensive-income-detail/services-industry-comprehensive-income-detail.component';
 
 // Structural
 import { StructuralMonthlyActivityListComponent } from './pages/structural/monthly-activity-list/structural-monthly-activity-list.component';
@@ -52,6 +56,8 @@ import { StructuralIncomeStatementListComponent } from './pages/structural/incom
 import { StructuralIncomeStatementDetailComponent } from './pages/structural/income-statement-detail/structural-income-statement-detail.component';
 import { StructuralCashFlowListComponent } from './pages/structural/cash-flow-list/structural-cash-flow-list.component';
 import { StructuralCashFlowDetailComponent } from './pages/structural/cash-flow-detail/structural-cash-flow-detail.component';
+import { StructuralComprehensiveIncomeListComponent } from './pages/structural/comprehensive-income-list/structural-comprehensive-income-list.component';
+import { StructuralComprehensiveIncomeDetailComponent } from './pages/structural/comprehensive-income-detail/structural-comprehensive-income-detail.component';
 
 // Investment
 import { InvestmentBalanceSheetListComponent } from './pages/investment/balance-sheet-list/investment-balance-sheet-list.component';
@@ -128,6 +134,8 @@ const routes: Routes = [
   { path: 'agriculture/income-statement/:id', component: AgricultureIncomeStatementDetailComponent, data: { title: 'جزئیات صورت سود و زیان کشاورزی' } },
   { path: 'agriculture/cash-flow', component: AgricultureCashFlowListComponent, data: { title: 'جریان وجوه نقد کشاورزی' } },
   { path: 'agriculture/cash-flow/:id', component: AgricultureCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد کشاورزی' } },
+  { path: 'agriculture/comprehensive-income', component: AgricultureComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع کشاورزی' } },
+  { path: 'agriculture/comprehensive-income/:id', component: AgricultureComprehensiveIncomeDetailComponent, data: { title: 'جزئیات صورت سود و زیان جامع کشاورزی' } },
 
   // ServicesIndustry routes
   { path: 'services-industry/monthly-activity', component: ServicesIndustryMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه خدمات' } },
@@ -138,6 +146,8 @@ const routes: Routes = [
   { path: 'services-industry/income-statement/:id', component: ServicesIndustryIncomeStatementDetailComponent, data: { title: 'جزئیات صورت سود و زیان خدمات' } },
   { path: 'services-industry/cash-flow', component: ServicesIndustryCashFlowListComponent, data: { title: 'جریان وجوه نقد خدمات' } },
   { path: 'services-industry/cash-flow/:id', component: ServicesIndustryCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد خدمات' } },
+  { path: 'services-industry/comprehensive-income', component: ServicesIndustryComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع خدماتی' } },
+  { path: 'services-industry/comprehensive-income/:id', component: ServicesIndustryComprehensiveIncomeDetailComponent, data: { title: 'جزئیات صورت سود و زیان جامع خدماتی' } },
 
   // Structural routes
   { path: 'structural/monthly-activity', component: StructuralMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه ساختاری' } },
@@ -148,6 +158,8 @@ const routes: Routes = [
   { path: 'structural/income-statement/:id', component: StructuralIncomeStatementDetailComponent, data: { title: 'جزئیات صورت سود و زیان ساختاری' } },
   { path: 'structural/cash-flow', component: StructuralCashFlowListComponent, data: { title: 'جریان وجوه نقد ساختاری' } },
   { path: 'structural/cash-flow/:id', component: StructuralCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد ساختاری' } },
+  { path: 'structural/comprehensive-income', component: StructuralComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع ساختاری' } },
+  { path: 'structural/comprehensive-income/:id', component: StructuralComprehensiveIncomeDetailComponent, data: { title: 'جزئیات صورت سود و زیان جامع ساختاری' } },
 
   // Investment routes (no monthly-activity)
   { path: 'investment/balance-sheet', component: InvestmentBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی سرمایه‌گذاری' } },

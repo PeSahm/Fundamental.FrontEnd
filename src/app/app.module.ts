@@ -50,6 +50,8 @@ import { AgricultureIncomeStatementListComponent } from './pages/agriculture/inc
 import { AgricultureIncomeStatementDetailComponent } from './pages/agriculture/income-statement-detail/agriculture-income-statement-detail.component';
 import { AgricultureCashFlowListComponent } from './pages/agriculture/cash-flow-list/agriculture-cash-flow-list.component';
 import { AgricultureCashFlowDetailComponent } from './pages/agriculture/cash-flow-detail/agriculture-cash-flow-detail.component';
+import { AgricultureComprehensiveIncomeListComponent } from './pages/agriculture/comprehensive-income-list/agriculture-comprehensive-income-list.component';
+import { AgricultureComprehensiveIncomeDetailComponent } from './pages/agriculture/comprehensive-income-detail/agriculture-comprehensive-income-detail.component';
 
 // ServicesIndustry components
 import { ServicesIndustryMonthlyActivityListComponent } from './pages/services-industry/monthly-activity-list/services-industry-monthly-activity-list.component';
@@ -60,6 +62,8 @@ import { ServicesIndustryIncomeStatementListComponent } from './pages/services-i
 import { ServicesIndustryIncomeStatementDetailComponent } from './pages/services-industry/income-statement-detail/services-industry-income-statement-detail.component';
 import { ServicesIndustryCashFlowListComponent } from './pages/services-industry/cash-flow-list/services-industry-cash-flow-list.component';
 import { ServicesIndustryCashFlowDetailComponent } from './pages/services-industry/cash-flow-detail/services-industry-cash-flow-detail.component';
+import { ServicesIndustryComprehensiveIncomeListComponent } from './pages/services-industry/comprehensive-income-list/services-industry-comprehensive-income-list.component';
+import { ServicesIndustryComprehensiveIncomeDetailComponent } from './pages/services-industry/comprehensive-income-detail/services-industry-comprehensive-income-detail.component';
 
 // Structural components
 import { StructuralMonthlyActivityListComponent } from './pages/structural/monthly-activity-list/structural-monthly-activity-list.component';
@@ -70,6 +74,8 @@ import { StructuralIncomeStatementListComponent } from './pages/structural/incom
 import { StructuralIncomeStatementDetailComponent } from './pages/structural/income-statement-detail/structural-income-statement-detail.component';
 import { StructuralCashFlowListComponent } from './pages/structural/cash-flow-list/structural-cash-flow-list.component';
 import { StructuralCashFlowDetailComponent } from './pages/structural/cash-flow-detail/structural-cash-flow-detail.component';
+import { StructuralComprehensiveIncomeListComponent } from './pages/structural/comprehensive-income-list/structural-comprehensive-income-list.component';
+import { StructuralComprehensiveIncomeDetailComponent } from './pages/structural/comprehensive-income-detail/structural-comprehensive-income-detail.component';
 
 // Investment components
 import { InvestmentBalanceSheetListComponent } from './pages/investment/balance-sheet-list/investment-balance-sheet-list.component';
@@ -127,6 +133,8 @@ import { JalaliDatePipe } from './pipes/jalali-date.pipe';
     AgricultureIncomeStatementDetailComponent,
     AgricultureCashFlowListComponent,
     AgricultureCashFlowDetailComponent,
+    AgricultureComprehensiveIncomeListComponent,
+    AgricultureComprehensiveIncomeDetailComponent,
 
     // ServicesIndustry components
     ServicesIndustryMonthlyActivityListComponent,
@@ -137,6 +145,8 @@ import { JalaliDatePipe } from './pipes/jalali-date.pipe';
     ServicesIndustryIncomeStatementDetailComponent,
     ServicesIndustryCashFlowListComponent,
     ServicesIndustryCashFlowDetailComponent,
+    ServicesIndustryComprehensiveIncomeListComponent,
+    ServicesIndustryComprehensiveIncomeDetailComponent,
 
     // Structural components
     StructuralMonthlyActivityListComponent,
@@ -147,6 +157,8 @@ import { JalaliDatePipe } from './pipes/jalali-date.pipe';
     StructuralIncomeStatementDetailComponent,
     StructuralCashFlowListComponent,
     StructuralCashFlowDetailComponent,
+    StructuralComprehensiveIncomeListComponent,
+    StructuralComprehensiveIncomeDetailComponent,
 
     // Investment components
     InvestmentBalanceSheetListComponent,
