@@ -34,6 +34,8 @@ import { AgricultureCashFlowListComponent } from './pages/agriculture/cash-flow-
 import { AgricultureCashFlowDetailComponent } from './pages/agriculture/cash-flow-detail/agriculture-cash-flow-detail.component';
 import { AgricultureComprehensiveIncomeListComponent } from './pages/agriculture/comprehensive-income-list/agriculture-comprehensive-income-list.component';
 import { AgricultureComprehensiveIncomeDetailComponent } from './pages/agriculture/comprehensive-income-detail/agriculture-comprehensive-income-detail.component';
+import { AgricultureChangesInEquityListComponent } from './pages/agriculture/changes-in-equity-list/agriculture-changes-in-equity-list.component';
+import { AgricultureChangesInEquityDetailComponent } from './pages/agriculture/changes-in-equity-detail/agriculture-changes-in-equity-detail.component';
 
 // ServicesIndustry
 import { ServicesIndustryMonthlyActivityListComponent } from './pages/services-industry/monthly-activity-list/services-industry-monthly-activity-list.component';
@@ -46,6 +48,8 @@ import { ServicesIndustryCashFlowListComponent } from './pages/services-industry
 import { ServicesIndustryCashFlowDetailComponent } from './pages/services-industry/cash-flow-detail/services-industry-cash-flow-detail.component';
 import { ServicesIndustryComprehensiveIncomeListComponent } from './pages/services-industry/comprehensive-income-list/services-industry-comprehensive-income-list.component';
 import { ServicesIndustryComprehensiveIncomeDetailComponent } from './pages/services-industry/comprehensive-income-detail/services-industry-comprehensive-income-detail.component';
+import { ServicesIndustryChangesInEquityListComponent } from './pages/services-industry/changes-in-equity-list/services-industry-changes-in-equity-list.component';
+import { ServicesIndustryChangesInEquityDetailComponent } from './pages/services-industry/changes-in-equity-detail/services-industry-changes-in-equity-detail.component';
 
 // Structural
 import { StructuralMonthlyActivityListComponent } from './pages/structural/monthly-activity-list/structural-monthly-activity-list.component';
@@ -58,6 +62,8 @@ import { StructuralCashFlowListComponent } from './pages/structural/cash-flow-li
 import { StructuralCashFlowDetailComponent } from './pages/structural/cash-flow-detail/structural-cash-flow-detail.component';
 import { StructuralComprehensiveIncomeListComponent } from './pages/structural/comprehensive-income-list/structural-comprehensive-income-list.component';
 import { StructuralComprehensiveIncomeDetailComponent } from './pages/structural/comprehensive-income-detail/structural-comprehensive-income-detail.component';
+import { StructuralChangesInEquityListComponent } from './pages/structural/changes-in-equity-list/structural-changes-in-equity-list.component';
+import { StructuralChangesInEquityDetailComponent } from './pages/structural/changes-in-equity-detail/structural-changes-in-equity-detail.component';
 
 // Investment
 import { InvestmentBalanceSheetListComponent } from './pages/investment/balance-sheet-list/investment-balance-sheet-list.component';
@@ -136,6 +142,8 @@ const routes: Routes = [
   { path: 'agriculture/cash-flow/:id', component: AgricultureCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد کشاورزی' } },
   { path: 'agriculture/comprehensive-income', component: AgricultureComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع کشاورزی' } },
   { path: 'agriculture/comprehensive-income/:id', component: AgricultureComprehensiveIncomeDetailComponent, data: { title: 'جزئیات صورت سود و زیان جامع کشاورزی' } },
+  { path: 'agriculture/changes-in-equity', component: AgricultureChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه کشاورزی' } },
+  { path: 'agriculture/changes-in-equity/:id', component: AgricultureChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه کشاورزی' } },
 
   // ServicesIndustry routes
   { path: 'services-industry/monthly-activity', component: ServicesIndustryMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه خدمات' } },
@@ -148,6 +156,8 @@ const routes: Routes = [
   { path: 'services-industry/cash-flow/:id', component: ServicesIndustryCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد خدمات' } },
   { path: 'services-industry/comprehensive-income', component: ServicesIndustryComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع خدماتی' } },
   { path: 'services-industry/comprehensive-income/:id', component: ServicesIndustryComprehensiveIncomeDetailComponent, data: { title: 'جزئیات صورت سود و زیان جامع خدماتی' } },
+  { path: 'services-industry/changes-in-equity', component: ServicesIndustryChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه خدماتی' } },
+  { path: 'services-industry/changes-in-equity/:id', component: ServicesIndustryChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه خدماتی' } },
 
   // Structural routes
   { path: 'structural/monthly-activity', component: StructuralMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه ساختاری' } },
@@ -160,6 +170,8 @@ const routes: Routes = [
   { path: 'structural/cash-flow/:id', component: StructuralCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد ساختاری' } },
   { path: 'structural/comprehensive-income', component: StructuralComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع ساختاری' } },
   { path: 'structural/comprehensive-income/:id', component: StructuralComprehensiveIncomeDetailComponent, data: { title: 'جزئیات صورت سود و زیان جامع ساختاری' } },
+  { path: 'structural/changes-in-equity', component: StructuralChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه ساختاری' } },
+  { path: 'structural/changes-in-equity/:id', component: StructuralChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه ساختاری' } },
 
   // Investment routes (no monthly-activity)
   { path: 'investment/balance-sheet', component: InvestmentBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی سرمایه‌گذاری' } },
