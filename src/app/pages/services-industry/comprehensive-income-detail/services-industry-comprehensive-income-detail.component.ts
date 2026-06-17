@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { ServicesIndustryComprehensiveIncomeService } from 'src/app/services/services-industry-comprehensive-income.service';
 import { ServicesIndustryComprehensiveIncomeDetail } from 'src/app/models/services-industry/comprehensive-income.model';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-services-industry-comprehensive-income-detail',
@@ -13,6 +14,7 @@ export class ServicesIndustryComprehensiveIncomeDetailComponent implements OnIni
   isLoading = true;
   reportData: ServicesIndustryComprehensiveIncomeDetail | null = null;
   error: string | null = null;
+  convertToToman = convertToToman;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: ServicesIndustryComprehensiveIncomeService) {}
 
@@ -31,6 +33,11 @@ export class ServicesIndustryComprehensiveIncomeDetailComponent implements OnIni
         },
         error: (err) => { this.error = 'خطا در بارگذاری داده‌های صورت سود و زیان جامع خدمات'; console.error(err); }
       });
+  }
+
+  formatNumber(value: number | undefined | null): string {
+    if (value == null) return '—';
+    return value.toLocaleString('en-US');
   }
 
   goBack(): void { this.router.navigate(['/services-industry/comprehensive-income']); }

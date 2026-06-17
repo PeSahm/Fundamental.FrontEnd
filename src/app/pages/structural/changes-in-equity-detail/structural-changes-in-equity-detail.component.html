@@ -36,17 +36,17 @@
             <tbody>
               <tr *ngFor="let item of reportData.items">
                 <td>{{ item.description }}</td>
-                <td class="text-end">{{ item.capital | persianNumber }}</td>
-                <td class="text-end">{{ item.capitalIncreaseInProgress | persianNumber }}</td>
-                <td class="text-end">{{ item.sharePremium | persianNumber }}</td>
-                <td class="text-end">{{ item.treasurySharePremium | persianNumber }}</td>
-                <td class="text-end">{{ item.legalReserve | persianNumber }}</td>
-                <td class="text-end">{{ item.otherReserves | persianNumber }}</td>
-                <td class="text-end">{{ item.revaluationSurplus | persianNumber }}</td>
-                <td class="text-end">{{ item.foreignCurrencyTranslationDifference | persianNumber }}</td>
-                <td class="text-end">{{ item.retainedEarnings | persianNumber }}</td>
-                <td class="text-end">{{ item.treasuryShares | persianNumber }}</td>
-                <td class="text-end">{{ item.total | persianNumber }}</td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.capital))" tooltipClass="tooltip-class">{{ formatNumber(item.capital) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.capitalIncreaseInProgress))" tooltipClass="tooltip-class">{{ formatNumber(item.capitalIncreaseInProgress) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.sharePremium))" tooltipClass="tooltip-class">{{ formatNumber(item.sharePremium) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.treasurySharePremium))" tooltipClass="tooltip-class">{{ formatNumber(item.treasurySharePremium) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.legalReserve))" tooltipClass="tooltip-class">{{ formatNumber(item.legalReserve) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.otherReserves))" tooltipClass="tooltip-class">{{ formatNumber(item.otherReserves) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.revaluationSurplus))" tooltipClass="tooltip-class">{{ formatNumber(item.revaluationSurplus) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.foreignCurrencyTranslationDifference))" tooltipClass="tooltip-class">{{ formatNumber(item.foreignCurrencyTranslationDifference) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.retainedEarnings))" tooltipClass="tooltip-class">{{ formatNumber(item.retainedEarnings) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.treasuryShares))" tooltipClass="tooltip-class">{{ formatNumber(item.treasuryShares) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.total))" tooltipClass="tooltip-class">{{ formatNumber(item.total) }}</span></td>
               </tr>
             </tbody>
           </table>

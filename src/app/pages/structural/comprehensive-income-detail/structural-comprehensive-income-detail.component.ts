@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { StructuralComprehensiveIncomeService } from 'src/app/services/structural-comprehensive-income.service';
 import { StructuralComprehensiveIncomeDetail } from 'src/app/models/structural/comprehensive-income.model';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-structural-comprehensive-income-detail',
@@ -13,6 +14,7 @@ export class StructuralComprehensiveIncomeDetailComponent implements OnInit {
   isLoading = true;
   reportData: StructuralComprehensiveIncomeDetail | null = null;
   error: string | null = null;
+  convertToToman = convertToToman;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: StructuralComprehensiveIncomeService) {}
 
@@ -31,6 +33,11 @@ export class StructuralComprehensiveIncomeDetailComponent implements OnInit {
         },
         error: (err) => { this.error = 'خطا در بارگذاری داده‌های صورت سود و زیان جامع ساختاری'; console.error(err); }
       });
+  }
+
+  formatNumber(value: number | undefined | null): string {
+    if (value == null) return '—';
+    return value.toLocaleString('en-US');
   }
 
   goBack(): void { this.router.navigate(['/structural/comprehensive-income']); }

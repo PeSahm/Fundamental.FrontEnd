@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { ServicesIndustryChangesInEquityService } from 'src/app/services/services-industry-changes-in-equity.service';
 import { ServicesIndustryChangesInEquityDetail } from 'src/app/models/services-industry/changes-in-equity.model';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-services-industry-changes-in-equity-detail',
@@ -13,6 +14,7 @@ export class ServicesIndustryChangesInEquityDetailComponent implements OnInit {
   isLoading = true;
   reportData: ServicesIndustryChangesInEquityDetail | null = null;
   error: string | null = null;
+  convertToToman = convertToToman;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: ServicesIndustryChangesInEquityService) {}
 
@@ -31,6 +33,11 @@ export class ServicesIndustryChangesInEquityDetailComponent implements OnInit {
         },
         error: (err) => { this.error = 'خطا در بارگذاری داده‌های صورت تغییرات در حقوق مالکانه خدماتی'; console.error(err); }
       });
+  }
+
+  formatNumber(value: number | undefined | null): string {
+    if (value == null) return '—';
+    return value.toLocaleString('en-US');
   }
 
   goBack(): void { this.router.navigate(['/services-industry/changes-in-equity']); }

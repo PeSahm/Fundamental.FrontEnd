@@ -34,10 +34,10 @@
                 <td>{{ item.description }}</td>
                 <td>{{ item.location || '' }}</td>
                 <td>{{ item.usageType || '' }}</td>
-                <td class="text-end">{{ item.yearToDateAmount | persianNumber }}</td>
-                <td class="text-end">{{ item.correctedYearToDateAmount | persianNumber }}</td>
-                <td class="text-end">{{ item.monthlyAmount | persianNumber }}</td>
-                <td class="text-end">{{ item.cumulativeAmount | persianNumber }}</td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.yearToDateAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.yearToDateAmount) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.correctedYearToDateAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.correctedYearToDateAmount) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.monthlyAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.monthlyAmount) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.cumulativeAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.cumulativeAmount) }}</span></td>
               </tr>
             </tbody>
           </table>

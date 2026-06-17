@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesIndustryMonthlyActivityService } from 'src/app/services/services-industry-monthly-activity.service';
 import { finalize } from 'rxjs';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-services-industry-monthly-activity-detail',
@@ -12,6 +13,7 @@ export class ServicesIndustryMonthlyActivityDetailComponent implements OnInit {
   isLoading = true;
   reportData: any = null;
   error: string | null = null;
+  convertToToman = convertToToman;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: ServicesIndustryMonthlyActivityService) {}
 
@@ -30,6 +32,11 @@ export class ServicesIndustryMonthlyActivityDetailComponent implements OnInit {
         },
         error: (err) => { this.error = 'خطا در بارگذاری داده‌های فعالیت ماهانه'; console.error(err); }
       });
+  }
+
+  formatNumber(value: number | undefined | null): string {
+    if (value == null) return '—';
+    return value.toLocaleString('en-US');
   }
 
   goBack(): void { this.router.navigate(['/services-industry/monthly-activity']); }

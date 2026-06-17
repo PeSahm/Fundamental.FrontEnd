@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesIndustryIncomeStatementService } from 'src/app/services/services-industry-income-statement.service';
 import { finalize } from 'rxjs';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-services-industry-income-statement-detail',
@@ -12,6 +13,7 @@ export class ServicesIndustryIncomeStatementDetailComponent implements OnInit {
   isLoading = true;
   reportData: any = null;
   error: string | null = null;
+  convertToToman = convertToToman;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: ServicesIndustryIncomeStatementService) {}
 
@@ -30,6 +32,11 @@ export class ServicesIndustryIncomeStatementDetailComponent implements OnInit {
         },
         error: (err) => { this.error = 'خطا در بارگذاری داده‌های صورت سود و زیان خدمات'; console.error(err); }
       });
+  }
+
+  formatNumber(value: number | undefined | null): string {
+    if (value == null) return '—';
+    return value.toLocaleString('en-US');
   }
 
   goBack(): void { this.router.navigate(['/services-industry/income-statement']); }

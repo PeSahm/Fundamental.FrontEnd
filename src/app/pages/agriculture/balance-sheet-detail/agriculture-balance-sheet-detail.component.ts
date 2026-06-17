@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AgricultureBalanceSheetService } from 'src/app/services/agriculture-balance-sheet.service';
 import { finalize } from 'rxjs';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-agriculture-balance-sheet-detail',
@@ -12,6 +13,7 @@ export class AgricultureBalanceSheetDetailComponent implements OnInit {
   isLoading = true;
   reportData: any = null;
   error: string | null = null;
+  convertToToman = convertToToman;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +48,11 @@ export class AgricultureBalanceSheetDetailComponent implements OnInit {
           console.error('Error loading agriculture balance sheet detail:', err);
         }
       });
+  }
+
+  formatNumber(value: number | undefined | null): string {
+    if (value == null) return '—';
+    return value.toLocaleString('en-US');
   }
 
   goBack(): void {

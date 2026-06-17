@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesIndustryBalanceSheetService } from 'src/app/services/services-industry-balance-sheet.service';
 import { finalize } from 'rxjs';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-services-industry-balance-sheet-detail',
@@ -12,6 +13,7 @@ export class ServicesIndustryBalanceSheetDetailComponent implements OnInit {
   isLoading = true;
   reportData: any = null;
   error: string | null = null;
+  convertToToman = convertToToman;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: ServicesIndustryBalanceSheetService) {}
 
@@ -30,6 +32,11 @@ export class ServicesIndustryBalanceSheetDetailComponent implements OnInit {
         },
         error: (err) => { this.error = 'خطا در بارگذاری داده‌های صورت وضعیت مالی خدمات'; console.error(err); }
       });
+  }
+
+  formatNumber(value: number | undefined | null): string {
+    if (value == null) return '—';
+    return value.toLocaleString('en-US');
   }
 
   goBack(): void { this.router.navigate(['/services-industry/balance-sheet']); }

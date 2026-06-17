@@ -28,7 +28,7 @@
               <tr *ngFor="let item of reportData.details" [ngClass]="{ 'summary-row': item.row > 0, 'data-row': item.row <= 0 }">
                 <td>{{ item.row | persianNumber }}</td>
                 <td>{{ item.description }}</td>
-                <td class="text-end">{{ item.value | persianNumber }}</td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.value))" tooltipClass="tooltip-class">{{ formatNumber(item.value) }}</span></td>
               </tr>
             </tbody>
           </table>

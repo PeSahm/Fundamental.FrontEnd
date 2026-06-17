@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { AgricultureChangesInEquityService } from 'src/app/services/agriculture-changes-in-equity.service';
 import { AgricultureChangesInEquityDetail } from 'src/app/models/agriculture/changes-in-equity.model';
+import convertToToman from 'src/app/utils/toToman';
 
 @Component({
   selector: 'app-agriculture-changes-in-equity-detail',
@@ -13,6 +14,7 @@ export class AgricultureChangesInEquityDetailComponent implements OnInit {
   isLoading = true;
   reportData: AgricultureChangesInEquityDetail | null = null;
   error: string | null = null;
+  convertToToman = convertToToman;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: AgricultureChangesInEquityService) {}
 
@@ -31,6 +33,11 @@ export class AgricultureChangesInEquityDetailComponent implements OnInit {
         },
         error: (err) => { this.error = 'خطا در بارگذاری داده‌های صورت تغییرات در حقوق مالکانه کشاورزی'; console.error(err); }
       });
+  }
+
+  formatNumber(value: number | undefined | null): string {
+    if (value == null) return '—';
+    return value.toLocaleString('en-US');
   }
 
   goBack(): void { this.router.navigate(['/agriculture/changes-in-equity']); }

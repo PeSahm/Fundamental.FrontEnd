@@ -80,11 +80,11 @@
                 [ngClass]="{'table-secondary fw-bold': item.rowCode && item.rowCode !== -1}">
                 <td>{{ item.productName }}</td>
                 <td>{{ item.unit || '' }}</td>
-                <td class="text-end">{{ item.yearToDateSalesAmount | persianNumber }}</td>
-                <td class="text-end">{{ item.correctedYearToDateSalesAmount | persianNumber }}</td>
-                <td class="text-end">{{ item.monthlySalesAmount | persianNumber }}</td>
-                <td class="text-end">{{ item.cumulativeToPeriodSalesAmount | persianNumber }}</td>
-                <td class="text-end">{{ item.previousYearSalesAmount | persianNumber }}</td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.yearToDateSalesAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.yearToDateSalesAmount) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.correctedYearToDateSalesAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.correctedYearToDateSalesAmount) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.monthlySalesAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.monthlySalesAmount) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.cumulativeToPeriodSalesAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.cumulativeToPeriodSalesAmount) }}</span></td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.previousYearSalesAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.previousYearSalesAmount) }}</span></td>
               </tr>
             </tbody>
           </table>
