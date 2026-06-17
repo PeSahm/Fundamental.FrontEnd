@@ -45,13 +45,13 @@
                 <td>{{ item.companySymbol }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.capital))" tooltipClass="tooltip-class">{{ formatNumber(item.capital) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.shareNominalValue))" tooltipClass="tooltip-class">{{ formatNumber(item.shareNominalValue) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.startShareCount))" tooltipClass="tooltip-class">{{ formatNumber(item.startShareCount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.startShareCount) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.startCost))" tooltipClass="tooltip-class">{{ formatNumber(item.startCost) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.startMarketValue))" tooltipClass="tooltip-class">{{ formatNumber(item.startMarketValue) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.shareCountChange))" tooltipClass="tooltip-class">{{ formatNumber(item.shareCountChange) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.shareCountChange) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.costChange))" tooltipClass="tooltip-class">{{ formatNumber(item.costChange) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.marketValueChange))" tooltipClass="tooltip-class">{{ formatNumber(item.marketValueChange) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.endOwnershipPercent))" tooltipClass="tooltip-class">{{ formatNumber(item.endOwnershipPercent) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.endOwnershipPercent) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.endCost))" tooltipClass="tooltip-class">{{ formatNumber(item.endCost) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.endMarketValue))" tooltipClass="tooltip-class">{{ formatNumber(item.endMarketValue) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.endCostPerShare))" tooltipClass="tooltip-class">{{ formatNumber(item.endCostPerShare) }}</span></td>
@@ -92,11 +92,11 @@
                 <td>{{ item.companySymbol }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.capital))" tooltipClass="tooltip-class">{{ formatNumber(item.capital) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.shareNominalValue))" tooltipClass="tooltip-class">{{ formatNumber(item.shareNominalValue) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.startShareCount))" tooltipClass="tooltip-class">{{ formatNumber(item.startShareCount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.startShareCount) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.startCost))" tooltipClass="tooltip-class">{{ formatNumber(item.startCost) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.shareCountChange))" tooltipClass="tooltip-class">{{ formatNumber(item.shareCountChange) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.shareCountChange) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.costChange))" tooltipClass="tooltip-class">{{ formatNumber(item.costChange) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.endOwnershipPercent))" tooltipClass="tooltip-class">{{ formatNumber(item.endOwnershipPercent) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.endOwnershipPercent) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.endCost))" tooltipClass="tooltip-class">{{ formatNumber(item.endCost) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.endCostPerShare))" tooltipClass="tooltip-class">{{ formatNumber(item.endCostPerShare) }}</span></td>
                 <td>{{ item.statusDescription }}</td>
@@ -127,7 +127,7 @@
               <tr *ngFor="let item of reportData.incomeBuyItems">
                 <td>{{ item.companyName }}</td>
                 <td>{{ item.companySymbol }}</td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.shareCount))" tooltipClass="tooltip-class">{{ formatNumber(item.shareCount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.shareCount) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.costPerShare))" tooltipClass="tooltip-class">{{ formatNumber(item.costPerShare) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.acceptedTotalCost))" tooltipClass="tooltip-class">{{ formatNumber(item.acceptedTotalCost) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.notAcceptedTotalCost))" tooltipClass="tooltip-class">{{ formatNumber(item.notAcceptedTotalCost) }}</span></td>
@@ -160,7 +160,7 @@
               <tr *ngFor="let item of reportData.incomeSaleItems">
                 <td>{{ item.companyName }}</td>
                 <td>{{ item.companySymbol }}</td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.shareCount))" tooltipClass="tooltip-class">{{ formatNumber(item.shareCount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.shareCount) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.costPerShare))" tooltipClass="tooltip-class">{{ formatNumber(item.costPerShare) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.totalCost))" tooltipClass="tooltip-class">{{ formatNumber(item.totalCost) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.salePricePerShare))" tooltipClass="tooltip-class">{{ formatNumber(item.salePricePerShare) }}</span></td>
@@ -208,10 +208,10 @@
                 <td>{{ item.companyName }}</td>
                 <td>{{ item.investeeCompanyFiscalYear }}</td>
                 <td>{{ item.assemblyDate | jalali }}</td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.shareCountAtAssemblyDate))" tooltipClass="tooltip-class">{{ formatNumber(item.shareCountAtAssemblyDate) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.shareCountAtAssemblyDate) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.capital))" tooltipClass="tooltip-class">{{ formatNumber(item.capital) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.shareNominalValue))" tooltipClass="tooltip-class">{{ formatNumber(item.shareNominalValue) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.ownershipPercent))" tooltipClass="tooltip-class">{{ formatNumber(item.ownershipPercent) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.ownershipPercent) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.earningsPerShare))" tooltipClass="tooltip-class">{{ formatNumber(item.earningsPerShare) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.cashEarningsPerShare))" tooltipClass="tooltip-class">{{ formatNumber(item.cashEarningsPerShare) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.currentYearDividendIncome))" tooltipClass="tooltip-class">{{ formatNumber(item.currentYearDividendIncome) }}</span></td>
@@ -262,22 +262,22 @@
             <tbody>
               <tr *ngFor="let item of reportData.industryGroupItems">
                 <td>{{ item.description }}</td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.acceptedStartCompanyCount))" tooltipClass="tooltip-class">{{ formatNumber(item.acceptedStartCompanyCount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.acceptedStartCompanyCount) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.acceptedStartCost))" tooltipClass="tooltip-class">{{ formatNumber(item.acceptedStartCost) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.acceptedStartMarketValue))" tooltipClass="tooltip-class">{{ formatNumber(item.acceptedStartMarketValue) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.acceptedCostChange))" tooltipClass="tooltip-class">{{ formatNumber(item.acceptedCostChange) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.acceptedMarketValueChange))" tooltipClass="tooltip-class">{{ formatNumber(item.acceptedMarketValueChange) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.acceptedEndCost))" tooltipClass="tooltip-class">{{ formatNumber(item.acceptedEndCost) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.notAcceptedStartCompanyCount))" tooltipClass="tooltip-class">{{ formatNumber(item.notAcceptedStartCompanyCount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.notAcceptedStartCompanyCount) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.notAcceptedStartCost))" tooltipClass="tooltip-class">{{ formatNumber(item.notAcceptedStartCost) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.notAcceptedCostChange))" tooltipClass="tooltip-class">{{ formatNumber(item.notAcceptedCostChange) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.notAcceptedEndCost))" tooltipClass="tooltip-class">{{ formatNumber(item.notAcceptedEndCost) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.totalStartCompanyCount))" tooltipClass="tooltip-class">{{ formatNumber(item.totalStartCompanyCount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.totalStartCompanyCount) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.totalStartCost))" tooltipClass="tooltip-class">{{ formatNumber(item.totalStartCost) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.totalStartCostPercent))" tooltipClass="tooltip-class">{{ formatNumber(item.totalStartCostPercent) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.totalStartCostPercent) }}</td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.totalCostChange))" tooltipClass="tooltip-class">{{ formatNumber(item.totalCostChange) }}</span></td>
                 <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.totalEndCost))" tooltipClass="tooltip-class">{{ formatNumber(item.totalEndCost) }}</span></td>
-                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.totalEndCostPercent))" tooltipClass="tooltip-class">{{ formatNumber(item.totalEndCostPercent) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.totalEndCostPercent) }}</td>
               </tr>
             </tbody>
           </table>
