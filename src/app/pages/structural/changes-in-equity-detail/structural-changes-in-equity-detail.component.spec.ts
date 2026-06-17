@@ -1,45 +1,109 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { of } from 'rxjs';
+
 import { StructuralChangesInEquityDetailComponent } from './structural-changes-in-equity-detail.component';
-
-@Pipe({ name: 'persianNumber' })
-class StubPersianNumberPipe implements PipeTransform { transform(v: unknown): unknown { return v; } }
-
-@Pipe({ name: 'jalali' })
-class StubJalaliPipe implements PipeTransform { transform(v: unknown): unknown { return v; } }
+import { StructuralChangesInEquityService } from 'src/app/services/structural-changes-in-equity.service';
+import { PersianNumberPipe } from 'src/app/pipes/persian-number.pipe';
+import { JalaliDatePipe } from 'src/app/pipes/jalali-date.pipe';
 
 describe('StructuralChangesInEquityDetailComponent', () => {
   let component: StructuralChangesInEquityDetailComponent;
   let fixture: ComponentFixture<StructuralChangesInEquityDetailComponent>;
+  let mockService: jasmine.SpyObj<StructuralChangesInEquityService>;
+  let mockActivatedRoute: jasmine.SpyObj<ActivatedRoute>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [StructuralChangesInEquityDetailComponent, StubPersianNumberPipe, StubJalaliPipe],
-      imports: [HttpClientTestingModule, RouterTestingModule],
-      schemas: [NO_ERRORS_SCHEMA]
+  const mockData = {
+    id: 'test-id',
+    isin: 'IRO1TEST0001',
+    symbol: 'نماد',
+    uri: '',
+    traceNo: 1,
+    fiscalYear: 1402,
+    yearEndMonth: 12,
+    reportMonth: 6,
+    isAudited: true,
+    publishDate: '2024-01-01',
+    createdAt: '',
+    updatedAt: '',
+    items: [
+      { rowCode: 1, rowType: null, description: 'مانده ابتدای دوره', capital: 1000, capitalIncreaseInProgress: 0, sharePremium: 0, treasurySharePremium: 0, legalReserve: 100, otherReserves: 0, revaluationSurplus: 0, foreignCurrencyTranslationDifference: 0, retainedEarnings: 500, treasuryShares: 0, total: 1600 },
+      { rowCode: 2, rowType: null, description: 'مانده پایان دوره', capital: 1000, capitalIncreaseInProgress: 0, sharePremium: 0, treasurySharePremium: 0, legalReserve: 120, otherReserves: 0, revaluationSurplus: 0, foreignCurrencyTranslationDifference: 0, retainedEarnings: 700, treasuryShares: 0, total: 1820 }
+    ]
+  };
+
+  beforeEach(async () => {
+    const serviceSpy = jasmine.createSpyObj('StructuralChangesInEquityService', ['getById']);
+    serviceSpy.getById.and.returnValue(of({ data: mockData }));
+
+    const activatedRouteSpy = jasmine.createSpyObj('ActivatedRoute', [], {
+      snapshot: { paramMap: { get: jasmine.createSpy('get').and.returnValue('test-id') } }
     });
+
+    await TestBed.configureTestingModule({
+      declarations: [StructuralChangesInEquityDetailComponent, PersianNumberPipe, JalaliDatePipe],
+      imports: [RouterTestingModule, NgbTooltipModule],
+      providers: [
+        { provide: StructuralChangesInEquityService, useValue: serviceSpy },
+        { provide: ActivatedRoute, useValue: activatedRouteSpy }
+      ]
+    }).compileComponents();
+
     fixture = TestBed.createComponent(StructuralChangesInEquityDetailComponent);
     component = fixture.componentInstance;
+    mockService = TestBed.inject(StructuralChangesInEquityService) as jasmine.SpyObj<StructuralChangesInEquityService>;
+    mockActivatedRoute = TestBed.inject(ActivatedRoute) as jasmine.SpyObj<ActivatedRoute>;
   });
 
-  it('should create', () => { fixture.detectChanges(); expect(component).toBeTruthy(); });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-  it('should render item rows from data and root is rtl', () => {
-    component.isLoading = false;
-    component.reportData = {
-      id: '1', isin: 'IRO1TEST0001', symbol: 'نماد', uri: '', traceNo: 1,
-      fiscalYear: 1402, yearEndMonth: 12, reportMonth: 6, isAudited: true,
-      publishDate: '2024-01-01', createdAt: '', updatedAt: '',
-      items: [
-        { rowCode: 1, rowType: null, description: 'مانده ابتدای دوره', capital: 1000, capitalIncreaseInProgress: 0, sharePremium: 0, treasurySharePremium: 0, legalReserve: 100, otherReserves: 0, revaluationSurplus: 0, foreignCurrencyTranslationDifference: 0, retainedEarnings: 500, treasuryShares: 0, total: 1600 },
-        { rowCode: 2, rowType: null, description: 'مانده پایان دوره', capital: 1000, capitalIncreaseInProgress: 0, sharePremium: 0, treasurySharePremium: 0, legalReserve: 120, otherReserves: 0, revaluationSurplus: 0, foreignCurrencyTranslationDifference: 0, retainedEarnings: 700, treasuryShares: 0, total: 1820 }
-      ]
-    };
+  it('should load detail on init via getById', () => {
+    component.ngOnInit();
+
+    expect(mockService.getById).toHaveBeenCalledWith('test-id');
+    expect(component.reportData).toBeTruthy();
+    expect(component.isLoading).toBeFalse();
+  });
+
+  it('should render the root container as RTL', () => {
     fixture.detectChanges();
-    const el: HTMLElement = fixture.nativeElement;
-    expect(el.querySelector('[dir="rtl"]')).toBeTruthy();
-    expect(el.querySelectorAll('tbody tr').length).toBe(2);
+    const root: HTMLElement = fixture.nativeElement.querySelector('.container-fluid');
+    expect(root).toBeTruthy();
+    expect(root.getAttribute('dir')).toBe('rtl');
+  });
+
+  it('should render item rows from mock data', () => {
+    fixture.detectChanges();
+    const rows = fixture.nativeElement.querySelectorAll('.section-card table tbody tr');
+    expect(rows.length).toBe(2);
+    expect(fixture.nativeElement.textContent).toContain('مانده ابتدای دوره');
+  });
+
+  it('should handle missing report data', () => {
+    mockService.getById.and.returnValue(of({ data: null }) as any);
+
+    component.ngOnInit();
+
+    expect(component.error).toBe('داده‌های گزارش یافت نشد');
+    expect(component.isLoading).toBeFalse();
+  });
+
+  it('should format numbers and map null to em-dash', () => {
+    expect(component.formatNumber(1234567)).toBe('1,234,567');
+    expect(component.formatNumber(null)).toBe('—');
+    expect(component.formatNumber(undefined)).toBe('—');
+  });
+
+  it('should handle missing ID parameter', () => {
+    (mockActivatedRoute.snapshot.paramMap.get as jasmine.Spy).and.returnValue(null);
+
+    component.ngOnInit();
+
+    expect(component.error).toBe('شناسه گزارش مشخص نشده است');
+    expect(component.isLoading).toBeFalse();
   });
 });
