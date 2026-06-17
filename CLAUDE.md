@@ -23,19 +23,22 @@ ng test                # Karma + Jasmine
   `https://localhost:5006/`, prod base relative `/api/` (ingress routes it). Services are thin and
   delegate to the shared `ApiService`.
 - RTL layout for all Persian components (`dir="rtl"` on root containers).
-- **Persian digits via the `persianNumber` pipe and Jalali dates via the `jalali` pipe**
-  (`src/app/pipes/`). Zero-dependency: `persianNumber` = `toLocaleString('fa-IR')` + Latin/Arabic-Indic
-  → Persian digit mapping (`pipes/digit-utils.ts`); `jalali` = `Intl.DateTimeFormat('fa-IR-u-ca-persian',
-  { timeZone: 'Asia/Tehran' })` and passes already-Jalali strings (`/^1[34]\d{2}[\/-]/`) through
-  digit-mapped. Both declared in `AppModule`. (Note: these pipes were referenced by project rules but
-  did not exist until 2026-06; do not reintroduce a per-component `formatNumber()`.)
+- **Money/amounts follow Manufacturing (skill `codal-report-page`): a `formatNumber()` component method
+  (`toLocaleString('en-US')`, null→'—') wrapped in a `convertToToman()` Toman tooltip
+  (`[ngbTooltip]="convertToToman(formatNumber(x))"`, util `src/app/utils/toToman.ts`).** The
+  `persianNumber`/`jalali` pipes (`src/app/pipes/`) are for NON-money ordinals/labels/dates only — do NOT
+  use `persianNumber` for statement amounts.
+- **Item interfaces are INLINE in the `.component.ts`** (NOT in `src/app/models/{sector}/`); each carries
+  `rowCode/category/isDataRow/isSummaryRow/rowClass`. **Row classification**: `processData()` sets the row
+  flags, `getDataRows()`/`getSummaryRows()` + `getRowClass()`, separate `*ngFor` loops, SCSS row classes.
 - Per report type: a List page + a Detail page under `pages/{sector}/{report-type}-list|-detail/`.
-  Reference: `pages/agriculture/monthly-activity-detail/` (wide RTL items table) and
-  `pages/structural/income-statement-detail/` (Detail-rows table).
-- Detail pages use Pattern B: `service.getById(id)` → `{BaseUrl}/{id}` (GUID). Owned JSONB collections
-  load automatically from the backend.
-- Typed models in `src/app/models/{sector}/` — avoid `any`; the model fields must match the backend
-  DTO (camelCased). Reuse the `Result<T>` / `DetailResult<T>` envelopes from `models/models.ts`.
+  Canonical reference: **`pages/manufacturing/monthly-activity-detail/`** (formatNumber + `[ngbTooltip]` +
+  processData + service-spy spec). Detail pages use Pattern B: `service.getById(id)` → `{BaseUrl}/{id}`.
+- **DIVERGENCE (refactor backlog):** the new ComprehensiveIncome/ChangesInEquity/Portfolio pages do NOT
+  follow Manufacturing — F1 use `persianNumber`/`jalali` pipes instead of `formatNumber()`; F2 no Toman
+  tooltip; F3 raw million-Rial display; F4 interfaces in `models/` not inline; F5 no row-classification;
+  F6 specs use `HttpClientTestingModule`/`NO_ERRORS_SCHEMA`/pipe stubs instead of a service spy. Conform to
+  Manufacturing when refactoring each sector.
 - Sentry active (org `fundamental`, project `angular-frontend`).
 
 ## Sectors & report kinds (current)
