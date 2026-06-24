@@ -41,13 +41,9 @@ import { AgricultureChangesInEquityDetailComponent } from './pages/agriculture/c
 import { ServicesIndustryMonthlyActivityListComponent } from './pages/services-industry/monthly-activity-list/services-industry-monthly-activity-list.component';
 import { ServicesIndustryMonthlyActivityDetailComponent } from './pages/services-industry/monthly-activity-detail/services-industry-monthly-activity-detail.component';
 import { ServicesIndustryBalanceSheetListComponent } from './pages/services-industry/balance-sheet-list/services-industry-balance-sheet-list.component';
-import { ServicesIndustryBalanceSheetDetailComponent } from './pages/services-industry/balance-sheet-detail/services-industry-balance-sheet-detail.component';
 import { ServicesIndustryIncomeStatementListComponent } from './pages/services-industry/income-statement-list/services-industry-income-statement-list.component';
-import { ServicesIndustryIncomeStatementDetailComponent } from './pages/services-industry/income-statement-detail/services-industry-income-statement-detail.component';
 import { ServicesIndustryCashFlowListComponent } from './pages/services-industry/cash-flow-list/services-industry-cash-flow-list.component';
-import { ServicesIndustryCashFlowDetailComponent } from './pages/services-industry/cash-flow-detail/services-industry-cash-flow-detail.component';
 import { ServicesIndustryComprehensiveIncomeListComponent } from './pages/services-industry/comprehensive-income-list/services-industry-comprehensive-income-list.component';
-import { ServicesIndustryComprehensiveIncomeDetailComponent } from './pages/services-industry/comprehensive-income-detail/services-industry-comprehensive-income-detail.component';
 import { ServicesIndustryChangesInEquityListComponent } from './pages/services-industry/changes-in-equity-list/services-industry-changes-in-equity-list.component';
 import { ServicesIndustryChangesInEquityDetailComponent } from './pages/services-industry/changes-in-equity-detail/services-industry-changes-in-equity-detail.component';
 
@@ -145,13 +141,9 @@ const routes: Routes = [
   { path: 'services-industry/monthly-activity', component: ServicesIndustryMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه خدمات' } },
   { path: 'services-industry/monthly-activity/:id', component: ServicesIndustryMonthlyActivityDetailComponent, data: { title: 'جزئیات فعالیت ماهانه خدمات' } },
   { path: 'services-industry/balance-sheet', component: ServicesIndustryBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی خدمات' } },
-  { path: 'services-industry/balance-sheet/:id', component: ServicesIndustryBalanceSheetDetailComponent, data: { title: 'جزئیات صورت وضعیت مالی خدمات' } },
   { path: 'services-industry/income-statement', component: ServicesIndustryIncomeStatementListComponent, data: { title: 'صورت سود و زیان خدمات' } },
-  { path: 'services-industry/income-statement/:id', component: ServicesIndustryIncomeStatementDetailComponent, data: { title: 'جزئیات صورت سود و زیان خدمات' } },
   { path: 'services-industry/cash-flow', component: ServicesIndustryCashFlowListComponent, data: { title: 'جریان وجوه نقد خدمات' } },
-  { path: 'services-industry/cash-flow/:id', component: ServicesIndustryCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد خدمات' } },
   { path: 'services-industry/comprehensive-income', component: ServicesIndustryComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع خدماتی' } },
-  { path: 'services-industry/comprehensive-income/:id', component: ServicesIndustryComprehensiveIncomeDetailComponent, data: { title: 'جزئیات صورت سود و زیان جامع خدماتی' } },
   { path: 'services-industry/changes-in-equity', component: ServicesIndustryChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه خدماتی' } },
   { path: 'services-industry/changes-in-equity/:id', component: ServicesIndustryChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه خدماتی' } },
 

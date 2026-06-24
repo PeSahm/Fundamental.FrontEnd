@@ -59,13 +59,9 @@ import { AgricultureChangesInEquityDetailComponent } from './pages/agriculture/c
 import { ServicesIndustryMonthlyActivityListComponent } from './pages/services-industry/monthly-activity-list/services-industry-monthly-activity-list.component';
 import { ServicesIndustryMonthlyActivityDetailComponent } from './pages/services-industry/monthly-activity-detail/services-industry-monthly-activity-detail.component';
 import { ServicesIndustryBalanceSheetListComponent } from './pages/services-industry/balance-sheet-list/services-industry-balance-sheet-list.component';
-import { ServicesIndustryBalanceSheetDetailComponent } from './pages/services-industry/balance-sheet-detail/services-industry-balance-sheet-detail.component';
 import { ServicesIndustryIncomeStatementListComponent } from './pages/services-industry/income-statement-list/services-industry-income-statement-list.component';
-import { ServicesIndustryIncomeStatementDetailComponent } from './pages/services-industry/income-statement-detail/services-industry-income-statement-detail.component';
 import { ServicesIndustryCashFlowListComponent } from './pages/services-industry/cash-flow-list/services-industry-cash-flow-list.component';
-import { ServicesIndustryCashFlowDetailComponent } from './pages/services-industry/cash-flow-detail/services-industry-cash-flow-detail.component';
 import { ServicesIndustryComprehensiveIncomeListComponent } from './pages/services-industry/comprehensive-income-list/services-industry-comprehensive-income-list.component';
-import { ServicesIndustryComprehensiveIncomeDetailComponent } from './pages/services-industry/comprehensive-income-detail/services-industry-comprehensive-income-detail.component';
 import { ServicesIndustryChangesInEquityListComponent } from './pages/services-industry/changes-in-equity-list/services-industry-changes-in-equity-list.component';
 import { ServicesIndustryChangesInEquityDetailComponent } from './pages/services-industry/changes-in-equity-detail/services-industry-changes-in-equity-detail.component';
 
@@ -144,13 +140,9 @@ import { JalaliDatePipe } from './pipes/jalali-date.pipe';
     ServicesIndustryMonthlyActivityListComponent,
     ServicesIndustryMonthlyActivityDetailComponent,
     ServicesIndustryBalanceSheetListComponent,
-    ServicesIndustryBalanceSheetDetailComponent,
     ServicesIndustryIncomeStatementListComponent,
-    ServicesIndustryIncomeStatementDetailComponent,
     ServicesIndustryCashFlowListComponent,
-    ServicesIndustryCashFlowDetailComponent,
     ServicesIndustryComprehensiveIncomeListComponent,
-    ServicesIndustryComprehensiveIncomeDetailComponent,
     ServicesIndustryChangesInEquityListComponent,
     ServicesIndustryChangesInEquityDetailComponent,
 
