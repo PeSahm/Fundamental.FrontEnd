@@ -55,11 +55,8 @@ import { StructuralChangesInEquityDetailComponent } from './pages/structural/cha
 
 // Investment
 import { InvestmentBalanceSheetListComponent } from './pages/investment/balance-sheet-list/investment-balance-sheet-list.component';
-import { InvestmentBalanceSheetDetailComponent } from './pages/investment/balance-sheet-detail/investment-balance-sheet-detail.component';
 import { InvestmentIncomeStatementListComponent } from './pages/investment/income-statement-list/investment-income-statement-list.component';
-import { InvestmentIncomeStatementDetailComponent } from './pages/investment/income-statement-detail/investment-income-statement-detail.component';
 import { InvestmentCashFlowListComponent } from './pages/investment/cash-flow-list/investment-cash-flow-list.component';
-import { InvestmentCashFlowDetailComponent } from './pages/investment/cash-flow-detail/investment-cash-flow-detail.component';
 import { InvestmentPortfolioStatementListComponent } from './pages/investment/portfolio-statement-list/investment-portfolio-statement-list.component';
 import { InvestmentPortfolioStatementDetailComponent } from './pages/investment/portfolio-statement-detail/investment-portfolio-statement-detail.component';
 
@@ -151,11 +148,8 @@ const routes: Routes = [
 
   // Investment routes (no monthly-activity)
   { path: 'investment/balance-sheet', component: InvestmentBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی سرمایه‌گذاری' } },
-  { path: 'investment/balance-sheet/:id', component: InvestmentBalanceSheetDetailComponent, data: { title: 'جزئیات صورت وضعیت مالی سرمایه‌گذاری' } },
   { path: 'investment/income-statement', component: InvestmentIncomeStatementListComponent, data: { title: 'صورت سود و زیان سرمایه‌گذاری' } },
-  { path: 'investment/income-statement/:id', component: InvestmentIncomeStatementDetailComponent, data: { title: 'جزئیات صورت سود و زیان سرمایه‌گذاری' } },
   { path: 'investment/cash-flow', component: InvestmentCashFlowListComponent, data: { title: 'جریان وجوه نقد سرمایه‌گذاری' } },
-  { path: 'investment/cash-flow/:id', component: InvestmentCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد سرمایه‌گذاری' } },
   { path: 'investment/portfolio-statement', component: InvestmentPortfolioStatementListComponent, data: { title: 'صورت سبد سهام سرمایه‌گذاری' } },
   { path: 'investment/portfolio-statement/:id', component: InvestmentPortfolioStatementDetailComponent, data: { title: 'جزئیات صورت سبد سهام سرمایه‌گذاری' } },
 

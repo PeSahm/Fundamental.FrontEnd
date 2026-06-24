@@ -73,11 +73,8 @@ import { StructuralChangesInEquityDetailComponent } from './pages/structural/cha
 
 // Investment components
 import { InvestmentBalanceSheetListComponent } from './pages/investment/balance-sheet-list/investment-balance-sheet-list.component';
-import { InvestmentBalanceSheetDetailComponent } from './pages/investment/balance-sheet-detail/investment-balance-sheet-detail.component';
 import { InvestmentIncomeStatementListComponent } from './pages/investment/income-statement-list/investment-income-statement-list.component';
-import { InvestmentIncomeStatementDetailComponent } from './pages/investment/income-statement-detail/investment-income-statement-detail.component';
 import { InvestmentCashFlowListComponent } from './pages/investment/cash-flow-list/investment-cash-flow-list.component';
-import { InvestmentCashFlowDetailComponent } from './pages/investment/cash-flow-detail/investment-cash-flow-detail.component';
 import { InvestmentPortfolioStatementListComponent } from './pages/investment/portfolio-statement-list/investment-portfolio-statement-list.component';
 import { InvestmentPortfolioStatementDetailComponent } from './pages/investment/portfolio-statement-detail/investment-portfolio-statement-detail.component';
 
@@ -150,11 +147,8 @@ import { JalaliDatePipe } from './pipes/jalali-date.pipe';
 
     // Investment components
     InvestmentBalanceSheetListComponent,
-    InvestmentBalanceSheetDetailComponent,
     InvestmentIncomeStatementListComponent,
-    InvestmentIncomeStatementDetailComponent,
     InvestmentCashFlowListComponent,
-    InvestmentCashFlowDetailComponent,
     InvestmentPortfolioStatementListComponent,
     InvestmentPortfolioStatementDetailComponent,
 
