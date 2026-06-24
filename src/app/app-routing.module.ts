@@ -27,13 +27,9 @@ import { ExtraAssemblyDetailComponent } from './pages/manufacturing/extra-assemb
 import { AgricultureMonthlyActivityListComponent } from './pages/agriculture/monthly-activity-list/agriculture-monthly-activity-list.component';
 import { AgricultureMonthlyActivityDetailComponent } from './pages/agriculture/monthly-activity-detail/agriculture-monthly-activity-detail.component';
 import { AgricultureBalanceSheetListComponent } from './pages/agriculture/balance-sheet-list/agriculture-balance-sheet-list.component';
-import { AgricultureBalanceSheetDetailComponent } from './pages/agriculture/balance-sheet-detail/agriculture-balance-sheet-detail.component';
 import { AgricultureIncomeStatementListComponent } from './pages/agriculture/income-statement-list/agriculture-income-statement-list.component';
-import { AgricultureIncomeStatementDetailComponent } from './pages/agriculture/income-statement-detail/agriculture-income-statement-detail.component';
 import { AgricultureCashFlowListComponent } from './pages/agriculture/cash-flow-list/agriculture-cash-flow-list.component';
-import { AgricultureCashFlowDetailComponent } from './pages/agriculture/cash-flow-detail/agriculture-cash-flow-detail.component';
 import { AgricultureComprehensiveIncomeListComponent } from './pages/agriculture/comprehensive-income-list/agriculture-comprehensive-income-list.component';
-import { AgricultureComprehensiveIncomeDetailComponent } from './pages/agriculture/comprehensive-income-detail/agriculture-comprehensive-income-detail.component';
 import { AgricultureChangesInEquityListComponent } from './pages/agriculture/changes-in-equity-list/agriculture-changes-in-equity-list.component';
 import { AgricultureChangesInEquityDetailComponent } from './pages/agriculture/changes-in-equity-detail/agriculture-changes-in-equity-detail.component';
 
@@ -127,13 +123,9 @@ const routes: Routes = [
   { path: 'agriculture/monthly-activity', component: AgricultureMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه کشاورزی' } },
   { path: 'agriculture/monthly-activity/:id', component: AgricultureMonthlyActivityDetailComponent, data: { title: 'جزئیات فعالیت ماهانه کشاورزی' } },
   { path: 'agriculture/balance-sheet', component: AgricultureBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی کشاورزی' } },
-  { path: 'agriculture/balance-sheet/:id', component: AgricultureBalanceSheetDetailComponent, data: { title: 'جزئیات صورت وضعیت مالی کشاورزی' } },
   { path: 'agriculture/income-statement', component: AgricultureIncomeStatementListComponent, data: { title: 'صورت سود و زیان کشاورزی' } },
-  { path: 'agriculture/income-statement/:id', component: AgricultureIncomeStatementDetailComponent, data: { title: 'جزئیات صورت سود و زیان کشاورزی' } },
   { path: 'agriculture/cash-flow', component: AgricultureCashFlowListComponent, data: { title: 'جریان وجوه نقد کشاورزی' } },
-  { path: 'agriculture/cash-flow/:id', component: AgricultureCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد کشاورزی' } },
   { path: 'agriculture/comprehensive-income', component: AgricultureComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع کشاورزی' } },
-  { path: 'agriculture/comprehensive-income/:id', component: AgricultureComprehensiveIncomeDetailComponent, data: { title: 'جزئیات صورت سود و زیان جامع کشاورزی' } },
   { path: 'agriculture/changes-in-equity', component: AgricultureChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه کشاورزی' } },
   { path: 'agriculture/changes-in-equity/:id', component: AgricultureChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه کشاورزی' } },
 

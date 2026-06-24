@@ -45,13 +45,9 @@ import { ExtraAssemblyDetailComponent } from './pages/manufacturing/extra-assemb
 import { AgricultureMonthlyActivityListComponent } from './pages/agriculture/monthly-activity-list/agriculture-monthly-activity-list.component';
 import { AgricultureMonthlyActivityDetailComponent } from './pages/agriculture/monthly-activity-detail/agriculture-monthly-activity-detail.component';
 import { AgricultureBalanceSheetListComponent } from './pages/agriculture/balance-sheet-list/agriculture-balance-sheet-list.component';
-import { AgricultureBalanceSheetDetailComponent } from './pages/agriculture/balance-sheet-detail/agriculture-balance-sheet-detail.component';
 import { AgricultureIncomeStatementListComponent } from './pages/agriculture/income-statement-list/agriculture-income-statement-list.component';
-import { AgricultureIncomeStatementDetailComponent } from './pages/agriculture/income-statement-detail/agriculture-income-statement-detail.component';
 import { AgricultureCashFlowListComponent } from './pages/agriculture/cash-flow-list/agriculture-cash-flow-list.component';
-import { AgricultureCashFlowDetailComponent } from './pages/agriculture/cash-flow-detail/agriculture-cash-flow-detail.component';
 import { AgricultureComprehensiveIncomeListComponent } from './pages/agriculture/comprehensive-income-list/agriculture-comprehensive-income-list.component';
-import { AgricultureComprehensiveIncomeDetailComponent } from './pages/agriculture/comprehensive-income-detail/agriculture-comprehensive-income-detail.component';
 import { AgricultureChangesInEquityListComponent } from './pages/agriculture/changes-in-equity-list/agriculture-changes-in-equity-list.component';
 import { AgricultureChangesInEquityDetailComponent } from './pages/agriculture/changes-in-equity-detail/agriculture-changes-in-equity-detail.component';
 
@@ -126,13 +122,9 @@ import { JalaliDatePipe } from './pipes/jalali-date.pipe';
     AgricultureMonthlyActivityListComponent,
     AgricultureMonthlyActivityDetailComponent,
     AgricultureBalanceSheetListComponent,
-    AgricultureBalanceSheetDetailComponent,
     AgricultureIncomeStatementListComponent,
-    AgricultureIncomeStatementDetailComponent,
     AgricultureCashFlowListComponent,
-    AgricultureCashFlowDetailComponent,
     AgricultureComprehensiveIncomeListComponent,
-    AgricultureComprehensiveIncomeDetailComponent,
     AgricultureChangesInEquityListComponent,
     AgricultureChangesInEquityDetailComponent,
 
