@@ -73,7 +73,6 @@ import { ServicesIndustryChangesInEquityDetailComponent } from './pages/services
 import { StructuralMonthlyActivityListComponent } from './pages/structural/monthly-activity-list/structural-monthly-activity-list.component';
 import { StructuralMonthlyActivityDetailComponent } from './pages/structural/monthly-activity-detail/structural-monthly-activity-detail.component';
 import { StructuralBalanceSheetListComponent } from './pages/structural/balance-sheet-list/structural-balance-sheet-list.component';
-import { StructuralBalanceSheetDetailComponent } from './pages/structural/balance-sheet-detail/structural-balance-sheet-detail.component';
 import { StructuralIncomeStatementListComponent } from './pages/structural/income-statement-list/structural-income-statement-list.component';
 import { StructuralIncomeStatementDetailComponent } from './pages/structural/income-statement-detail/structural-income-statement-detail.component';
 import { StructuralCashFlowListComponent } from './pages/structural/cash-flow-list/structural-cash-flow-list.component';
@@ -162,7 +161,6 @@ import { JalaliDatePipe } from './pipes/jalali-date.pipe';
     StructuralMonthlyActivityListComponent,
     StructuralMonthlyActivityDetailComponent,
     StructuralBalanceSheetListComponent,
-    StructuralBalanceSheetDetailComponent,
     StructuralIncomeStatementListComponent,
     StructuralIncomeStatementDetailComponent,
     StructuralCashFlowListComponent,

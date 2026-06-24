@@ -55,7 +55,6 @@ import { ServicesIndustryChangesInEquityDetailComponent } from './pages/services
 import { StructuralMonthlyActivityListComponent } from './pages/structural/monthly-activity-list/structural-monthly-activity-list.component';
 import { StructuralMonthlyActivityDetailComponent } from './pages/structural/monthly-activity-detail/structural-monthly-activity-detail.component';
 import { StructuralBalanceSheetListComponent } from './pages/structural/balance-sheet-list/structural-balance-sheet-list.component';
-import { StructuralBalanceSheetDetailComponent } from './pages/structural/balance-sheet-detail/structural-balance-sheet-detail.component';
 import { StructuralIncomeStatementListComponent } from './pages/structural/income-statement-list/structural-income-statement-list.component';
 import { StructuralIncomeStatementDetailComponent } from './pages/structural/income-statement-detail/structural-income-statement-detail.component';
 import { StructuralCashFlowListComponent } from './pages/structural/cash-flow-list/structural-cash-flow-list.component';
@@ -163,7 +162,6 @@ const routes: Routes = [
   { path: 'structural/monthly-activity', component: StructuralMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه ساختاری' } },
   { path: 'structural/monthly-activity/:id', component: StructuralMonthlyActivityDetailComponent, data: { title: 'جزئیات فعالیت ماهانه ساختاری' } },
   { path: 'structural/balance-sheet', component: StructuralBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی ساختاری' } },
-  { path: 'structural/balance-sheet/:id', component: StructuralBalanceSheetDetailComponent, data: { title: 'جزئیات صورت وضعیت مالی ساختاری' } },
   { path: 'structural/income-statement', component: StructuralIncomeStatementListComponent, data: { title: 'صورت سود و زیان ساختاری' } },
   { path: 'structural/income-statement/:id', component: StructuralIncomeStatementDetailComponent, data: { title: 'جزئیات صورت سود و زیان ساختاری' } },
   { path: 'structural/cash-flow', component: StructuralCashFlowListComponent, data: { title: 'جریان وجوه نقد ساختاری' } },
