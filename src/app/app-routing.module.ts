@@ -56,11 +56,8 @@ import { StructuralMonthlyActivityListComponent } from './pages/structural/month
 import { StructuralMonthlyActivityDetailComponent } from './pages/structural/monthly-activity-detail/structural-monthly-activity-detail.component';
 import { StructuralBalanceSheetListComponent } from './pages/structural/balance-sheet-list/structural-balance-sheet-list.component';
 import { StructuralIncomeStatementListComponent } from './pages/structural/income-statement-list/structural-income-statement-list.component';
-import { StructuralIncomeStatementDetailComponent } from './pages/structural/income-statement-detail/structural-income-statement-detail.component';
 import { StructuralCashFlowListComponent } from './pages/structural/cash-flow-list/structural-cash-flow-list.component';
-import { StructuralCashFlowDetailComponent } from './pages/structural/cash-flow-detail/structural-cash-flow-detail.component';
 import { StructuralComprehensiveIncomeListComponent } from './pages/structural/comprehensive-income-list/structural-comprehensive-income-list.component';
-import { StructuralComprehensiveIncomeDetailComponent } from './pages/structural/comprehensive-income-detail/structural-comprehensive-income-detail.component';
 import { StructuralChangesInEquityListComponent } from './pages/structural/changes-in-equity-list/structural-changes-in-equity-list.component';
 import { StructuralChangesInEquityDetailComponent } from './pages/structural/changes-in-equity-detail/structural-changes-in-equity-detail.component';
 
@@ -163,11 +160,8 @@ const routes: Routes = [
   { path: 'structural/monthly-activity/:id', component: StructuralMonthlyActivityDetailComponent, data: { title: 'جزئیات فعالیت ماهانه ساختاری' } },
   { path: 'structural/balance-sheet', component: StructuralBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی ساختاری' } },
   { path: 'structural/income-statement', component: StructuralIncomeStatementListComponent, data: { title: 'صورت سود و زیان ساختاری' } },
-  { path: 'structural/income-statement/:id', component: StructuralIncomeStatementDetailComponent, data: { title: 'جزئیات صورت سود و زیان ساختاری' } },
   { path: 'structural/cash-flow', component: StructuralCashFlowListComponent, data: { title: 'جریان وجوه نقد ساختاری' } },
-  { path: 'structural/cash-flow/:id', component: StructuralCashFlowDetailComponent, data: { title: 'جزئیات جریان وجوه نقد ساختاری' } },
   { path: 'structural/comprehensive-income', component: StructuralComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع ساختاری' } },
-  { path: 'structural/comprehensive-income/:id', component: StructuralComprehensiveIncomeDetailComponent, data: { title: 'جزئیات صورت سود و زیان جامع ساختاری' } },
   { path: 'structural/changes-in-equity', component: StructuralChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه ساختاری' } },
   { path: 'structural/changes-in-equity/:id', component: StructuralChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه ساختاری' } },
 

@@ -74,11 +74,8 @@ import { StructuralMonthlyActivityListComponent } from './pages/structural/month
 import { StructuralMonthlyActivityDetailComponent } from './pages/structural/monthly-activity-detail/structural-monthly-activity-detail.component';
 import { StructuralBalanceSheetListComponent } from './pages/structural/balance-sheet-list/structural-balance-sheet-list.component';
 import { StructuralIncomeStatementListComponent } from './pages/structural/income-statement-list/structural-income-statement-list.component';
-import { StructuralIncomeStatementDetailComponent } from './pages/structural/income-statement-detail/structural-income-statement-detail.component';
 import { StructuralCashFlowListComponent } from './pages/structural/cash-flow-list/structural-cash-flow-list.component';
-import { StructuralCashFlowDetailComponent } from './pages/structural/cash-flow-detail/structural-cash-flow-detail.component';
 import { StructuralComprehensiveIncomeListComponent } from './pages/structural/comprehensive-income-list/structural-comprehensive-income-list.component';
-import { StructuralComprehensiveIncomeDetailComponent } from './pages/structural/comprehensive-income-detail/structural-comprehensive-income-detail.component';
 import { StructuralChangesInEquityListComponent } from './pages/structural/changes-in-equity-list/structural-changes-in-equity-list.component';
 import { StructuralChangesInEquityDetailComponent } from './pages/structural/changes-in-equity-detail/structural-changes-in-equity-detail.component';
 
@@ -162,11 +159,8 @@ import { JalaliDatePipe } from './pipes/jalali-date.pipe';
     StructuralMonthlyActivityDetailComponent,
     StructuralBalanceSheetListComponent,
     StructuralIncomeStatementListComponent,
-    StructuralIncomeStatementDetailComponent,
     StructuralCashFlowListComponent,
-    StructuralCashFlowDetailComponent,
     StructuralComprehensiveIncomeListComponent,
-    StructuralComprehensiveIncomeDetailComponent,
     StructuralChangesInEquityListComponent,
     StructuralChangesInEquityDetailComponent,
 

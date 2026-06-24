@@ -1,8 +1,24 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { StructuralComprehensiveIncomeService } from 'src/app/services/structural-comprehensive-income.service';
-import { StructuralComprehensiveIncomeListItem } from 'src/app/models/structural/comprehensive-income.model';
+import { ColumnName, DetailRow, KeyName, KeyNameChild } from 'src/app/models/models';
+
+interface StructuralComprehensiveIncomeItem {
+  id: string;
+  symbol: string;
+  isin: string;
+  fiscalYear: number;
+  reportMonth: number;
+  publishDate: string;
+  uri: string;
+}
+
+interface StructuralComprehensiveIncomeDetailItem {
+  row: number;
+  codalRow: number;
+  description: string;
+  value: number | null;
+}
 
 @Component({
   selector: 'app-structural-comprehensive-income-list',
@@ -15,9 +31,15 @@ export class StructuralComprehensiveIncomeListComponent implements OnInit, OnDes
   reportMonth: number | null = null;
   reportFilter = { pageSize: 20, pageNumber: 1, orderBy: '' };
   totalRecords = 0;
-  reports: StructuralComprehensiveIncomeListItem[] = [];
+  reports: StructuralComprehensiveIncomeItem[] | null = null;
+  children: StructuralComprehensiveIncomeDetailItem[] | null = null;
   isLoading = true;
+  isLoadingChild = false;
   destroy$ = new Subject<void>();
+  KeyName: KeyName[] = [];
+  KeyNameChild: KeyNameChild[] = [];
+  columnName: ColumnName[] = [];
+  columnNameChild: string[] = [];
 
   months = [
     { value: 1, label: 'فروردین' }, { value: 2, label: 'اردیبهشت' }, { value: 3, label: 'خرداد' },
@@ -26,9 +48,44 @@ export class StructuralComprehensiveIncomeListComponent implements OnInit, OnDes
     { value: 10, label: 'دی' }, { value: 11, label: 'بهمن' }, { value: 12, label: 'اسفند' }
   ];
 
-  constructor(private service: StructuralComprehensiveIncomeService, private router: Router) { }
+  constructor(private service: StructuralComprehensiveIncomeService) { }
 
-  ngOnInit(): void { this.getAllReports(); }
+  ngOnInit(): void {
+    this.getAllReports();
+    this.makeTableConst();
+  }
+
+  makeTableConst() {
+    this.columnName = [
+      { name: 'symbol', title: 'نماد', hasSort: true },
+      { name: 'isin', title: 'ISIN' },
+      { name: 'fiscalYear', title: 'سال مالی', hasSort: true },
+      { name: 'reportMonth', title: 'ماه گزارش', hasSort: true },
+      { name: 'publishDate', title: 'تاریخ انتشار', hasSort: true },
+      { name: 'uri', title: 'لینک CODAL', hasLink: true, hasView: true },
+    ];
+    this.KeyName = [
+      { name: 'symbol' },
+      { name: 'isin' },
+      { name: 'fiscalYear' },
+      { name: 'reportMonth' },
+      { name: 'publishDate' },
+      { name: 'uri', hasLink: true, hasView: true },
+    ];
+
+    this.columnNameChild = [
+      'ردیف',
+      'کدال ردیف',
+      'شرح',
+      'مقدار',
+    ];
+    this.KeyNameChild = [
+      { name: 'row' },
+      { name: 'codalRow' },
+      { name: 'description' },
+      { name: 'value', pipe: 'number' },
+    ];
+  }
 
   getAllReports(): void {
     this.isLoading = true;
@@ -40,15 +97,60 @@ export class StructuralComprehensiveIncomeListComponent implements OnInit, OnDes
     this.service.getAll(params)
       .pipe(takeUntil(this.destroy$), finalize(() => this.isLoading = false))
       .subscribe({
-        next: (res: any) => { this.reports = res.data?.items || []; this.totalRecords = res.data?.meta?.total || 0; },
-        error: (err) => { console.error('Error:', err); this.reports = []; }
+        next: (res: any) => {
+          this.reports = res.data?.items || [];
+          this.totalRecords = res.data?.meta?.total || 0;
+        },
+        error: () => { this.reports = []; }
       });
   }
 
-  searchTable(): void { this.reports = []; this.reportFilter.pageNumber = 1; this.getAllReports(); }
-  changePage(e: any): void { this.reports = []; this.reportFilter.pageNumber = e; this.getAllReports(); }
-  changeSize(e: any): void { this.reports = []; this.reportFilter.pageSize = Number(e.target.value); this.reportFilter.pageNumber = 1; this.getAllReports(); }
-  openViewPage(rowItem: StructuralComprehensiveIncomeListItem): void { if (rowItem?.id) { this.router.navigate(['/structural/comprehensive-income', rowItem.id]); } }
+  getDetailRow(row: DetailRow<StructuralComprehensiveIncomeItem>) {
+    if (row.expand) {
+      this.isLoadingChild = true;
+      this.children = null;
+      this.service.getById(row.rowData.id)
+        .pipe(takeUntil(this.destroy$), finalize(() => this.isLoadingChild = false))
+        .subscribe((res: any) => {
+          this.children = res.data?.details ?? [];
+        });
+    }
+  }
+
+  searchTable(): void {
+    this.isLoading = true;
+    this.reports = null;
+    this.reportFilter.pageNumber = 1;
+    this.getAllReports();
+  }
+
+  changePage(e: any): void {
+    this.isLoading = true;
+    this.reports = null;
+    this.reportFilter.pageNumber = e;
+    this.getAllReports();
+  }
+
+  changeSize(e: any): void {
+    this.isLoading = true;
+    this.reports = null;
+    this.reportFilter.pageSize = Number(e.target.value);
+    this.reportFilter.pageNumber = 1;
+    this.getAllReports();
+  }
+
   selected(items: any): void { this.selectedItems = items?.item ? [items.item] : []; }
-  ngOnDestroy(): void { this.destroy$.next(); this.destroy$.complete(); }
+
+  handleSort(option: any): void {
+    this.isLoading = true;
+    this.reports = null;
+    this.reportFilter.pageNumber = 1;
+    this.reportFilter.orderBy = `${option.column} ${option.sortOrder}`;
+    this.getAllReports();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
