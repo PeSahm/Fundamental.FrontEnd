@@ -41,6 +41,47 @@ import { ExtraAnnualAssemblyDetailComponent } from './pages/manufacturing/extra-
 import { ExtraAssemblyListComponent } from './pages/manufacturing/extra-assembly/list/extra-assembly-list.component';
 import { ExtraAssemblyDetailComponent } from './pages/manufacturing/extra-assembly/detail/extra-assembly-detail.component';
 
+// Agriculture components
+import { AgricultureMonthlyActivityListComponent } from './pages/agriculture/monthly-activity-list/agriculture-monthly-activity-list.component';
+import { AgricultureMonthlyActivityDetailComponent } from './pages/agriculture/monthly-activity-detail/agriculture-monthly-activity-detail.component';
+import { AgricultureBalanceSheetListComponent } from './pages/agriculture/balance-sheet-list/agriculture-balance-sheet-list.component';
+import { AgricultureIncomeStatementListComponent } from './pages/agriculture/income-statement-list/agriculture-income-statement-list.component';
+import { AgricultureCashFlowListComponent } from './pages/agriculture/cash-flow-list/agriculture-cash-flow-list.component';
+import { AgricultureComprehensiveIncomeListComponent } from './pages/agriculture/comprehensive-income-list/agriculture-comprehensive-income-list.component';
+import { AgricultureChangesInEquityListComponent } from './pages/agriculture/changes-in-equity-list/agriculture-changes-in-equity-list.component';
+import { AgricultureChangesInEquityDetailComponent } from './pages/agriculture/changes-in-equity-detail/agriculture-changes-in-equity-detail.component';
+
+// ServicesIndustry components
+import { ServicesIndustryMonthlyActivityListComponent } from './pages/services-industry/monthly-activity-list/services-industry-monthly-activity-list.component';
+import { ServicesIndustryMonthlyActivityDetailComponent } from './pages/services-industry/monthly-activity-detail/services-industry-monthly-activity-detail.component';
+import { ServicesIndustryBalanceSheetListComponent } from './pages/services-industry/balance-sheet-list/services-industry-balance-sheet-list.component';
+import { ServicesIndustryIncomeStatementListComponent } from './pages/services-industry/income-statement-list/services-industry-income-statement-list.component';
+import { ServicesIndustryCashFlowListComponent } from './pages/services-industry/cash-flow-list/services-industry-cash-flow-list.component';
+import { ServicesIndustryComprehensiveIncomeListComponent } from './pages/services-industry/comprehensive-income-list/services-industry-comprehensive-income-list.component';
+import { ServicesIndustryChangesInEquityListComponent } from './pages/services-industry/changes-in-equity-list/services-industry-changes-in-equity-list.component';
+import { ServicesIndustryChangesInEquityDetailComponent } from './pages/services-industry/changes-in-equity-detail/services-industry-changes-in-equity-detail.component';
+
+// Structural components
+import { StructuralMonthlyActivityListComponent } from './pages/structural/monthly-activity-list/structural-monthly-activity-list.component';
+import { StructuralMonthlyActivityDetailComponent } from './pages/structural/monthly-activity-detail/structural-monthly-activity-detail.component';
+import { StructuralBalanceSheetListComponent } from './pages/structural/balance-sheet-list/structural-balance-sheet-list.component';
+import { StructuralIncomeStatementListComponent } from './pages/structural/income-statement-list/structural-income-statement-list.component';
+import { StructuralCashFlowListComponent } from './pages/structural/cash-flow-list/structural-cash-flow-list.component';
+import { StructuralComprehensiveIncomeListComponent } from './pages/structural/comprehensive-income-list/structural-comprehensive-income-list.component';
+import { StructuralChangesInEquityListComponent } from './pages/structural/changes-in-equity-list/structural-changes-in-equity-list.component';
+import { StructuralChangesInEquityDetailComponent } from './pages/structural/changes-in-equity-detail/structural-changes-in-equity-detail.component';
+
+// Investment components
+import { InvestmentBalanceSheetListComponent } from './pages/investment/balance-sheet-list/investment-balance-sheet-list.component';
+import { InvestmentIncomeStatementListComponent } from './pages/investment/income-statement-list/investment-income-statement-list.component';
+import { InvestmentCashFlowListComponent } from './pages/investment/cash-flow-list/investment-cash-flow-list.component';
+import { InvestmentPortfolioStatementListComponent } from './pages/investment/portfolio-statement-list/investment-portfolio-statement-list.component';
+import { InvestmentPortfolioStatementDetailComponent } from './pages/investment/portfolio-statement-detail/investment-portfolio-statement-detail.component';
+
+// Shared pipes
+import { PersianNumberPipe } from './pipes/persian-number.pipe';
+import { JalaliDatePipe } from './pipes/jalali-date.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +114,47 @@ import { ExtraAssemblyDetailComponent } from './pages/manufacturing/extra-assemb
     ExtraAnnualAssemblyDetailComponent,
     ExtraAssemblyListComponent,
     ExtraAssemblyDetailComponent,
-    
+
+    // Agriculture components
+    AgricultureMonthlyActivityListComponent,
+    AgricultureMonthlyActivityDetailComponent,
+    AgricultureBalanceSheetListComponent,
+    AgricultureIncomeStatementListComponent,
+    AgricultureCashFlowListComponent,
+    AgricultureComprehensiveIncomeListComponent,
+    AgricultureChangesInEquityListComponent,
+    AgricultureChangesInEquityDetailComponent,
+
+    // ServicesIndustry components
+    ServicesIndustryMonthlyActivityListComponent,
+    ServicesIndustryMonthlyActivityDetailComponent,
+    ServicesIndustryBalanceSheetListComponent,
+    ServicesIndustryIncomeStatementListComponent,
+    ServicesIndustryCashFlowListComponent,
+    ServicesIndustryComprehensiveIncomeListComponent,
+    ServicesIndustryChangesInEquityListComponent,
+    ServicesIndustryChangesInEquityDetailComponent,
+
+    // Structural components
+    StructuralMonthlyActivityListComponent,
+    StructuralMonthlyActivityDetailComponent,
+    StructuralBalanceSheetListComponent,
+    StructuralIncomeStatementListComponent,
+    StructuralCashFlowListComponent,
+    StructuralComprehensiveIncomeListComponent,
+    StructuralChangesInEquityListComponent,
+    StructuralChangesInEquityDetailComponent,
+
+    // Investment components
+    InvestmentBalanceSheetListComponent,
+    InvestmentIncomeStatementListComponent,
+    InvestmentCashFlowListComponent,
+    InvestmentPortfolioStatementListComponent,
+    InvestmentPortfolioStatementDetailComponent,
+
+    // Shared pipes
+    PersianNumberPipe,
+    JalaliDatePipe,
   ],
   imports: [
     BrowserModule,

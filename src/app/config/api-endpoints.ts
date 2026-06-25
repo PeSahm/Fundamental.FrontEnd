@@ -14,14 +14,52 @@ export const API_ENDPOINTS = {
     EXTRA_ANNUAL_ASSEMBLY: 'Manufacturing/extra-annual-assembly',
     EXTRA_ASSEMBLY: 'Manufacturing/extra-assembly'
   },
-  
+
+  // Agriculture endpoints
+  AGRICULTURE: {
+    MONTHLY_ACTIVITY: 'Agriculture/monthly-activity',
+    BALANCE_SHEET: 'Agriculture/balance-sheet',
+    INCOME_STATEMENT: 'Agriculture/income-statement',
+    CASH_FLOW: 'Agriculture/cash-flow',
+    COMPREHENSIVE_INCOME: 'Agriculture/comprehensive-income',
+    CHANGES_IN_EQUITY: 'Agriculture/changes-in-equity'
+  },
+
+  // ServicesIndustry endpoints
+  SERVICES_INDUSTRY: {
+    MONTHLY_ACTIVITY: 'ServicesIndustry/monthly-activity',
+    BALANCE_SHEET: 'ServicesIndustry/balance-sheet',
+    INCOME_STATEMENT: 'ServicesIndustry/income-statement',
+    CASH_FLOW: 'ServicesIndustry/cash-flow',
+    COMPREHENSIVE_INCOME: 'ServicesIndustry/comprehensive-income',
+    CHANGES_IN_EQUITY: 'ServicesIndustry/changes-in-equity'
+  },
+
+  // Structural endpoints
+  STRUCTURAL: {
+    MONTHLY_ACTIVITY: 'Structural/monthly-activity',
+    BALANCE_SHEET: 'Structural/balance-sheet',
+    INCOME_STATEMENT: 'Structural/income-statement',
+    CASH_FLOW: 'Structural/cash-flow',
+    COMPREHENSIVE_INCOME: 'Structural/comprehensive-income',
+    CHANGES_IN_EQUITY: 'Structural/changes-in-equity'
+  },
+
+  // Investment endpoints
+  INVESTMENT: {
+    BALANCE_SHEET: 'Investment/balance-sheet',
+    INCOME_STATEMENT: 'Investment/income-statement',
+    CASH_FLOW: 'Investment/cash-flow',
+    PORTFOLIO_STATEMENT: 'Investment/portfolio-statement'
+  },
+
   // Statement endpoints
   STATEMENTS: 'statements',
-  
+
   // Symbol endpoints
   SYMBOLS: 'symbols',
   SYMBOL_SHARE_HOLDERS: 'symbol-share-holders',
-  
+
   // Error endpoints
   ERROR_MESSAGES: 'error-messages/admin'
 } as const;

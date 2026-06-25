@@ -11,12 +11,35 @@
     width: 280px;
     overflow: auto;
 
+    .card {
+        border: none;
+        background-color: rgb(14, 34, 56);
+    }
+
+    .card-header {
+        background-color: rgb(14, 34, 56);
+        border: none;
+        color: rgb(158, 169, 180);
+        cursor: pointer;
+    }
+
+    .card-body {
+        background-color: rgb(14, 34, 56);
+        border: none;
+        padding: 0;
+        transition: height 2s ease-in-out;
+    }
+
+    .collapsed .card-body {
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+    }
 }
 
 .sidebarWrapper {
     padding: 20px 0 20px 20px;
     color: rgb(158, 169, 180);
-
 }
 
 .sidebarMenu {
@@ -57,39 +80,7 @@
     padding-left: 1.25rem;
 }
 
-
-
 .sidebarIcon {
     margin-right: 5px;
     font-style: 20px !important;
-
 }
-
-.collapsed .card-body {
-    height: 0;
-    overflow: hidden;
-    transition: height 2s ease-in-out;
-    padding: 0;
-}
-
-.card-body {
-    transition: height 2s ease-in-out;
-
-}
-
-
-    #card {
-        border: none;
-    }
-
-    #card-body {
-        background-color: rgb(14, 34, 56);
-        border: none;
-        padding: 0;
-    }
-
-    #card-header {
-        background-color: rgb(14, 34, 56);
-        border: none;
-
-    }
