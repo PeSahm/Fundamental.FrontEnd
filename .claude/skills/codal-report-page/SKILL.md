@@ -77,7 +77,9 @@ The new ComprehensiveIncome/ChangesInEquity/Portfolio pages diverge:
 - **F6** Specs use `HttpClientTestingModule` + `NO_ERRORS_SCHEMA` + stub pipes instead of a service spy. → Use the Manufacturing spec shape.
 
 When CREATING a page, follow the checklist (no divergences). When auditing/refactoring (e.g. the خدماتی/
-Services pages), fix F1–F6 to match Manufacturing.
+Services pages), fix F1–F6 to match Manufacturing. **Dev (`dev.academind.ir`) has a 10-year backfill for
+all sectors (done 2026-06-26)** — verify rendering and the money-display fix against real data, not just
+unit specs.
 
 ## Reference files (read these)
 `src/app/pages/manufacturing/monthly-activity-detail/*` (formatNumber + `[ngbTooltip]` + processData),

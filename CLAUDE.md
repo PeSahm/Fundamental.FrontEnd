@@ -56,6 +56,16 @@ ChangesInEquity** pages, and Investment **PortfolioStatement**.
 - Endpoints: `config/api-endpoints.ts` has `COMPREHENSIVE_INCOME` and `CHANGES_IN_EQUITY` per sector
   (`{Area}/comprehensive-income`, `{Area}/changes-in-equity`).
 
+## Build & dev data
+
+- The prod image is built from `Dockerfile.prebuilt` (`FROM registry.academind.ir/library/nginx:…`,
+  the in-cluster registry) via the plain daemon `docker build` — so the frontend build needs **none**
+  of the backend's Liara `.ir` firewall-mirror gymnastics (that pain is buildkit-on-the-runner only).
+- **Dev (`dev.academind.ir`/`api.academind.ir`) now holds a 10-year backfill for ALL sectors**
+  (Structural / ServicesIndustry / Agriculture / Investment — done 2026-06-26). Every list + detail
+  page has real data to verify against, including the money-display refactor (formatNumber + Toman
+  tooltip) and the new ComprehensiveIncome / ChangesInEquity / Portfolio pages.
+
 ## Known issues
 
 - `ng test` has ~54 pre-existing failing auto-generated scaffold specs (`*DetailComponent`/service specs

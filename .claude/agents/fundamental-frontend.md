@@ -36,3 +36,6 @@ F6 wrong spec shape. When reviewing/refactoring (e.g. the خدماتی/Services 
 Read the Manufacturing reference page first (`pages/manufacturing/monthly-activity-detail/*`), mirror it,
 `npx ng build` (budget 2MB error / 1.6MB warning) and run the relevant specs
 (`npx ng test --watch=false --browsers=ChromeHeadless --include='…'`). Report what changed + build/spec output.
+**Dev (`dev.academind.ir`/`api.academind.ir`) holds a 10-year backfill for ALL sectors** (Structural /
+ServicesIndustry / Agriculture / Investment, done 2026-06-26) — every list/detail page has real data to
+verify rendering and the money-display refactor against.
