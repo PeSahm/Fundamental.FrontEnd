@@ -25,6 +25,8 @@ financial statements. **Manufacturing pages are the reference; all sectors must 
   `HttpClientTestingModule`, NO `NO_ERRORS_SCHEMA`, NO pipe stubs.
 - ALL HTTP via `ApiConfigService`/`ApiService` (never raw `HttpClient`); endpoints in `config/api-endpoints.ts`;
   detail = Pattern B `getById(id)`. Routes in `app-routing.module.ts`; declare in `AppModule`; sidebar entry per sector.
+- **List grid symbol filter: send `params.IsinList = selectedItems[0]?.isin`, NOT `params.Isin`** — the
+  non-mfg list APIs bind `List<string> IsinList`; a singular `Isin=` doesn't bind, so the grid won't filter.
 - RTL (`dir="rtl"`) on root containers.
 
 ## Auditing existing code

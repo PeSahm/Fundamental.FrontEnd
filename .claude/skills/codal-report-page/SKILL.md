@@ -66,6 +66,11 @@ create, loads-on-init, error path, `formatNumber` (null→'—'), row classifica
 - Service is thin, delegates to `ApiService` (never raw `HttpClient`), endpoint from `config/api-endpoints.ts`
   (Pattern B `getById(id)` → `{endpoint}/{id}`). Routes in `app-routing.module.ts` (Persian titles); declare
   components in `AppModule`; add a sidebar entry per sector card.
+- **List page symbol filter — send `params.IsinList`, NOT `params.Isin`.** The non-mfg list APIs bind
+  `List<string> IsinList`; a singular `Isin=` doesn't bind, so the grid silently won't filter (was a live
+  bug). Use `if (this.selectedItems.length) { params.IsinList = this.selectedItems[0]?.isin; }`. The
+  shared `<app-symbol-search (selectSearchSymbol)="selected($event)">` emits `{item}` → `selected()` sets
+  `selectedItems = [e.item]`; search the (RLC-backed) `SYMBOLS?Filter=` endpoint returns isin + price.
 
 ## Known divergences to FIX (current non-manufacturing pages — refactor backlog)
 The new ComprehensiveIncome/ChangesInEquity/Portfolio pages diverge:

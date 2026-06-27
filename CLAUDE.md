@@ -34,6 +34,12 @@ ng test                # Karma + Jasmine
 - Per report type: a List page + a Detail page under `pages/{sector}/{report-type}-list|-detail/`.
   Canonical reference: **`pages/manufacturing/monthly-activity-detail/`** (formatNumber + `[ngbTooltip]` +
   processData + service-spy spec). Detail pages use Pattern B: `service.getById(id)` → `{BaseUrl}/{id}`.
+- **List grid symbol filter — send `params.IsinList`, NOT `params.Isin`.** Every non-manufacturing list
+  API binds `List<string> IsinList`; a singular `Isin=` does NOT bind to it, so the grid silently
+  doesn't filter. Pattern: `if (this.selectedItems.length) { params.IsinList = this.selectedItems[0]?.isin; }`
+  (a single value binds to a one-element list). The shared `<app-symbol-search (selectSearchSymbol)>`
+  emits `{item}` (non-multi) → `selected()` sets `selectedItems = [e.item]`; the symbol search hits the
+  same `SYMBOLS?Filter=` endpoint (now sourced from the RLC backend, returns isin + live price).
 - **DIVERGENCE (refactor backlog):** the new ComprehensiveIncome/ChangesInEquity/Portfolio pages do NOT
   follow Manufacturing — F1 use `persianNumber`/`jalali` pipes instead of `formatNumber()`; F2 no Toman
   tooltip; F3 raw million-Rial display; F4 interfaces in `models/` not inline; F5 no row-classification;
