@@ -81,7 +81,7 @@ export class AgricultureMonthlyActivityListComponent implements OnInit, OnDestro
     };
 
     if (this.selectedItems.length > 0) {
-      params.Isin = this.selectedItems[0]?.isin;
+      params.IsinList = this.selectedItems[0]?.isin;
     }
     if (this.fiscalYear) {
       params.FiscalYear = this.fiscalYear;

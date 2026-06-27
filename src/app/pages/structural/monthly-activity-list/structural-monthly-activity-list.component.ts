@@ -48,7 +48,7 @@ export class StructuralMonthlyActivityListComponent implements OnInit, OnDestroy
   getAllReports() {
     this.isLoading = true;
     const params: any = { PageNumber: this.reportFilter.pageNumber, PageSize: this.reportFilter.pageSize };
-    if (this.selectedItems.length > 0) { params.Isin = this.selectedItems[0]?.isin; }
+    if (this.selectedItems.length > 0) { params.IsinList = this.selectedItems[0]?.isin; }
     if (this.fiscalYear) { params.FiscalYear = this.fiscalYear; }
     if (this.reportMonth) { params.ReportMonth = this.reportMonth; }
     if (this.reportFilter.orderBy) { params.OrderBy = this.reportFilter.orderBy; }
