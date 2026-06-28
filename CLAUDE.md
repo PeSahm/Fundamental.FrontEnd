@@ -72,6 +72,19 @@ ChangesInEquity** pages, and Investment **PortfolioStatement**.
   page has real data to verify against, including the money-display refactor (formatNumber + Toman
   tooltip) and the new ComprehensiveIncome / ChangesInEquity / Portfolio pages.
 
+## Data-display notes (from the 2026-06-28 CODAL audit)
+
+- **Balance-sheet pages don't use `codal_category`.** The BS list/detail rows render
+  `{row, codalRow, description (شرح), value (مبلغ)}` only — the assets-vs-liabilities sectioning the user
+  sees comes from row order/descriptions, NOT the category field. So backend `codal_category` bugs
+  (Services/Agriculture had some) have **no visible effect here**. Values were verified to match CODAL's
+  **standalone** statement (codal.ir defaults to تلفیقی/consolidated for groups — different numbers; we
+  display standalone, which is correct).
+- **Monthly-activity (فروش ماهانه) columns are correct, don't "fix" them**: `yearToDateSalesAmount` is
+  labeled **"انباشته تا پایان دوره قبل"** (cumulative to end of *previous* period → legitimately 0 in
+  month 1); `cumulativeToPeriodSalesAmount` is **"انباشته تا پایان دوره جاری"** (the running year-to-date).
+  Both are right per `manufacturing/monthly-activity-detail`.
+
 ## Known issues
 
 - `ng test` has ~54 pre-existing failing auto-generated scaffold specs (`*DetailComponent`/service specs
