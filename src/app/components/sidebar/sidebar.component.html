@@ -188,6 +188,154 @@
                 </div>
             </div>
 
+            <!-- Bank (بانک‌ها) -->
+            <div class="card" [ngClass]="{'collapsed': !isBankOpen}">
+                <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSection('bank')">
+                    <div>بانک‌ها</div>
+                    <i class="fa" [ngClass]="isBankOpen ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                </div>
+                <div class="card-body" [ngClass]="{'d-none': !isBankOpen}">
+                    <ul class='sidebarList'>
+                        <li class="sidebarListItem w-100" routerLink='/bank/balance-sheet' routerLinkActive='active'>
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت وضعیت مالی</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/bank/income-statement' routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/bank/comprehensive-income' routerLinkActive='active'>
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان جامع</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/bank/changes-in-equity' routerLinkActive='active'>
+                            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت تغییرات در حقوق مالکانه</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/bank/cash-flow' routerLinkActive='active'>
+                            <i class="fa fa-exchange" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش جریان وجوه نقد</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/bank/monthly-activity' routerLinkActive='active'>
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش فعالیت ماهانه</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Leasing (لیزینگ) -->
+            <div class="card" [ngClass]="{'collapsed': !isLeasingOpen}">
+                <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSection('leasing')">
+                    <div>لیزینگ</div>
+                    <i class="fa" [ngClass]="isLeasingOpen ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                </div>
+                <div class="card-body" [ngClass]="{'d-none': !isLeasingOpen}">
+                    <ul class='sidebarList'>
+                        <li class="sidebarListItem w-100" routerLink='/leasing/balance-sheet' routerLinkActive='active'>
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت وضعیت مالی</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/leasing/income-statement' routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/leasing/comprehensive-income' routerLinkActive='active'>
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان جامع</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/leasing/changes-in-equity' routerLinkActive='active'>
+                            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت تغییرات در حقوق مالکانه</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/leasing/cash-flow' routerLinkActive='active'>
+                            <i class="fa fa-exchange" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش جریان وجوه نقد</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/leasing/monthly-activity' routerLinkActive='active'>
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش فعالیت ماهانه</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Insurance (بیمه) -->
+            <div class="card" [ngClass]="{'collapsed': !isInsuranceOpen}">
+                <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSection('insurance')">
+                    <div>بیمه</div>
+                    <i class="fa" [ngClass]="isInsuranceOpen ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                </div>
+                <div class="card-body" [ngClass]="{'d-none': !isInsuranceOpen}">
+                    <ul class='sidebarList'>
+                        <li class="sidebarListItem w-100" routerLink='/insurance/balance-sheet' routerLinkActive='active'>
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت وضعیت مالی</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/insurance/income-statement' routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/insurance/comprehensive-income' routerLinkActive='active'>
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان جامع</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/insurance/changes-in-equity' routerLinkActive='active'>
+                            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت تغییرات در حقوق مالکانه</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/insurance/cash-flow' routerLinkActive='active'>
+                            <i class="fa fa-exchange" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش جریان وجوه نقد</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/insurance/monthly-activity' routerLinkActive='active'>
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش فعالیت ماهانه</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CapitalSupply (تأمین سرمایه) -->
+            <div class="card" [ngClass]="{'collapsed': !isCapitalSupplyOpen}">
+                <div class="card-header d-flex align-items-center justify-content-between cursor-pointer"
+                    (click)="toggleSection('capital-supply')">
+                    <div>تأمین سرمایه</div>
+                    <i class="fa" [ngClass]="isCapitalSupplyOpen ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                </div>
+                <div class="card-body" [ngClass]="{'d-none': !isCapitalSupplyOpen}">
+                    <ul class='sidebarList'>
+                        <li class="sidebarListItem w-100" routerLink='/capital-supply/balance-sheet' routerLinkActive='active'>
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت وضعیت مالی</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/capital-supply/income-statement' routerLinkActive='active'>
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/capital-supply/comprehensive-income' routerLinkActive='active'>
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت سود و زیان جامع</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/capital-supply/changes-in-equity' routerLinkActive='active'>
+                            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش صورت تغییرات در حقوق مالکانه</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/capital-supply/cash-flow' routerLinkActive='active'>
+                            <i class="fa fa-exchange" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش جریان وجوه نقد</div>
+                        </li>
+                        <li class="sidebarListItem w-100" routerLink='/capital-supply/monthly-activity' routerLinkActive='active'>
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <div class="white-no py-1" style="margin-right: 15px;">گزارش فعالیت ماهانه</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <li class="sidebarListItem w-100" routerLink='/annual-assembly' routerLinkActive='active'>
                 <i class="fa fa-university font-12" aria-hidden="true"></i>
                 <div class="py-1" style="margin-right: 15px;">تصمیمات مجمع عمومی عادی سالیانه</div>

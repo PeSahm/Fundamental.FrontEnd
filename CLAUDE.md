@@ -49,10 +49,21 @@ ng test                # Karma + Jasmine
 
 ## Sectors & report kinds (current)
 
-Sectors: manufacturing, agriculture, services-industry, structural, investment. The non-manufacturing
-sectors have List + Detail pages for BalanceSheet, IncomeStatement, CashFlow, MonthlyActivity (not
-Investment), plus (Structural / ServicesIndustry / Agriculture) **ComprehensiveIncome and
-ChangesInEquity** pages, and Investment **PortfolioStatement**.
+Sectors: manufacturing, agriculture, services-industry, structural, investment, **bank, leasing,
+insurance, capital-supply**. The non-manufacturing sectors have List + Detail pages for BalanceSheet,
+IncomeStatement, CashFlow, MonthlyActivity (not Investment), plus (Structural / ServicesIndustry /
+Agriculture / Bank / Leasing / Insurance / CapitalSupply) **ComprehensiveIncome and ChangesInEquity**
+pages, and Investment **PortfolioStatement**.
+
+- **bank / leasing / insurance / capital-supply** (added 2026-07-01): the four greenfield backend sectors
+  (Pattern B, route prefixes `Bank`/`Leasing`/`Insurance`/`CapitalSupply`) now have full Angular pages —
+  6 list pages (BS/IS/CF/CompInc/CE/MonthlyActivity) + CE detail + MonthlyActivity detail each, cloned
+  from Structural. Sidebar cards + `app-routing` routes + `api-endpoints.ts` blocks added. Divergences vs
+  Structural handled: **Insurance ChangesInEquity** has an extra `additionalEquity` column (سایر حقوق
+  مالکانه); **MonthlyActivity item shapes differ per sector** — Bank `column1..4`, CapitalSupply
+  `column1..5`, Leasing `column1..12` (generic positional columns, period-labeled where known, else
+  «ستون N»), Insurance uses 8 semantic insurance fields (حق بیمه صادره / خسارت پرداختی × مبلغ/درصد,
+  دوره‌ای + انباشته). MonthlyActivity `column*` values are plain `decimal?` (NOT SignedCodalMoney).
 
 - **ChangesInEquity detail** renders `items[]` as a wide 12-column RTL matrix (شرح + 11 equity columns:
   capital … total). `rowCode` is a per-row ordinal, NOT a summary flag — don't style by it.

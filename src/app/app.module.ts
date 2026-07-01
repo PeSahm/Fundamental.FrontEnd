@@ -78,6 +78,46 @@ import { InvestmentCashFlowListComponent } from './pages/investment/cash-flow-li
 import { InvestmentPortfolioStatementListComponent } from './pages/investment/portfolio-statement-list/investment-portfolio-statement-list.component';
 import { InvestmentPortfolioStatementDetailComponent } from './pages/investment/portfolio-statement-detail/investment-portfolio-statement-detail.component';
 
+// Bank components
+import { BankMonthlyActivityListComponent } from './pages/bank/monthly-activity-list/bank-monthly-activity-list.component';
+import { BankMonthlyActivityDetailComponent } from './pages/bank/monthly-activity-detail/bank-monthly-activity-detail.component';
+import { BankBalanceSheetListComponent } from './pages/bank/balance-sheet-list/bank-balance-sheet-list.component';
+import { BankIncomeStatementListComponent } from './pages/bank/income-statement-list/bank-income-statement-list.component';
+import { BankCashFlowListComponent } from './pages/bank/cash-flow-list/bank-cash-flow-list.component';
+import { BankComprehensiveIncomeListComponent } from './pages/bank/comprehensive-income-list/bank-comprehensive-income-list.component';
+import { BankChangesInEquityListComponent } from './pages/bank/changes-in-equity-list/bank-changes-in-equity-list.component';
+import { BankChangesInEquityDetailComponent } from './pages/bank/changes-in-equity-detail/bank-changes-in-equity-detail.component';
+
+// Leasing components
+import { LeasingMonthlyActivityListComponent } from './pages/leasing/monthly-activity-list/leasing-monthly-activity-list.component';
+import { LeasingMonthlyActivityDetailComponent } from './pages/leasing/monthly-activity-detail/leasing-monthly-activity-detail.component';
+import { LeasingBalanceSheetListComponent } from './pages/leasing/balance-sheet-list/leasing-balance-sheet-list.component';
+import { LeasingIncomeStatementListComponent } from './pages/leasing/income-statement-list/leasing-income-statement-list.component';
+import { LeasingCashFlowListComponent } from './pages/leasing/cash-flow-list/leasing-cash-flow-list.component';
+import { LeasingComprehensiveIncomeListComponent } from './pages/leasing/comprehensive-income-list/leasing-comprehensive-income-list.component';
+import { LeasingChangesInEquityListComponent } from './pages/leasing/changes-in-equity-list/leasing-changes-in-equity-list.component';
+import { LeasingChangesInEquityDetailComponent } from './pages/leasing/changes-in-equity-detail/leasing-changes-in-equity-detail.component';
+
+// Insurance components
+import { InsuranceMonthlyActivityListComponent } from './pages/insurance/monthly-activity-list/insurance-monthly-activity-list.component';
+import { InsuranceMonthlyActivityDetailComponent } from './pages/insurance/monthly-activity-detail/insurance-monthly-activity-detail.component';
+import { InsuranceBalanceSheetListComponent } from './pages/insurance/balance-sheet-list/insurance-balance-sheet-list.component';
+import { InsuranceIncomeStatementListComponent } from './pages/insurance/income-statement-list/insurance-income-statement-list.component';
+import { InsuranceCashFlowListComponent } from './pages/insurance/cash-flow-list/insurance-cash-flow-list.component';
+import { InsuranceComprehensiveIncomeListComponent } from './pages/insurance/comprehensive-income-list/insurance-comprehensive-income-list.component';
+import { InsuranceChangesInEquityListComponent } from './pages/insurance/changes-in-equity-list/insurance-changes-in-equity-list.component';
+import { InsuranceChangesInEquityDetailComponent } from './pages/insurance/changes-in-equity-detail/insurance-changes-in-equity-detail.component';
+
+// CapitalSupply components
+import { CapitalSupplyMonthlyActivityListComponent } from './pages/capital-supply/monthly-activity-list/capital-supply-monthly-activity-list.component';
+import { CapitalSupplyMonthlyActivityDetailComponent } from './pages/capital-supply/monthly-activity-detail/capital-supply-monthly-activity-detail.component';
+import { CapitalSupplyBalanceSheetListComponent } from './pages/capital-supply/balance-sheet-list/capital-supply-balance-sheet-list.component';
+import { CapitalSupplyIncomeStatementListComponent } from './pages/capital-supply/income-statement-list/capital-supply-income-statement-list.component';
+import { CapitalSupplyCashFlowListComponent } from './pages/capital-supply/cash-flow-list/capital-supply-cash-flow-list.component';
+import { CapitalSupplyComprehensiveIncomeListComponent } from './pages/capital-supply/comprehensive-income-list/capital-supply-comprehensive-income-list.component';
+import { CapitalSupplyChangesInEquityListComponent } from './pages/capital-supply/changes-in-equity-list/capital-supply-changes-in-equity-list.component';
+import { CapitalSupplyChangesInEquityDetailComponent } from './pages/capital-supply/changes-in-equity-detail/capital-supply-changes-in-equity-detail.component';
+
 // Shared pipes
 import { PersianNumberPipe } from './pipes/persian-number.pipe';
 import { JalaliDatePipe } from './pipes/jalali-date.pipe';
@@ -151,6 +191,46 @@ import { JalaliDatePipe } from './pipes/jalali-date.pipe';
     InvestmentCashFlowListComponent,
     InvestmentPortfolioStatementListComponent,
     InvestmentPortfolioStatementDetailComponent,
+
+    // Bank components
+    BankMonthlyActivityListComponent,
+    BankMonthlyActivityDetailComponent,
+    BankBalanceSheetListComponent,
+    BankIncomeStatementListComponent,
+    BankCashFlowListComponent,
+    BankComprehensiveIncomeListComponent,
+    BankChangesInEquityListComponent,
+    BankChangesInEquityDetailComponent,
+
+    // Leasing components
+    LeasingMonthlyActivityListComponent,
+    LeasingMonthlyActivityDetailComponent,
+    LeasingBalanceSheetListComponent,
+    LeasingIncomeStatementListComponent,
+    LeasingCashFlowListComponent,
+    LeasingComprehensiveIncomeListComponent,
+    LeasingChangesInEquityListComponent,
+    LeasingChangesInEquityDetailComponent,
+
+    // Insurance components
+    InsuranceMonthlyActivityListComponent,
+    InsuranceMonthlyActivityDetailComponent,
+    InsuranceBalanceSheetListComponent,
+    InsuranceIncomeStatementListComponent,
+    InsuranceCashFlowListComponent,
+    InsuranceComprehensiveIncomeListComponent,
+    InsuranceChangesInEquityListComponent,
+    InsuranceChangesInEquityDetailComponent,
+
+    // CapitalSupply components
+    CapitalSupplyMonthlyActivityListComponent,
+    CapitalSupplyMonthlyActivityDetailComponent,
+    CapitalSupplyBalanceSheetListComponent,
+    CapitalSupplyIncomeStatementListComponent,
+    CapitalSupplyCashFlowListComponent,
+    CapitalSupplyComprehensiveIncomeListComponent,
+    CapitalSupplyChangesInEquityListComponent,
+    CapitalSupplyChangesInEquityDetailComponent,
 
     // Shared pipes
     PersianNumberPipe,

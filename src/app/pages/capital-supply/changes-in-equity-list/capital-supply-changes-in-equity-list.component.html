@@ -1,0 +1,51 @@
+<div class="d-flex flex-column p-2 capital-supply-changes-in-equity-list" dir="rtl">
+  <h4 class="mb-3">صورت تغییرات در حقوق مالکانه</h4>
+  <app-search-filter>
+    <div class="row">
+      <div class="col-3"><label class="form-label font-12">نماد:</label><app-symbol-search (selectSearchSymbol)="selected($event)"></app-symbol-search></div>
+      <div class="col-3"><label for="fiscalYear" class="form-label font-12">سال مالی:</label><input type="input" class="form-control" id="fiscalYear" [(ngModel)]="fiscalYear" mask="0000" [allowNegativeNumbers]="false"></div>
+      <div class="col-3"><label for="reportMonth" class="form-label font-12">ماه گزارش:</label><select class="form-select" [(ngModel)]="reportMonth" id="reportMonth"><option [value]="null">همه</option><option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option></select></div>
+      <div class="col-3 d-flex align-items-end justify-content-end"><button class="btn btn-primary btn-sm" (click)="searchTable()">جستجو</button></div>
+    </div>
+  </app-search-filter>
+  <hr class="my-4" />
+
+  <div *ngIf="isLoading" class="text-center my-4"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">در حال بارگذاری...</span></div></div>
+
+  <div *ngIf="!isLoading" class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>عملیات</th>
+          <th>نماد</th>
+          <th>ISIN</th>
+          <th>سال مالی</th>
+          <th>ماه گزارش</th>
+          <th>تاریخ انتشار</th>
+          <th>وضعیت حسابرسی</th>
+          <th>لینک CODAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of reports">
+          <td><button class="btn btn-sm btn-link p-0" title="مشاهده جزئیات" (click)="openViewPage(report)"><i class="fa fa-eye text-primary"></i></button></td>
+          <td>{{ report.symbol }}</td>
+          <td>{{ report.isin }}</td>
+          <td>{{ report.fiscalYear | persianNumber }}</td>
+          <td>{{ report.reportMonth | persianNumber }}</td>
+          <td>{{ report.publishDate | jalali }}</td>
+          <td>{{ report.isAuditedDescription }}</td>
+          <td><a *ngIf="report.uri" [href]="report.uri" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fa fa-external-link"></i></a></td>
+        </tr>
+        <tr *ngIf="reports.length === 0"><td colspan="8" class="text-center text-muted py-3">رکوردی یافت نشد</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!isLoading && totalRecords > 0" class="d-flex align-items-center justify-content-between mt-2">
+    <ngb-pagination [collectionSize]="totalRecords" [page]="reportFilter.pageNumber" [pageSize]="reportFilter.pageSize" (pageChange)="changePage($event)" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+    <select class="form-select form-select-sm w-auto" [value]="reportFilter.pageSize" (change)="changeSize($event)">
+      <option [value]="10">۱۰</option><option [value]="20">۲۰</option><option [value]="50">۵۰</option><option [value]="100">۱۰۰</option>
+    </select>
+  </div>
+</div>

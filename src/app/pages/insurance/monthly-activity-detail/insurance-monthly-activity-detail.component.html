@@ -1,0 +1,56 @@
+<div class="container-fluid" dir="rtl">
+  <div *ngIf="isLoading" class="text-center my-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">در حال بارگذاری...</span></div><p class="mt-2">در حال بارگذاری فعالیت ماهانه بیمه‌ای...</p></div>
+  <div *ngIf="error && !isLoading" class="alert alert-danger text-center" role="alert"><i class="fas fa-exclamation-triangle me-2"></i>{{ error }}<button type="button" class="btn btn-outline-danger btn-sm ms-3" (click)="goBack()">بازگشت</button></div>
+  <div *ngIf="reportData && !isLoading" class="insurance-monthly-activity-detail">
+    <div class="header-section card mb-4">
+      <div class="card-header bg-secondary text-white"><h4 class="mb-0"><i class="fas fa-shield-alt me-2"></i>جزئیات فعالیت ماهانه بیمه‌ای</h4></div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6"><p><strong>نماد:</strong> {{ reportData.symbol }} <span *ngIf="reportData.isin">({{ reportData.isin }})</span></p></div>
+          <div class="col-md-6"><p><strong>سال مالی:</strong> {{ reportData.fiscalYear | persianNumber }}</p><p *ngIf="reportData.reportMonth"><strong>ماه گزارش:</strong> {{ reportData.reportMonth | persianNumber }}</p></div>
+        </div>
+        <div *ngIf="reportData.uri" class="mt-2"><a [href]="reportData.uri" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-external-link-alt me-1"></i>مشاهده در سامانه کدال</a></div>
+      </div>
+    </div>
+    <div class="section-card card mb-4" *ngIf="reportData.items?.length">
+      <div class="card-header bg-primary text-white"><h5 class="mb-0"><i class="fas fa-list me-2"></i>عملکرد بیمه‌ای ماهانه</h5></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-sm text-center" style="font-size: 0.8rem;">
+            <thead class="table-dark">
+              <tr>
+                <th rowspan="2" class="align-middle">رشته بیمه‌ای</th>
+                <th colspan="4">دوره یک‌ماهه</th>
+                <th colspan="4">از ابتدای سال مالی تا پایان دوره</th>
+              </tr>
+              <tr>
+                <th class="text-end">حق بیمه صادره (مبلغ)</th>
+                <th class="text-end">حق بیمه صادره (درصد)</th>
+                <th class="text-end">خسارت پرداختی (مبلغ)</th>
+                <th class="text-end">خسارت پرداختی (درصد)</th>
+                <th class="text-end">حق بیمه صادره انباشته (مبلغ)</th>
+                <th class="text-end">حق بیمه صادره انباشته (درصد)</th>
+                <th class="text-end">خسارت پرداختی انباشته (مبلغ)</th>
+                <th class="text-end">خسارت پرداختی انباشته (درصد)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reportData.items">
+                <td class="text-end">{{ item.lineOfBusiness }}</td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.issuedInsuranceAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.issuedInsuranceAmount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.issuedInsuranceSharePercent) }}</td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.paidLossAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.paidLossAmount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.paidLossSharePercent) }}</td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.cumulativeIssuedInsuranceAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.cumulativeIssuedInsuranceAmount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.cumulativeIssuedInsuranceSharePercent) }}</td>
+                <td class="text-end"><span [ngbTooltip]="convertToToman(formatNumber(item.cumulativePaidLossAmount))" tooltipClass="tooltip-class">{{ formatNumber(item.cumulativePaidLossAmount) }}</span></td>
+                <td class="text-end">{{ formatNumber(item.cumulativePaidLossSharePercent) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="mt-3 mb-4"><button type="button" class="btn btn-secondary" (click)="goBack()"><i class="fas fa-arrow-right me-2"></i>بازگشت به لیست</button></div>
+  </div>
+</div>

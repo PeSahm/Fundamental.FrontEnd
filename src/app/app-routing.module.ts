@@ -60,6 +60,46 @@ import { InvestmentCashFlowListComponent } from './pages/investment/cash-flow-li
 import { InvestmentPortfolioStatementListComponent } from './pages/investment/portfolio-statement-list/investment-portfolio-statement-list.component';
 import { InvestmentPortfolioStatementDetailComponent } from './pages/investment/portfolio-statement-detail/investment-portfolio-statement-detail.component';
 
+// Bank
+import { BankMonthlyActivityListComponent } from './pages/bank/monthly-activity-list/bank-monthly-activity-list.component';
+import { BankMonthlyActivityDetailComponent } from './pages/bank/monthly-activity-detail/bank-monthly-activity-detail.component';
+import { BankBalanceSheetListComponent } from './pages/bank/balance-sheet-list/bank-balance-sheet-list.component';
+import { BankIncomeStatementListComponent } from './pages/bank/income-statement-list/bank-income-statement-list.component';
+import { BankCashFlowListComponent } from './pages/bank/cash-flow-list/bank-cash-flow-list.component';
+import { BankComprehensiveIncomeListComponent } from './pages/bank/comprehensive-income-list/bank-comprehensive-income-list.component';
+import { BankChangesInEquityListComponent } from './pages/bank/changes-in-equity-list/bank-changes-in-equity-list.component';
+import { BankChangesInEquityDetailComponent } from './pages/bank/changes-in-equity-detail/bank-changes-in-equity-detail.component';
+
+// Leasing
+import { LeasingMonthlyActivityListComponent } from './pages/leasing/monthly-activity-list/leasing-monthly-activity-list.component';
+import { LeasingMonthlyActivityDetailComponent } from './pages/leasing/monthly-activity-detail/leasing-monthly-activity-detail.component';
+import { LeasingBalanceSheetListComponent } from './pages/leasing/balance-sheet-list/leasing-balance-sheet-list.component';
+import { LeasingIncomeStatementListComponent } from './pages/leasing/income-statement-list/leasing-income-statement-list.component';
+import { LeasingCashFlowListComponent } from './pages/leasing/cash-flow-list/leasing-cash-flow-list.component';
+import { LeasingComprehensiveIncomeListComponent } from './pages/leasing/comprehensive-income-list/leasing-comprehensive-income-list.component';
+import { LeasingChangesInEquityListComponent } from './pages/leasing/changes-in-equity-list/leasing-changes-in-equity-list.component';
+import { LeasingChangesInEquityDetailComponent } from './pages/leasing/changes-in-equity-detail/leasing-changes-in-equity-detail.component';
+
+// Insurance
+import { InsuranceMonthlyActivityListComponent } from './pages/insurance/monthly-activity-list/insurance-monthly-activity-list.component';
+import { InsuranceMonthlyActivityDetailComponent } from './pages/insurance/monthly-activity-detail/insurance-monthly-activity-detail.component';
+import { InsuranceBalanceSheetListComponent } from './pages/insurance/balance-sheet-list/insurance-balance-sheet-list.component';
+import { InsuranceIncomeStatementListComponent } from './pages/insurance/income-statement-list/insurance-income-statement-list.component';
+import { InsuranceCashFlowListComponent } from './pages/insurance/cash-flow-list/insurance-cash-flow-list.component';
+import { InsuranceComprehensiveIncomeListComponent } from './pages/insurance/comprehensive-income-list/insurance-comprehensive-income-list.component';
+import { InsuranceChangesInEquityListComponent } from './pages/insurance/changes-in-equity-list/insurance-changes-in-equity-list.component';
+import { InsuranceChangesInEquityDetailComponent } from './pages/insurance/changes-in-equity-detail/insurance-changes-in-equity-detail.component';
+
+// CapitalSupply
+import { CapitalSupplyMonthlyActivityListComponent } from './pages/capital-supply/monthly-activity-list/capital-supply-monthly-activity-list.component';
+import { CapitalSupplyMonthlyActivityDetailComponent } from './pages/capital-supply/monthly-activity-detail/capital-supply-monthly-activity-detail.component';
+import { CapitalSupplyBalanceSheetListComponent } from './pages/capital-supply/balance-sheet-list/capital-supply-balance-sheet-list.component';
+import { CapitalSupplyIncomeStatementListComponent } from './pages/capital-supply/income-statement-list/capital-supply-income-statement-list.component';
+import { CapitalSupplyCashFlowListComponent } from './pages/capital-supply/cash-flow-list/capital-supply-cash-flow-list.component';
+import { CapitalSupplyComprehensiveIncomeListComponent } from './pages/capital-supply/comprehensive-income-list/capital-supply-comprehensive-income-list.component';
+import { CapitalSupplyChangesInEquityListComponent } from './pages/capital-supply/changes-in-equity-list/capital-supply-changes-in-equity-list.component';
+import { CapitalSupplyChangesInEquityDetailComponent } from './pages/capital-supply/changes-in-equity-detail/capital-supply-changes-in-equity-detail.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data: { title: 'خانه' } },
@@ -152,6 +192,46 @@ const routes: Routes = [
   { path: 'investment/cash-flow', component: InvestmentCashFlowListComponent, data: { title: 'جریان وجوه نقد سرمایه‌گذاری' } },
   { path: 'investment/portfolio-statement', component: InvestmentPortfolioStatementListComponent, data: { title: 'صورت سبد سهام سرمایه‌گذاری' } },
   { path: 'investment/portfolio-statement/:id', component: InvestmentPortfolioStatementDetailComponent, data: { title: 'جزئیات صورت سبد سهام سرمایه‌گذاری' } },
+
+  // Bank routes
+  { path: 'bank/monthly-activity', component: BankMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه بانکی' } },
+  { path: 'bank/monthly-activity/:id', component: BankMonthlyActivityDetailComponent, data: { title: 'جزئیات فعالیت ماهانه بانکی' } },
+  { path: 'bank/balance-sheet', component: BankBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی بانکی' } },
+  { path: 'bank/income-statement', component: BankIncomeStatementListComponent, data: { title: 'صورت سود و زیان بانکی' } },
+  { path: 'bank/cash-flow', component: BankCashFlowListComponent, data: { title: 'جریان وجوه نقد بانکی' } },
+  { path: 'bank/comprehensive-income', component: BankComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع بانکی' } },
+  { path: 'bank/changes-in-equity', component: BankChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه بانکی' } },
+  { path: 'bank/changes-in-equity/:id', component: BankChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه بانکی' } },
+
+  // Leasing routes
+  { path: 'leasing/monthly-activity', component: LeasingMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه لیزینگ' } },
+  { path: 'leasing/monthly-activity/:id', component: LeasingMonthlyActivityDetailComponent, data: { title: 'جزئیات فعالیت ماهانه لیزینگ' } },
+  { path: 'leasing/balance-sheet', component: LeasingBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی لیزینگ' } },
+  { path: 'leasing/income-statement', component: LeasingIncomeStatementListComponent, data: { title: 'صورت سود و زیان لیزینگ' } },
+  { path: 'leasing/cash-flow', component: LeasingCashFlowListComponent, data: { title: 'جریان وجوه نقد لیزینگ' } },
+  { path: 'leasing/comprehensive-income', component: LeasingComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع لیزینگ' } },
+  { path: 'leasing/changes-in-equity', component: LeasingChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه لیزینگ' } },
+  { path: 'leasing/changes-in-equity/:id', component: LeasingChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه لیزینگ' } },
+
+  // Insurance routes
+  { path: 'insurance/monthly-activity', component: InsuranceMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه بیمه‌ای' } },
+  { path: 'insurance/monthly-activity/:id', component: InsuranceMonthlyActivityDetailComponent, data: { title: 'جزئیات فعالیت ماهانه بیمه‌ای' } },
+  { path: 'insurance/balance-sheet', component: InsuranceBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی بیمه‌ای' } },
+  { path: 'insurance/income-statement', component: InsuranceIncomeStatementListComponent, data: { title: 'صورت سود و زیان بیمه‌ای' } },
+  { path: 'insurance/cash-flow', component: InsuranceCashFlowListComponent, data: { title: 'جریان وجوه نقد بیمه‌ای' } },
+  { path: 'insurance/comprehensive-income', component: InsuranceComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع بیمه‌ای' } },
+  { path: 'insurance/changes-in-equity', component: InsuranceChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه بیمه‌ای' } },
+  { path: 'insurance/changes-in-equity/:id', component: InsuranceChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه بیمه‌ای' } },
+
+  // CapitalSupply routes
+  { path: 'capital-supply/monthly-activity', component: CapitalSupplyMonthlyActivityListComponent, data: { title: 'فعالیت ماهانه تأمین سرمایه' } },
+  { path: 'capital-supply/monthly-activity/:id', component: CapitalSupplyMonthlyActivityDetailComponent, data: { title: 'جزئیات فعالیت ماهانه تأمین سرمایه' } },
+  { path: 'capital-supply/balance-sheet', component: CapitalSupplyBalanceSheetListComponent, data: { title: 'صورت وضعیت مالی تأمین سرمایه' } },
+  { path: 'capital-supply/income-statement', component: CapitalSupplyIncomeStatementListComponent, data: { title: 'صورت سود و زیان تأمین سرمایه' } },
+  { path: 'capital-supply/cash-flow', component: CapitalSupplyCashFlowListComponent, data: { title: 'جریان وجوه نقد تأمین سرمایه' } },
+  { path: 'capital-supply/comprehensive-income', component: CapitalSupplyComprehensiveIncomeListComponent, data: { title: 'صورت سود و زیان جامع تأمین سرمایه' } },
+  { path: 'capital-supply/changes-in-equity', component: CapitalSupplyChangesInEquityListComponent, data: { title: 'صورت تغییرات در حقوق مالکانه تأمین سرمایه' } },
+  { path: 'capital-supply/changes-in-equity/:id', component: CapitalSupplyChangesInEquityDetailComponent, data: { title: 'جزئیات صورت تغییرات در حقوق مالکانه تأمین سرمایه' } },
 
   {
     path: '**',

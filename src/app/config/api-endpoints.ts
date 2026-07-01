@@ -53,6 +53,46 @@ export const API_ENDPOINTS = {
     PORTFOLIO_STATEMENT: 'Investment/portfolio-statement'
   },
 
+  // Bank endpoints
+  BANK: {
+    MONTHLY_ACTIVITY: 'Bank/monthly-activity',
+    BALANCE_SHEET: 'Bank/balance-sheet',
+    INCOME_STATEMENT: 'Bank/income-statement',
+    CASH_FLOW: 'Bank/cash-flow',
+    COMPREHENSIVE_INCOME: 'Bank/comprehensive-income',
+    CHANGES_IN_EQUITY: 'Bank/changes-in-equity'
+  },
+
+  // Leasing endpoints
+  LEASING: {
+    MONTHLY_ACTIVITY: 'Leasing/monthly-activity',
+    BALANCE_SHEET: 'Leasing/balance-sheet',
+    INCOME_STATEMENT: 'Leasing/income-statement',
+    CASH_FLOW: 'Leasing/cash-flow',
+    COMPREHENSIVE_INCOME: 'Leasing/comprehensive-income',
+    CHANGES_IN_EQUITY: 'Leasing/changes-in-equity'
+  },
+
+  // Insurance endpoints
+  INSURANCE: {
+    MONTHLY_ACTIVITY: 'Insurance/monthly-activity',
+    BALANCE_SHEET: 'Insurance/balance-sheet',
+    INCOME_STATEMENT: 'Insurance/income-statement',
+    CASH_FLOW: 'Insurance/cash-flow',
+    COMPREHENSIVE_INCOME: 'Insurance/comprehensive-income',
+    CHANGES_IN_EQUITY: 'Insurance/changes-in-equity'
+  },
+
+  // CapitalSupply endpoints
+  CAPITAL_SUPPLY: {
+    MONTHLY_ACTIVITY: 'CapitalSupply/monthly-activity',
+    BALANCE_SHEET: 'CapitalSupply/balance-sheet',
+    INCOME_STATEMENT: 'CapitalSupply/income-statement',
+    CASH_FLOW: 'CapitalSupply/cash-flow',
+    COMPREHENSIVE_INCOME: 'CapitalSupply/comprehensive-income',
+    CHANGES_IN_EQUITY: 'CapitalSupply/changes-in-equity'
+  },
+
   // Statement endpoints
   STATEMENTS: 'statements',
 
