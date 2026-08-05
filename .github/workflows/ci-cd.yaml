@@ -8,7 +8,8 @@
 # 4. Triggers GitOps deployment via Fundamental.Infra
 #
 # Triggers:
-# - Push to main (production)
+# - Push to main or develop -> builds and deploys to DEV (there is no production
+#   environment; fundamental-prod / sahmbaz.ir was decommissioned 2026-08-05)
 # - Push to develop (development)
 # - Pull requests (test only)
 # =============================================================================
@@ -36,7 +37,6 @@ on:
         type: choice
         options:
           - dev
-          - prod
 
 env:
   NODE_VERSION: '18'
@@ -140,10 +140,12 @@ jobs:
       - name: Determine environment
         id: env
         run: |
+          # `dev` is the only environment. fundamental-prod (sahmbaz.ir) was
+          # decommissioned on 2026-08-05 — single-trunk development had made it a
+          # months-stale mirror of dev, and its values file no longer exists, so a
+          # `prod` dispatch would fail in Fundamental.Infra's update-tag workflow.
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "environment=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
-          elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "environment=prod" >> $GITHUB_OUTPUT
           else
             echo "environment=dev" >> $GITHUB_OUTPUT
           fi
@@ -157,12 +159,7 @@ jobs:
           # Get date
           DATE=$(date +%Y%m%d)
           
-          # Determine version based on environment
-          if [[ "${{ steps.env.outputs.environment }}" == "prod" ]]; then
-            VERSION="1.0.0-${DATE}-${SHORT_SHA}"
-          else
-            VERSION="dev-${DATE}-${SHORT_SHA}"
-          fi
+          VERSION="dev-${DATE}-${SHORT_SHA}"
           
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
           echo "Generated version: ${VERSION}"
