@@ -1,5 +1,21 @@
 # CLAUDE.md
 
+> **2026-08-05 — there is no production environment any more.** `fundamental-prod` /
+> sahmbaz.ir was decommissioned (Application, namespace, PVCs and its DNS records deleted).
+> This repo develops on `develop`; `main` — which CI mapped to `prod` — had been frozen, so
+> prod served February images for six months. **CI now always builds `dev`** on both
+> branches, and `prod` is gone from the manual dispatch.
+>
+> Nothing in the app source changed, and nothing needs to: `environment.prod.ts` and
+> `--configuration production` are Angular BUILD settings, not the deployment environment,
+> and `basePath: '/api/'` is same-origin — the same production bundle dev has always served.
+>
+> **`dev.academind.ir` now serves from TWO servers** (round-robin DNS): vps-1 `5.10.248.55`
+> and vps-2 `194.5.205.222`, independent MicroK8s clusters running the same image. A user's
+> requests may land on either, so never assume server-side affinity.
+> Detail: `Fundamental.Infra/docs/DECISIONS.md` 2026-08-05.
+
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 `Fundamental.FrontEnd` is the Angular 16 admin frontend (Persian / RTL) for the CODAL financial-statement
