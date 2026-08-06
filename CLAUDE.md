@@ -13,6 +13,13 @@
 > **`dev.academind.ir` now serves from TWO servers** (round-robin DNS): vps-1 `5.10.248.55`
 > and vps-2 `194.5.205.222`, independent MicroK8s clusters running the same image. A user's
 > requests may land on either, so never assume server-side affinity.
+>
+> **Each cluster has its own ArgoCD**: `argocd.academind.ir` (vps-1) and
+> **`argocd2.academind.ir` (vps-2)**. CI is unchanged — one build, one push to
+> `registry.academind.ir`, one `values-dev.yaml` bump that *both* ArgoCDs sync — so a merge
+> deploys to both servers automatically. When verifying a deploy, check both: the two clusters
+> can briefly serve different bundle versions mid-rollout, which looks like a caching bug from
+> the browser but is just one origin syncing a few seconds ahead of the other.
 > Detail: `Fundamental.Infra/docs/DECISIONS.md` 2026-08-05.
 
 
