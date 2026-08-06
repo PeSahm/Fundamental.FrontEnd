@@ -41,6 +41,10 @@ on:
 env:
   NODE_VERSION: '18'
   REGISTRY: registry.academind.ir
+  # Cluster 2's registry on vps-2. A second NAME, not a second A record on REGISTRY: a registry
+  # holds state, so round-robin across two whose contents differ for even a few seconds hands
+  # out ImagePullBackOff at random.
+  REGISTRY2: registry2.academind.ir
   IMAGE_NAME: fundamental-frontend
 
 jobs:
@@ -175,6 +179,19 @@ jobs:
             -f ./Dockerfile.prebuilt .
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }}
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.env.outputs.environment }}-latest
+          # Best-effort copy to cluster 2's registry. Deliberately cannot fail the build: vps-2
+          # being unreachable must never block a vps-1 deploy, which is the coupling two
+          # independent clusters exist to avoid. containerd on vps-2 lists its local registry
+          # first and falls through to ${{ env.REGISTRY }}, so a missed copy is a slower pull,
+          # not a broken deploy.
+          if echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login ${{ env.REGISTRY2 }} -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin 2>/dev/null; then
+            for tag in "${{ steps.version.outputs.version }}" "${{ steps.env.outputs.environment }}-latest"; do
+              docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$tag ${{ env.REGISTRY2 }}/${{ env.IMAGE_NAME }}:$tag
+              docker push ${{ env.REGISTRY2 }}/${{ env.IMAGE_NAME }}:$tag                 || echo "::warning::could not mirror ${{ env.IMAGE_NAME }}:$tag to ${{ env.REGISTRY2 }} — cluster 2 will pull from ${{ env.REGISTRY }}"
+            done
+          else
+            echo "::warning::could not log in to ${{ env.REGISTRY2 }} — image not mirrored to cluster 2"
+          fi
       
       - name: Create summary
         run: |
